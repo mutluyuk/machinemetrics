@@ -1,0 +1,321 @@
+
+# PCA (Principle Component Analysis)
+
+Having seen SVD and Eigenvalue decomposition, we can now look at Principle Component Analysis (PCA), which is a statistical procedure that allows us to summarize the information content in large data files.  In other words, PCA is a popular technique used to reduce the dimensionality of high-dimensional data while retaining most of the information in the original data.
+
+**PCA is a eigenvalue decomposition of a covariance matrix** (of data matrix $\mathbf{X}$). Since a covariance matrix is a square symmetric matrix, we can apply the eigenvalue decomposition, which reveals the unique orthogonal directions (variances) in the data so that their orthogonal linear combinations maximize the total variance.
+
+The goal is here a dimension reduction of the data matrix.  Hence by selecting a few loading, we can reduce the dimension of the data but capture a substantial variation in the data at the same time.  
+
+Principal components are the ordered (orthogonal) lines (vectors) that best account for the maximum variance in the data by their magnitude. To get the (unique) variances (direction and the magnitude) in data, we first obtain the mean-centered covariance matrix.  
+
+When we use the covariance matrix of the data, we can use eigenvalue decomposition to identify the unique variation (eigenvectors) and their relative magnitudes (eigenvalues) in the data.  Here is a simple procedure:  
+  
+1. $\mathbf{X}$ is the data matrix, 
+2. $\mathbf{B}$ is the mean-centered data matrix, 
+3. $\mathbf{C}$ is the covariance matrix ($\mathbf{B}^T\mathbf{B}$). Note that, if $\mathbf{B}$ is scaled, i.e. "z-scored", $\mathbf{B}^T\mathbf{B}$ gives correlation matrix. We will have more information on covariance and correlation in Chapter 32. 
+4. The eigenvectors and values of $\mathbf{C}$ by $\mathbf{C} = \mathbf{VDV^{\top}}$.  Thus, $\mathbf{V}$ contains the eigenvectors (loadings) and $\mathbf{D}$ contains eigenvalues. 
+5. Using $\mathbf{V}$, the transformation of $\mathbf{B}$ with $\mathbf{B} \mathbf{V}$ maps the data of $p$ variables to a new space of $p$ variables which are uncorrelated over the dataset. $\mathbf{T} =\mathbf{B} \mathbf{V}$ is called the **principle component or score matrix**. 
+6. Since SVD of $\mathbf{B} = \mathbf{U} \Sigma \mathbf{V}^{\top}$, we can also get $\mathbf{B}\mathbf{V} = \mathbf{T} = \mathbf{U\Sigma}$. Hence the principle components are $\mathbf{T} = \mathbf{BV} = \mathbf{U\Sigma}$. 
+7. However, not all the principal components need to be kept. Keeping only the first $r$ principal components, produced by using only the first $r$ eigenvectors, gives the truncated transformation $\mathbf{T}_{r} = \mathbf{B} \mathbf{V}_{r}$.  Obviously you choose those with higher variance in each directions by the order of eigenvalues. 
+8. We can use $\frac{\lambda_{k}}{\sum_{i=1} \lambda_{k}}$ to identify $r$. Or cumulatively, we can see how much variation could be captured by $r$ number of $\lambda$s, which gives us an idea how many principle components to keep:  
+
+$$
+\frac{\sum_{i=1}^{r} \lambda_{k}}{\sum_{i=1}^n \lambda_{k}}
+$$
+
+We use the `factorextra` package and the `decathlon2` data for an example.  
+
+```{r pca1, warning=FALSE, message=FALSE}
+library("factoextra")
+data(decathlon2)
+
+X <- as.matrix(decathlon2[, 1:10])
+head(X)
+
+n <- nrow(X)
+B <- scale(X, center = TRUE)
+C <- t(B) %*% B / (n - 1)
+head(C)
+
+#Check it
+head(cov(B))
+```
+
+Eigenvalues and vectors ...
+
+```{r, warning=FALSE, message=FALSE}
+#Eigens
+evalues <- eigen(C)$values
+evalues
+evectors <- eigen(C)$vectors
+evectors #Ordered
+```
+
+Now with `prcomp()`.  First, eigenvalues:  
+
+```{r pca2, warning=FALSE, message=FALSE}
+# With `prcomp()`
+Xpca <- prcomp(X, scale = TRUE)
+#Eigenvalues
+Xpca$sdev 
+```
+
+They are the square root of the eigenvalues that we calculated before and they are ordered.# 
+
+```{pca2b}
+sqrt(evalues)
+```
+
+And, the "loadings" (Eigenvectors):
+
+```{r pca3, warning=FALSE, message=FALSE}
+#Eigenvectors 
+Xpca$rotation # 10x10
+loadings <- Xpca$rotation
+```
+
+The signs of eigenvectors are flipped and opposites of what we calculated with `eigen()` above. This is because the definition of an eigenbasis is ambiguous of sign. There are multiple discussions about the sign reversals in eignevectores.  
+
+Let's visualize the order:   
+
+```{r pca4, warning=FALSE, message=FALSE}
+plot(Xpca$sdev) # Eigenvalues
+fviz_eig(Xpca) # Cumulative with "factoextra"
+
+# Or
+var <- (Xpca$sdev) ^ 2
+var_perc <- var / sum(var) * 100
+
+barplot(
+  var_perc,
+  xlab = 'PC',
+  ylab = 'Percent Variance',
+  names.arg = 1:length(var_perc),
+  las = 1,
+  ylim = c(0, max(var_perc)),
+  col = 'lightgreen'
+)
+
+abline(h = mean(var_perc), col = 'red')
+```
+  
+Since we have ten variables, if each variable contributed equally, they would each contribute 10\% to the total variance (red line). This criterion suggests we should also include principal component 4 (but barely) in our interpretation. 
+
+And principle component scores $\mathbf{T} = \mathbf{X}\mathbf{V}$ (a.k.a score matrix) with `prcomp()`:
+
+```{r pca5, warning=FALSE, message=FALSE}
+pc <- scale(X) %*% Xpca$rotation
+head(pc)
+dim(pc)
+
+# which is also given by `prcomp()`
+head(Xpca$x)
+```
+
+Now you can think that if we use `evectors` that we calculated earlier with filliped signs, the data would be different.  It's similar to multiply the entire data with -1.  So the data would not change in a sense that that captures the variation between observations and variables.  That's why the sign of eigenvalues are arbitraray.
+
+Now, with SVD:  
+  
+```{r pca6, warning=FALSE, message=FALSE}
+# With SVD
+Xsvd <- svd(scale(X))
+pc_2 <- Xsvd$u %*% diag(Xsvd$d)
+dim(pc_2)
+head(pc_2)
+```
+
+Here we can reduce the dimensionality by selecting only 4 PC (the first 4 PC's are above the average, which explain more than 80% of the variation in the data - see the graph above)
+
+```{r pca7, warning=FALSE, message=FALSE}
+reduced <- pc[, 1:4]
+dim(reduced)
+head(reduced)
+```
+
+The individual columns of $\mathbf{T}$ successively inherit the maximum possible variance from $\mathbf{X}$, with each coefficient vector in $\mathbf{V}$ constrained to be a unit vector. In $\mathbf{T}=\mathbf{X V}$, $\mathbf{V}$ is a $p \times p$ matrix of weights whose columns are the eigenvectors of $\mathbf{X}^{\top} \mathbf{X}$. The columns of $\mathbf{V}$ multiplied by the square root of corresponding eigenvalues, that is, eigenvectors scaled up by the variances, are called loadings in PCA and Factor analysis.
+
+Note that if we make a singular value decomposition for a covariance matrix 
+
+$$
+\begin{aligned}
+\mathbf{X}^{T} \mathbf{X} &=\mathbf{V} \mathbf{\Sigma}^{\top} \mathbf{U}^{\top} \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{\top} \\
+&=\mathbf{V} \mathbf{\Sigma}^{\top} \mathbf{\Sigma} \mathbf{V}^{\top} \\
+&=\mathbf{V} \hat{\mathbf{\Sigma}}^{2} \mathbf{V}^{\top}
+\end{aligned}
+$$
+
+where $\hat{\boldsymbol{\Sigma}}$ is the square diagonal matrix with the singular values of $\mathbf{X}$ and the excess zeros are chopped off so that it  satisfies $\hat{\boldsymbol{\Sigma}}^{2}=\boldsymbol{\Sigma}^{\top} \boldsymbol{\Sigma}$.
+  
+Comparison with the eigenvector factorization of $\mathbf{X}^{\top} \mathbf{X}$ establishes that the right singular vectors $\mathbf{V}$ of $\mathbf{X}$ are equivalent to the eigenvectors of $\mathbf{X}^{\top} \mathbf{X}$, while the singular values $\sigma_{(k)}$ of $\mathbf{X}$ are equal to the square-root of the eigenvalues $\lambda_{(k)}$ of $\mathbf{X}^{\top} \mathbf{X}$.
+
+
+## Factor Analysis
+
+Factor analysis and Principal Component Analysis (PCA) both involve reducing the dimensionality of a dataset, but they are not the same.  PCA is a mathematical technique that transforms a dataset of possibly correlated variables into a smaller set of uncorrelated variables known as principal components. The principal components are linear combinations of the original variables, and each principal component accounts for as much of the variation in the data as possible.
+
+Factor Analysis (FA) is a method for modeling observed variables, and their covariance structure, in terms of a smaller number of underlying latent (unobserved) "factors". In FA the observed variables are modeled as linear functions of the "factors." In PCA, we create new variables that are linear combinations of the observed variables.  In both PCA and FA, the dimension of the data is reduced. 
+
+The main difference between FA and PCA lies in their objectives. PCA aims to reduce the number of variables by identifying the most important components, while factor analysis aims to identify the underlying factors that explain the correlations among the variables. Therefore, PCA is more commonly used for data reduction or data compression, while factor analysis is more commonly used for exploring the relationships among variables.
+
+As shown below, a factor model can be represented by as a series of multiple regressions, where each $X_{i}$ ($i = 1, \cdots, p$) is a function of $m$ number of unobservable common factors $f_{i}$:
+
+$$
+\begin{gathered}
+X_{1}=\mu_{1}+\beta_{11} f_{1}+\beta_{12} f_{2}+\cdots+\beta_{1m} f_{m}+\epsilon_{1} \\
+X_{2}=\mu_{2}+\beta_{21} f_{1}+\beta_{22} f_{2}+\cdots+\beta_{2 m} f_{m}+\epsilon_{2} \\
+\vdots \\
+X_{p}=\mu_{p}+\beta_{p 1} f_{1}+\beta_{p 2} f_{2}+\cdots+\beta_{p m} f_{m}+\epsilon_{p}
+\end{gathered}
+$$
+
+where $\mathrm{E}\left(X_i\right)=\mu_i$, $\epsilon_{i}$ are called the **specific factors**.  The coefficients, $\beta_{i j},$ are the factor **loadings**.  We can expressed all of them in a matrix notation.
+
+\begin{equation}
+\mathbf{X}=\boldsymbol{\mu}+\mathbf{L f}+\boldsymbol{\epsilon}
+\end{equation} 
+
+where
+
+$$
+\mathbf{L}=\left(\begin{array}{cccc}
+\beta_{11} & \beta_{12} & \ldots & \beta_{1 m} \\
+\beta_{21} & \beta_{22} & \ldots & \beta_{2 m} \\
+\vdots & \vdots & & \vdots \\
+\beta_{p 1} & \beta_{p 2} & \ldots & \beta_{p m}
+\end{array}\right)
+$$
+
+There are multiple assumptions:
+  
+- $E\left(\epsilon_{i}\right)=0$ and $\operatorname{var}\left(\epsilon_{i}\right)=\psi_{i}$, which is called as "specific variance", 
+- $E\left(f_{i}\right)=0$ and $\operatorname{var}\left(f_{i}\right)=1$,
+- $\operatorname{cov}\left(f_{i}, f_{j}\right)=0$ for $i \neq j$,
+- $\operatorname{cov}\left(\epsilon_{i}, \epsilon_{j}\right)=0$ for $i \neq j$,
+- $\operatorname{cov}\left(\epsilon_{i}, f_{j}\right)=0$,
+
+Given these assumptions, the variance of $X_i$ can be expressed as
+
+$$
+\operatorname{var}\left(X_{i}\right)=\sigma_{i}^{2}=\sum_{j=1}^{m} \beta_{i j}^{2}+\psi_{i}
+$$
+
+There are two sources of the variance in $X_i$: $\sum_{j=1}^{m} \beta_{i j}^{2}$, which is called the **Communality** for variable $i$, and **specific variance**, $\psi_{i}$.  
+
+Moreover, 
+  
+- $\operatorname{cov}\left(X_{i}, X_{j}\right)=\sigma_{i j}=\sum_{k=1}^{m} l_{i k} l_{j k}$, 
+- $\operatorname{cov}\left(X_{i}, f_{j}\right)=l_{i j}$
+
+The factor model for our variance-covariance matrix of $\mathbf{X}$ can then be expressed as:
+
+$$
+\begin{equation}
+\operatorname{var-cov}(\mathbf{X}) = \Sigma=\mathbf{L L}^{\prime}+\mathbf{\Psi}
+\end{equation} 
+$$
+
+which is the sum of the shared variance with another variable, $\mathbf{L} \mathbf{L}^{\prime}$ (the common variance or **communality**) and the unique variance, $\mathbf{\Psi}$, inherent to each variable (**specific variance**)
+
+We need to look at $\mathbf{L L}^{\prime}$, where $\mathbf{L}$ is the $p \times m$ matrix of loadings. In general, we want to have $m \ll p$.  
+
+The $i^{\text {th }}$ diagonal element of $\mathbf{L L}^{\prime}$, the sum of the squared loadings, is called the $i^{\text {th }}$ communality. The communality values represent the percent of variability explained by the common factors. The sizes of the communalities and/or the specific variances can be used to evaluate the goodness of fit.
+
+To estimate factor loadings with PCA, we first calculate the principal components of the data, and then compute the factor loadings using the eigenvectors of the correlation matrix of the standardized data.  When PCA is used, the matrix of estimated factor loadings, $\mathbf{L},$ is given by:
+
+$$
+\widehat{\mathbf{L}}=\left[\begin{array}{lll}
+\sqrt{\hat{\lambda}_1} \hat{\mathbf{v}}_1 & \sqrt{\hat{\lambda}_2} \hat{\mathbf{v}}_2 & \ldots \sqrt{\hat{\lambda}_m} \hat{\mathbf{v}}_m
+\end{array}\right]
+$$
+
+where 
+
+$$
+\hat{\beta}_{i j}=\hat{\mathbf{v}}_{i j} \sqrt{\hat{\lambda}_j}
+$$
+where $i$ is the index of the original variable, $j$ is the index of the principal component, eigenvector $(i,j)$ is the $i$-th component of the $j$-th eigenvector of the correlation matrix, eigenvalue $(j)$ is the $j$-th eigenvalue of the correlation matrix
+
+This method tries to find values of the loadings that bring the estimate of the total communality close to the total of the observed variances. The covariances are ignored.  Remember, the communality is the part of the variance of the variable that is explained by the factors. So a larger communality means a more successful factor model in explaining the variable. 
+
+Let's have an example.  The data set is called `bfi` and comes from the `psych` package. 
+
+The data includes 25 self-reported personality items from the International Personality Item Pool, gender, education level, and age for 2800 subjects.  The personality items are split into 5 categories: Agreeableness (A), Conscientiousness (C), Extraversion (E), Neuroticism (N), Openness (O). Each item was answered on a six point scale: 1 Very Inaccurate to 6 Very Accurate.
+
+```{r fa1, warning=FALSE, message=FALSE}
+library(psych)
+library(GPArotation)
+data("bfi")
+str(bfi)
+```
+  
+To get rid of missing observations and the last three variables,
+
+```{r fa2}
+df <- bfi[complete.cases(bfi[, 1:25]), 1:25]
+```
+
+The first decision that we need make  is the number of factors that we will need to extract.  For $p=25$, the variance-covariance matrix $\Sigma$ contains
+$$
+\frac{p(p+1)}{2}=\frac{25 \times 26}{2}=325
+$$
+unique elements or entries. With $m$ factors, the number of parameters in the factor model would be
+  
+$$
+p(m+1)=25(m+1)
+$$
+
+Taking $m=5$, we have 150 parameters in the factor model.  How do we choose $m$?  Although it is  common to look at the results of the principal components analysis, often in social sciences, the underlying theory within the field of study indicates how many factors to expect.  
+
+```{r, message=FALSE, warning=FALSE}
+scree(df)
+```
+
+Let's use the `factanal()` function of the build-in `stats` package,  which performs maximum likelihood estimation.  
+
+```{r fa3, message=FALSE, warning=FALSE}
+pa.out <- factanal(df, factors = 5)
+pa.out
+```
+
+The first chunk provides the "uniqueness" (specific variance) for each variable, which range from 0 to 1 . The uniqueness explains the proportion of variability, which cannot be explained by a linear combination of the factors. That's why it's referred to as noise. This is the $\hat{\Psi}$ in the equation above. A high uniqueness for a variable implies that the factors are not the main source of its variance.
+
+The next section reports the loadings ranging from $-1$ to $1.$ This is the $\hat{\mathbf{L}}$ in the equation (31.2) above. Variables with a high loading are well explained by the factor. Note that R does not print loadings less than $0.1$.
+
+The communalities for the $i^{t h}$ variable are computed by taking the sum of the squared loadings for that variable. This is expressed below:
+
+$$
+\hat{h}_i^2=\sum_{j=1}^m \hat{l}_{i j}^2
+$$
+
+A well-fit factor model has low values for uniqueness and high values for communality. One way to calculate the communality is to subtract the uniquenesses from 1. 
+
+```{r fa4}
+apply(pa.out$loadings ^ 2, 1, sum) # communality
+1 - apply(pa.out$loadings ^ 2, 1, sum) # uniqueness
+```
+  
+The table under the loadings reports the proportion of variance explained by each factor. `Proportion Var` shows the proportion of variance explained by each factor. The row `Cumulative Var` is the cumulative `Proportion Var`. Finally, the row `SS loadings` reports the sum of squared loadings. This can be used to determine a factor worth keeping (Kaiser Rule).
+
+The last section of the output reports a significance test: The null hypothesis is that the number of factors in the model is sufficient to capture the full dimensionality of the data set. Hence, in our example, we fitted not an appropriate model. 
+
+Finally, we may compare estimated correlation matrix, $\hat{\Sigma}$ and the observed correlation matrix:
+
+```{r fa5}
+Lambda <- pa.out$loadings
+Psi <- diag(pa.out$uniquenesses)
+Sigma_hat <- Lambda %*% t(Lambda) + Psi
+head(Sigma_hat)
+```
+
+Let's check the differences:
+
+```{r}
+round(head(cor(df)) - head(Sigma_hat), 2)
+```
+
+This matrix is also called as the **residual matrix**. 
+
+For extracting and visualizing the results of factor analysis, we can use the `factoextra` package: <https://cran.r-project.org/web/packages/factoextra/readme/README.html>
+
+

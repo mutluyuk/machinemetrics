@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Prediction Intervals | MachineMetrics</title>
+  <meta name="description" content="Chapter 13 Prediction Intervals | MachineMetrics" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Prediction Intervals | MachineMetrics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/png/MachineMetrics.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Prediction Intervals | MachineMetrics" />
+  
+  
+  <meta name="twitter:image" content="/png/MachineMetrics.png" />
+
+<meta name="author" content="Yigit Aydede and Mutlu Yuksel" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="optimization-algorithms---basics.html"/>
+<link rel="next" href="interpretability.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book-is-different"><i class="fa fa-check"></i>Why this book is different?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-manuscript"><i class="fa fa-check"></i>Structure of Manuscript:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-can-use-this-book"><i class="fa fa-check"></i>Who Can Use This Book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION:</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prediction-vs.-estimation"><i class="fa fa-check"></i><b>1.1</b> Prediction vs. Estimation:</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-can-you-use-the-covered-topics-in-social-sciences"><i class="fa fa-check"></i><b>1.2</b> Where can you use the covered topics in Social Sciences?:</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html"><i class="fa fa-check"></i><b>2</b> Statistical Models and Simulations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#distinguishing-between-statistical-modeling-and-machine-learning-in-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#goals-and-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Goals and Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#prediction-vs.-inference"><i class="fa fa-check"></i><b>2.1.2</b> Prediction vs. Inference</a></li>
+<li class="chapter" data-level="2.1.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#conclusion"><i class="fa fa-check"></i><b>2.1.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#model-selection-and-approaches-in-data-modeling"><i class="fa fa-check"></i><b>2.4</b> Model Selection and Approaches in Data Modeling</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="counterfactual.html"><a href="counterfactual.html#qualitative-and-quantitative-research-methods"><i class="fa fa-check"></i><b>3.1</b> Qualitative and Quantitative research methods:</a></li>
+<li class="chapter" data-level="3.2" data-path="counterfactual.html"><a href="counterfactual.html#quantitative---research-methods"><i class="fa fa-check"></i><b>3.2</b> Quantitative - Research methods :</a></li>
+<li class="chapter" data-level="3.3" data-path="counterfactual.html"><a href="counterfactual.html#data-and-visualization"><i class="fa fa-check"></i><b>3.3</b> Data and visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="counterfactual.html"><a href="counterfactual.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="counterfactual.html"><a href="counterfactual.html#effect-of-x-on-y-regression"><i class="fa fa-check"></i><b>3.5</b> Effect of X on Y / Regression</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
+<li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="counterfactual.html"><a href="counterfactual.html#average-treatment-effectate"><i class="fa fa-check"></i><b>3.6.1</b> Average Treatment Effect(ATE)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="counterfactual.html"><a href="counterfactual.html#additional-treatment-effects"><i class="fa fa-check"></i><b>3.6.2</b> Additional Treatment Effects</a></li>
+<li class="chapter" data-level="3.6.3" data-path="counterfactual.html"><a href="counterfactual.html#selection-bias-and-heteregeneous-treatment-effect-bias"><i class="fa fa-check"></i><b>3.6.3</b> Selection Bias and Heteregeneous Treatment Effect Bias:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning.html"><a href="learning.html"><i class="fa fa-check"></i><b>4</b> Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.1</b> Biased estimator as a predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
+<li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
+<li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#parametric-estimations"><i class="fa fa-check"></i><b>9.1</b> Parametric Estimations</a></li>
+<li class="chapter" data-level="9.2" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#lpm"><i class="fa fa-check"></i><b>9.2</b> LPM</a></li>
+<li class="chapter" data-level="9.3" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#logistic-regression"><i class="fa fa-check"></i><b>9.3</b> Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html"><i class="fa fa-check"></i><b>10</b> Nonparametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#density-estimations"><i class="fa fa-check"></i><b>10.1</b> Density estimations</a></li>
+<li class="chapter" data-level="10.2" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#kernel-regression"><i class="fa fa-check"></i><b>10.2</b> Kernel regression</a></li>
+<li class="chapter" data-level="10.3" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#knn"><i class="fa fa-check"></i><b>10.3</b> Knn</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#adult-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Adult dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html"><i class="fa fa-check"></i><b>11</b> Hyperparameter Tuning</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#training-and-validation"><i class="fa fa-check"></i><b>11.1</b> Training and Validation</a></li>
+<li class="chapter" data-level="11.2" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#splitting-the-data-randomly"><i class="fa fa-check"></i><b>11.2</b> Splitting the data randomly</a></li>
+<li class="chapter" data-level="11.3" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>11.3</b> k-fold cross validation</a></li>
+<li class="chapter" data-level="11.4" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#grid-search"><i class="fa fa-check"></i><b>11.4</b> Grid Search</a></li>
+<li class="chapter" data-level="11.5" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#cross-validated-grid-search"><i class="fa fa-check"></i><b>11.5</b> Cross-validated grid search</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html"><i class="fa fa-check"></i><b>12</b> Optimization Algorithms - Basics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#brute-force-optimization"><i class="fa fa-check"></i><b>12.1</b> Brute-force optimization</a></li>
+<li class="chapter" data-level="12.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#derivative-based-methods"><i class="fa fa-check"></i><b>12.2</b> Derivative-based methods</a></li>
+<li class="chapter" data-level="12.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#ml-estimation-with-logistic-regression"><i class="fa fa-check"></i><b>12.3</b> ML Estimation with logistic regression</a></li>
+<li class="chapter" data-level="12.4" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#gradient-descent-algorithm"><i class="fa fa-check"></i><b>12.4</b> Gradient Descent Algorithm</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#one-variable"><i class="fa fa-check"></i><b>12.4.1</b> One-variable</a></li>
+<li class="chapter" data-level="12.4.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#adjustable-lr-and-sgd"><i class="fa fa-check"></i><b>12.4.2</b> Adjustable <code>lr</code> and SGD</a></li>
+<li class="chapter" data-level="12.4.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#multivariable"><i class="fa fa-check"></i><b>12.4.3</b> Multivariable</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#optimization-with-r"><i class="fa fa-check"></i><b>12.5</b> Optimization with R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prediction-intervals.html"><a href="prediction-intervals.html"><i class="fa fa-check"></i><b>13</b> Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="prediction-intervals.html"><a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor"><i class="fa fa-check"></i><b>13.1</b> Prediction interval for unbiased OLS predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="interpretability.html"><a href="interpretability.html"><i class="fa fa-check"></i><b>14</b> Interpretability</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="interpretability.html"><a href="interpretability.html#interpretable-vs-noninterpretable-models"><i class="fa fa-check"></i><b>14.1</b> Interpretable vs NonInterpretable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>15</b> Shrinkage Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>15.1</b> Ridge</a></li>
+<li class="chapter" data-level="15.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>15.2</b> Lasso</a></li>
+<li class="chapter" data-level="15.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>15.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="15.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>16</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>16.1</b> CART - Classification Tree</a></li>
+<li class="chapter" data-level="16.2" data-path="regression-trees.html"><a href="regression-trees.html#rpart---recursive-partitioning"><i class="fa fa-check"></i><b>16.2</b> <code>rpart</code> - Recursive Partitioning</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>16.3</b> Pruning</a></li>
+<li class="chapter" data-level="16.4" data-path="regression-trees.html"><a href="regression-trees.html#classification-with-titanic"><i class="fa fa-check"></i><b>16.4</b> Classification with Titanic</a></li>
+<li class="chapter" data-level="16.5" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>16.5</b> Regression Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>17</b> Ensemble Methods</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a></li>
+<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-forest"><i class="fa fa-check"></i><b>17.2</b> Random Forest</a></li>
+<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>17.3</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#sequential-ensemble-with-gbm"><i class="fa fa-check"></i><b>17.3.1</b> Sequential ensemble with <code>gbm</code></a></li>
+<li class="chapter" data-level="17.3.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>17.3.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="17.3.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.3.3</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.4</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.5</b> Classification</a></li>
+<li class="chapter" data-level="17.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>17.6</b> Regression</a></li>
+<li class="chapter" data-level="17.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.7</b> Exploration</a></li>
+<li class="chapter" data-level="17.8" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.8</b> Boosting Applications</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression-1"><i class="fa fa-check"></i><b>17.8.1</b> Regression</a></li>
+<li class="chapter" data-level="17.8.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.8.2</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="17.8.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.8.3</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="17.8.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-1"><i class="fa fa-check"></i><b>17.8.4</b> Classification</a></li>
+<li class="chapter" data-level="17.8.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost.m1"><i class="fa fa-check"></i><b>17.8.5</b> AdaBoost.M1</a></li>
+<li class="chapter" data-level="17.8.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.8.6</b> Classification with XGBoost</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>18</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>18.1</b> Random experiment</a></li>
+<li class="chapter" data-level="18.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>18.2</b> IV</a></li>
+<li class="chapter" data-level="18.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>18.3</b> DiffD</a></li>
+<li class="chapter" data-level="18.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>18.4</b> RD</a></li>
+<li class="chapter" data-level="18.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>18.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="18.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>18.6</b> Double/Debiased Lasso/Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>19</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>19.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="19.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>19.2</b> Causal Forest</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>20</b> Model selection and Sparsity</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>20.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="20.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#out-sample-prediction-accuracy"><i class="fa fa-check"></i><b>20.3</b> out-sample prediction accuracy</a></li>
+<li class="chapter" data-level="20.4" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>20.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="classification-2.html"><a href="classification-2.html"><i class="fa fa-check"></i><b>21</b> Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="classification-2.html"><a href="classification-2.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>21.1</b> Nonparametric Classifier - kNN</a></li>
+<li class="chapter" data-level="21.2" data-path="classification-2.html"><a href="classification-2.html#mnist-dataset"><i class="fa fa-check"></i><b>21.2</b> <code>mnist</code> Dataset</a></li>
+<li class="chapter" data-level="21.3" data-path="classification-2.html"><a href="classification-2.html#linear-classifiers-again"><i class="fa fa-check"></i><b>21.3</b> Linear classifiers (again)</a></li>
+<li class="chapter" data-level="21.4" data-path="classification-2.html"><a href="classification-2.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.4</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="21.5" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret"><i class="fa fa-check"></i><b>21.5</b> kNN with caret</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="classification-2.html"><a href="classification-2.html#mnist_27"><i class="fa fa-check"></i><b>21.5.1</b> <code>mnist_27</code></a></li>
+<li class="chapter" data-level="21.5.2" data-path="classification-2.html"><a href="classification-2.html#adult-dataset-1"><i class="fa fa-check"></i><b>21.5.2</b> Adult dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="classification-2.html"><a href="classification-2.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.6</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="21.7" data-path="classification-2.html"><a href="classification-2.html#confusion-matrix"><i class="fa fa-check"></i><b>21.7</b> Confusion matrix</a></li>
+<li class="chapter" data-level="21.8" data-path="classification-2.html"><a href="classification-2.html#performance-measures"><i class="fa fa-check"></i><b>21.8</b> Performance measures</a></li>
+<li class="chapter" data-level="21.9" data-path="classification-2.html"><a href="classification-2.html#roc-curve"><i class="fa fa-check"></i><b>21.9</b> ROC Curve</a></li>
+<li class="chapter" data-level="21.10" data-path="classification-2.html"><a href="classification-2.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>21.10</b> AUC - Area Under the Curve</a></li>
+<li class="chapter" data-level="21.11" data-path="classification-2.html"><a href="classification-2.html#classification-example"><i class="fa fa-check"></i><b>21.11</b> Classification Example</a></li>
+<li class="chapter" data-level="21.12" data-path="classification-2.html"><a href="classification-2.html#lpm-1"><i class="fa fa-check"></i><b>21.12</b> LPM</a></li>
+<li class="chapter" data-level="21.13" data-path="classification-2.html"><a href="classification-2.html#logistic-regression-1"><i class="fa fa-check"></i><b>21.13</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21.14" data-path="classification-2.html"><a href="classification-2.html#knn-1"><i class="fa fa-check"></i><b>21.14</b> kNN</a>
+<ul>
+<li class="chapter" data-level="21.14.1" data-path="classification-2.html"><a href="classification-2.html#knn-10-fold-cv"><i class="fa fa-check"></i><b>21.14.1</b> kNN 10-fold CV</a></li>
+<li class="chapter" data-level="21.14.2" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret-1"><i class="fa fa-check"></i><b>21.14.2</b> kNN with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>22</b> Time Series</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="time-series.html"><a href="time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="22.2" data-path="time-series.html"><a href="time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>22.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="22.3" data-path="time-series.html"><a href="time-series.html#ts-plots"><i class="fa fa-check"></i><b>22.3</b> TS Plots</a></li>
+<li class="chapter" data-level="22.4" data-path="time-series.html"><a href="time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="22.5" data-path="time-series.html"><a href="time-series.html#stationarity"><i class="fa fa-check"></i><b>22.5</b> Stationarity</a></li>
+<li class="chapter" data-level="22.6" data-path="time-series.html"><a href="time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.6</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="22.7" data-path="time-series.html"><a href="time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.7</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="22.8" data-path="time-series.html"><a href="time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.8</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="22.9" data-path="time-series.html"><a href="time-series.html#speed"><i class="fa fa-check"></i><b>22.9</b> Speed</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="forecast.html"><a href="forecast.html"><i class="fa fa-check"></i><b>23</b> Forecast</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="forecast.html"><a href="forecast.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="23.2" data-path="forecast.html"><a href="forecast.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="23.3" data-path="forecast.html"><a href="forecast.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="23.4" data-path="forecast.html"><a href="forecast.html#random-forest-1"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
+<li class="chapter" data-level="23.5" data-path="forecast.html"><a href="forecast.html#univariate"><i class="fa fa-check"></i><b>23.5</b> Univariate</a></li>
+<li class="chapter" data-level="23.6" data-path="forecast.html"><a href="forecast.html#multivariate"><i class="fa fa-check"></i><b>23.6</b> Multivariate</a></li>
+<li class="chapter" data-level="23.7" data-path="forecast.html"><a href="forecast.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.7</b> Rolling and expanding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#optimal-separating-classifier"><i class="fa fa-check"></i><b>24.1</b> Optimal Separating Classifier</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-margin"><i class="fa fa-check"></i><b>24.1.1</b> The Margin</a></li>
+<li class="chapter" data-level="24.1.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-non-separable-case"><i class="fa fa-check"></i><b>24.1.2</b> The Non-Separable Case</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#nonlinear-boundary-with-kernels"><i class="fa fa-check"></i><b>24.2</b> Nonlinear Boundary with Kernels</a></li>
+<li class="chapter" data-level="24.3" data-path="support-vector-machine.html"><a href="support-vector-machine.html#application-with-svm"><i class="fa fa-check"></i><b>24.3</b> Application with SVM</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>25</b> Neural Networks</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>25.1</b> Neural Network - the idea</a></li>
+<li class="chapter" data-level="25.2" data-path="neural-networks.html"><a href="neural-networks.html#backpropagation"><i class="fa fa-check"></i><b>25.2</b> Backpropagation</a></li>
+<li class="chapter" data-level="25.3" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---more-inputs"><i class="fa fa-check"></i><b>25.3</b> Neural Network - More inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="deep-learning.html"><a href="deep-learning.html"><i class="fa fa-check"></i><b>26</b> Deep Learning</a></li>
+<li class="chapter" data-level="27" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html"><i class="fa fa-check"></i><b>27</b> Graphical Network Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
+<li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
+<li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#precision-matrix"><i class="fa fa-check"></i><b>27.4</b> Precision Matrix</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.5</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.6" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.6</b> Regularized Covariance Matrix</a></li>
+<li class="chapter" data-level="27.7" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>27.7</b> Multivariate Gaussian Distribution</a></li>
+<li class="chapter" data-level="27.8" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#high-dimensional-data"><i class="fa fa-check"></i><b>27.8</b> High-dimensional data</a></li>
+<li class="chapter" data-level="27.9" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#ridge-ell_2-and-glasso-ell_1"><i class="fa fa-check"></i><b>27.9</b> Ridge (<span class="math inline">\(\ell_{2}\)</span>) and glasso (<span class="math inline">\(\ell_{1}\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="decompositions.html"><a href="decompositions.html#matrix-decomposition"><i class="fa fa-check"></i><b>28.1</b> Matrix Decomposition</a></li>
+<li class="chapter" data-level="28.2" data-path="decompositions.html"><a href="decompositions.html#eigenvectors-and-eigenvalues"><i class="fa fa-check"></i><b>28.2</b> Eigenvectors and eigenvalues</a></li>
+<li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#rankr-approximations"><i class="fa fa-check"></i><b>28.4</b> Rank(r) Approximations</a></li>
+<li class="chapter" data-level="28.5" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.5</b> Moore-Penrose inverse</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html"><i class="fa fa-check"></i><b>29</b> PCA (Principle Component Analysis)</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.1</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="smoothing.html"><a href="smoothing.html#using-bins"><i class="fa fa-check"></i><b>30.1</b> Using bins</a></li>
+<li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#kernel-smoothing"><i class="fa fa-check"></i><b>30.2</b> Kernel smoothing</a></li>
+<li class="chapter" data-level="30.3" data-path="smoothing.html"><a href="smoothing.html#locally-weighted-regression-loess"><i class="fa fa-check"></i><b>30.3</b> Locally weighted regression <code>loess()</code></a></li>
+<li class="chapter" data-level="30.4" data-path="smoothing.html"><a href="smoothing.html#smooth-spline-regression"><i class="fa fa-check"></i><b>30.4</b> Smooth Spline Regression</a></li>
+<li class="chapter" data-level="30.5" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.5</b> Multivariate Loess</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="imbalanced-data.html"><a href="imbalanced-data.html#smote"><i class="fa fa-check"></i><b>31.1</b> <code>SMOTE</code></a></li>
+<li class="chapter" data-level="31.2" data-path="imbalanced-data.html"><a href="imbalanced-data.html#fraud-detection"><i class="fa fa-check"></i><b>31.2</b> Fraud detection</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>32</b> Text Analysis</a></li>
+<li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#other-nonparametric-estimation-methods-1"><i class="fa fa-check"></i><b>33.1</b> Other Nonparametric Estimation methods</a></li>
+<li class="chapter" data-level="33.2" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.2</b> Regression splines</a></li>
+<li class="chapter" data-level="33.3" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#mars"><i class="fa fa-check"></i><b>33.3</b> MARS</a></li>
+<li class="chapter" data-level="33.4" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#gam"><i class="fa fa-check"></i><b>33.4</b> GAM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/mutluyuk/machinemetrics" target="blank">2023 Initial Draft</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MachineMetrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prediction-intervals" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Prediction Intervals<a href="prediction-intervals.html#prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When we look back how we built our estimation and prediction simulations, we can see one thing: we had withdrawn 2000 samples and applied our estimators and predictors to each sample. More specifically, we had 2000 estimates from the estimator <span class="math inline">\(\bar{X}\)</span> and 2000 predictions by <span class="math inline">\(\hat{f}\)</span>. Hence, we have a sampling uncertainty that is captured by the variance of the distribution of estimates, which is also known as the sampling distribution.</p>
+<p>Sampling distributions are probability distributions that provide the set of possible values for the estimates and will inform us of how appropriately our current estimator is able to explain the population data. And if the estimator is BLUE of <span class="math inline">\(\mu_x\)</span>, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> can be defined as <span class="math inline">\(\bar{X}\sim \mathcal{T}\left(\mu, S^{2}\right)\)</span> where <span class="math inline">\(S\)</span> is the standard deviation of the sample and <span class="math inline">\(\mathcal{T}\)</span> is the Student’s <span class="math inline">\(t\)</span>-distribution. This concept is the key point in inferential statistics as it helps us build the interval estimation of the true parameter, <span class="math inline">\(\mu_x\)</span>. The variation of <span class="math inline">\(\bar{X}\)</span> from sample to sample is important as it makes the interval wider or narrower.</p>
+<p>Similar to estimation, we make predictions in each sample by the best <span class="math inline">\(\hat{f}\)</span>. Since each sample is a random pick from the population, the prediction would be different from sample to sample. Unlike estimations, however, we allow bias in predictors in exchange with a reduction in variance, which captures the variation of predictions across samples. Although it was easy to calculate the variance of our predictions across samples with simulations, in practice, we have only one sample to calculate our prediction. While we can consider developing a theoretical concept similar to sampling distribution to have an <strong>interval prediction</strong>, since we allow a variance-bias trade-off in predictions, it would not be as simple as before to develop a confidence interval around our predictions. This is one of the drawbacks in machine learning and the subject of the recent research. <a href="https://forecasting.svetunkov.ru/en/2019/10/18/how-confident-are-you-assessing-the-uncertainty-in-forecasting/">One of the posts</a> from Ivan Svetunkov (the builder of R package <strong>smooth()</strong>) describes the situation: (…)<em>capturing the uncertainty is a difficult task, and there is still a lot of things that can be done in terms of model formulation and estimation. But at least, when applying models on real data, we can have an idea about their performance in terms of the uncertainty captured</em>(…) <span class="citation">(<a href="#ref-Svetunkov_2019"><strong>Svetunkov_2019?</strong></a>)</span>.</p>
+<p>It is tempting to come to an idea that, when we are able to use an unbiased <strong>estimator</strong> as a <strong>predictor</strong>, perhaps due to an insignificant difference between their MSPEs, we may have a more reliable interval prediction, which quantifies the uncertainty in predictions. However, although machine learning predictions are subject to a lack of reliable interval predictions, finding an <strong>unbiased</strong> estimator specifically in regression-based models is not a simple task either. There are many reasons that the condition of unbiasedness, <span class="math inline">\(\mathbf{E}(\hat{\theta})=\theta\)</span>, may be easily violated. Reverse causality, simultaneity, endogeneity, unobserved heterogeneity, selection bias, model misspecification, measurement errors in covariates are some of the well-known and very common reasons for biased estimations in the empirical world and the major challenges in the field of econometrics today.</p>
+<p>This section will summarize the forecast error, <strong>F</strong>, and the prediction interval when we use an <strong>unbiased estimator</strong> as a predictor. Here is the definition of forecast error, which is the difference between <span class="math inline">\(x_0\)</span> and the predicted <span class="math inline">\(\hat{x}_0\)</span> in our case:</p>
+<p><span class="math display">\[
+F=x_0-\hat{x}_0=\mu_x+\varepsilon_0-\bar{X}
+\]</span></p>
+<p>If we construct a standard normal variable from <span class="math inline">\(F\)</span>:</p>
+<p><span class="math display">\[
+z= \frac{F-\mathbf{E}[F]}{\sqrt{\mathbf{Var}(F)}}=\frac{F}{\sqrt{\mathbf{Var}(F)}}=\frac{x_0-\hat{x}_0}{\sqrt{\mathbf{Var}(F)}}\sim N(0,1)
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{E}[F]=0\)</span> because <span class="math inline">\(\mathbf{E}[\bar{X}]=\mu_x\)</span> and <span class="math inline">\(\mathbf{E}[\varepsilon]=0\)</span>.</p>
+<p>We know that approximately 95% observations of any standard normal variable can be between <span class="math inline">\(\pm{1.96}\mathbf{sd}\)</span> Since the standard deviation is 1:</p>
+<p><span class="math display">\[
+\mathbf{Pr} = (-1.96 \leqslant z \leqslant 1.96) = 0.95.
+\]</span>
+Or,</p>
+<p><span class="math display">\[
+\mathbf{Pr} = \left(-1.96 \leqslant \frac{x_0-\hat{x}_0}{\mathbf{sd}(F)} \leqslant 1.96\right) = 0.95.
+\]</span></p>
+<p>With a simple algebra this becomes,</p>
+<p><span class="math display">\[
+\mathbf{Pr} \left(\hat{x}_0-1.96\mathbf{sd}(F) \leqslant x_0 \leqslant \hat{x}_0+1.96\mathbf{sd}(F)\right) = 0.95.
+\]</span></p>
+<p>This is called a 95% <strong>confidence interval</strong> or <strong>prediction interval</strong> for <span class="math inline">\(x_0\)</span>. We need to calculate <span class="math inline">\(\mathbf{sd}(F)\)</span>. We have derived it before, but let’s repeat it here again:</p>
+<p><span class="math display">\[
+\mathbf{Var}(F) = \mathbf{Var}\left(\mu_x+\varepsilon_0-\bar{X}\right)=\mathbf{Var}\left(\mu_x\right)+\mathbf{Var}\left(\varepsilon_0\right)+\mathbf{Var}\left(\bar{X}\right)\\ = \mathbf{Var}\left(\varepsilon_0\right)+\mathbf{Var}\left(\bar{X}\right)\\=\sigma^2+\mathbf{Var}\left(\bar{X}\right)
+\]</span></p>
+<p>What’s <span class="math inline">\(\mathbf{Var}(\bar{X})\)</span>? With the assumption of i.i.d.</p>
+<p><span class="math display">\[
+\mathbf{Var}(\bar{X}) = \mathbf{Var}\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}\right) =\frac{1}{n^2} \sum_{i=1}^{n}\mathbf{Var}(x_{i})=\frac{1}{n^2} \sum_{i=1}^{n}\sigma^2=\frac{1}{n^2} n\sigma^2=\frac{\sigma^2}{n}.
+\]</span></p>
+<p>We do not know <span class="math inline">\(\sigma^2\)</span> but we can approximate it by <span class="math inline">\(\hat{\sigma}^2\)</span>, which is the variance of the sample.</p>
+<p><span class="math display">\[
+\mathbf{Var}(\bar{X}) = \frac{\hat{\sigma}^2}{n}~~\Rightarrow~~ \mathbf{se}(\bar{X}) = \frac{\hat{\sigma}}{\sqrt{n}}
+\]</span></p>
+<p>Note that the terms, standard deviation and standard error, often lead to confusion about their interchangeability. We use the term standard error for the sampling distribution (standard error of the mean - SEM): the standard error measures how far the sample mean is likely to be from the population mean. Whereas the standard deviation of the sample (population) is the degree to which individuals within the sample (population) differ from the sample (population) mean.</p>
+<p>Now we can get <span class="math inline">\(\mathbf{sd}(F)\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{sd}(F) =\hat{\sigma}+\frac{\hat{\sigma}}{\sqrt{n}}=\hat{\sigma}\left(1+\frac{1}{\sqrt{n}}\right)
+\]</span></p>
+<p>Therefore, <span class="math inline">\(\mathbf{se}(\bar{X})\)</span> changes from sample to sample, as <span class="math inline">\(\hat{\sigma}\)</span> will be different in each sample. As we discussed earlier, when we use <span class="math inline">\(\hat{\sigma}\)</span> we should use <span class="math inline">\(t\)</span>-distribution, instead of standard normal distribution. Although they have the same critical vaules for 95% intervals, which is closed to 1.96 when the sample size larger than 100, we usually use critical <span class="math inline">\(t\)</span>-values for the interval estimations.</p>
+<p>Note that when <span class="math inline">\(\mathbf{E}[\bar{X}]\neq\mu_x\)</span> the whole process of building a prediction interval collapses at the beginning. Moreover, confidence or prediction intervals require data that must follow a normal distribution. If the sample size is large enough (more than 35, roughly) the central limit theorem makes sure that the sampling distribution would be normal regardless of how the population is distributed. In our example, since our sample sizes 3, the CLT does not hold. Let’s have a more realistic case in which we have a large population and multiple samples with <span class="math inline">\(n=100\)</span>.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="prediction-intervals.html#cb244-1" tabindex="-1"></a><span class="co"># Better example</span></span>
+<span id="cb244-2"><a href="prediction-intervals.html#cb244-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb244-3"><a href="prediction-intervals.html#cb244-3" tabindex="-1"></a>popx <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span>
+<span id="cb244-4"><a href="prediction-intervals.html#cb244-4" tabindex="-1"></a><span class="fu">summary</span>(popx)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2.00    8.00    9.00    9.49   11.00   17.00</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="prediction-intervals.html#cb246-1" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dv">200</span>)</span>
+<span id="cb246-2"><a href="prediction-intervals.html#cb246-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb246-3"><a href="prediction-intervals.html#cb246-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)) {</span>
+<span id="cb246-4"><a href="prediction-intervals.html#cb246-4" tabindex="-1"></a>  samples[i,] <span class="ot">&lt;-</span> <span class="fu">sample</span>(popx, <span class="fu">ncol</span>(samples), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb246-5"><a href="prediction-intervals.html#cb246-5" tabindex="-1"></a>}</span>
+<span id="cb246-6"><a href="prediction-intervals.html#cb246-6" tabindex="-1"></a><span class="fu">head</span>(samples[, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]   10   10    9   10    8    9   11    8   13    10
+## [2,]   11   13    5   11    6    9    9    9   10     9
+## [3,]   12   12   11    9    7    7    5   10    9     6
+## [4,]    9    8   12    8   10   11    8    8   10    10
+## [5,]   15    9   10   10   10   10   10   11    9     7
+## [6,]    8    9   11    9   10   10   10   13   11    15</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="prediction-intervals.html#cb248-1" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rowMeans</span>(samples), <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">cex.main=</span><span class="fl">0.8</span>,</span>
+<span id="cb248-2"><a href="prediction-intervals.html#cb248-2" tabindex="-1"></a>     <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of X_bar&#39;s&quot;</span>,</span>
+<span id="cb248-3"><a href="prediction-intervals.html#cb248-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;X_bar&quot;</span>)</span></code></pre></div>
+<p><img src="13-UncertaintyandIntervals_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="prediction-intervals.html#cb249-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">rowMeans</span>(samples))</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   9.005   9.390   9.485   9.486   9.581   9.940</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="prediction-intervals.html#cb251-1" tabindex="-1"></a><span class="fu">mean</span>(popx)</span></code></pre></div>
+<pre><code>## [1] 9.4895</code></pre>
+<p>As you can see, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is almost normal ranging from 9 to 9.94 with mean 9.486. We can see also that it’s an unbiased estimator of <span class="math inline">\(\mu_x\)</span>.</p>
+<p>When we use <span class="math inline">\(\bar{X}\)</span> from a sample to predict <span class="math inline">\(x\)</span>, we can quantify the uncertainty in this prediction by building a 95% confidence interval. Let’s use sample 201 to show the interval.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="prediction-intervals.html#cb253-1" tabindex="-1"></a><span class="co"># Our sample</span></span>
+<span id="cb253-2"><a href="prediction-intervals.html#cb253-2" tabindex="-1"></a>sample_0 <span class="ot">&lt;-</span> samples[<span class="dv">201</span>,]</span>
+<span id="cb253-3"><a href="prediction-intervals.html#cb253-3" tabindex="-1"></a><span class="fu">mean</span>(sample_0)</span></code></pre></div>
+<pre><code>## [1] 9.35</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="prediction-intervals.html#cb255-1" tabindex="-1"></a><span class="co"># sd(F)</span></span>
+<span id="cb255-2"><a href="prediction-intervals.html#cb255-2" tabindex="-1"></a>sdF <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(sample_0))<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sample_0))) </span>
+<span id="cb255-3"><a href="prediction-intervals.html#cb255-3" tabindex="-1"></a></span>
+<span id="cb255-4"><a href="prediction-intervals.html#cb255-4" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_0) <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>sdF</span>
+<span id="cb255-5"><a href="prediction-intervals.html#cb255-5" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_0) <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>sdF</span>
+<span id="cb255-6"><a href="prediction-intervals.html#cb255-6" tabindex="-1"></a><span class="fu">c</span>(lower, upper)</span></code></pre></div>
+<pre><code>## [1]  5.387422 13.312578</code></pre>
+<p>The range of this 95% prediction interval quantifies the prediction accuracy when we use 9.35 as a predictor, which implies that the value of a randomly picked <span class="math inline">\(x\)</span> from the same population could be predicted to be between those numbers. When we change the sample, the interval changes due to differences in the mean and the variance of the sample.</p>
+<div id="prediction-interval-for-unbiased-ols-predictor" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Prediction interval for unbiased OLS predictor<a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will end this chapter by setting up a confidence interval for predictions made by an unbiased <span class="math inline">\(\hat{f}(x)\)</span>. We follow the same steps as in section 4. Note that the definition of the forecast error,</p>
+<p><span class="math display">\[
+F=y_0-\hat{f}(x_0)=f(x_0)+\varepsilon_0-\hat{f}(x_0),
+\]</span></p>
+<p>is the base in MSPE. We will have here a simple textbook example to identify some important elements in prediction interval. Our model is,</p>
+<p><span class="math display">\[
+y_{i}=\beta_0+\beta_1 x_{1i}+\varepsilon_{i}, ~~~~ i=1, \ldots, n
+\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_{i} \sim N\left(0, \sigma^{2}\right)\)</span>, <span class="math inline">\(\mathbf{Cov}\left(\varepsilon_{i}, \varepsilon_{j}\right)=0\)</span> for <span class="math inline">\(i\neq j\)</span>. We can write this function as</p>
+<p><span class="math display">\[
+y_{i}=f(x_i)+\varepsilon_{i}, ~~~~ i=1, \ldots, n
+\]</span></p>
+<p>Based on a sample and the assumption about DGM, we choose an estimator of <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[
+\hat{f}(x) = \hat{\beta}_0+\hat{\beta}_1 x_{1i},
+\]</span></p>
+<p>which is BLUE of <span class="math inline">\(f(x)\)</span>, when it is estimated with OLS given the assumptions about <span class="math inline">\(\varepsilon_i\)</span> stated above. Then the forecast error is</p>
+<p><span class="math display">\[
+F=y_0-\hat{f}(x_0)=\beta_0+\beta_1 x_{0}+\varepsilon_{0}-\hat{\beta}_0+\hat{\beta}_1 x_{0},
+\]</span></p>
+<p>Since our <span class="math inline">\(\hat{f}(x)\)</span> is an unbiased estimator of <span class="math inline">\(f(x)\)</span>, <span class="math inline">\(\mathbf{E}(F)=0\)</span>. And, given that <span class="math inline">\(\varepsilon_{0}\)</span> is independent of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> and <span class="math inline">\(\beta_0\)</span> as well as <span class="math inline">\(\beta_1 x_{0}\)</span> are non-stochastic (i.e. they have variance zero), then</p>
+<p><span class="math display">\[
+\mathbf{Var}(F)=\mathbf{Var}\left(\varepsilon_{0}\right)+\mathbf{Var}\left(\hat{\beta_0}+\hat{\beta_1} x_{0}\right),
+\]</span></p>
+<p>which is</p>
+<p><span class="math display">\[
+\mathbf{Var}(F)=\sigma^{2}+\mathbf{Var}(\hat{\beta}_0)+x_{0}^{2} \mathbf{Var}(\hat{\beta}_1)+2 x_{0} \mathbf{Cov}(\hat{\beta}_0, \hat{\beta}_1).
+\]</span>
+More specifically,</p>
+<p><span class="math display">\[
+\mathbf{Var}(F)=\sigma^{2}+\sigma^{2}\left(\frac{1}{n}+\frac{\bar{x}^{2}}{\sum\left(x_{i}-\bar{x}\right)^{2}}\right)+x_{0}^{2}\left( \frac{\sigma^{2}}{\sum\left(x_{i}-\bar{x}\right)^{2}}\right)-2 x_{0}\left( \sigma^{2} \frac{\bar{x}}{\sum\left(x_{i}-\bar{x}\right)^{2}}\right).
+\]</span></p>
+<p>After simplifying it, we get the textbook expression of the forecast variance:</p>
+<p><span class="math display">\[
+\mathbf{Var}(F)=\sigma^{2}\left(1+\frac{1}{n}+\frac{\left(x_{0}-\bar{x}\right)^{2}}{\sum\left(x_{i}-\bar{x}\right)^{2}}\right)
+\]</span></p>
+<p>We have seen it before: as the noise in the data (<span class="math inline">\(\sigma^2\)</span>) goes up, the variance increases. More importantly, as <span class="math inline">\(x_0\)</span> moves away from <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\mathbf{Var}(F)\)</span> rises further. Intuitively, rare incidence in data should have less uncertainty in predicting the outcome. The rarity of <span class="math inline">\(x_0\)</span> will be quantified by <span class="math inline">\(x_0-\bar{x}\)</span> and the uncertainty in prediction is captured by <span class="math inline">\(\mathbf{Var}(F)\)</span>.</p>
+<p>Finally, using the fact that <span class="math inline">\(\varepsilon\)</span> is normally distributed, with <span class="math inline">\(\mathbf{E}(F)=0\)</span>, we just found that <span class="math inline">\(F \sim N(0, \mathbf{Var}(F))\)</span>. Hence, the 95% prediction interval for <span class="math inline">\(n&gt;100\)</span> will approximately be:</p>
+<p><span class="math display">\[
+\mathbf{Pr} \left(\hat{f}_0-1.96\mathbf{sd}(F) \leqslant y_0 \leqslant \hat{f}_0+1.96\mathbf{sd}(F)\right) = 0.95.
+\]</span></p>
+<p>When we replace <span class="math inline">\(\sigma^2\)</span> with <span class="math inline">\(\hat{\sigma}^2\)</span>, <span class="math inline">\(F\)</span> will have a Student’s <span class="math inline">\(t\)</span> distribution and the critical values (1.96) will be different specially if <span class="math inline">\(n&lt;100\)</span>. Since this interval is for <span class="math inline">\(x_0\)</span>, we can have a range of <span class="math inline">\(x\)</span> and have a nice plot showing the conficence interval around the point predictions for each <span class="math inline">\(x\)</span>.</p>
+<p>Let’s have a simulation with a simple one-variable regression to see the uncertainty in prediction. We need one sample and one out-sample dataset for prediction.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="prediction-intervals.html#cb257-1" tabindex="-1"></a><span class="co"># Getting one-sample.</span></span>
+<span id="cb257-2"><a href="prediction-intervals.html#cb257-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb257-3"><a href="prediction-intervals.html#cb257-3" tabindex="-1"></a>x_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>) </span>
+<span id="cb257-4"><a href="prediction-intervals.html#cb257-4" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>x_1 <span class="co"># DGM</span></span>
+<span id="cb257-5"><a href="prediction-intervals.html#cb257-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> f <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb257-6"><a href="prediction-intervals.html#cb257-6" tabindex="-1"></a>inn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, x_1)</span>
+<span id="cb257-7"><a href="prediction-intervals.html#cb257-7" tabindex="-1"></a></span>
+<span id="cb257-8"><a href="prediction-intervals.html#cb257-8" tabindex="-1"></a><span class="co"># Getting out-of-sample data points.</span></span>
+<span id="cb257-9"><a href="prediction-intervals.html#cb257-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">321</span>)</span>
+<span id="cb257-10"><a href="prediction-intervals.html#cb257-10" tabindex="-1"></a>x_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>) <span class="co"># sd =10 to see the prediction of outlier X&#39;s</span></span>
+<span id="cb257-11"><a href="prediction-intervals.html#cb257-11" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>x_1 <span class="co"># DGM</span></span>
+<span id="cb257-12"><a href="prediction-intervals.html#cb257-12" tabindex="-1"></a>y <span class="ot">&lt;-</span> f <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>) </span>
+<span id="cb257-13"><a href="prediction-intervals.html#cb257-13" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, x_1)</span>
+<span id="cb257-14"><a href="prediction-intervals.html#cb257-14" tabindex="-1"></a></span>
+<span id="cb257-15"><a href="prediction-intervals.html#cb257-15" tabindex="-1"></a><span class="co"># OLS</span></span>
+<span id="cb257-16"><a href="prediction-intervals.html#cb257-16" tabindex="-1"></a>ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>., inn)</span>
+<span id="cb257-17"><a href="prediction-intervals.html#cb257-17" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(ols, out)</span>
+<span id="cb257-18"><a href="prediction-intervals.html#cb257-18" tabindex="-1"></a></span>
+<span id="cb257-19"><a href="prediction-intervals.html#cb257-19" tabindex="-1"></a><span class="co"># Let&#39;s have a Variance(f) function</span></span>
+<span id="cb257-20"><a href="prediction-intervals.html#cb257-20" tabindex="-1"></a><span class="co"># since variance is not fixed and changes by x_0</span></span>
+<span id="cb257-21"><a href="prediction-intervals.html#cb257-21" tabindex="-1"></a></span>
+<span id="cb257-22"><a href="prediction-intervals.html#cb257-22" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="cf">function</span>(xzero){</span>
+<span id="cb257-23"><a href="prediction-intervals.html#cb257-23" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(inn)</span>
+<span id="cb257-24"><a href="prediction-intervals.html#cb257-24" tabindex="-1"></a>  sigma2_hat <span class="ot">&lt;-</span> <span class="fu">sum</span>((inn<span class="sc">$</span>y <span class="sc">-</span>yhat)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-2</span>) <span class="co">#we replace it with sample variance</span></span>
+<span id="cb257-25"><a href="prediction-intervals.html#cb257-25" tabindex="-1"></a>  num<span class="ot">=</span> (xzero<span class="sc">-</span><span class="fu">mean</span>(inn<span class="sc">$</span>x_1))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb257-26"><a href="prediction-intervals.html#cb257-26" tabindex="-1"></a>  denom <span class="ot">=</span> <span class="fu">sum</span>((inn<span class="sc">$</span>x_1<span class="sc">-</span><span class="fu">mean</span>(inn<span class="sc">$</span>x_1))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb257-27"><a href="prediction-intervals.html#cb257-27" tabindex="-1"></a>  var <span class="ot">&lt;-</span> sigma2_hat<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n <span class="sc">+</span> num<span class="sc">/</span>denom)</span>
+<span id="cb257-28"><a href="prediction-intervals.html#cb257-28" tabindex="-1"></a>  x0 <span class="ot">&lt;-</span> xzero</span>
+<span id="cb257-29"><a href="prediction-intervals.html#cb257-29" tabindex="-1"></a>  outcome <span class="ot">&lt;-</span> <span class="fu">c</span>(var, x0)</span>
+<span id="cb257-30"><a href="prediction-intervals.html#cb257-30" tabindex="-1"></a>  <span class="fu">return</span>(outcome)</span>
+<span id="cb257-31"><a href="prediction-intervals.html#cb257-31" tabindex="-1"></a>}</span>
+<span id="cb257-32"><a href="prediction-intervals.html#cb257-32" tabindex="-1"></a></span>
+<span id="cb257-33"><a href="prediction-intervals.html#cb257-33" tabindex="-1"></a>varF <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(out), <span class="dv">2</span>)</span>
+<span id="cb257-34"><a href="prediction-intervals.html#cb257-34" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(out)) {</span>
+<span id="cb257-35"><a href="prediction-intervals.html#cb257-35" tabindex="-1"></a>  varF[i, ] <span class="ot">&lt;-</span> <span class="fu">v</span>(out<span class="sc">$</span>x_1[i])</span>
+<span id="cb257-36"><a href="prediction-intervals.html#cb257-36" tabindex="-1"></a>}</span>
+<span id="cb257-37"><a href="prediction-intervals.html#cb257-37" tabindex="-1"></a></span>
+<span id="cb257-38"><a href="prediction-intervals.html#cb257-38" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;sd&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sqrt</span>(varF[,<span class="dv">1</span>])), <span class="st">&quot;x0&quot;</span> <span class="ot">=</span> varF[,<span class="dv">2</span>], <span class="st">&quot;yhat&quot;</span> <span class="ot">=</span> yhat,</span>
+<span id="cb257-39"><a href="prediction-intervals.html#cb257-39" tabindex="-1"></a>                   <span class="st">&quot;upper&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(yhat <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sqrt</span>(varF[,<span class="dv">1</span>])),</span>
+<span id="cb257-40"><a href="prediction-intervals.html#cb257-40" tabindex="-1"></a>                    <span class="st">&quot;lower&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(yhat <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sqrt</span>(varF[,<span class="dv">1</span>])))</span>
+<span id="cb257-41"><a href="prediction-intervals.html#cb257-41" tabindex="-1"></a></span>
+<span id="cb257-42"><a href="prediction-intervals.html#cb257-42" tabindex="-1"></a><span class="fu">require</span>(plotrix)</span>
+<span id="cb257-43"><a href="prediction-intervals.html#cb257-43" tabindex="-1"></a><span class="fu">plotCI</span>(data<span class="sc">$</span>x0, data<span class="sc">$</span>yhat , <span class="at">ui=</span>data<span class="sc">$</span>upper,</span>
+<span id="cb257-44"><a href="prediction-intervals.html#cb257-44" tabindex="-1"></a>       <span class="at">li=</span>data<span class="sc">$</span>lower, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">pt.bg=</span><span class="fu">par</span>(<span class="st">&quot;bg&quot;</span>), <span class="at">scol =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb257-45"><a href="prediction-intervals.html#cb257-45" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">&quot;Prediction interval for each y_0&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;yhat(-)(+)1.96sd&quot;</span>,</span>
+<span id="cb257-46"><a href="prediction-intervals.html#cb257-46" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;x_0&quot;</span>, <span class="at">cex.main =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">cex.axis =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="13-UncertaintyandIntervals_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>As the <span class="math inline">\(x_0\)</span> moves away from the mean, which is zero in our simulation, the prediction uncertainty captured by the range of confidence intervals becomes larger.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="optimization-algorithms---basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interpretability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mutluyuk/machinemetrics/edit/master/13-UncertaintyandIntervals.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["machinemetrics.pdf", "machinemetrics.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

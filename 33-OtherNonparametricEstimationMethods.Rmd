@@ -1,0 +1,18 @@
+
+# Other Nonparametric Estimation methods
+
+## Other Nonparametric Estimation methods
+
+
+## Regression splines
+
+
+## MARS
+
+Multivariate Additive Regression Splines (MARS)
+
+
+## GAM
+
+Generalized Additive Models (GAM)
+

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 28 Decompositions | MachineMetrics</title>
+  <meta name="description" content="Chapter 28 Decompositions | MachineMetrics" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 28 Decompositions | MachineMetrics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/png/MachineMetrics.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 28 Decompositions | MachineMetrics" />
+  
+  
+  <meta name="twitter:image" content="/png/MachineMetrics.png" />
+
+<meta name="author" content="Yigit Aydede and Mutlu Yuksel" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="graphical-network-analysis.html"/>
+<link rel="next" href="pca-principle-component-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book-is-different"><i class="fa fa-check"></i>Why this book is different?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-manuscript"><i class="fa fa-check"></i>Structure of Manuscript:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-can-use-this-book"><i class="fa fa-check"></i>Who Can Use This Book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION:</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prediction-vs.-estimation"><i class="fa fa-check"></i><b>1.1</b> Prediction vs. Estimation:</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-can-you-use-the-covered-topics-in-social-sciences"><i class="fa fa-check"></i><b>1.2</b> Where can you use the covered topics in Social Sciences?:</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html"><i class="fa fa-check"></i><b>2</b> Statistical Models and Simulations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#distinguishing-between-statistical-modeling-and-machine-learning-in-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#goals-and-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Goals and Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#prediction-vs.-inference"><i class="fa fa-check"></i><b>2.1.2</b> Prediction vs. Inference</a></li>
+<li class="chapter" data-level="2.1.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#conclusion"><i class="fa fa-check"></i><b>2.1.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#model-selection-and-approaches-in-data-modeling"><i class="fa fa-check"></i><b>2.4</b> Model Selection and Approaches in Data Modeling</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="counterfactual.html"><a href="counterfactual.html#qualitative-and-quantitative-research-methods"><i class="fa fa-check"></i><b>3.1</b> Qualitative and Quantitative research methods:</a></li>
+<li class="chapter" data-level="3.2" data-path="counterfactual.html"><a href="counterfactual.html#quantitative---research-methods"><i class="fa fa-check"></i><b>3.2</b> Quantitative - Research methods :</a></li>
+<li class="chapter" data-level="3.3" data-path="counterfactual.html"><a href="counterfactual.html#data-and-visualization"><i class="fa fa-check"></i><b>3.3</b> Data and visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="counterfactual.html"><a href="counterfactual.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="counterfactual.html"><a href="counterfactual.html#effect-of-x-on-y-regression"><i class="fa fa-check"></i><b>3.5</b> Effect of X on Y / Regression</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
+<li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="counterfactual.html"><a href="counterfactual.html#average-treatment-effectate"><i class="fa fa-check"></i><b>3.6.1</b> Average Treatment Effect(ATE)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="counterfactual.html"><a href="counterfactual.html#additional-treatment-effects"><i class="fa fa-check"></i><b>3.6.2</b> Additional Treatment Effects</a></li>
+<li class="chapter" data-level="3.6.3" data-path="counterfactual.html"><a href="counterfactual.html#selection-bias-and-heteregeneous-treatment-effect-bias"><i class="fa fa-check"></i><b>3.6.3</b> Selection Bias and Heteregeneous Treatment Effect Bias:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning.html"><a href="learning.html"><i class="fa fa-check"></i><b>4</b> Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.1</b> Biased estimator as a predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
+<li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
+<li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#parametric-estimations"><i class="fa fa-check"></i><b>9.1</b> Parametric Estimations</a></li>
+<li class="chapter" data-level="9.2" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#lpm"><i class="fa fa-check"></i><b>9.2</b> LPM</a></li>
+<li class="chapter" data-level="9.3" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#logistic-regression"><i class="fa fa-check"></i><b>9.3</b> Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html"><i class="fa fa-check"></i><b>10</b> Nonparametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#density-estimations"><i class="fa fa-check"></i><b>10.1</b> Density estimations</a></li>
+<li class="chapter" data-level="10.2" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#kernel-regression"><i class="fa fa-check"></i><b>10.2</b> Kernel regression</a></li>
+<li class="chapter" data-level="10.3" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#knn"><i class="fa fa-check"></i><b>10.3</b> Knn</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#adult-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Adult dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html"><i class="fa fa-check"></i><b>11</b> Hyperparameter Tuning</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#training-and-validation"><i class="fa fa-check"></i><b>11.1</b> Training and Validation</a></li>
+<li class="chapter" data-level="11.2" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#splitting-the-data-randomly"><i class="fa fa-check"></i><b>11.2</b> Splitting the data randomly</a></li>
+<li class="chapter" data-level="11.3" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>11.3</b> k-fold cross validation</a></li>
+<li class="chapter" data-level="11.4" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#grid-search"><i class="fa fa-check"></i><b>11.4</b> Grid Search</a></li>
+<li class="chapter" data-level="11.5" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#cross-validated-grid-search"><i class="fa fa-check"></i><b>11.5</b> Cross-validated grid search</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html"><i class="fa fa-check"></i><b>12</b> Optimization Algorithms - Basics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#brute-force-optimization"><i class="fa fa-check"></i><b>12.1</b> Brute-force optimization</a></li>
+<li class="chapter" data-level="12.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#derivative-based-methods"><i class="fa fa-check"></i><b>12.2</b> Derivative-based methods</a></li>
+<li class="chapter" data-level="12.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#ml-estimation-with-logistic-regression"><i class="fa fa-check"></i><b>12.3</b> ML Estimation with logistic regression</a></li>
+<li class="chapter" data-level="12.4" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#gradient-descent-algorithm"><i class="fa fa-check"></i><b>12.4</b> Gradient Descent Algorithm</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#one-variable"><i class="fa fa-check"></i><b>12.4.1</b> One-variable</a></li>
+<li class="chapter" data-level="12.4.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#adjustable-lr-and-sgd"><i class="fa fa-check"></i><b>12.4.2</b> Adjustable <code>lr</code> and SGD</a></li>
+<li class="chapter" data-level="12.4.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#multivariable"><i class="fa fa-check"></i><b>12.4.3</b> Multivariable</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#optimization-with-r"><i class="fa fa-check"></i><b>12.5</b> Optimization with R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prediction-intervals.html"><a href="prediction-intervals.html"><i class="fa fa-check"></i><b>13</b> Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="prediction-intervals.html"><a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor"><i class="fa fa-check"></i><b>13.1</b> Prediction interval for unbiased OLS predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="interpretability.html"><a href="interpretability.html"><i class="fa fa-check"></i><b>14</b> Interpretability</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="interpretability.html"><a href="interpretability.html#interpretable-vs-noninterpretable-models"><i class="fa fa-check"></i><b>14.1</b> Interpretable vs NonInterpretable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>15</b> Shrinkage Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>15.1</b> Ridge</a></li>
+<li class="chapter" data-level="15.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>15.2</b> Lasso</a></li>
+<li class="chapter" data-level="15.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>15.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="15.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>16</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>16.1</b> CART - Classification Tree</a></li>
+<li class="chapter" data-level="16.2" data-path="regression-trees.html"><a href="regression-trees.html#rpart---recursive-partitioning"><i class="fa fa-check"></i><b>16.2</b> <code>rpart</code> - Recursive Partitioning</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>16.3</b> Pruning</a></li>
+<li class="chapter" data-level="16.4" data-path="regression-trees.html"><a href="regression-trees.html#classification-with-titanic"><i class="fa fa-check"></i><b>16.4</b> Classification with Titanic</a></li>
+<li class="chapter" data-level="16.5" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>16.5</b> Regression Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>17</b> Ensemble Methods</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a></li>
+<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-forest"><i class="fa fa-check"></i><b>17.2</b> Random Forest</a></li>
+<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>17.3</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#sequential-ensemble-with-gbm"><i class="fa fa-check"></i><b>17.3.1</b> Sequential ensemble with <code>gbm</code></a></li>
+<li class="chapter" data-level="17.3.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>17.3.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="17.3.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.3.3</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.4</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.5</b> Classification</a></li>
+<li class="chapter" data-level="17.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>17.6</b> Regression</a></li>
+<li class="chapter" data-level="17.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.7</b> Exploration</a></li>
+<li class="chapter" data-level="17.8" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.8</b> Boosting Applications</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression-1"><i class="fa fa-check"></i><b>17.8.1</b> Regression</a></li>
+<li class="chapter" data-level="17.8.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.8.2</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="17.8.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.8.3</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="17.8.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-1"><i class="fa fa-check"></i><b>17.8.4</b> Classification</a></li>
+<li class="chapter" data-level="17.8.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost.m1"><i class="fa fa-check"></i><b>17.8.5</b> AdaBoost.M1</a></li>
+<li class="chapter" data-level="17.8.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.8.6</b> Classification with XGBoost</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>18</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>18.1</b> Random experiment</a></li>
+<li class="chapter" data-level="18.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>18.2</b> IV</a></li>
+<li class="chapter" data-level="18.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>18.3</b> DiffD</a></li>
+<li class="chapter" data-level="18.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>18.4</b> RD</a></li>
+<li class="chapter" data-level="18.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>18.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="18.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>18.6</b> Double/Debiased Lasso/Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>19</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>19.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="19.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>19.2</b> Causal Forest</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>20</b> Model selection and Sparsity</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>20.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="20.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#out-sample-prediction-accuracy"><i class="fa fa-check"></i><b>20.3</b> out-sample prediction accuracy</a></li>
+<li class="chapter" data-level="20.4" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>20.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="classification-2.html"><a href="classification-2.html"><i class="fa fa-check"></i><b>21</b> Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="classification-2.html"><a href="classification-2.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>21.1</b> Nonparametric Classifier - kNN</a></li>
+<li class="chapter" data-level="21.2" data-path="classification-2.html"><a href="classification-2.html#mnist-dataset"><i class="fa fa-check"></i><b>21.2</b> <code>mnist</code> Dataset</a></li>
+<li class="chapter" data-level="21.3" data-path="classification-2.html"><a href="classification-2.html#linear-classifiers-again"><i class="fa fa-check"></i><b>21.3</b> Linear classifiers (again)</a></li>
+<li class="chapter" data-level="21.4" data-path="classification-2.html"><a href="classification-2.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.4</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="21.5" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret"><i class="fa fa-check"></i><b>21.5</b> kNN with caret</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="classification-2.html"><a href="classification-2.html#mnist_27"><i class="fa fa-check"></i><b>21.5.1</b> <code>mnist_27</code></a></li>
+<li class="chapter" data-level="21.5.2" data-path="classification-2.html"><a href="classification-2.html#adult-dataset-1"><i class="fa fa-check"></i><b>21.5.2</b> Adult dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="classification-2.html"><a href="classification-2.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.6</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="21.7" data-path="classification-2.html"><a href="classification-2.html#confusion-matrix"><i class="fa fa-check"></i><b>21.7</b> Confusion matrix</a></li>
+<li class="chapter" data-level="21.8" data-path="classification-2.html"><a href="classification-2.html#performance-measures"><i class="fa fa-check"></i><b>21.8</b> Performance measures</a></li>
+<li class="chapter" data-level="21.9" data-path="classification-2.html"><a href="classification-2.html#roc-curve"><i class="fa fa-check"></i><b>21.9</b> ROC Curve</a></li>
+<li class="chapter" data-level="21.10" data-path="classification-2.html"><a href="classification-2.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>21.10</b> AUC - Area Under the Curve</a></li>
+<li class="chapter" data-level="21.11" data-path="classification-2.html"><a href="classification-2.html#classification-example"><i class="fa fa-check"></i><b>21.11</b> Classification Example</a></li>
+<li class="chapter" data-level="21.12" data-path="classification-2.html"><a href="classification-2.html#lpm-1"><i class="fa fa-check"></i><b>21.12</b> LPM</a></li>
+<li class="chapter" data-level="21.13" data-path="classification-2.html"><a href="classification-2.html#logistic-regression-1"><i class="fa fa-check"></i><b>21.13</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21.14" data-path="classification-2.html"><a href="classification-2.html#knn-1"><i class="fa fa-check"></i><b>21.14</b> kNN</a>
+<ul>
+<li class="chapter" data-level="21.14.1" data-path="classification-2.html"><a href="classification-2.html#knn-10-fold-cv"><i class="fa fa-check"></i><b>21.14.1</b> kNN 10-fold CV</a></li>
+<li class="chapter" data-level="21.14.2" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret-1"><i class="fa fa-check"></i><b>21.14.2</b> kNN with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>22</b> Time Series</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="time-series.html"><a href="time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="22.2" data-path="time-series.html"><a href="time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>22.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="22.3" data-path="time-series.html"><a href="time-series.html#ts-plots"><i class="fa fa-check"></i><b>22.3</b> TS Plots</a></li>
+<li class="chapter" data-level="22.4" data-path="time-series.html"><a href="time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="22.5" data-path="time-series.html"><a href="time-series.html#stationarity"><i class="fa fa-check"></i><b>22.5</b> Stationarity</a></li>
+<li class="chapter" data-level="22.6" data-path="time-series.html"><a href="time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.6</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="22.7" data-path="time-series.html"><a href="time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.7</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="22.8" data-path="time-series.html"><a href="time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.8</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="22.9" data-path="time-series.html"><a href="time-series.html#speed"><i class="fa fa-check"></i><b>22.9</b> Speed</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="forecast.html"><a href="forecast.html"><i class="fa fa-check"></i><b>23</b> Forecast</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="forecast.html"><a href="forecast.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="23.2" data-path="forecast.html"><a href="forecast.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="23.3" data-path="forecast.html"><a href="forecast.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="23.4" data-path="forecast.html"><a href="forecast.html#random-forest-1"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
+<li class="chapter" data-level="23.5" data-path="forecast.html"><a href="forecast.html#univariate"><i class="fa fa-check"></i><b>23.5</b> Univariate</a></li>
+<li class="chapter" data-level="23.6" data-path="forecast.html"><a href="forecast.html#multivariate"><i class="fa fa-check"></i><b>23.6</b> Multivariate</a></li>
+<li class="chapter" data-level="23.7" data-path="forecast.html"><a href="forecast.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.7</b> Rolling and expanding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#optimal-separating-classifier"><i class="fa fa-check"></i><b>24.1</b> Optimal Separating Classifier</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-margin"><i class="fa fa-check"></i><b>24.1.1</b> The Margin</a></li>
+<li class="chapter" data-level="24.1.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-non-separable-case"><i class="fa fa-check"></i><b>24.1.2</b> The Non-Separable Case</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#nonlinear-boundary-with-kernels"><i class="fa fa-check"></i><b>24.2</b> Nonlinear Boundary with Kernels</a></li>
+<li class="chapter" data-level="24.3" data-path="support-vector-machine.html"><a href="support-vector-machine.html#application-with-svm"><i class="fa fa-check"></i><b>24.3</b> Application with SVM</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>25</b> Neural Networks</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>25.1</b> Neural Network - the idea</a></li>
+<li class="chapter" data-level="25.2" data-path="neural-networks.html"><a href="neural-networks.html#backpropagation"><i class="fa fa-check"></i><b>25.2</b> Backpropagation</a></li>
+<li class="chapter" data-level="25.3" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---more-inputs"><i class="fa fa-check"></i><b>25.3</b> Neural Network - More inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="deep-learning.html"><a href="deep-learning.html"><i class="fa fa-check"></i><b>26</b> Deep Learning</a></li>
+<li class="chapter" data-level="27" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html"><i class="fa fa-check"></i><b>27</b> Graphical Network Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
+<li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
+<li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#precision-matrix"><i class="fa fa-check"></i><b>27.4</b> Precision Matrix</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.5</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.6" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.6</b> Regularized Covariance Matrix</a></li>
+<li class="chapter" data-level="27.7" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>27.7</b> Multivariate Gaussian Distribution</a></li>
+<li class="chapter" data-level="27.8" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#high-dimensional-data"><i class="fa fa-check"></i><b>27.8</b> High-dimensional data</a></li>
+<li class="chapter" data-level="27.9" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#ridge-ell_2-and-glasso-ell_1"><i class="fa fa-check"></i><b>27.9</b> Ridge (<span class="math inline">\(\ell_{2}\)</span>) and glasso (<span class="math inline">\(\ell_{1}\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="decompositions.html"><a href="decompositions.html#matrix-decomposition"><i class="fa fa-check"></i><b>28.1</b> Matrix Decomposition</a></li>
+<li class="chapter" data-level="28.2" data-path="decompositions.html"><a href="decompositions.html#eigenvectors-and-eigenvalues"><i class="fa fa-check"></i><b>28.2</b> Eigenvectors and eigenvalues</a></li>
+<li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#rankr-approximations"><i class="fa fa-check"></i><b>28.4</b> Rank(r) Approximations</a></li>
+<li class="chapter" data-level="28.5" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.5</b> Moore-Penrose inverse</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html"><i class="fa fa-check"></i><b>29</b> PCA (Principle Component Analysis)</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.1</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="smoothing.html"><a href="smoothing.html#using-bins"><i class="fa fa-check"></i><b>30.1</b> Using bins</a></li>
+<li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#kernel-smoothing"><i class="fa fa-check"></i><b>30.2</b> Kernel smoothing</a></li>
+<li class="chapter" data-level="30.3" data-path="smoothing.html"><a href="smoothing.html#locally-weighted-regression-loess"><i class="fa fa-check"></i><b>30.3</b> Locally weighted regression <code>loess()</code></a></li>
+<li class="chapter" data-level="30.4" data-path="smoothing.html"><a href="smoothing.html#smooth-spline-regression"><i class="fa fa-check"></i><b>30.4</b> Smooth Spline Regression</a></li>
+<li class="chapter" data-level="30.5" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.5</b> Multivariate Loess</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="imbalanced-data.html"><a href="imbalanced-data.html#smote"><i class="fa fa-check"></i><b>31.1</b> <code>SMOTE</code></a></li>
+<li class="chapter" data-level="31.2" data-path="imbalanced-data.html"><a href="imbalanced-data.html#fraud-detection"><i class="fa fa-check"></i><b>31.2</b> Fraud detection</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>32</b> Text Analysis</a></li>
+<li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#other-nonparametric-estimation-methods-1"><i class="fa fa-check"></i><b>33.1</b> Other Nonparametric Estimation methods</a></li>
+<li class="chapter" data-level="33.2" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.2</b> Regression splines</a></li>
+<li class="chapter" data-level="33.3" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#mars"><i class="fa fa-check"></i><b>33.3</b> MARS</a></li>
+<li class="chapter" data-level="33.4" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#gam"><i class="fa fa-check"></i><b>33.4</b> GAM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/mutluyuk/machinemetrics" target="blank">2023 Initial Draft</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MachineMetrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="decompositions" class="section level1 hasAnchor" number="28">
+<h1><span class="header-section-number">Chapter 28</span> Decompositions<a href="decompositions.html#decompositions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="matrix-decomposition" class="section level2 hasAnchor" number="28.1">
+<h2><span class="header-section-number">28.1</span> Matrix Decomposition<a href="decompositions.html#matrix-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matrix decomposition, also known as matrix factorization, is a process of breaking down a matrix into simpler components that can be used to simplify calculations, solve systems of equations, and gain insight into the underlying structure of the matrix.</p>
+<p>Matrix decomposition plays an important role in machine learning, particularly in the areas of dimensionality reduction, data compression, and feature extraction. For example, Principal Component Analysis (PCA) is a popular method for dimensionality reduction, which involves decomposing a high-dimensional data matrix into a lower-dimensional representation while preserving the most important information. PCA achieves this by finding the eigenvectors and eigenvalues of the covariance matrix of the data and then selecting the top eigenvectors as the new basis for the data.</p>
+<p>Singular Value Decomposition (SVD) is also commonly used in recommender systems to find latent features in user-item interaction data. SVD decomposes the user-item interaction matrix into three matrices: a left singular matrix, a diagonal matrix of singular values, and a right singular matrix. The left and right singular matrices represent user and item features, respectively, while the singular values represent the importance of those features.</p>
+<p>Rank optimization is another method that finds a low-rank approximation of a matrix that best fits a set of observed data. In other words, it involves finding a lower-rank approximation of a given matrix that captures the most important features of the original matrix. For example, SVD decomposes a matrix into a product of low-rank matrices, while PCA finds the principal components of a data matrix, which can be used to create a lower-dimensional representation of the data. In machine learning, rank optimization is often used in applications such as collaborative filtering, image processing, and data compression. By finding a low-rank approximation of a matrix, it is possible to reduce the amount of memory needed to store the matrix and improve the efficiency of algorithms that work with the matrix.</p>
+<p>We start with the eigenvalue decomposition (EVD), which is the foundation to many matrix decomposition methods</p>
+</div>
+<div id="eigenvectors-and-eigenvalues" class="section level2 hasAnchor" number="28.2">
+<h2><span class="header-section-number">28.2</span> Eigenvectors and eigenvalues<a href="decompositions.html#eigenvectors-and-eigenvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Eigenvalues and eigenvectors have many important applications in linear algebra and beyond. For example, in machine learning, principal component analysis (PCA) involves computing the eigenvectors and eigenvalues of the covariance matrix of a data set, which can be used to reduce the dimensionality of the data while preserving its important features.</p>
+<p>Almost all vectors change direction, when they are multiplied by a matrix, <span class="math inline">\(\mathbf{A}\)</span>, except for certain vectors (<span class="math inline">\(\mathbf{v}\)</span>) that are in the same direction as <span class="math inline">\(\mathbf{A} \mathbf{v}.\)</span> Those vectors are called “eigenvectors”.</p>
+<p>We can see how we obtain the eigenvalues and eigenvectors of a matrix <span class="math inline">\(\mathbf{A}\)</span>. If</p>
+<p><span class="math display">\[
+\mathbf{A} \mathbf{v}=\lambda \mathbf{v}
+\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\mathbf{A} \mathbf{v}-\lambda \mathbf{I} \mathbf{v}=0 \\
+&amp;(\mathbf{A}-\lambda \mathbf{I}) \mathbf{v}=0,
+\end{aligned}
+\]</span>
+where <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix. It turns out that this equation is equivalent to:</p>
+<p><span class="math display">\[
+\operatorname{det}(\mathbf{A}-\lambda \mathbf{I})=0,
+\]</span></p>
+<p>because <span class="math inline">\(\operatorname{det}(\mathbf{A}-\lambda \mathbf{I}) \equiv(\mathbf{A}-\lambda \mathbf{I}) \mathbf{v}=0\)</span>. The reason is that we want a non-trivial solution to <span class="math inline">\((\mathbf{A}-\lambda \mathbf{I}) \mathbf{v}=0\)</span>. Therefore, <span class="math inline">\((\mathbf{A}-\lambda \mathbf{I})\)</span> should be non-invertible. Otherwise, if it is invertible, we get <span class="math inline">\(\mathbf{v}=(\mathbf{A}-\lambda \mathbf{I})^{-1} \cdot 0=0\)</span>, which is a trivial solution. Since a matrix is non-invertible if its determinant is 0 . Thus, <span class="math inline">\(\operatorname{det}(\mathbf{A}-\lambda \mathbf{I})=0\)</span> for non-trivial solutions.</p>
+<p>We start with a square matrix, <span class="math inline">\(\mathbf{A}\)</span>, like</p>
+<p><span class="math display">\[
+A =\left[\begin{array}{cc}
+1 &amp; 2 \\
+3 &amp; -4
+\end{array}\right]
+\]</span>
+<span class="math display">\[
+\begin{aligned}
+\det (\mathbf{A}-\lambda \mathbf{I})=
+&amp; \left|\begin{array}{cc}
+1-\lambda &amp; 2 \\
+3 &amp; -4-\lambda
+\end{array}\right|=(1-\lambda)(-4-\lambda)-2 \cdot 3 \\
+&amp; =-4-\lambda+4 \lambda+\lambda^2-6 \\
+&amp; =\lambda^2+3 \lambda-10 \\
+&amp; =(\lambda-2)(\lambda+5)=0 \\
+&amp; \therefore \lambda_1=2, ~ \lambda_2=-5 \\
+&amp;
+\end{aligned}
+\]</span></p>
+<p>We have two eigenvalues. We now need to consider each eigenvalue indivudally</p>
+$$
+<span class="math display">\[\begin{gathered}
+\lambda_1=2 \\
+(A 1-\lambda I) \mathbf{v}=0 \\
+{\left[\begin{array}{cc}
+1-\lambda_1 &amp; 2 \\
+3 &amp; -4-\lambda_1
+\end{array}\right]\left[\begin{array}{l}
+v_1 \\
+v_2
+\end{array}\right]=\left[\begin{array}{l}
+0 \\
+0
+\end{array}\right]} \\
+
+{\left[\begin{array}{cc}
+-1 &amp; 2 \\
+3 &amp; -6
+\end{array}\right]\left[\begin{array}{l}
+v_1 \\
+v_2
+\end{array}\right]=\left[\begin{array}{l}
+0 \\
+0
+\end{array}\right]}
+\end{gathered}\]</span>
+<p>$$
+Hence,</p>
+<p><span class="math display">\[
+\begin{aligned}
+-v_1+2 v_2=0 \\
+3 v_1-6 v_2=0\\
+v_1=2, ~ v_2=1
+\end{aligned}
+\]</span>
+And,</p>
+$$
+<span class="math display">\[\begin{aligned}
+&amp;  \lambda_2=-5 \\
+&amp; {\left[\begin{array}{cc}
+1-\lambda_2 &amp; 2 \\
+3 &amp; -4-\lambda_2
+\end{array}\right]\left[\begin{array}{l}
+v_1 \\
+v_2
+\end{array}\right]=\left[\begin{array}{l}
+0 \\
+0
+\end{array}\right]} \\
+&amp; {\left[\begin{array}{cc}
+6 &amp; 2 \\
+3 &amp; 1
+\end{array}\right]\left[\begin{array}{l}
+v_1 \\
+v_2
+\end{array}\right]=\left[\begin{array}{l}
+0 \\
+0
+\end{array}\right]}
+
+\end{aligned}\]</span>
+<p>$$
+Hence,</p>
+$$
+<span class="math display">\[\begin{gathered}
+6 v_1+2 v_2=0 \\
+3 v_1+v_2=0 \\
+
+v_1=-1,~ v_2=3
+\end{gathered}\]</span>
+<p>$$
+We have two eigenvalues</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \lambda_1=2 \\
+&amp; \lambda_2=-5
+\end{aligned}
+\]</span></p>
+<p>And two corresponding eigenvectors</p>
+<p><span class="math display">\[
+\left[\begin{array}{l}
+2 \\
+1
+\end{array}\right],\left[\begin{array}{c}
+-1 \\
+3
+\end{array}\right]
+\]</span>
+for <span class="math inline">\(\lambda_1=2\)</span></p>
+<p><span class="math display">\[
+\left[\begin{array}{cc}
+1 &amp; 2 \\
+3 &amp; -4
+\end{array}\right]\left[\begin{array}{l}
+2 \\
+1
+\end{array}\right]=\left[\begin{array}{l}
+2+2 \\
+6-4
+\end{array}\right]=\left[\begin{array}{l}
+4 \\
+2
+\end{array}\right]=2\left[\begin{array}{l}
+2 \\
+1
+\end{array}\right]
+\]</span>
+Let’s see the solution in R</p>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="decompositions.html#cb903-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="sc">-</span><span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb903-2"><a href="decompositions.html#cb903-2" tabindex="-1"></a><span class="fu">eigen</span>(A)</span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] -5  2
+## 
+## $vectors
+##            [,1]      [,2]
+## [1,] -0.3162278 0.8944272
+## [2,]  0.9486833 0.4472136</code></pre>
+<p>The eigenvectors are typically normalized by dividing by its length <span class="math inline">\(\sqrt{v^{\prime} v}\)</span>, which is 5 in our case for <span class="math inline">\(\lambda_1=2\)</span>.</p>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="decompositions.html#cb905-1" tabindex="-1"></a><span class="co"># For the ev (2, 1), for lambda</span></span>
+<span id="cb905-2"><a href="decompositions.html#cb905-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8944272 0.4472136</code></pre>
+<p>There some nice properties that we can observe in this application.</p>
+<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="decompositions.html#cb907-1" tabindex="-1"></a><span class="co"># Sum of eigenvalues = sum of diagonal terms of A (Trace of A)</span></span>
+<span id="cb907-2"><a href="decompositions.html#cb907-2" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>values</span>
+<span id="cb907-3"><a href="decompositions.html#cb907-3" tabindex="-1"></a><span class="fu">sum</span>(ev) <span class="sc">==</span> <span class="fu">sum</span>(<span class="fu">diag</span>(A))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="decompositions.html#cb909-1" tabindex="-1"></a><span class="co"># Product of eigenvalues = determinant of A</span></span>
+<span id="cb909-2"><a href="decompositions.html#cb909-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prod</span>(ev), <span class="dv">4</span>) <span class="sc">==</span> <span class="fu">round</span>(<span class="fu">det</span>(A), <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="decompositions.html#cb911-1" tabindex="-1"></a><span class="co"># Diagonal matrix D has eigenvalues = diagonal elements</span></span>
+<span id="cb911-2"><a href="decompositions.html#cb911-2" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb911-3"><a href="decompositions.html#cb911-3" tabindex="-1"></a><span class="fu">eigen</span>(D)<span class="sc">$</span>values <span class="sc">==</span> <span class="fu">sort</span>(<span class="fu">diag</span>(D), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE</code></pre>
+<p>We can see that, if one of the eigenvalues is zero for a matrix, the determinant of the matrix will be zero. We willl return to this issue in Singluar Value Decomposition.</p>
+<p>Let’s finish this chapter with Diagonalization and Eigendecomposition.</p>
+<p>Suppose we have <span class="math inline">\(m\)</span> linearly independent eigenvectors (<span class="math inline">\(\mathbf{v_i}\)</span> is eigenvector <span class="math inline">\(i\)</span> in a column vector in <span class="math inline">\(\mathbf{V}\)</span>) of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<p><span class="math display">\[
+\mathbf{AV}=\mathbf{A}\left[\mathbf{v_1} \mathbf{v_2} \cdots \mathbf{v_m}\right]=\left[\mathbf{A} \mathbf{v_1} \mathbf{A} \mathbf{v_2} \ldots \mathbf{A} \mathbf{v_m}\right]=\left[\begin{array}{llll}
+\lambda_1 \mathbf{v_1} &amp; \lambda_2\mathbf{v_2}  &amp; \ldots &amp; \lambda_m \mathbf{v_m}
+\end{array}\right]
+\]</span></p>
+<p>because</p>
+<p><span class="math display">\[
+\mathbf{A} \mathbf{v}=\lambda \mathbf{v}
+\]</span></p>
+<p>$$
+==
+$$
+So that</p>
+<p><span class="math display">\[
+\mathbf{A V=V \Lambda}
+\]</span>
+Hence,</p>
+<p><span class="math display">\[
+\mathbf{A}=\mathbf{V} \Lambda \mathbf{V}^{-1}
+\]</span></p>
+<p>Eigendecomposition (a.k.a. spectral decomposition) decomposes a matrix <span class="math inline">\(\mathbf{A}\)</span> into a multiplication of a matrix of eigenvectors <span class="math inline">\(\mathbf{V}\)</span> and a diagonal matrix of eigenvalues <span class="math inline">\(\mathbf{\Lambda}\)</span>.</p>
+<p><strong>This can only be done if a matrix is diagonalizable</strong>. In fact, the definition of a diagonalizable matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> is that it can be eigendecomposed into <span class="math inline">\(n\)</span> eigenvectors, so that <span class="math inline">\(\mathbf{V}^{-1} \mathbf{A} \mathbf{V}=\Lambda\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A}^2&amp;=(\mathbf{V} \Lambda \mathbf{V}^{-1})(\mathbf{V} \Lambda \mathbf{V}^{-1})\\
+&amp;=\mathbf{V} \Lambda \text{I} \Lambda \mathbf{V}^{-1}\\
+&amp;=\mathbf{V} \Lambda^2 \mathbf{V}^{-1}\\
+\end{align}
+\]</span>
+in general</p>
+<p><span class="math display">\[
+\mathbf{A}^k=\mathbf{V} \Lambda^k \mathbf{V}^{-1}
+\]</span></p>
+<p>Example:</p>
+<div class="sourceCode" id="cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="decompositions.html#cb913-1" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb913-2"><a href="decompositions.html#cb913-2" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27   66   91
+## [2,]   36    2   61
+## [3,]   79   52   96</code></pre>
+<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="decompositions.html#cb915-1" tabindex="-1"></a><span class="fu">eigen</span>(A)</span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 183.76704+0.00000i -29.38352+6.08714i -29.38352-6.08714i
+## 
+## $vectors
+##               [,1]                  [,2]                  [,3]
+## [1,] -0.5771106+0i -0.8122822+0.0000000i -0.8122822+0.0000000i
+## [2,] -0.3602603+0i -0.0070249-0.2544411i -0.0070249+0.2544411i
+## [3,] -0.7329092+0i  0.5083843+0.1302049i  0.5083843-0.1302049i</code></pre>
+<div class="sourceCode" id="cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="decompositions.html#cb917-1" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>vectors</span>
+<span id="cb917-2"><a href="decompositions.html#cb917-2" tabindex="-1"></a>Lam <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">eigen</span>(A)<span class="sc">$</span>values)</span>
+<span id="cb917-3"><a href="decompositions.html#cb917-3" tabindex="-1"></a><span class="co"># Prove that AV = VLam</span></span>
+<span id="cb917-4"><a href="decompositions.html#cb917-4" tabindex="-1"></a><span class="fu">round</span>(A <span class="sc">%*%</span> V, <span class="dv">4</span>) <span class="sc">==</span> <span class="fu">round</span>(V <span class="sc">%*%</span> Lam, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] TRUE TRUE TRUE
+## [2,] TRUE TRUE TRUE
+## [3,] TRUE TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb919-1"><a href="decompositions.html#cb919-1" tabindex="-1"></a><span class="co"># And decomposition</span></span>
+<span id="cb919-2"><a href="decompositions.html#cb919-2" tabindex="-1"></a>A <span class="sc">==</span> <span class="fu">round</span>(V <span class="sc">%*%</span> Lam <span class="sc">%*%</span> <span class="fu">solve</span>(V), <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] TRUE TRUE TRUE
+## [2,] TRUE TRUE TRUE
+## [3,] TRUE TRUE TRUE</code></pre>
+<p>And, matrix inverse with eigendecomposition:</p>
+<p><span class="math display">\[
+\mathbf{A}^{-1}=\mathbf{V} \Lambda^{-1} \mathbf{V}^{-1}
+\]</span></p>
+<p>Example:</p>
+<div class="sourceCode" id="cb921"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb921-1"><a href="decompositions.html#cb921-1" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">9</span>), <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb921-2"><a href="decompositions.html#cb921-2" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   94   47   61
+## [2,]   45   32   82
+## [3,]    7   66    8</code></pre>
+<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="decompositions.html#cb923-1" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>vectors</span>
+<span id="cb923-2"><a href="decompositions.html#cb923-2" tabindex="-1"></a>Lam <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">eigen</span>(A)<span class="sc">$</span>values)</span>
+<span id="cb923-3"><a href="decompositions.html#cb923-3" tabindex="-1"></a></span>
+<span id="cb923-4"><a href="decompositions.html#cb923-4" tabindex="-1"></a><span class="co"># Inverse of A</span></span>
+<span id="cb923-5"><a href="decompositions.html#cb923-5" tabindex="-1"></a><span class="fu">solve</span>(A)</span></code></pre></div>
+<pre><code>##               [,1]         [,2]         [,3]
+## [1,]  0.0167893194 -0.011885379 -0.006193422
+## [2,] -0.0006968414 -0.001058287  0.016160860
+## [3,] -0.0089417128  0.019130576 -0.002907848</code></pre>
+<div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="decompositions.html#cb925-1" tabindex="-1"></a><span class="co"># And</span></span>
+<span id="cb925-2"><a href="decompositions.html#cb925-2" tabindex="-1"></a>V <span class="sc">%*%</span> <span class="fu">solve</span>(Lam) <span class="sc">%*%</span> <span class="fu">solve</span>(V)</span></code></pre></div>
+<pre><code>##               [,1]         [,2]         [,3]
+## [1,]  0.0167893194 -0.011885379 -0.006193422
+## [2,] -0.0006968414 -0.001058287  0.016160860
+## [3,] -0.0089417128  0.019130576 -0.002907848</code></pre>
+<p>The inverse of <span class="math inline">\(\mathbf{\Lambda}\)</span> is just the inverse of each diagonal element (the eigenvalues). But, this can only be done if a matrix is diagonalizable. So if <span class="math inline">\(\mathbf{A}\)</span> is not <span class="math inline">\(n \times n\)</span>, then we can use <span class="math inline">\(\mathbf{A&#39;A}\)</span> or <span class="math inline">\(\mathbf{AA&#39;}\)</span>, both symmetric now.</p>
+<p>Example:
+<span class="math display">\[
+\mathbf{A}=\left(\begin{array}{ll}
+1 &amp; 2 \\
+2 &amp; 4
+\end{array}\right)
+\]</span></p>
+<p>As <span class="math inline">\(\det(\mathbf{A})=0,\)</span> <span class="math inline">\(\mathbf{A}\)</span> is singular and its inverse is undefined. In other words, since <span class="math inline">\(\det(\mathbf{A})\)</span> equals the product of the eigenvalues <span class="math inline">\(\lambda_j\)</span> of <span class="math inline">\(\mathrm{A}\)</span>, the matrix <span class="math inline">\(\mathbf{A}\)</span> has an eigenvalue which is zero.</p>
+<p>To see this, consider the spectral (eigen) decomposition of <span class="math inline">\(A\)</span> :
+<span class="math display">\[
+\mathbf{A}=\sum_{j=1}^{p} \theta_{j} \mathbf{v}_{j} \mathbf{v}_{j}^{\top}
+\]</span>
+where <span class="math inline">\(\mathbf{v}_{\mathrm{j}}\)</span> is the eigenvector belonging to <span class="math inline">\(\theta_{\mathrm{j}}\)</span></p>
+<p>The inverse of <span class="math inline">\(\mathbf{A}\)</span> is then:</p>
+<p><span class="math display">\[
+\mathbf{A}^{-1}=\sum_{j=1}^{p} \theta_{j}^{-1} \mathbf{v}_{j} \mathbf{v}_{j}^{\top}
+\]</span></p>
+<p>A has eigenvalues 5 and 0. The inverse of <span class="math inline">\(A\)</span> via the spectral decomposition is then undefined:</p>
+<p><span class="math display">\[
+\mathbf{A}^{-1}=\frac{1}{5} \mathbf{v}_{1} \mathbf{v}_{1}^{\top}+ \frac{1}{0} \mathbf{v}_{1} \mathbf{v}_{1}^{\top}
+\]</span></p>
+</div>
+<div id="singular-value-decomposition" class="section level2 hasAnchor" number="28.3">
+<h2><span class="header-section-number">28.3</span> Singular Value Decomposition<a href="decompositions.html#singular-value-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Singular Value Decomposition (SVD) is another type of decomposition. Different than eigendecomposition, which requires a square matrix, SVD allows us to decompose a rectangular matrix. This is more useful because the rectangular matrix usually represents data in practice.</p>
+<p>For any matrix <span class="math inline">\(\mathbf{A}\)</span>, both <span class="math inline">\(\mathbf{A^{\top} A}\)</span> and <span class="math inline">\(\mathbf{A A^{\top}}\)</span> are symmetric. Therefore, they have <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> **orthogonal* eigenvectors, respectively. The proof is simple:</p>
+<p>Suppose we have a 2 x 2 symmetric matrix, <span class="math inline">\(\mathbf{A}\)</span>, with two distinct eigenvalues (<span class="math inline">\(\lambda_1, \lambda_2\)</span>) and two corresponding eigenvectors (<span class="math inline">\(\mathbf{v}_1\)</span> and <span class="math inline">\(\mathbf{v}_1\)</span>). Following the rule,</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \mathbf{A} \mathbf{v}_1=\lambda_1 \mathbf{v}_1, \\
+&amp; \mathbf{A} \mathbf{v}_2=\lambda_2 \mathbf{v}_2. \\
+\end{aligned}
+\]</span>
+Let’s multiply (inner product) the first one with <span class="math inline">\(\mathbf{v}_2^{\top}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{v}_2^{\top}\mathbf{A} \mathbf{v}_1=\lambda_1 \mathbf{v}_2^{\top} \mathbf{v}_1
+\]</span>
+And, the second one with <span class="math inline">\(\mathbf{v}_1^{\top}\)</span></p>
+<p><span class="math display">\[
+\mathbf{v}_1^{\top}\mathbf{A} \mathbf{v}_2=\lambda_2 \mathbf{v}_1^{\top} \mathbf{v}_2
+\]</span>
+If we take the transpose of both side of <span class="math inline">\(\mathbf{v}_2^{\top}\mathbf{A} \mathbf{v}_1=\lambda_1 \mathbf{v}_2^{\top} \mathbf{v}_1\)</span>, it will be</p>
+<p><span class="math display">\[
+\mathbf{v}_1^{\top}\mathbf{A} \mathbf{v}_2=\lambda_1 \mathbf{v}_1^{\top} \mathbf{v}_2
+\]</span>
+And, subtract these last two:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\mathbf{v}_1^{\top}\mathbf{A} \mathbf{v}_2=\lambda_2 \mathbf{v}_1^{\top} \mathbf{v}_2 \\
+&amp; \mathbf{v}_1^{\top}\mathbf{A} \mathbf{v}_2=\lambda_1 \mathbf{v}_1^{\top} \mathbf{v}_2 \\
+&amp; \hline 0=\left(\lambda_2 - \lambda_1\right)  \mathbf{v}_1^{\top} \mathbf{v}_2
+\end{aligned}
+\]</span>
+Since , <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are distinct, <span class="math inline">\(\lambda_2- \lambda_1\)</span> cannot be zero. Therefore, $ _1^{} _2 = 0$. As we saw in Chapter 15, the dot products of two vectors can be expressed geometrically</p>
+<p><span class="math display">\[
+\begin{aligned}
+a \cdot b=\|a\|\|b\| \cos (\theta),\\
+\cos (\theta)=\frac{a \cdot b}{\|a\|\|b\|}
+\end{aligned}
+\]</span>
+Hence, <span class="math inline">\(\cos (\theta)\)</span> has to be zero for $ _1^{} _2 = 0$. Since <span class="math inline">\(\cos (90)=0\)</span>, the two vectors are orthogonal.</p>
+<p>We start with the following eigendecomposition for <span class="math inline">\(\mathbf{A^{\top}A}\)</span> and <span class="math inline">\(\mathbf{A A^{\top}}\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{A^{\top} A =V D V^{\top}} \\
+\mathbf{A A^{\top} =U D^{\prime} U^{\top}}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> <strong>orthogonal</strong> matrix consisting of the eigenvectors of <span class="math inline">\(\mathbf{A}^{\top}\mathbf{A},\)</span> and, <span class="math inline">\(\mathbf{D}\)</span> is an <span class="math inline">\(n \times n\)</span> diagonal matrix with the eigenvalues of <span class="math inline">\(\mathbf{A^{\top} A}\)</span> on the diagonal. The same decomposition for <span class="math inline">\(\mathbf{A A^{\top}}\)</span>, now <span class="math inline">\(\mathbf{U}\)</span> is an <span class="math inline">\(m \times m\)</span> <strong>orthogonal</strong> matrix consisting of the eigenvectors of <span class="math inline">\(\mathbf{A A^{\top}}\)</span>, and <span class="math inline">\(\mathbf{D^{\prime}}\)</span> is an <span class="math inline">\(m \times m\)</span> diagonal matrix with the eigenvalues of <span class="math inline">\(\mathbf{A A^{\top}}\)</span> on the diagonal.</p>
+<p>It turns out that <span class="math inline">\(\mathbf{D}\)</span> and <span class="math inline">\(\mathbf{D^{\prime}}\)</span> have the same non-zero diagonal entries except that the order might be different.</p>
+<p>We can write SVD for any real <span class="math inline">\(m \times n\)</span> matrix as</p>
+<p><span class="math display">\[
+\mathbf{A=U \Sigma V^{\top}}
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{U}\)</span> is an <span class="math inline">\(m \times m\)</span> orthogonal matrix whose columns are the eigenvectors of <span class="math inline">\(\mathbf{A A^{\top}}\)</span>, <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> orthogonal matrix whose columns are the eigenvectors of <span class="math inline">\(\mathbf{A^{\top} A}\)</span>, and <span class="math inline">\(\mathbf{\Sigma}\)</span> is an <span class="math inline">\(m \times n\)</span> diagonal matrix of the form:</p>
+<p><span class="math display">\[
+\mathbf{\Sigma}=\left(\begin{array}{cccc}
+\sigma_{1} &amp; &amp; &amp; \\
+&amp; \ddots &amp;  \\
+&amp; &amp; \sigma_{n} &amp; \\
+0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp;0 \\
+\end{array}\right)
+\]</span>
+with <span class="math inline">\(\sigma_{1} \geq \sigma_{2} \geq \cdots \geq \sigma_{n}&gt;0\)</span> . The number of non-zero singular values is equal to the rank of <span class="math inline">\(\operatorname{rank}(\mathbf{A})\)</span>. In <span class="math inline">\(\mathbf{\Sigma}\)</span> above, <span class="math inline">\(\sigma_{1}, \ldots, \sigma_{n}\)</span> are the square roots of the eigenvalues of <span class="math inline">\(\mathbf{A^{\top} A}\)</span>. They are called the <strong>singular values</strong> of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<p>One important point is that, although <span class="math inline">\(\mathbf{U}\)</span> in <span class="math inline">\(\mathbf{U \Sigma V^{\top}}\)</span> is <span class="math inline">\(m \times m\)</span>, when it is multiplied by <span class="math inline">\(\mathbf{\Sigma}\)</span>, it reduces to <span class="math inline">\(n \times n\)</span> due to zeros in <span class="math inline">\(\mathbf{\Sigma}\)</span>. Hence, we can actually select only those in <span class="math inline">\(\mathbf{U}\)</span> that are not going to be zeroed out due to that multiplication. When we take only <span class="math inline">\(n \times n\)</span> from <span class="math inline">\(\mathbf{U}\)</span> matrix, it is called “Economy SVD”, <span class="math inline">\(\mathbf{\hat{U} \hat{\Sigma} V^{\top}}\)</span>, where all matrices will be <span class="math inline">\(n \times n\)</span>.</p>
+<p>The singular value decomposition is very useful when our basic goal is to “solve” the system <span class="math inline">\(\mathbf{A} x=b\)</span> for all matrices <span class="math inline">\(\mathbf{A}\)</span> and vectors <span class="math inline">\(b\)</span> with a numerically stable algorithm. Some important applications of the SVD include computing the pseudoinverse, matrix approximation, and determining the rank, range, and null space of a matrix. We will see some of them in the following chapters</p>
+<p>Here is an example:</p>
+<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="decompositions.html#cb927-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">104</span>)</span>
+<span id="cb927-2"><a href="decompositions.html#cb927-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">100</span>, <span class="dv">12</span>), <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb927-3"><a href="decompositions.html#cb927-3" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   77   24   32   78
+## [2,]   67   61   39   96
+## [3,]   34   94   42   28</code></pre>
+<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="decompositions.html#cb929-1" tabindex="-1"></a>svda <span class="ot">&lt;-</span> <span class="fu">svd</span>(A)</span>
+<span id="cb929-2"><a href="decompositions.html#cb929-2" tabindex="-1"></a>svda</span></code></pre></div>
+<pre><code>## $d
+## [1] 199.83933  70.03623  16.09872
+## 
+## $u
+##           [,1]       [,2]       [,3]
+## [1,] 0.5515235  0.5259321  0.6474699
+## [2,] 0.6841400  0.1588989 -0.7118312
+## [3,] 0.4772571 -0.8355517  0.2721747
+## 
+## $v
+##           [,1]       [,2]       [,3]
+## [1,] 0.5230774  0.3246068  0.7091515
+## [2,] 0.4995577 -0.8028224 -0.1427447
+## [3,] 0.3221338 -0.1722864  0.2726277
+## [4,] 0.6107880  0.4694933 -0.6343518</code></pre>
+<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb931-1"><a href="decompositions.html#cb931-1" tabindex="-1"></a><span class="co"># Singular values = sqrt(eigenvalues of t(A)%*%A))</span></span>
+<span id="cb931-2"><a href="decompositions.html#cb931-2" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">t</span>(A) <span class="sc">%*%</span> A)<span class="sc">$</span>values</span>
+<span id="cb931-3"><a href="decompositions.html#cb931-3" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(ev), <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 199.83933  70.03623  16.09872   0.00000</code></pre>
+<p>Note that this ““Economy SVD” using only the non-zero eigenvalues and their respective eigenvectors.</p>
+<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="decompositions.html#cb933-1" tabindex="-1"></a>Ar <span class="ot">&lt;-</span> svda<span class="sc">$</span>u <span class="sc">%*%</span> <span class="fu">diag</span>(svda<span class="sc">$</span>d) <span class="sc">%*%</span> <span class="fu">t</span>(svda<span class="sc">$</span>v)</span>
+<span id="cb933-2"><a href="decompositions.html#cb933-2" tabindex="-1"></a>Ar</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   77   24   32   78
+## [2,]   67   61   39   96
+## [3,]   34   94   42   28</code></pre>
+<p>As we use SVD in the following chapter, its usefulness will be obvious.</p>
+</div>
+<div id="rankr-approximations" class="section level2 hasAnchor" number="28.4">
+<h2><span class="header-section-number">28.4</span> Rank(r) Approximations<a href="decompositions.html#rankr-approximations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the useful applications of singular value decomposition (SVD) is rank approximations, or matrix approximations.</p>
+<p>We can write <span class="math inline">\(\mathbf{A=U \Sigma V^{\top}}\)</span> as</p>
+<p><span class="math display">\[
+=\sigma_{1} u_{1} v_{1}^{\top}+\sigma_{2} u_{2} v_{2}^{\top}+\ldots+\sigma_{n} u_{n} v_{n}^{\top}+ 0.
+\]</span>
+Each term in this equation is a Rank(1) matrix: <span class="math inline">\(u_1\)</span> is <span class="math inline">\(n \times 1\)</span> column vector and <span class="math inline">\(v_1\)</span> is <span class="math inline">\(1 \times n\)</span> row vector. Since these are the only orthogonal entries in the resulting matrix, the first term with <span class="math inline">\(\sigma_1\)</span> is a Rank(1) <span class="math inline">\(n \times n\)</span> matrix. All other terms have the same dimension. Since <span class="math inline">\(\sigma\)</span>’s are ordered, the first term is the carries the most information. So, Rank(1) approximation is taking only the first term and ignoring the others. Here is a simple example:</p>
+<div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="decompositions.html#cb935-1" tabindex="-1"></a><span class="co">#rank-one approximation</span></span>
+<span id="cb935-2"><a href="decompositions.html#cb935-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dv">2</span> , <span class="dv">2</span>)</span>
+<span id="cb935-3"><a href="decompositions.html#cb935-3" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    5    2</code></pre>
+<div class="sourceCode" id="cb937"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb937-1"><a href="decompositions.html#cb937-1" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">eigen</span>(<span class="fu">t</span>(A) <span class="sc">%*%</span> (A))<span class="sc">$</span>vector[, <span class="dv">1</span>], <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb937-2"><a href="decompositions.html#cb937-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">eigen</span>(<span class="fu">t</span>(A) <span class="sc">%*%</span> (A))<span class="sc">$</span>values[<span class="dv">1</span>])</span>
+<span id="cb937-3"><a href="decompositions.html#cb937-3" tabindex="-1"></a>u1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">eigen</span>(A <span class="sc">%*%</span> <span class="fu">t</span>(A))<span class="sc">$</span>vector[, <span class="dv">1</span>], <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb937-4"><a href="decompositions.html#cb937-4" tabindex="-1"></a></span>
+<span id="cb937-5"><a href="decompositions.html#cb937-5" tabindex="-1"></a><span class="co"># Rank(1) approximation of A</span></span>
+<span id="cb937-6"><a href="decompositions.html#cb937-6" tabindex="-1"></a>Atilde <span class="ot">&lt;-</span> sigma <span class="sc">*</span> u1 <span class="sc">%*%</span> v1</span>
+<span id="cb937-7"><a href="decompositions.html#cb937-7" tabindex="-1"></a>Atilde</span></code></pre></div>
+<pre><code>##           [,1]      [,2]
+## [1,] -2.560369 -2.069843
+## [2,] -4.001625 -3.234977</code></pre>
+<p>And, Rank(2) approximation can be obtained by adding the first 2 terms. As we add more terms, we can get the full information in the data. But often times, we truncate the ranks at <span class="math inline">\(r\)</span> by removing the terms with small <span class="math inline">\(sigma\)</span>. This is also called noise reduction.</p>
+<p>There are many examples on the Internet for real image compression, but we apply rank approximation to a heatmap from our own work. The heatmap shows moving-window partial correlations between daily positivity rates (Covid-19) and mobility restrictions for different time delays (days, “lags”)</p>
+<div class="sourceCode" id="cb939"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb939-1"><a href="decompositions.html#cb939-1" tabindex="-1"></a>comt <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;comt.rds&quot;</span>)</span>
+<span id="cb939-2"><a href="decompositions.html#cb939-2" tabindex="-1"></a></span>
+<span id="cb939-3"><a href="decompositions.html#cb939-3" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb939-4"><a href="decompositions.html#cb939-4" tabindex="-1"></a>  comt,</span>
+<span id="cb939-5"><a href="decompositions.html#cb939-5" tabindex="-1"></a>  <span class="at">Colv =</span> <span class="cn">NA</span>,</span>
+<span id="cb939-6"><a href="decompositions.html#cb939-6" tabindex="-1"></a>  <span class="at">Rowv =</span> <span class="cn">NA</span>,</span>
+<span id="cb939-7"><a href="decompositions.html#cb939-7" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Heatmap - Original&quot;</span>,</span>
+<span id="cb939-8"><a href="decompositions.html#cb939-8" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Lags&quot;</span>,</span>
+<span id="cb939-9"><a href="decompositions.html#cb939-9" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Starting days of 7-day rolling windows&quot;</span></span>
+<span id="cb939-10"><a href="decompositions.html#cb939-10" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="28-MatrixDecomposition_files/figure-html/ra2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb940"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb940-1"><a href="decompositions.html#cb940-1" tabindex="-1"></a><span class="co"># Rank(2) with SVD</span></span>
+<span id="cb940-2"><a href="decompositions.html#cb940-2" tabindex="-1"></a>fck <span class="ot">&lt;-</span> <span class="fu">svd</span>(comt)</span>
+<span id="cb940-3"><a href="decompositions.html#cb940-3" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb940-4"><a href="decompositions.html#cb940-4" tabindex="-1"></a>comt.re <span class="ot">&lt;-</span></span>
+<span id="cb940-5"><a href="decompositions.html#cb940-5" tabindex="-1"></a>  <span class="fu">as.matrix</span>(fck<span class="sc">$</span>u[, <span class="dv">1</span><span class="sc">:</span>r]) <span class="sc">%*%</span> <span class="fu">diag</span>(fck<span class="sc">$</span>d)[<span class="dv">1</span><span class="sc">:</span>r, <span class="dv">1</span><span class="sc">:</span>r] <span class="sc">%*%</span> <span class="fu">t</span>(fck<span class="sc">$</span>v[, <span class="dv">1</span><span class="sc">:</span>r])</span>
+<span id="cb940-6"><a href="decompositions.html#cb940-6" tabindex="-1"></a></span>
+<span id="cb940-7"><a href="decompositions.html#cb940-7" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb940-8"><a href="decompositions.html#cb940-8" tabindex="-1"></a>  comt.re,</span>
+<span id="cb940-9"><a href="decompositions.html#cb940-9" tabindex="-1"></a>  <span class="at">Colv =</span> <span class="cn">NA</span>,</span>
+<span id="cb940-10"><a href="decompositions.html#cb940-10" tabindex="-1"></a>  <span class="at">Rowv =</span> <span class="cn">NA</span>,</span>
+<span id="cb940-11"><a href="decompositions.html#cb940-11" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Heatmap Matrix - Rank(2) Approx&quot;</span>,</span>
+<span id="cb940-12"><a href="decompositions.html#cb940-12" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Lags&quot;</span>,</span>
+<span id="cb940-13"><a href="decompositions.html#cb940-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Startting days of 7-day rolling windows&quot;</span></span>
+<span id="cb940-14"><a href="decompositions.html#cb940-14" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="28-MatrixDecomposition_files/figure-html/ra2-2.png" width="672" /></p>
+<p>This Rank(2) approximation reduces the noise in the moving-window partial correlations so that we can see the clear trend about the delay in the effect of mobility restrictions on the spread.</p>
+<p>We change the order of correlations in the original heatmap, and make it row-wise correlations:</p>
+<div class="sourceCode" id="cb941"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb941-1"><a href="decompositions.html#cb941-1" tabindex="-1"></a><span class="co">#XX&#39; and X&#39;X SVD</span></span>
+<span id="cb941-2"><a href="decompositions.html#cb941-2" tabindex="-1"></a>wtf <span class="ot">&lt;-</span> comt <span class="sc">%*%</span> <span class="fu">t</span>(comt)</span>
+<span id="cb941-3"><a href="decompositions.html#cb941-3" tabindex="-1"></a>fck <span class="ot">&lt;-</span> <span class="fu">svd</span>(wtf)</span>
+<span id="cb941-4"><a href="decompositions.html#cb941-4" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb941-5"><a href="decompositions.html#cb941-5" tabindex="-1"></a>comt.re2 <span class="ot">&lt;-</span></span>
+<span id="cb941-6"><a href="decompositions.html#cb941-6" tabindex="-1"></a>  <span class="fu">as.matrix</span>(fck<span class="sc">$</span>u[, <span class="dv">1</span><span class="sc">:</span>r]) <span class="sc">%*%</span> <span class="fu">diag</span>(fck<span class="sc">$</span>d)[<span class="dv">1</span><span class="sc">:</span>r, <span class="dv">1</span><span class="sc">:</span>r] <span class="sc">%*%</span> <span class="fu">t</span>(fck<span class="sc">$</span>v[, <span class="dv">1</span><span class="sc">:</span>r])</span>
+<span id="cb941-7"><a href="decompositions.html#cb941-7" tabindex="-1"></a></span>
+<span id="cb941-8"><a href="decompositions.html#cb941-8" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb941-9"><a href="decompositions.html#cb941-9" tabindex="-1"></a>  comt.re2,</span>
+<span id="cb941-10"><a href="decompositions.html#cb941-10" tabindex="-1"></a>  <span class="at">Colv =</span> <span class="cn">NA</span>,</span>
+<span id="cb941-11"><a href="decompositions.html#cb941-11" tabindex="-1"></a>  <span class="at">Rowv =</span> <span class="cn">NA</span>,</span>
+<span id="cb941-12"><a href="decompositions.html#cb941-12" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Row Corr. - Rank(2)&quot;</span>,</span>
+<span id="cb941-13"><a href="decompositions.html#cb941-13" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Startting days of 7-day rolling windows&quot;</span>,</span>
+<span id="cb941-14"><a href="decompositions.html#cb941-14" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Startting days of 7-day rolling windows&quot;</span></span>
+<span id="cb941-15"><a href="decompositions.html#cb941-15" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="28-MatrixDecomposition_files/figure-html/ra3-1.png" width="672" /></p>
+<p>This is now worse than the original heatmap we had ealier. When we apply a Rank(2) approximation, however, we have a very clear picture:</p>
+<div class="sourceCode" id="cb942"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb942-1"><a href="decompositions.html#cb942-1" tabindex="-1"></a>wtf <span class="ot">&lt;-</span> <span class="fu">t</span>(comt) <span class="sc">%*%</span> comt</span>
+<span id="cb942-2"><a href="decompositions.html#cb942-2" tabindex="-1"></a>fck <span class="ot">&lt;-</span> <span class="fu">svd</span>(wtf)</span>
+<span id="cb942-3"><a href="decompositions.html#cb942-3" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb942-4"><a href="decompositions.html#cb942-4" tabindex="-1"></a>comt.re3 <span class="ot">&lt;-</span></span>
+<span id="cb942-5"><a href="decompositions.html#cb942-5" tabindex="-1"></a>  <span class="fu">as.matrix</span>(fck<span class="sc">$</span>u[, <span class="dv">1</span><span class="sc">:</span>r]) <span class="sc">%*%</span> <span class="fu">diag</span>(fck<span class="sc">$</span>d)[<span class="dv">1</span><span class="sc">:</span>r, <span class="dv">1</span><span class="sc">:</span>r] <span class="sc">%*%</span> <span class="fu">t</span>(fck<span class="sc">$</span>v[, <span class="dv">1</span><span class="sc">:</span>r])</span>
+<span id="cb942-6"><a href="decompositions.html#cb942-6" tabindex="-1"></a></span>
+<span id="cb942-7"><a href="decompositions.html#cb942-7" tabindex="-1"></a><span class="fu">heatmap</span>(</span>
+<span id="cb942-8"><a href="decompositions.html#cb942-8" tabindex="-1"></a>  comt.re3,</span>
+<span id="cb942-9"><a href="decompositions.html#cb942-9" tabindex="-1"></a>  <span class="at">Colv =</span> <span class="cn">NA</span>,</span>
+<span id="cb942-10"><a href="decompositions.html#cb942-10" tabindex="-1"></a>  <span class="at">Rowv =</span> <span class="cn">NA</span>,</span>
+<span id="cb942-11"><a href="decompositions.html#cb942-11" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Column Corr. - Rank(2)&quot;</span>,</span>
+<span id="cb942-12"><a href="decompositions.html#cb942-12" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Lags&quot;</span>,</span>
+<span id="cb942-13"><a href="decompositions.html#cb942-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Lags&quot;</span></span>
+<span id="cb942-14"><a href="decompositions.html#cb942-14" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="28-MatrixDecomposition_files/figure-html/ra2c-1.png" width="672" /></p>
+<p>There is a series of great lectures on SVD and other matrix approximations by Steve Brunton at YouTube <a href="https://www.youtube.com/watch?v=nbBvuuNVfco" class="uri">https://www.youtube.com/watch?v=nbBvuuNVfco</a>.</p>
+</div>
+<div id="moore-penrose-inverse" class="section level2 hasAnchor" number="28.5">
+<h2><span class="header-section-number">28.5</span> Moore-Penrose inverse<a href="decompositions.html#moore-penrose-inverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Singular Value Decomposition (SVD) can be used for solving Ordinary Least Squares (OLS) problems. In particular, the SVD of the design matrix <span class="math inline">\(\mathbf{X}\)</span> can be used to compute the coefficients of the linear regression model. Here are the steps:</p>
+<p><span class="math display">\[
+\mathbf{y = X \beta}\\
+\mathbf{y = U \Sigma V&#39; \beta}\\
+\mathbf{U&#39;y = U&#39;U \Sigma V&#39; \beta}\\
+\mathbf{U&#39;y = \Sigma V&#39; \beta}\\
+\mathbf{\Sigma^{-1}}\mathbf{U&#39;y =  V&#39; \beta}\\
+\mathbf{V\Sigma^{-1}}\mathbf{U&#39;y =  \beta}\\
+\]</span></p>
+<p>This formula for beta is computationally efficient and numerically stable, even for ill-conditioned or singular <span class="math inline">\(\mathbf{X}\)</span> matrices. Moreover, it allows us to compute the solution to the OLS problem without explicitly computing the inverse of <span class="math inline">\(\mathbf{X}^T \mathbf{X}\)</span>.</p>
+<p>Menawhile, the term</p>
+<p><span class="math display">\[
+\mathbf{V\Sigma^{-1}U&#39; = M^+}
+\]</span></p>
+<p>is called <strong>“generalized inverse” or The Moore-Penrose Pseudoinverse</strong>.</p>
+<p>If <span class="math inline">\(\mathbf{X}\)</span> has full column rank, then the pseudoinverse is also the unique solution to the OLS problem. However, if <span class="math inline">\(\mathbf{X}\)</span> does not have full column rank, then its pseudoinverse may not exist or may not be unique. In this case, the OLS estimator obtained using the pseudoinverse will be a “best linear unbiased estimator” (BLUE), but it will not be the unique solution to the OLS problem.</p>
+<p>To be more specific, the OLS estimator obtained using the pseudoinverse will minimize the sum of squared residuals subject to the constraint that the coefficients are unbiased, i.e., they have zero expected value. However, there may be other linear unbiased estimators that achieve the same minimum sum of squared residuals. These alternative estimators will differ from the OLS estimator obtained using the pseudoinverse in the values they assign to the coefficients.</p>
+<p>In practice, the use of the pseudoinverse to estimate the OLS coefficients when <span class="math inline">\(\mathbf{X}\)</span> does not have full column rank can lead to numerical instability, especially if the singular values of <span class="math inline">\(\mathbf{X}\)</span> are very small. In such cases, it may be more appropriate to use regularization techniques such as ridge or Lasso regression to obtain stable and interpretable estimates. These methods penalize the size of the coefficients and can be used to obtain sparse or “shrunken” estimates, which can be particularly useful in high-dimensional settings where there are more predictors than observations.</p>
+<p>Here are some application of SVD and Pseudoinverse.</p>
+<div class="sourceCode" id="cb943"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb943-1"><a href="decompositions.html#cb943-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb943-2"><a href="decompositions.html#cb943-2" tabindex="-1"></a></span>
+<span id="cb943-3"><a href="decompositions.html#cb943-3" tabindex="-1"></a><span class="do">##Simple SVD and generalized inverse</span></span>
+<span id="cb943-4"><a href="decompositions.html#cb943-4" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
+<span id="cb943-5"><a href="decompositions.html#cb943-5" tabindex="-1"></a>              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dv">9</span>, <span class="dv">4</span>)</span>
+<span id="cb943-6"><a href="decompositions.html#cb943-6" tabindex="-1"></a></span>
+<span id="cb943-7"><a href="decompositions.html#cb943-7" tabindex="-1"></a>a.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(A)</span>
+<span id="cb943-8"><a href="decompositions.html#cb943-8" tabindex="-1"></a>ds <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">1</span> <span class="sc">/</span> a.svd<span class="sc">$</span>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb943-9"><a href="decompositions.html#cb943-9" tabindex="-1"></a>u <span class="ot">&lt;-</span> a.svd<span class="sc">$</span>u</span>
+<span id="cb943-10"><a href="decompositions.html#cb943-10" tabindex="-1"></a>v <span class="ot">&lt;-</span> a.svd<span class="sc">$</span>v</span>
+<span id="cb943-11"><a href="decompositions.html#cb943-11" tabindex="-1"></a>us <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(u[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb943-12"><a href="decompositions.html#cb943-12" tabindex="-1"></a>vs <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(v[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb943-13"><a href="decompositions.html#cb943-13" tabindex="-1"></a>(a.ginv <span class="ot">&lt;-</span> vs <span class="sc">%*%</span> ds <span class="sc">%*%</span> <span class="fu">t</span>(us))</span></code></pre></div>
+<pre><code>##             [,1]        [,2]        [,3]        [,4]        [,5]        [,6]
+## [1,]  0.08333333  0.08333333  0.08333333  0.08333333  0.08333333  0.08333333
+## [2,]  0.25000000  0.25000000  0.25000000 -0.08333333 -0.08333333 -0.08333333
+## [3,] -0.08333333 -0.08333333 -0.08333333  0.25000000  0.25000000  0.25000000
+## [4,] -0.08333333 -0.08333333 -0.08333333 -0.08333333 -0.08333333 -0.08333333
+##             [,7]        [,8]        [,9]
+## [1,]  0.08333333  0.08333333  0.08333333
+## [2,] -0.08333333 -0.08333333 -0.08333333
+## [3,] -0.08333333 -0.08333333 -0.08333333
+## [4,]  0.25000000  0.25000000  0.25000000</code></pre>
+<div class="sourceCode" id="cb945"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb945-1"><a href="decompositions.html#cb945-1" tabindex="-1"></a><span class="fu">ginv</span>(A)</span></code></pre></div>
+<pre><code>##             [,1]        [,2]        [,3]        [,4]        [,5]        [,6]
+## [1,]  0.08333333  0.08333333  0.08333333  0.08333333  0.08333333  0.08333333
+## [2,]  0.25000000  0.25000000  0.25000000 -0.08333333 -0.08333333 -0.08333333
+## [3,] -0.08333333 -0.08333333 -0.08333333  0.25000000  0.25000000  0.25000000
+## [4,] -0.08333333 -0.08333333 -0.08333333 -0.08333333 -0.08333333 -0.08333333
+##             [,7]        [,8]        [,9]
+## [1,]  0.08333333  0.08333333  0.08333333
+## [2,] -0.08333333 -0.08333333 -0.08333333
+## [3,] -0.08333333 -0.08333333 -0.08333333
+## [4,]  0.25000000  0.25000000  0.25000000</code></pre>
+<p>We can use SVD for solving a regular OLS on simulated data:</p>
+<div class="sourceCode" id="cb947"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb947-1"><a href="decompositions.html#cb947-1" tabindex="-1"></a><span class="co">#Simulated DGP</span></span>
+<span id="cb947-2"><a href="decompositions.html#cb947-2" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb947-3"><a href="decompositions.html#cb947-3" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb947-4"><a href="decompositions.html#cb947-4" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb947-5"><a href="decompositions.html#cb947-5" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb947-6"><a href="decompositions.html#cb947-6" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x1, x2, x3)</span>
+<span id="cb947-7"><a href="decompositions.html#cb947-7" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb947-8"><a href="decompositions.html#cb947-8" tabindex="-1"></a>Y <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta <span class="sc">+</span> u</span>
+<span id="cb947-9"><a href="decompositions.html#cb947-9" tabindex="-1"></a></span>
+<span id="cb947-10"><a href="decompositions.html#cb947-10" tabindex="-1"></a><span class="co">#OLS</span></span>
+<span id="cb947-11"><a href="decompositions.html#cb947-11" tabindex="-1"></a>betahat_OLS <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span>
+<span id="cb947-12"><a href="decompositions.html#cb947-12" tabindex="-1"></a>betahat_OLS</span></code></pre></div>
+<pre><code>##         [,1]
+## x1 0.6310514
+## x2 1.5498699
+## x3 1.7014166</code></pre>
+<div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb949-1"><a href="decompositions.html#cb949-1" tabindex="-1"></a><span class="co">#SVD</span></span>
+<span id="cb949-2"><a href="decompositions.html#cb949-2" tabindex="-1"></a>X.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(X)</span>
+<span id="cb949-3"><a href="decompositions.html#cb949-3" tabindex="-1"></a>ds <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">1</span> <span class="sc">/</span> X.svd<span class="sc">$</span>d)</span>
+<span id="cb949-4"><a href="decompositions.html#cb949-4" tabindex="-1"></a>u <span class="ot">&lt;-</span> X.svd<span class="sc">$</span>u</span>
+<span id="cb949-5"><a href="decompositions.html#cb949-5" tabindex="-1"></a>v <span class="ot">&lt;-</span> X.svd<span class="sc">$</span>v</span>
+<span id="cb949-6"><a href="decompositions.html#cb949-6" tabindex="-1"></a>us <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(u)</span>
+<span id="cb949-7"><a href="decompositions.html#cb949-7" tabindex="-1"></a>vs <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(v)</span>
+<span id="cb949-8"><a href="decompositions.html#cb949-8" tabindex="-1"></a>X.ginv_mine <span class="ot">&lt;-</span> vs <span class="sc">%*%</span> ds <span class="sc">%*%</span> <span class="fu">t</span>(us)</span>
+<span id="cb949-9"><a href="decompositions.html#cb949-9" tabindex="-1"></a></span>
+<span id="cb949-10"><a href="decompositions.html#cb949-10" tabindex="-1"></a><span class="co"># Compare</span></span>
+<span id="cb949-11"><a href="decompositions.html#cb949-11" tabindex="-1"></a>X.ginv <span class="ot">&lt;-</span> <span class="fu">ginv</span>(X)</span>
+<span id="cb949-12"><a href="decompositions.html#cb949-12" tabindex="-1"></a><span class="fu">round</span>((X.ginv_mine <span class="sc">-</span> X.ginv), <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
+## [1,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0
+## [2,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0
+## [3,]    0    0    0    0    0    0    0    0    0     0     0     0     0     0
+##      [,15] [,16] [,17] [,18] [,19] [,20]
+## [1,]     0     0     0     0     0     0
+## [2,]     0     0     0     0     0     0
+## [3,]     0     0     0     0     0     0</code></pre>
+<div class="sourceCode" id="cb951"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb951-1"><a href="decompositions.html#cb951-1" tabindex="-1"></a><span class="co"># Now OLS</span></span>
+<span id="cb951-2"><a href="decompositions.html#cb951-2" tabindex="-1"></a>betahat_ginv <span class="ot">&lt;-</span> X.ginv <span class="sc">%*%</span> Y</span>
+<span id="cb951-3"><a href="decompositions.html#cb951-3" tabindex="-1"></a>betahat_ginv</span></code></pre></div>
+<pre><code>##           [,1]
+## [1,] 0.6310514
+## [2,] 1.5498699
+## [3,] 1.7014166</code></pre>
+<div class="sourceCode" id="cb953"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb953-1"><a href="decompositions.html#cb953-1" tabindex="-1"></a>betahat_OLS</span></code></pre></div>
+<pre><code>##         [,1]
+## x1 0.6310514
+## x2 1.5498699
+## x3 1.7014166</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="graphical-network-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pca-principle-component-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mutluyuk/machinemetrics/edit/master/28-MatrixDecomposition.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["machinemetrics.pdf", "machinemetrics.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

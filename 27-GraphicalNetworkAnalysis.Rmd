@@ -1,0 +1,559 @@
+
+# Graphical Network Analysis
+
+  
+A network represents a structure of relationships between objects. Graphical modeling presents a network structure in a graph, which consists of nodes and edges, by expressing conditional (in)dependence between the nodes. If we think of these nodes (objects) as variables and their relationship with each other as edges, a graphical model represents the probabilistic relationships among a set of variables. For example, the absence of edges (partial correlations) corresponds to conditional independence. Graphical models are becoming more popular in statistics because it helps us understand a very complex structure of relationships in networks, such as the dynamic structure of biological systems or social events.  
+
+The central idea is that, since any pair of nodes may be joined by an edge, a missing edge represents some form of independency between the pair of variables. The complexity in network analysis comes from the fact that the independency may be either marginal or conditional on some or all of the other variables.  Therefore, defining a graphical model requires identification of a type of graph needed for each particular case.
+
+In general, a graphical model could be designed with directed and undirected edges. In a directed graph, an arrow indicates the direction of dependency between nodes. In undirected graphs, however, the edges do not have directions.  The field of graphical modeling is vast, hence it is beyond the scope of this book. 
+
+Yet, we will look at the precision matrix, which has been shown that its regularization captures the network connections.  Hence, the central theme of this section is the estimation of sparse standardized precision matrices, whose results can be illustrated by undirected graphs.
+
+## Fundementals
+
+In this chapter, we will cover several concepts related to statistical (in)dependence measured by correlations.
+
+## Covariance
+
+We start with a data matrix, which refers to the array of numbers:  
+
+$$
+\mathbf{X}=\left(\begin{array}{cccc}
+x_{11} & x_{12} & \cdots & x_{1 p} \\
+x_{21} & x_{22} & \cdots & x_{2 p} \\
+x_{31} & x_{32} & \cdots & x_{3 p} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n 1} & x_{n 2} & \cdots & x_{n p}
+\end{array}\right)
+$$
+
+An example would be
+
+```{r gna2}
+set.seed(5)
+x <- rnorm(30, sd=runif(30, 2, 50))
+X <- matrix(x, 10)
+X
+```
+
+We start with defining the covariance matrix
+
+$$
+\mathbf{S}=\left(\begin{array}{ccccc}
+s_{1}^{2} & s_{12} & s_{13} & \cdots & s_{1 p} \\
+s_{21} & s_{2}^{2} & s_{23} & \cdots & s_{2 p} \\
+s_{31} & s_{32} & s_{3}^{2} & \cdots & s_{3 p} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+s_{p 1} & s_{p 2} & s_{p 3} & \cdots & s_{p}^{2}
+\end{array}\right)
+$$
+$$
+s_{j}^{2}=(1 / n) \sum_{i=1}^{n}\left(x_{i j}-\bar{x}_{j}\right)^{2} 
+$$
+is the variance of the $j$-th variable,
+
+$$
+\begin{aligned}
+&s_{j k}=(1 / n) \sum_{i=1}^{n}\left(x_{i j}-\bar{x}_{j}\right)\left(x_{i k}-\bar{x}_{k}\right) 
+\end{aligned}
+$$
+is the covariance between the $j$-th and $k$-th variables; and, 
+
+$$
+\bar{x}_{j}=(1 / n) \sum_{i=1}^{n} x_{j i} 
+$$
+is the mean of the $j$-th variable.
+
+We can calculate the covariance matrix such as
+
+$$
+\mathbf{S}=\frac{1}{n} \mathbf{X}_{c}^{\prime} \mathbf{X}_{c},
+$$
+
+where $\mathbf{X}_{c}$ is the centered matrix: 
+
+$$
+\mathbf{X}_{c}=\left(\begin{array}{cccc}
+x_{11}-\bar{x}_{1} & x_{12}-\bar{x}_{2} & \cdots & x_{1 p}-\bar{x}_{p} \\
+x_{21}-\bar{x}_{1} & x_{22}-\bar{x}_{2} & \cdots & x_{2 p}-\bar{x}_{p} \\
+x_{31}-\bar{x}_{1} & x_{32}-\bar{x}_{2} & \cdots & x_{3 p}-\bar{x}_{p} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n 1}-\bar{x}_{1} & x_{n 2}-\bar{x}_{2} & \cdots & x_{n p}-\bar{x}_{p}
+\end{array}\right)
+$$
+
+How?
+
+```{r gna3}
+# More direct
+n <- nrow(X)
+m <- matrix(1, n, 1)%*%colMeans(X)
+Xc <- X-m
+Xc
+
+# Or
+C <- diag(n) - matrix(1/n, n, n)
+XC <- C %*% X
+Xc
+
+# We can also use `scale` 
+Xc <- scale(X, center=TRUE, scale=FALSE)
+```
+
+And, the covariance matrix
+
+```{r gna3b}
+# Covariance Matrix
+S <- t(Xc) %*% Xc / (n-1)
+S
+
+# Check it
+cov(X)
+```
+
+## Correlation
+
+While covariance is a necessary step, we can capture the size and the direction of relationships between the variables:
+
+$$
+\mathbf{R}=\left(\begin{array}{ccccc}
+1 & r_{12} & r_{13} & \cdots & r_{1 p} \\
+r_{21} & 1 & r_{23} & \cdots & r_{2 p} \\
+r_{31} & r_{32} & 1 & \cdots & r_{3 p} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+r_{p 1} & r_{p 2} & r_{p 3} & \cdots & 1
+\end{array}\right)
+$$
+
+where
+
+$$
+r_{j k}=\frac{s_{j k}}{s_{j} s_{k}}=\frac{\sum_{i=1}^{n}\left(x_{i j}-\bar{x}_{j}\right)\left(x_{i k}-\bar{x}_{k}\right)}{\sqrt{\sum_{i=1}^{n}\left(x_{i j}-\bar{x}_{j}\right)^{2}} \sqrt{\sum_{i=1}^{n}\left(x_{i k}-\bar{x}_{k}\right)^{2}}}
+$$
+is the Pearson correlation coefficient between variables $\mathbf{X}_{j}$ and $\mathbf{X}_{k}$
+
+We can calculate the correlation matrix 
+
+$$
+\mathbf{R}=\frac{1}{n} \mathbf{X}_{s}^{\prime} \mathbf{X}_{s}
+$$
+
+where $\mathbf{X}_{s}=\mathbf{C X D}^{-1}$ with
+  
+- $\mathbf{C}=\mathbf{I}_{n}-n^{-1} \mathbf{1}_{n} \mathbf{1}_{n}^{\prime}$ denoting a centering matrix, 
+- $\mathbf{D}=\operatorname{diag}\left(s_{1}, \ldots, s_{p}\right)$ denoting a diagonal scaling matrix.  
+
+Note that the standardized matrix $\mathbf{X}_{s}$ has the form
+
+$$
+\mathbf{X}_{s}=\left(\begin{array}{cccc}
+\left(x_{11}-\bar{x}_{1}\right) / s_{1} & \left(x_{12}-\bar{x}_{2}\right) / s_{2} & \cdots & \left(x_{1 p}-\bar{x}_{p}\right) / s_{p} \\
+\left(x_{21}-\bar{x}_{1}\right) / s_{1} & \left(x_{22}-\bar{x}_{2}\right) / s_{2} & \cdots & \left(x_{2 p}-\bar{x}_{p}\right) / s_{p} \\
+\left(x_{31}-\bar{x}_{1}\right) / s_{1} & \left(x_{32}-\bar{x}_{2}\right) / s_{2} & \cdots & \left(x_{3 p}-\bar{x}_{p}\right) / s_{p} \\
+\vdots & \vdots & \ddots & \vdots \\
+\left(x_{n 1}-\bar{x}_{1}\right) / s_{1} & \left(x_{n 2}-\bar{x}_{2}\right) / s_{2} & \cdots & \left(x_{n p}-\bar{x}_{p}\right) / s_{p}
+\end{array}\right)
+$$
+
+How?
+
+```{r gna4}
+# More direct
+n <- nrow(X)
+sdx <- 1/matrix(1, n, 1)%*%apply(X, 2, sd)
+m <- matrix(1, n, 1)%*%colMeans(X)
+Xs <- (X-m)*sdx
+Xs
+
+# Or
+C <- diag(n) - matrix(1/n, n, n)
+D <- diag(apply(X, 2, sd))
+Xs <- C %*% X %*% solve(D)
+Xs
+
+# Or 
+Xs <- scale(X, center=TRUE, scale=TRUE)
+
+# Finally, the correlation Matrix
+R <- t(Xs) %*% Xs / (n-1)
+R
+
+# Check it
+cor(X)
+```
+
+The correlations above are called "zero-order" or Pearson correlations.  They only reflect pairwise correlations without controlling other variables.  
+  
+## Precision Matrix  
+  
+The inverse of covariance matrix, if it exists, is called the concentration matrix also knows as the **precision matrix**.  
+
+Let us consider a $2 \times 2$ covariance matrix:
+
+$$
+\left[\begin{array}{cc}
+\sigma^{2}(x) & \rho \sigma(x) \sigma(y) \\
+\rho \sigma(x) \sigma(y) & \sigma^{2}(y)
+\end{array}\right]
+$$
+
+And, its inverse:
+
+$$
+\frac{1}{\sigma^{2}(x) \sigma^{2}(y)-\rho^{2} \sigma^{2}(x) \sigma^{2}(y)}\left[\begin{array}{cc}
+\sigma^{2}(y) & -\rho \sigma(x) \sigma(y) \\
+-\rho \sigma(x) \sigma(y) & \sigma^{2}(x)
+\end{array}\right]
+$$
+  
+If call the precision matrix $D$, the correlation coefficient will be   
+  
+$$
+-\frac{d_{i j}}{\sqrt{d_{i i}} \sqrt{d_{j j}}},
+$$
+Or,
+  
+$$
+\frac{-\rho \sigma_{x} \sigma_{y}}{\sigma_{x}^{2} \sigma_{y}^{2}\left(1-e^{2}\right)} \times \sqrt{\sigma_{x}^{2}\left(1-\rho^{2}\right)} \sqrt{\sigma_{y}^{2}\left(1-\rho^{2}\right)}=-\rho
+$$
+
+That was for a $2 \times 2$ variance-covariance matrix.  When we have more columns, the correlation coefficient reflects partial correlations. Here is an example:  
+  
+```{r gna5}
+pm <- solve(S) # precision matrix
+pm
+
+# Partial correlation of 1,2
+-pm[1,2]/(sqrt(pm[1,1])*sqrt(pm[2,2])) 
+
+# Or
+-cov2cor(solve(S))
+
+# Or
+ppcor::pcor(X)
+```
+
+## Semi-partial Correlation
+
+With partial correlation, we find the correlation between $X$ and $Y$ after controlling for the effect of $Z$ on both $X$ and $Y$. If we want to hold $Z$ constant for just $X$ or just $Y$, we use a semipartial correlation.
+  
+While a partial correlation is computed between two residuals, a semipartial is computed between one residual and another variable. One interpretation of the semipartial is that the influence of a third variable is removed from one of two variables (hence, semipartial). This can be shown with the $R^2$ formulation.
+
+Partial:
+
+$$
+r_{12.3}^{2}=\frac{R_{1.23}^{2}-R_{1.3}^{2}}{1-R_{1.3}^{2}}
+$$
+  
+Semi-Partial:
+
+$$
+r_{1(2.3)}^{2}=R_{1.23}^{2}-R_{1.3}^{2}
+$$
+
+
+Let's see the difference between a slope coefficient, a semi-partial correlation, and a partial correlation by looking their definitions:  
+  
+**Partial:**    
+  
+$$
+r_{12,3}=\frac{r_{12}-r_{13} r_{23}}{\sqrt{1-r_{12}^{2}} \sqrt{1-r_{23}^{2}}}
+$$
+
+**Regression:**
+
+$$
+X_{1}=b_{1}+b_{2} X_{2}+b_{2} X_{3}
+$$
+and  
+
+$$
+b_{2}=\frac{\sum X_{3}^{2} \sum X_{1} X_{2}-\sum X_{1} X_{3} \sum X_{2} X_{3}}{\sum X_{2}^{2} \sum X_{3}^{2}-\left(\sum X_{2} X_{3}\right)^{2}}
+$$
+
+With standardized variables:
+
+$$
+b_{2}=\frac{r_{12}-r_{13} r_{23}}{1-r_{23}^{2}}
+$$
+  
+**Semi-partial (or "part") correlation:**
+   
+$$
+r_{1(2.3)}=\frac{r_{1 2}-r_{1_{3}} r_{23}}{\sqrt{1-r_{23}^{2}}}
+$$
+
+The difference between the regression coefficient and the semi-partial coefficient is the square root in the denominator. Thus, the regression coefficient can exceed $|1.0|$; the correlation cannot.  In other words, semi-partial normalizes the coefficient between -1 and +1.
+  
+The function `spcor` can calculate the pairwise semi-partial correlations for each pair of variables given others. 
+
+
+```{r gna6}
+ppcor::spcor(X)
+```
+  
+
+## Regularized Covariance Matrix
+
+Due an increasing availability of high-dimensional data sets, graphical models have become powerful tools to discover conditional dependencies over a graph structure.
+
+However, there are two main challenges in identifying the relations in a network: first, the edges (relationships) may not be identified by Pearson or Spearman correlations as they often lead to spurious associations due to missing confounding factors. Second, although, applications with partial correlations might address this issue, traditional precision estimators are not well-defined in case of high-dimensional data.  
+
+Why is a covariance matrix $S$ singular when $n<p$ in $\mathbf{X}$? Consider the $n \times p$ matrix of sample data, $\mathbf{X}$. Since we know that the rank of $\mathbf{X}$ is at most $\min (n, p)$. Hence, in 
+
+$$
+\mathbf{S}=\frac{1}{n} \mathbf{X}_{c}^{\prime} \mathbf{X}_{c},
+$$
+
+$\operatorname{rank}(\mathbf{X}_c)$ will be $n$.  It is clear that the rank of $\mathbf{S}$ won't be larger than the rank of $\mathbf{X}_c$.  Since $\mathbf{S}$ is $p \times p$ and its rank is $n$, $\mathbf{S}$ will be singular.  That's, if $n<p$ then $\operatorname{rank}(\mathbf{X})<p$ in which case $\operatorname{rank}(\mathbf{S})<p$. 
+
+This brought several novel precision estimators in applications. Generally, these novel estimators overcome the undersampling by maximization of the log-likelihood augmented with a so-called penalty. A penalty discourages large values among the elements of the precision matrix estimate. This reduces the risk of overfitting but also yields a well-defined penalized precision matrix estimator.
+
+To solve the problem, as we have seen before in Section 6, penalized estimators adds a penalty to the likelihood functions ( $\ell_2$ in Ridge and $\ell_1$ in lasso) that makes the eigenvalues of $\mathbf{S}$ shrink in a particular manner to combat $p \geq n$. The graphical lasso (gLasso) is the $\ell_1$-equivalent to graphical ridge. A nice feature of the $\ell_1$ penalty automatically induces sparsity and thus also select the edges in the underlying graph. The $\ell_2$ penalty in Ridge relies on an extra step that selects the edges after the regularized precision matrix with shrunken correlations is estimated.
+
+In this chapter we will see graphical ridge and lasso applications based on Gaussian graphical models that will provide sparse precision matrices in case of $n<p$.    
+
+## Multivariate Gaussian Distribution 
+
+Before understanding $\ell_1$ or $\ell_2$ regularization, we need to see the multivariate Gaussian distribution, its parameterization and maximum likelihood estimation (MLE) solutions.
+  
+The multivariate Gaussian distribution of a random vector $\mathbf{X} \in \mathbf{R}^{p}$ is commonly expressed in terms of the parameters $\mu$ and $\Sigma$, where $\mu$ is an $p \times 1$ vector and $\Sigma$ is an $p \times p$, a nonsingular symmetric covariance matrix. Hence, we have the following form for the density function:
+
+$$
+f(x \mid \mu, \Sigma)=\frac{1}{(2 \pi)^{p / 2}|\Sigma|^{1 / 2}} \exp \left\{-\frac{1}{2}(x-\mu)^{T} \Sigma^{-1}(x-\mu)\right\},
+$$
+where $|\Sigma|$ is the determinant of the covariance matrix. The likelihood function is:
+
+$$
+\mathcal{L}(\mu, \Sigma)=(2 \pi)^{-\frac{n p}{2}} \prod_{i=1}^{n} \operatorname{det}(\Sigma)^{-\frac{1}{2}} \exp \left(-\frac{1}{2}\left(x_{i}-\mu\right)^{\mathrm{T}} \Sigma^{-1}\left(x_{i}-\mu\right)\right)
+$$
+Since the estimate $\bar{x}$ does not depend on $\Sigma$, we can just substitute it for $\mu$ in the likelihood function, 
+
+$$
+\mathcal{L}(\bar{x}, \Sigma) \propto \operatorname{det}(\Sigma)^{-\frac{n}{2}} \exp \left(-\frac{1}{2} \sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{\mathrm{T}} \Sigma^{-1}\left(x_{i}-\bar{x}\right)\right)
+$$
+  
+We seek the value of $\Sigma$ that maximizes the likelihood of the data (in practice it is easier to work with $\log \mathcal{L}$ ). With the cyclical nature of trace, 
+
+$$
+\begin{aligned}
+\mathcal{L}(\bar{x}, \Sigma) & \propto \operatorname{det}(\Sigma)^{-\frac{n}{2}} \exp \left(-\frac{1}{2} \sum_{i=1}^{n}\left(\left(x_{i}-\bar{x}\right)^{\mathrm{T}} \Sigma^{-1}\left(x_{i}-\bar{x}\right)\right)\right) \\
+&=\operatorname{det}(\Sigma)^{-\frac{n}{2}} \exp \left(-\frac{1}{2} \sum_{i=1}^{n} \operatorname{tr}\left(\left(x_{i}-\bar{x}\right)\left(x_{i}-\bar{x}\right)^{\mathrm{T}} \Sigma^{-1}\right)\right) \\
+&=\operatorname{det}(\Sigma)^{-\frac{n}{2}} \exp \left(-\frac{1}{2} \operatorname{tr}\left(\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(x_{i}-\bar{x}\right)^{\mathrm{T}} \Sigma^{-1}\right)\right) \\
+&=\operatorname{det}(\Sigma)^{-\frac{n}{2}} \exp \left(-\frac{1}{2} \operatorname{tr}\left(S \Sigma^{-1}\right)\right)
+\end{aligned}
+$$
+
+where
+
+$$
+S=\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(x_{i}-\bar{x}\right)^{\mathrm{T}} \in \mathbf{R}^{p \times p}
+$$
+
+And finally, we re-write the likelihood in the log form using the trace trick:
+
+$$
+\ln \mathcal{L}(\mu, \Sigma)=\text { const }-\frac{n}{2} \ln \operatorname{det}(\Sigma)-\frac{1}{2} \operatorname{tr}\left[\Sigma^{-1} \sum_{i=1}^{n}\left(x_{i}-\mu\right)\left(x_{i}-\mu\right)^{\mathrm{T}}\right]
+$$
+
+or, for a multivariate normal model with mean 0 and covariance $\Sigma$, the likelihood function in this case is given by
+
+$$
+\ell(\Omega ; S)=\ln |\Omega|-\operatorname{tr}(S \Omega)
+$$
+
+where $\Omega=\Sigma^{-1}$ is the so-called precision matrix (also sometimes called the concentration matrix), which we want to estimate, which we will denote $P$. Indeed, one can naturally try to use the inverse of $S$ for this.
+
+For an intuitive way to see the whole algebra, let's start with the general normal density
+  
+$$
+\frac{1}{\sqrt{2 \pi}} \frac{1}{\sigma} \exp \left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)
+$$
+The log-likelihood is
+$$
+\mathcal{L}(\mu, \sigma)=\text { A constant }-\frac{n}{2} \log \left(\sigma^{2}\right)-\frac{1}{2} \sum_{i=1}^{n}\left(\frac{x_{i}-\mu}{\sigma}\right)^{2},
+$$
+maximization of which is equivalent to minimizing
+
+$$
+\mathcal{L}(\mu, \sigma)=n \log \left(\sigma^{2}\right)+\sum_{i=1}^{n}\left(\frac{x_{i}-\mu}{\sigma}\right)^{2}
+$$
+  
+We can look at the general multivariate normal (MVN) density 
+
+$$
+(\sqrt{2 \pi})^{-d}|\boldsymbol{\Sigma}|^{-1 / 2} \exp \left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{t} \mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
+$$
+
+Note that $|\boldsymbol{\Sigma}|^{-1 / 2}$, which is the reciprocal of the square root of the determinant of the covariance matrix $\boldsymbol{\Sigma}$, does what $1 / \sigma$ does in the univariate case.  Moreover, $\boldsymbol{\Sigma}^{-1}$ does what $1 / \sigma^{2}$ does in the univariate case. 
+
+The maximization of likelihood would lead to minimizing (analogous to the univariate case)
+
+$$
+n \log |\boldsymbol{\Sigma}|+\sum_{i=1}^{n}(\mathbf{x}-\boldsymbol{\mu})^{t} \boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})
+$$
+
+Again, $n \log |\mathbf{\Sigma}|$ takes the spot of $n \log \left(\sigma^{2}\right)$ which was there in the univariate case. 
+
+If the data is not high-dimensional, the estimations are simple.  Let's start with a data matrix of 10x6, where no need for regularization.  
+
+```{r rn1}
+n = 10
+p = 6
+X <- matrix (rnorm(n*p), n, p)
+
+# Cov. & Precision Matrices
+S <- cov(X)
+pm <- solve(S) # precision
+
+-pm[1,2]/(sqrt(pm[1,1])*sqrt(pm[2,2])) 
+-cov2cor(pm)
+
+# ppcor
+pc <- ppcor::pcor(X)
+pc$estimate
+
+# glasso
+glassoFast::glassoFast(S,rho=0)
+Rl <- glassoFast::glassoFast(S,rho=0)$wi #
+-Rl[1,2]/(sqrt(Rl[1,1])*sqrt(Rl[2,2])) 
+-cov2cor(Rl)
+```
+
+## High-dimensional data
+  
+Now with a data matrix of 6x10:  
+
+```{r rn2}
+n = 6
+p = 10
+set.seed(1)
+X <- matrix (rnorm(n*p), n, p)
+
+# Cov. & Precision Matrices
+S <- cov(X)
+S
+try(solve(S), silent = FALSE)
+```
+
+The standard definition for the inverse of a matrix fails if the matrix is not square or singular. However, one can generalize the inverse using singular value decomposition. Any rectangular real matrix $\mathbf{M}$ can be decomposed as $\mathbf{M=U \Sigma V^{'}}$, where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal and $\mathbf{D}$ is a diagonal matrix containing only the positive singular values. The pseudoinverse, also known as **Moore-Penrose** or generalized inverse is then obtained as
+
+$$
+\mathbf{M^+} = \mathbf{V \Sigma^{-1} U'}
+$$
+
+Don't be confused due to notation: $\Sigma$ is not the covariance matrix here
+
+With using the method of generalized inverse by `ppcor` and `corpcor`:  
+
+```{r rn3}
+Si <- corpcor::pseudoinverse(S)
+-Si[1,2]/(sqrt(Si[1,1])*sqrt(Si[2,2])) 
+
+# ppcor
+pc <- ppcor::pcor(X)
+pc$estimate
+
+# corpcor with pseudo inverse
+corpcor::cor2pcor(S)
+```
+
+However, we know from Chapter 29 that these solutions are not stable.  Further, we also want to identify the sparsity in the precision matrix that differentiates the significant edges from insignificant ones for a network analysis . 
+
+## Ridge ($\ell_{2}$) and glasso ($\ell_{1}$)
+
+A contemporary use for precision matrices is found in network reconstruction through graphical modeling (Network Analysis). 
+
+In a multivariate normal model, $p_{i j}=p_{j i}=0$ (the entries in the precision matrix) if and only if $X_{i}$ and $X_{j}$ are independent when condition ong all other variables. In real world applications, $P$ (the precision matrix) is often relatively sparse with lots of zeros. With the close relationship between $P$ and the partial correlations, **the non-zero entries of the precision matrix can be interpreted the edges of a graph where nodes correspond to the variables.**
+
+Regularization helps us find the sparsified partial correlation matrix. We first start with Ridge and `rags2ridges` (see, [Introduction to rags2ridges](https://cran.r-project.org/web/packages/rags2ridges/vignettes/rags2ridges.html)), which is an R-package for fast and proper $\ell_{2}$-penalized estimation of precision (and covariance) matrices also called ridge estimation.  
+
+Their algorithm solves the following:
+
+$$
+\ell(\Omega ; S)=\ln |\Omega|-\operatorname{tr}(S \Omega)-\frac{\lambda}{2}\|\Omega-T\|_{2}^{2}
+$$
+   
+where $\lambda>0$ is the ridge penalty parameter, $T$ is a $p \times p$ known target matrix and $\|\cdot\|_{2}$ is the $\ell_{2}$-norm. Assume for now the target matrix is an all zero matrix and thus out of the equation. The core function of `rags2ridges` is `ridgeP` which computes this estimate in a fast manner.
+
+Let's try some simulations:
+
+```{r rn4}
+library(rags2ridges)
+p <- 6
+n <- 20
+X <- createS(n = n, p = p, dataset = TRUE)
+
+# Cov. & Precision Matrices
+S <- cov(X)
+S
+try(solve(S), silent = FALSE)
+
+
+P <- rags2ridges::ridgeP(S, lambda = 0.0001)
+P
+```
+
+```{r rn5, warning=FALSE, message=FALSE}
+library(rags2ridges)
+p <- 25
+n <- 20
+X <- createS(n = n, p = p, dataset = TRUE)
+
+# Cov. & Precision Matrices
+S <- cov(X)
+try(solve(S), silent = FALSE)
+
+P <- rags2ridges::ridgeP(S, lambda = 1.17)
+P[1:7, 1:7]
+```
+
+What Lambda should we choose? One strategy for choosing $\lambda$ is selecting it to be stable yet precise (a bias-variance trade-off). Automatic k-fold cross-validation can be done with `optPenalty.kCVauto()` is well suited for this.
+
+```{r rn6}
+opt <- optPenalty.kCVauto(X, lambdaMin = 0.001, lambdaMax = 100)
+str(opt)
+op <- opt$optLambda
+```
+
+We know that Ridge will not provide a sparse solution.  Yet, we need a sparse precision matrix for network analysis. The $\ell_{2}$ penalty of `rags2ridges` relies on an extra step that selects the edges after the precision matrix is estimated. The extra step is explained in their [paper](https://www.sciencedirect.com/science/article/pii/S0167947316301141) (van Wieringen, W.N. and Peeters, C.F.W., 2016):
+
+>While some may argue this as a drawback (typically due to a lack of perceived simplicity), it is often beneficial to separate the “variable selection” and estimation.
+
+>First, a separate post-hoc selection step allows for greater flexibility. Secondly, when co-linearity is present the L1 penalty is “unstable” in the selection between the items, i.e, if 2 covariances are co-linear only one of them will typically be selected in a unpredictable way whereas the L2 will put equal weight on both and “average” their effect. Ultimately, this means that the L2 estimate is typically more stable than the L1.
+
+>At last point to mention here is also that the true underlying graph might not always be very sparse (or sparse at all).
+
+The function `spasify()` handles the the spasification by applying the FDR (False Discovery Rate) method:
+
+```{r rn7}
+P <- ridgeP(S, lambda = op)
+spar <- sparsify(P, threshold = "localFDR")
+spar
+```
+  
+The steps are explained in their paper.  After edge selections, `GGMnetworkStats()` can be utilized to get summary statistics of the resulting graph topology:
+
+```{r rn8, warning=FALSE, message=FALSE}
+fc <- GGMnetworkStats(P)
+fc
+```
+  
+While the $\ell_{2}$ penalty of graphical ridge relies on an extra step to select the edges after $P$ is estimated, the graphical lasso (`gLasso`) is the $\ell_{1}$-equivalent to graphical ridge, where the $\ell_{1}$ penalty automatically induces sparsity and select the edges in the underlying graph.
+
+The graphical lasso aims to solve the following regularized maximum likelihood problem:
+  
+$$
+\mathcal{L}(\Omega)=\operatorname{tr}(\Omega S)-\log |\Omega|+\lambda\|\Omega\|_1
+$$
+  
+```{r rn9}
+gl <- glasso::glasso(S, rho = 0.2641, approx = FALSE)[c('w', 'wi')]
+- cov2cor(gl$wi)[1:10, 1:10]
+```
+  
+The `glasso` package does not provide an option for tuning parameter selection.  In practice, users apply can be done by cross-validation and eBIC.  There are also multiple packages and function to plot the networks for a visual inspection.    
+  
+
+

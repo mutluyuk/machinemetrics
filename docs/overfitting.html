@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Overfitting | MachineMetrics</title>
+  <meta name="description" content="Chapter 7 Overfitting | MachineMetrics" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Overfitting | MachineMetrics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/png/MachineMetrics.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Overfitting | MachineMetrics" />
+  
+  
+  <meta name="twitter:image" content="/png/MachineMetrics.png" />
+
+<meta name="author" content="Yigit Aydede and Mutlu Yuksel" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bias-variance-trade-off.html"/>
+<link rel="next" href="regression-v.s.-classification.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book-is-different"><i class="fa fa-check"></i>Why this book is different?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-manuscript"><i class="fa fa-check"></i>Structure of Manuscript:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-can-use-this-book"><i class="fa fa-check"></i>Who Can Use This Book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION:</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prediction-vs.-estimation"><i class="fa fa-check"></i><b>1.1</b> Prediction vs. Estimation:</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-can-you-use-the-covered-topics-in-social-sciences"><i class="fa fa-check"></i><b>1.2</b> Where can you use the covered topics in Social Sciences?:</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html"><i class="fa fa-check"></i><b>2</b> Statistical Models and Simulations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#distinguishing-between-statistical-modeling-and-machine-learning-in-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#goals-and-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Goals and Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#prediction-vs.-inference"><i class="fa fa-check"></i><b>2.1.2</b> Prediction vs. Inference</a></li>
+<li class="chapter" data-level="2.1.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#conclusion"><i class="fa fa-check"></i><b>2.1.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#model-selection-and-approaches-in-data-modeling"><i class="fa fa-check"></i><b>2.4</b> Model Selection and Approaches in Data Modeling</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="counterfactual.html"><a href="counterfactual.html#qualitative-and-quantitative-research-methods"><i class="fa fa-check"></i><b>3.1</b> Qualitative and Quantitative research methods:</a></li>
+<li class="chapter" data-level="3.2" data-path="counterfactual.html"><a href="counterfactual.html#quantitative---research-methods"><i class="fa fa-check"></i><b>3.2</b> Quantitative - Research methods :</a></li>
+<li class="chapter" data-level="3.3" data-path="counterfactual.html"><a href="counterfactual.html#data-and-visualization"><i class="fa fa-check"></i><b>3.3</b> Data and visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="counterfactual.html"><a href="counterfactual.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="counterfactual.html"><a href="counterfactual.html#effect-of-x-on-y-regression"><i class="fa fa-check"></i><b>3.5</b> Effect of X on Y / Regression</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
+<li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="counterfactual.html"><a href="counterfactual.html#average-treatment-effectate"><i class="fa fa-check"></i><b>3.6.1</b> Average Treatment Effect(ATE)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="counterfactual.html"><a href="counterfactual.html#additional-treatment-effects"><i class="fa fa-check"></i><b>3.6.2</b> Additional Treatment Effects</a></li>
+<li class="chapter" data-level="3.6.3" data-path="counterfactual.html"><a href="counterfactual.html#selection-bias-and-heteregeneous-treatment-effect-bias"><i class="fa fa-check"></i><b>3.6.3</b> Selection Bias and Heteregeneous Treatment Effect Bias:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning.html"><a href="learning.html"><i class="fa fa-check"></i><b>4</b> Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.1</b> Biased estimator as a predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
+<li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
+<li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#parametric-estimations"><i class="fa fa-check"></i><b>9.1</b> Parametric Estimations</a></li>
+<li class="chapter" data-level="9.2" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#lpm"><i class="fa fa-check"></i><b>9.2</b> LPM</a></li>
+<li class="chapter" data-level="9.3" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#logistic-regression"><i class="fa fa-check"></i><b>9.3</b> Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html"><i class="fa fa-check"></i><b>10</b> Nonparametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#density-estimations"><i class="fa fa-check"></i><b>10.1</b> Density estimations</a></li>
+<li class="chapter" data-level="10.2" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#kernel-regression"><i class="fa fa-check"></i><b>10.2</b> Kernel regression</a></li>
+<li class="chapter" data-level="10.3" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#knn"><i class="fa fa-check"></i><b>10.3</b> Knn</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#adult-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Adult dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html"><i class="fa fa-check"></i><b>11</b> Hyperparameter Tuning</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#training-and-validation"><i class="fa fa-check"></i><b>11.1</b> Training and Validation</a></li>
+<li class="chapter" data-level="11.2" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#splitting-the-data-randomly"><i class="fa fa-check"></i><b>11.2</b> Splitting the data randomly</a></li>
+<li class="chapter" data-level="11.3" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>11.3</b> k-fold cross validation</a></li>
+<li class="chapter" data-level="11.4" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#grid-search"><i class="fa fa-check"></i><b>11.4</b> Grid Search</a></li>
+<li class="chapter" data-level="11.5" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#cross-validated-grid-search"><i class="fa fa-check"></i><b>11.5</b> Cross-validated grid search</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html"><i class="fa fa-check"></i><b>12</b> Optimization Algorithms - Basics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#brute-force-optimization"><i class="fa fa-check"></i><b>12.1</b> Brute-force optimization</a></li>
+<li class="chapter" data-level="12.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#derivative-based-methods"><i class="fa fa-check"></i><b>12.2</b> Derivative-based methods</a></li>
+<li class="chapter" data-level="12.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#ml-estimation-with-logistic-regression"><i class="fa fa-check"></i><b>12.3</b> ML Estimation with logistic regression</a></li>
+<li class="chapter" data-level="12.4" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#gradient-descent-algorithm"><i class="fa fa-check"></i><b>12.4</b> Gradient Descent Algorithm</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#one-variable"><i class="fa fa-check"></i><b>12.4.1</b> One-variable</a></li>
+<li class="chapter" data-level="12.4.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#adjustable-lr-and-sgd"><i class="fa fa-check"></i><b>12.4.2</b> Adjustable <code>lr</code> and SGD</a></li>
+<li class="chapter" data-level="12.4.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#multivariable"><i class="fa fa-check"></i><b>12.4.3</b> Multivariable</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#optimization-with-r"><i class="fa fa-check"></i><b>12.5</b> Optimization with R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prediction-intervals.html"><a href="prediction-intervals.html"><i class="fa fa-check"></i><b>13</b> Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="prediction-intervals.html"><a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor"><i class="fa fa-check"></i><b>13.1</b> Prediction interval for unbiased OLS predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="interpretability.html"><a href="interpretability.html"><i class="fa fa-check"></i><b>14</b> Interpretability</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="interpretability.html"><a href="interpretability.html#interpretable-vs-noninterpretable-models"><i class="fa fa-check"></i><b>14.1</b> Interpretable vs NonInterpretable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>15</b> Shrinkage Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>15.1</b> Ridge</a></li>
+<li class="chapter" data-level="15.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>15.2</b> Lasso</a></li>
+<li class="chapter" data-level="15.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>15.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="15.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>16</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>16.1</b> CART - Classification Tree</a></li>
+<li class="chapter" data-level="16.2" data-path="regression-trees.html"><a href="regression-trees.html#rpart---recursive-partitioning"><i class="fa fa-check"></i><b>16.2</b> <code>rpart</code> - Recursive Partitioning</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>16.3</b> Pruning</a></li>
+<li class="chapter" data-level="16.4" data-path="regression-trees.html"><a href="regression-trees.html#classification-with-titanic"><i class="fa fa-check"></i><b>16.4</b> Classification with Titanic</a></li>
+<li class="chapter" data-level="16.5" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>16.5</b> Regression Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>17</b> Ensemble Methods</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a></li>
+<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-forest"><i class="fa fa-check"></i><b>17.2</b> Random Forest</a></li>
+<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>17.3</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#sequential-ensemble-with-gbm"><i class="fa fa-check"></i><b>17.3.1</b> Sequential ensemble with <code>gbm</code></a></li>
+<li class="chapter" data-level="17.3.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>17.3.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="17.3.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.3.3</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.4</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.5</b> Classification</a></li>
+<li class="chapter" data-level="17.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>17.6</b> Regression</a></li>
+<li class="chapter" data-level="17.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.7</b> Exploration</a></li>
+<li class="chapter" data-level="17.8" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.8</b> Boosting Applications</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression-1"><i class="fa fa-check"></i><b>17.8.1</b> Regression</a></li>
+<li class="chapter" data-level="17.8.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.8.2</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="17.8.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.8.3</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="17.8.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-1"><i class="fa fa-check"></i><b>17.8.4</b> Classification</a></li>
+<li class="chapter" data-level="17.8.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost.m1"><i class="fa fa-check"></i><b>17.8.5</b> AdaBoost.M1</a></li>
+<li class="chapter" data-level="17.8.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.8.6</b> Classification with XGBoost</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>18</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>18.1</b> Random experiment</a></li>
+<li class="chapter" data-level="18.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>18.2</b> IV</a></li>
+<li class="chapter" data-level="18.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>18.3</b> DiffD</a></li>
+<li class="chapter" data-level="18.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>18.4</b> RD</a></li>
+<li class="chapter" data-level="18.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>18.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="18.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>18.6</b> Double/Debiased Lasso/Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>19</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>19.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="19.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>19.2</b> Causal Forest</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>20</b> Model selection and Sparsity</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>20.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="20.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#out-sample-prediction-accuracy"><i class="fa fa-check"></i><b>20.3</b> out-sample prediction accuracy</a></li>
+<li class="chapter" data-level="20.4" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>20.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="classification-2.html"><a href="classification-2.html"><i class="fa fa-check"></i><b>21</b> Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="classification-2.html"><a href="classification-2.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>21.1</b> Nonparametric Classifier - kNN</a></li>
+<li class="chapter" data-level="21.2" data-path="classification-2.html"><a href="classification-2.html#mnist-dataset"><i class="fa fa-check"></i><b>21.2</b> <code>mnist</code> Dataset</a></li>
+<li class="chapter" data-level="21.3" data-path="classification-2.html"><a href="classification-2.html#linear-classifiers-again"><i class="fa fa-check"></i><b>21.3</b> Linear classifiers (again)</a></li>
+<li class="chapter" data-level="21.4" data-path="classification-2.html"><a href="classification-2.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.4</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="21.5" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret"><i class="fa fa-check"></i><b>21.5</b> kNN with caret</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="classification-2.html"><a href="classification-2.html#mnist_27"><i class="fa fa-check"></i><b>21.5.1</b> <code>mnist_27</code></a></li>
+<li class="chapter" data-level="21.5.2" data-path="classification-2.html"><a href="classification-2.html#adult-dataset-1"><i class="fa fa-check"></i><b>21.5.2</b> Adult dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="classification-2.html"><a href="classification-2.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.6</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="21.7" data-path="classification-2.html"><a href="classification-2.html#confusion-matrix"><i class="fa fa-check"></i><b>21.7</b> Confusion matrix</a></li>
+<li class="chapter" data-level="21.8" data-path="classification-2.html"><a href="classification-2.html#performance-measures"><i class="fa fa-check"></i><b>21.8</b> Performance measures</a></li>
+<li class="chapter" data-level="21.9" data-path="classification-2.html"><a href="classification-2.html#roc-curve"><i class="fa fa-check"></i><b>21.9</b> ROC Curve</a></li>
+<li class="chapter" data-level="21.10" data-path="classification-2.html"><a href="classification-2.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>21.10</b> AUC - Area Under the Curve</a></li>
+<li class="chapter" data-level="21.11" data-path="classification-2.html"><a href="classification-2.html#classification-example"><i class="fa fa-check"></i><b>21.11</b> Classification Example</a></li>
+<li class="chapter" data-level="21.12" data-path="classification-2.html"><a href="classification-2.html#lpm-1"><i class="fa fa-check"></i><b>21.12</b> LPM</a></li>
+<li class="chapter" data-level="21.13" data-path="classification-2.html"><a href="classification-2.html#logistic-regression-1"><i class="fa fa-check"></i><b>21.13</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21.14" data-path="classification-2.html"><a href="classification-2.html#knn-1"><i class="fa fa-check"></i><b>21.14</b> kNN</a>
+<ul>
+<li class="chapter" data-level="21.14.1" data-path="classification-2.html"><a href="classification-2.html#knn-10-fold-cv"><i class="fa fa-check"></i><b>21.14.1</b> kNN 10-fold CV</a></li>
+<li class="chapter" data-level="21.14.2" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret-1"><i class="fa fa-check"></i><b>21.14.2</b> kNN with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>22</b> Time Series</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="time-series.html"><a href="time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="22.2" data-path="time-series.html"><a href="time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>22.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="22.3" data-path="time-series.html"><a href="time-series.html#ts-plots"><i class="fa fa-check"></i><b>22.3</b> TS Plots</a></li>
+<li class="chapter" data-level="22.4" data-path="time-series.html"><a href="time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="22.5" data-path="time-series.html"><a href="time-series.html#stationarity"><i class="fa fa-check"></i><b>22.5</b> Stationarity</a></li>
+<li class="chapter" data-level="22.6" data-path="time-series.html"><a href="time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.6</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="22.7" data-path="time-series.html"><a href="time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.7</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="22.8" data-path="time-series.html"><a href="time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.8</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="22.9" data-path="time-series.html"><a href="time-series.html#speed"><i class="fa fa-check"></i><b>22.9</b> Speed</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="forecast.html"><a href="forecast.html"><i class="fa fa-check"></i><b>23</b> Forecast</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="forecast.html"><a href="forecast.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="23.2" data-path="forecast.html"><a href="forecast.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="23.3" data-path="forecast.html"><a href="forecast.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="23.4" data-path="forecast.html"><a href="forecast.html#random-forest-1"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
+<li class="chapter" data-level="23.5" data-path="forecast.html"><a href="forecast.html#univariate"><i class="fa fa-check"></i><b>23.5</b> Univariate</a></li>
+<li class="chapter" data-level="23.6" data-path="forecast.html"><a href="forecast.html#multivariate"><i class="fa fa-check"></i><b>23.6</b> Multivariate</a></li>
+<li class="chapter" data-level="23.7" data-path="forecast.html"><a href="forecast.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.7</b> Rolling and expanding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#optimal-separating-classifier"><i class="fa fa-check"></i><b>24.1</b> Optimal Separating Classifier</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-margin"><i class="fa fa-check"></i><b>24.1.1</b> The Margin</a></li>
+<li class="chapter" data-level="24.1.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-non-separable-case"><i class="fa fa-check"></i><b>24.1.2</b> The Non-Separable Case</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#nonlinear-boundary-with-kernels"><i class="fa fa-check"></i><b>24.2</b> Nonlinear Boundary with Kernels</a></li>
+<li class="chapter" data-level="24.3" data-path="support-vector-machine.html"><a href="support-vector-machine.html#application-with-svm"><i class="fa fa-check"></i><b>24.3</b> Application with SVM</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>25</b> Neural Networks</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>25.1</b> Neural Network - the idea</a></li>
+<li class="chapter" data-level="25.2" data-path="neural-networks.html"><a href="neural-networks.html#backpropagation"><i class="fa fa-check"></i><b>25.2</b> Backpropagation</a></li>
+<li class="chapter" data-level="25.3" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---more-inputs"><i class="fa fa-check"></i><b>25.3</b> Neural Network - More inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="deep-learning.html"><a href="deep-learning.html"><i class="fa fa-check"></i><b>26</b> Deep Learning</a></li>
+<li class="chapter" data-level="27" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html"><i class="fa fa-check"></i><b>27</b> Graphical Network Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
+<li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
+<li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#precision-matrix"><i class="fa fa-check"></i><b>27.4</b> Precision Matrix</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.5</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.6" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.6</b> Regularized Covariance Matrix</a></li>
+<li class="chapter" data-level="27.7" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>27.7</b> Multivariate Gaussian Distribution</a></li>
+<li class="chapter" data-level="27.8" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#high-dimensional-data"><i class="fa fa-check"></i><b>27.8</b> High-dimensional data</a></li>
+<li class="chapter" data-level="27.9" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#ridge-ell_2-and-glasso-ell_1"><i class="fa fa-check"></i><b>27.9</b> Ridge (<span class="math inline">\(\ell_{2}\)</span>) and glasso (<span class="math inline">\(\ell_{1}\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="decompositions.html"><a href="decompositions.html#matrix-decomposition"><i class="fa fa-check"></i><b>28.1</b> Matrix Decomposition</a></li>
+<li class="chapter" data-level="28.2" data-path="decompositions.html"><a href="decompositions.html#eigenvectors-and-eigenvalues"><i class="fa fa-check"></i><b>28.2</b> Eigenvectors and eigenvalues</a></li>
+<li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#rankr-approximations"><i class="fa fa-check"></i><b>28.4</b> Rank(r) Approximations</a></li>
+<li class="chapter" data-level="28.5" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.5</b> Moore-Penrose inverse</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html"><i class="fa fa-check"></i><b>29</b> PCA (Principle Component Analysis)</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.1</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="smoothing.html"><a href="smoothing.html#using-bins"><i class="fa fa-check"></i><b>30.1</b> Using bins</a></li>
+<li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#kernel-smoothing"><i class="fa fa-check"></i><b>30.2</b> Kernel smoothing</a></li>
+<li class="chapter" data-level="30.3" data-path="smoothing.html"><a href="smoothing.html#locally-weighted-regression-loess"><i class="fa fa-check"></i><b>30.3</b> Locally weighted regression <code>loess()</code></a></li>
+<li class="chapter" data-level="30.4" data-path="smoothing.html"><a href="smoothing.html#smooth-spline-regression"><i class="fa fa-check"></i><b>30.4</b> Smooth Spline Regression</a></li>
+<li class="chapter" data-level="30.5" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.5</b> Multivariate Loess</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="imbalanced-data.html"><a href="imbalanced-data.html#smote"><i class="fa fa-check"></i><b>31.1</b> <code>SMOTE</code></a></li>
+<li class="chapter" data-level="31.2" data-path="imbalanced-data.html"><a href="imbalanced-data.html#fraud-detection"><i class="fa fa-check"></i><b>31.2</b> Fraud detection</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>32</b> Text Analysis</a></li>
+<li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#other-nonparametric-estimation-methods-1"><i class="fa fa-check"></i><b>33.1</b> Other Nonparametric Estimation methods</a></li>
+<li class="chapter" data-level="33.2" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.2</b> Regression splines</a></li>
+<li class="chapter" data-level="33.3" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#mars"><i class="fa fa-check"></i><b>33.3</b> MARS</a></li>
+<li class="chapter" data-level="33.4" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#gam"><i class="fa fa-check"></i><b>33.4</b> GAM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/mutluyuk/machinemetrics" target="blank">2023 Initial Draft</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MachineMetrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="overfitting" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Overfitting<a href="overfitting.html#overfitting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Overfitting is a phenomenon that occurs when a statistical model describes random error (noise, irreducible error) instead of the underlying relationship. A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.</p>
+<p>A simple example is the curve-fitting of a polynomial of a certain degree to a set of data points. A low-degree polynomial, such as a straight line, may fit the data points reasonably well, but would fail to capture the behavior of the data outside the range of the data points. However, a high-degree polynomial may fit the data points well, but would have wild fluctuations outside the range of the data points. The wild fluctuations would be fitting to the random noise in the data, and would fail to generalize to new data. We will simulate this example below. Another example is a decision tree with a large number of branches, may overfit the training data.</p>
+<p>All in all, we say that The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.</p>
+<p>To <strong>detect overfitting</strong>, you need to monitor the training error and the test error during the training process. As the model becomes more complex, the training error will decrease. However, when the model overfits the training data (i.e when model complexity increases), the test error will begin to increase.</p>
+<p>To detect model complexity in the linear population model, we use Mallows’ <span class="math inline">\(C_{p}\)</span> statistic, or Akaike information criterion (AIC) or Bayesian information criterion (BIC). Accuracy of <span class="math inline">\(C_{p}\)</span>, AIC, and BIC depends on some knowledge of population model.
+(<a href="https://online.stat.psu.edu/stat462/node/197/" class="uri">https://online.stat.psu.edu/stat462/node/197/</a>)
+<strong>Cross-validation</strong> is common way to for estimating prediction error of a model while handling overfitting, when data is (relatively) limited. The data is divided into a training set and a test set. The model is trained on the training set and evaluated on the test set. To reduce variability, the procedure is repeated for different partitions of the data into training and test sets, and the results are averaged. We discuss these model complexity scores and techniques in related chapters.</p>
+<p>Overfitting can be <strong>reduced or avoided</strong> by using a simpler model, collecting more data, using regularization, or applying early stopping. The simplest way to prevent overfitting is to use a simpler model. The model should be as simple as possible, consistent with the bias–variance tradeoff. For example, a polynomial of low degree may be used instead of a polynomial of high degree. Another way to prevent overfitting is to use more data. More data can help to reduce the variance of the model. For example, if a model overfits the training data because it has too many parameters relative to the number of data points, then the model may not overfit if more data points are used. A third way to prevent overfitting is to use regularization. Regularization techniques add a penalty term to the loss function that measures the complexity of the model. The penalty term is called a regularizer. In neural networks, overfitting can be reduced by early stopping. During training, the error on the training set and the error on a validation set are monitored. When the error on the validation set begins to increase, training is stopped.</p>
+<p>In time series, the problem of overfitting can be addressed by applying a smoothing technique, such as moving average, to the data. Overfitting can also be reduced by removing seasonal trends from the data. The seasonal trends are then reintroduced after forecasting has been performed.</p>
+<p><a href="https://www.r-bloggers.com/2017/06/machine-learning-explained-overfitting/" class="uri">https://www.r-bloggers.com/2017/06/machine-learning-explained-overfitting/</a></p>
+<p>regularization:
+<a href="https://towardsdatascience.com/regularization-the-path-to-bias-variance-trade-off-b7a7088b4577" class="uri">https://towardsdatascience.com/regularization-the-path-to-bias-variance-trade-off-b7a7088b4577</a></p>
+<p><a href="https://statisticsbyjim.com/regression/overfitting-regression-models/" class="uri">https://statisticsbyjim.com/regression/overfitting-regression-models/</a></p>
+<p>Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.</p>
+<p><span class="math display">\[
+MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}=MSE(\hat{f(X)})+\sigma^{2}
+\]</span></p>
+<p>using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.
+Let’s start with an example:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="overfitting.html#cb59-1" tabindex="-1"></a><span class="co"># Getting one-sample.</span></span>
+<span id="cb59-2"><a href="overfitting.html#cb59-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb59-3"><a href="overfitting.html#cb59-3" tabindex="-1"></a>x_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span> <span class="dv">0</span>, <span class="at">sd=</span> <span class="dv">1</span>) </span>
+<span id="cb59-4"><a href="overfitting.html#cb59-4" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x_1 <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>(x_1<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>(x_1<span class="sc">^</span><span class="dv">3</span>) <span class="co"># DGM</span></span>
+<span id="cb59-5"><a href="overfitting.html#cb59-5" tabindex="-1"></a><span class="co">#y &lt;- f + rnorm(100, 0, 8) yigits eqn</span></span>
+<span id="cb59-6"><a href="overfitting.html#cb59-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> f <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb59-7"><a href="overfitting.html#cb59-7" tabindex="-1"></a>inn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, x_1)</span>
+<span id="cb59-8"><a href="overfitting.html#cb59-8" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="overfitting.html#cb59-9" tabindex="-1"></a><span class="co"># OLS</span></span>
+<span id="cb59-10"><a href="overfitting.html#cb59-10" tabindex="-1"></a>ols1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span> <span class="fu">poly</span>(x_1, <span class="at">degree =</span> <span class="dv">1</span>), inn)</span>
+<span id="cb59-11"><a href="overfitting.html#cb59-11" tabindex="-1"></a>ols2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span> <span class="fu">poly</span>(x_1, <span class="at">degree =</span> <span class="dv">2</span>), inn)</span>
+<span id="cb59-12"><a href="overfitting.html#cb59-12" tabindex="-1"></a>ols3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span> <span class="fu">poly</span>(x_1, <span class="at">degree =</span> <span class="dv">3</span>), inn)</span>
+<span id="cb59-13"><a href="overfitting.html#cb59-13" tabindex="-1"></a>ols4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span> <span class="fu">poly</span>(x_1, <span class="at">degree =</span> <span class="dv">20</span>), inn)</span>
+<span id="cb59-14"><a href="overfitting.html#cb59-14" tabindex="-1"></a>ror <span class="ot">&lt;-</span> <span class="fu">order</span>(x_1)</span>
+<span id="cb59-15"><a href="overfitting.html#cb59-15" tabindex="-1"></a><span class="fu">plot</span>(x_1, y, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>)</span>
+<span id="cb59-16"><a href="overfitting.html#cb59-16" tabindex="-1"></a><span class="fu">lines</span>(x_1[ror], <span class="fu">predict</span>(ols1)[ror], <span class="at">col=</span><span class="st">&quot;pink&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb59-17"><a href="overfitting.html#cb59-17" tabindex="-1"></a><span class="fu">lines</span>(x_1[ror], <span class="fu">predict</span>(ols2)[ror], <span class="at">col=</span><span class="st">&quot;green&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb59-18"><a href="overfitting.html#cb59-18" tabindex="-1"></a><span class="fu">lines</span>(x_1[ror], <span class="fu">predict</span>(ols3)[ror], <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb59-19"><a href="overfitting.html#cb59-19" tabindex="-1"></a><span class="fu">lines</span>(x_1[ror], <span class="fu">predict</span>(ols4)[ror], <span class="at">col=</span><span class="st">&quot;red&quot;</span> , <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb59-20"><a href="overfitting.html#cb59-20" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;ols1&quot;</span>, <span class="st">&quot;ols2&quot;</span>, <span class="st">&quot;ols3&quot;</span>, <span class="st">&quot;ols4&quot;</span>),</span>
+<span id="cb59-21"><a href="overfitting.html#cb59-21" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="07-Overfitting_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>As this is simulation, we know that the “true” estimator, <span class="math inline">\(f(x)\)</span>, which is the “blue” line, is:</p>
+<p><span class="math display">\[
+f(x_i)=\beta_0+\beta_1 x_{1i}+\beta_2 x_{1i}^2+\beta_2 x_{1i}^3 = 1+2x_{1i}-2x_{1i}^2+3 x_{1i}^3.
+\]</span></p>
+<p>Now we can calculate in-sample <strong>empirical</strong> MSPE:<br />
+<span class="math display">\[~\]</span></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="overfitting.html#cb60-1" tabindex="-1"></a><span class="co"># MSE</span></span>
+<span id="cb60-2"><a href="overfitting.html#cb60-2" tabindex="-1"></a>MSPE1 <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">predict</span>(ols1)<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span>) <span class="co"># which is also mean(ols1$residuals^2)</span></span>
+<span id="cb60-3"><a href="overfitting.html#cb60-3" tabindex="-1"></a>MSPE2 <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">predict</span>(ols2)<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb60-4"><a href="overfitting.html#cb60-4" tabindex="-1"></a>MSPE3 <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">predict</span>(ols3)<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb60-5"><a href="overfitting.html#cb60-5" tabindex="-1"></a>MSPE4 <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">predict</span>(ols4)<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb60-6"><a href="overfitting.html#cb60-6" tabindex="-1"></a>all <span class="ot">&lt;-</span> <span class="fu">c</span>(MSPE1, MSPE2, MSPE3, MSPE4)</span>
+<span id="cb60-7"><a href="overfitting.html#cb60-7" tabindex="-1"></a>MSPE <span class="ot">&lt;-</span> <span class="fu">matrix</span>(all, <span class="dv">4</span>, <span class="dv">1</span>)</span>
+<span id="cb60-8"><a href="overfitting.html#cb60-8" tabindex="-1"></a><span class="fu">row.names</span>(MSPE) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ols1&quot;</span>, <span class="st">&quot;ols2&quot;</span>, <span class="st">&quot;ols3&quot;</span>, <span class="st">&quot;ols4&quot;</span>)</span>
+<span id="cb60-9"><a href="overfitting.html#cb60-9" tabindex="-1"></a><span class="fu">colnames</span>(MSPE) <span class="ot">&lt;-</span> <span class="st">&quot;In-sample MSPE&#39;s&quot;</span></span>
+<span id="cb60-10"><a href="overfitting.html#cb60-10" tabindex="-1"></a>MSPE</span></code></pre></div>
+<pre><code>##      In-sample MSPE&#39;s
+## ols1        27.400554
+## ols2        23.198011
+## ols3         3.650487
+## ols4         3.055368</code></pre>
+<p>As we see, the <strong>overfitted</strong> <span class="math inline">\(\hat{f}(x)\)</span>, the <span class="math inline">\(4^{th}\)</span> model, has a lower <strong>empirical in-sample</strong> MSPE. If we use nonparametric models, we can even find a better fitting model with a lower empirical in-sample MSPE. We call these MSPE’s <strong>empirical</strong> because they are not calculated based on repeated samples, which would give an <strong>expected value</strong> of squared errors over all samples. In practice, however, we have only one sample. Therefore, even if our objective is to find an <strong>unbiased</strong> estimator of <span class="math inline">\({f}(x)\)</span>, not a prediction of <span class="math inline">\(y\)</span>, since we choose our estimator, <span class="math inline">\(\hat{f}(x)\)</span>, by the <strong>empirical</strong> in-sample MSPE, we may end up with an <strong>overfitted</strong> <span class="math inline">\(\hat{f}(x)\)</span>, such as the <span class="math inline">\(4^{th}\)</span> estimator.</p>
+<p>Would an overfitted model create a biased estimator? We will see the answer in a simulation later. However, in estimations, our objective is not only to find an unbiased estimator but also to find the one that has the minimum variance. We know that our <span class="math inline">\(3^{rd}\)</span> model is unbiased estimator of <span class="math inline">\(f(x)\)</span> as is the overfitted <span class="math inline">\(4^{th}\)</span> estimator. Which one should we choose? We have answered this question at the beginning of this chapter: the one with the minimum variance. Since overfitting would create a greater variance, our choice must be the <span class="math inline">\(3^{rd}\)</span> model.</p>
+<p>That is why we do not use the <strong>empirical</strong> in-sample MSPE as a “cost” or “risk” function in finding the best estimator. This process is called a “data mining” exercise based on one sample without any theoretical justification on what the “true” model would be. This is a general problem in <strong>empirical risk minimization</strong> specially in finding unbiased estimators of population parameters.</p>
+<p>To see all these issues in actions, let’s have a simulation for the decomposition of in-sample unconditional MSPE’s.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="overfitting.html#cb62-1" tabindex="-1"></a><span class="co"># Function for X - fixed at repeated samples</span></span>
+<span id="cb62-2"><a href="overfitting.html#cb62-2" tabindex="-1"></a>xfunc <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb62-3"><a href="overfitting.html#cb62-3" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb62-4"><a href="overfitting.html#cb62-4" tabindex="-1"></a>  x_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>) </span>
+<span id="cb62-5"><a href="overfitting.html#cb62-5" tabindex="-1"></a>  <span class="fu">return</span>(x_1)</span>
+<span id="cb62-6"><a href="overfitting.html#cb62-6" tabindex="-1"></a>}</span>
+<span id="cb62-7"><a href="overfitting.html#cb62-7" tabindex="-1"></a>  </span>
+<span id="cb62-8"><a href="overfitting.html#cb62-8" tabindex="-1"></a><span class="co"># Function for simulation (M - number of samples)</span></span>
+<span id="cb62-9"><a href="overfitting.html#cb62-9" tabindex="-1"></a>simmse <span class="ot">&lt;-</span> <span class="cf">function</span>(M, n, sigma, poldeg){</span>
+<span id="cb62-10"><a href="overfitting.html#cb62-10" tabindex="-1"></a>  </span>
+<span id="cb62-11"><a href="overfitting.html#cb62-11" tabindex="-1"></a>  x_1 <span class="ot">&lt;-</span> <span class="fu">xfunc</span>(n) <span class="co"># Repeated X&#39;s in each sample</span></span>
+<span id="cb62-12"><a href="overfitting.html#cb62-12" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="overfitting.html#cb62-13" tabindex="-1"></a>  <span class="co"># Containers</span></span>
+<span id="cb62-14"><a href="overfitting.html#cb62-14" tabindex="-1"></a>  MSPE <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, M)</span>
+<span id="cb62-15"><a href="overfitting.html#cb62-15" tabindex="-1"></a>  yhat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, M, n)</span>
+<span id="cb62-16"><a href="overfitting.html#cb62-16" tabindex="-1"></a>  olscoef <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, M, poldeg<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb62-17"><a href="overfitting.html#cb62-17" tabindex="-1"></a>  ymat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, M, n)</span>
+<span id="cb62-18"><a href="overfitting.html#cb62-18" tabindex="-1"></a>  </span>
+<span id="cb62-19"><a href="overfitting.html#cb62-19" tabindex="-1"></a>  <span class="co"># Loop for samples</span></span>
+<span id="cb62-20"><a href="overfitting.html#cb62-20" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb62-21"><a href="overfitting.html#cb62-21" tabindex="-1"></a>    f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x_1 <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">I</span>(x_1<span class="sc">^</span><span class="dv">2</span>) <span class="co"># DGM</span></span>
+<span id="cb62-22"><a href="overfitting.html#cb62-22" tabindex="-1"></a>    y <span class="ot">&lt;-</span> f <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sigma)</span>
+<span id="cb62-23"><a href="overfitting.html#cb62-23" tabindex="-1"></a>    samp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, x_1)</span>
+<span id="cb62-24"><a href="overfitting.html#cb62-24" tabindex="-1"></a>    <span class="co"># Estimator</span></span>
+<span id="cb62-25"><a href="overfitting.html#cb62-25" tabindex="-1"></a>    ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x_1, <span class="at">degree =</span> poldeg, <span class="at">raw=</span><span class="cn">TRUE</span>), samp)</span>
+<span id="cb62-26"><a href="overfitting.html#cb62-26" tabindex="-1"></a>    olscoef[i, ] <span class="ot">&lt;-</span> ols<span class="sc">$</span>coefficients</span>
+<span id="cb62-27"><a href="overfitting.html#cb62-27" tabindex="-1"></a>    <span class="co"># Yhat&#39;s</span></span>
+<span id="cb62-28"><a href="overfitting.html#cb62-28" tabindex="-1"></a>    yhat[i,] <span class="ot">&lt;-</span> <span class="fu">predict</span>(ols, samp)</span>
+<span id="cb62-29"><a href="overfitting.html#cb62-29" tabindex="-1"></a>    <span class="co"># MSPE - That is, residual sum of squares</span></span>
+<span id="cb62-30"><a href="overfitting.html#cb62-30" tabindex="-1"></a>    MSPE[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>((ols<span class="sc">$</span>residuals)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb62-31"><a href="overfitting.html#cb62-31" tabindex="-1"></a>    ymat[i,] <span class="ot">&lt;-</span> y</span>
+<span id="cb62-32"><a href="overfitting.html#cb62-32" tabindex="-1"></a>  }</span>
+<span id="cb62-33"><a href="overfitting.html#cb62-33" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">list</span>(MSPE, yhat, sigma, olscoef, f, ymat)</span>
+<span id="cb62-34"><a href="overfitting.html#cb62-34" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb62-35"><a href="overfitting.html#cb62-35" tabindex="-1"></a>}</span>
+<span id="cb62-36"><a href="overfitting.html#cb62-36" tabindex="-1"></a></span>
+<span id="cb62-37"><a href="overfitting.html#cb62-37" tabindex="-1"></a><span class="co"># running different fhat with different polynomial degrees</span></span>
+<span id="cb62-38"><a href="overfitting.html#cb62-38" tabindex="-1"></a>output1 <span class="ot">&lt;-</span> <span class="fu">simmse</span>(<span class="dv">2000</span>, <span class="dv">100</span>, <span class="dv">7</span>, <span class="dv">1</span>)</span>
+<span id="cb62-39"><a href="overfitting.html#cb62-39" tabindex="-1"></a>output2 <span class="ot">&lt;-</span> <span class="fu">simmse</span>(<span class="dv">2000</span>, <span class="dv">100</span>, <span class="dv">7</span>, <span class="dv">2</span>) <span class="co">#True model (i.e fhat = f)</span></span>
+<span id="cb62-40"><a href="overfitting.html#cb62-40" tabindex="-1"></a>output3 <span class="ot">&lt;-</span> <span class="fu">simmse</span>(<span class="dv">2000</span>, <span class="dv">100</span>, <span class="dv">7</span>, <span class="dv">5</span>) </span>
+<span id="cb62-41"><a href="overfitting.html#cb62-41" tabindex="-1"></a>output4 <span class="ot">&lt;-</span> <span class="fu">simmse</span>(<span class="dv">2000</span>, <span class="dv">100</span>, <span class="dv">7</span>, <span class="dv">20</span>)</span>
+<span id="cb62-42"><a href="overfitting.html#cb62-42" tabindex="-1"></a></span>
+<span id="cb62-43"><a href="overfitting.html#cb62-43" tabindex="-1"></a><span class="co"># Table</span></span>
+<span id="cb62-44"><a href="overfitting.html#cb62-44" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb62-45"><a href="overfitting.html#cb62-45" tabindex="-1"></a><span class="fu">row.names</span>(tab) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ols1&quot;</span>, <span class="st">&quot;ols2&quot;</span>, <span class="st">&quot;ols3&quot;</span>, <span class="st">&quot;ols4&quot;</span>)</span>
+<span id="cb62-46"><a href="overfitting.html#cb62-46" tabindex="-1"></a><span class="fu">colnames</span>(tab) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bias^2&quot;</span>, <span class="st">&quot;var(yhat)&quot;</span>, <span class="st">&quot;MSE&quot;</span>, <span class="st">&quot;var(eps)&quot;</span>, <span class="st">&quot;In-sample MSPE&quot;</span>)</span>
+<span id="cb62-47"><a href="overfitting.html#cb62-47" tabindex="-1"></a></span>
+<span id="cb62-48"><a href="overfitting.html#cb62-48" tabindex="-1"></a>f <span class="ot">&lt;-</span> output1[[<span class="dv">5</span>]]</span>
+<span id="cb62-49"><a href="overfitting.html#cb62-49" tabindex="-1"></a></span>
+<span id="cb62-50"><a href="overfitting.html#cb62-50" tabindex="-1"></a><span class="co"># Var(yhat) -  We use our own function instead of &quot;var()&quot;</span></span>
+<span id="cb62-51"><a href="overfitting.html#cb62-51" tabindex="-1"></a>tab[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output1[[<span class="dv">2</span>]], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-52"><a href="overfitting.html#cb62-52" tabindex="-1"></a>tab[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output2[[<span class="dv">2</span>]], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-53"><a href="overfitting.html#cb62-53" tabindex="-1"></a>tab[<span class="dv">3</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output3[[<span class="dv">2</span>]], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-54"><a href="overfitting.html#cb62-54" tabindex="-1"></a>tab[<span class="dv">4</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output4[[<span class="dv">2</span>]], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-55"><a href="overfitting.html#cb62-55" tabindex="-1"></a></span>
+<span id="cb62-56"><a href="overfitting.html#cb62-56" tabindex="-1"></a><span class="co"># Bias^2 = (mean(yhat))-f)^2</span></span>
+<span id="cb62-57"><a href="overfitting.html#cb62-57" tabindex="-1"></a>tab[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">apply</span>(output1[[<span class="dv">2</span>]], <span class="dv">2</span>, mean) <span class="sc">-</span> f)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb62-58"><a href="overfitting.html#cb62-58" tabindex="-1"></a>tab[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">apply</span>(output2[[<span class="dv">2</span>]], <span class="dv">2</span>, mean) <span class="sc">-</span> f)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb62-59"><a href="overfitting.html#cb62-59" tabindex="-1"></a>tab[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">apply</span>(output3[[<span class="dv">2</span>]], <span class="dv">2</span>, mean) <span class="sc">-</span> f)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb62-60"><a href="overfitting.html#cb62-60" tabindex="-1"></a>tab[<span class="dv">4</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">apply</span>(output4[[<span class="dv">2</span>]], <span class="dv">2</span>, mean) <span class="sc">-</span> f)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb62-61"><a href="overfitting.html#cb62-61" tabindex="-1"></a></span>
+<span id="cb62-62"><a href="overfitting.html#cb62-62" tabindex="-1"></a><span class="co"># MSE</span></span>
+<span id="cb62-63"><a href="overfitting.html#cb62-63" tabindex="-1"></a>fmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(f, <span class="fu">nrow</span>(output1[[<span class="dv">6</span>]]), <span class="fu">length</span>(f), <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-64"><a href="overfitting.html#cb62-64" tabindex="-1"></a>tab[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((fmat <span class="sc">-</span> output1[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-65"><a href="overfitting.html#cb62-65" tabindex="-1"></a>tab[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((fmat <span class="sc">-</span> output2[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-66"><a href="overfitting.html#cb62-66" tabindex="-1"></a>tab[<span class="dv">3</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((fmat <span class="sc">-</span> output3[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-67"><a href="overfitting.html#cb62-67" tabindex="-1"></a>tab[<span class="dv">4</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((fmat <span class="sc">-</span> output4[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-68"><a href="overfitting.html#cb62-68" tabindex="-1"></a></span>
+<span id="cb62-69"><a href="overfitting.html#cb62-69" tabindex="-1"></a><span class="co"># # MSPE - This can be used as well, which is RSS</span></span>
+<span id="cb62-70"><a href="overfitting.html#cb62-70" tabindex="-1"></a><span class="co"># tab[1,5] &lt;- mean(output1[[1]])</span></span>
+<span id="cb62-71"><a href="overfitting.html#cb62-71" tabindex="-1"></a><span class="co"># tab[2,5] &lt;- mean(output2[[1]])</span></span>
+<span id="cb62-72"><a href="overfitting.html#cb62-72" tabindex="-1"></a><span class="co"># tab[3,5] &lt;- mean(output3[[1]])</span></span>
+<span id="cb62-73"><a href="overfitting.html#cb62-73" tabindex="-1"></a><span class="co"># tab[4,5] &lt;- mean(output4[[1]])</span></span>
+<span id="cb62-74"><a href="overfitting.html#cb62-74" tabindex="-1"></a></span>
+<span id="cb62-75"><a href="overfitting.html#cb62-75" tabindex="-1"></a><span class="co"># MSPE</span></span>
+<span id="cb62-76"><a href="overfitting.html#cb62-76" tabindex="-1"></a>tab[<span class="dv">1</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((output1[[<span class="dv">6</span>]] <span class="sc">-</span> output1[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-77"><a href="overfitting.html#cb62-77" tabindex="-1"></a>tab[<span class="dv">2</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((output2[[<span class="dv">6</span>]] <span class="sc">-</span> output2[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-78"><a href="overfitting.html#cb62-78" tabindex="-1"></a>tab[<span class="dv">3</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((output3[[<span class="dv">6</span>]] <span class="sc">-</span> output3[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-79"><a href="overfitting.html#cb62-79" tabindex="-1"></a>tab[<span class="dv">4</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>((output4[[<span class="dv">6</span>]] <span class="sc">-</span> output4[[<span class="dv">2</span>]])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb62-80"><a href="overfitting.html#cb62-80" tabindex="-1"></a></span>
+<span id="cb62-81"><a href="overfitting.html#cb62-81" tabindex="-1"></a><span class="co"># Irreducable error - var(eps) = var(y)</span></span>
+<span id="cb62-82"><a href="overfitting.html#cb62-82" tabindex="-1"></a>tab[<span class="dv">1</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output1[[<span class="dv">6</span>]], <span class="dv">2</span>,  <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-83"><a href="overfitting.html#cb62-83" tabindex="-1"></a>tab[<span class="dv">2</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output2[[<span class="dv">6</span>]] <span class="sc">-</span> output2[[<span class="dv">2</span>]], <span class="dv">2</span>,  <span class="cf">function</span>(x) <span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-84"><a href="overfitting.html#cb62-84" tabindex="-1"></a>tab[<span class="dv">3</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output3[[<span class="dv">6</span>]], <span class="dv">2</span>,  <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-85"><a href="overfitting.html#cb62-85" tabindex="-1"></a>tab[<span class="dv">4</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">apply</span>(output4[[<span class="dv">6</span>]], <span class="dv">2</span>,  <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb62-86"><a href="overfitting.html#cb62-86" tabindex="-1"></a></span>
+<span id="cb62-87"><a href="overfitting.html#cb62-87" tabindex="-1"></a><span class="fu">round</span>(tab, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      bias^2 var(yhat)     MSE var(eps) In-sample MSPE
+## ols1 4.9959    0.9467  5.9427  49.1493        53.2219
+## ols2 0.0006    1.4224  1.4230  47.7574        47.7574
+## ols3 0.0010    2.9011  2.9021  49.1493        46.2783
+## ols4 0.0098   10.2528 10.2626  49.1493        38.9179</code></pre>
+<p>(SIMULATION TRAINING ERROR VS TEST ERROR CH 6, (<a href="https://web.stanford.edu/~rjohari/teaching/notes.html" class="uri">https://web.stanford.edu/~rjohari/teaching/notes.html</a>)</p>
+<p>The table verifies that <span class="math inline">\(\mathbf{MSE}(\hat{f})=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}.\)</span> However, it seems that the MSPE (in-sample) of each model is “wrong”, which is not the sum of MSE and <span class="math inline">\(\mathbf{Var}(\varepsilon)\)</span>.<br />
+Now, back to our question: Why is the in-sample MSPE not the sum of MSE and <span class="math inline">\(\sigma^2\)</span>? Let’s look at MSPE again but this time with different angle.</p>
+<p><strong>For linear regression with a linear population model</strong></p>
+<p>We define MSPE over some data points, as we did in our simulation above, and re-write it as follows:</p>
+<p><span class="math display">\[
+\mathbf{MSPE}_{out}=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y&#39;_{i}-\hat{f}(x_i)\right)^{2}\right],~~~~~~\text{where}~~y&#39;_i=f(x_i)+\varepsilon&#39;_i
+\]</span></p>
+<p>This type of MSPE is also called as <strong>unconditional</strong> MSPE. Inside of the brackets is the “prediction error” for a range of out-of-sample data points. The only difference here is that we distinguish <span class="math inline">\(y&#39;_i\)</span> as out-of-sample data points. Likewise, we define MSPE for in-sample data points <span class="math inline">\(y_i\)</span> as</p>
+<p><span class="math display">\[
+\mathbf{MSPE}_{in}=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{f}(x_i)\right)^{2}\right],~~~~~~\text{where}~~y_i=f(x_i)+\varepsilon_i.
+\]</span></p>
+<p>Note that <span class="math inline">\(\varepsilon&#39;_i\)</span> and <span class="math inline">\(\varepsilon_i\)</span> are independent but identically distributed. Moreover <span class="math inline">\(y&#39;_i\)</span> and <span class="math inline">\(y_i\)</span> has the same distribution.</p>
+<p><span class="math display">\[
+\mathbf{MSPE}_{out} =\mathbf{MSPE}_{in}+\frac{2}{n} \sigma^{2}(p+1).
+\]</span></p>
+<p>The last term quantifies the <strong>overfitting</strong>, the the amount by which the in-sample MSPE systematically underestimates its true MSPE, i.e. out-of-sample MSPE. Note also that the overfitting</p>
+<ol style="list-style-type: decimal">
+<li><strong>grows</strong> with the “noise” (<span class="math inline">\(\sigma^2\)</span>) in the data,</li>
+<li><strong>shrinks</strong> with the sample size (<span class="math inline">\(n\)</span>),</li>
+<li><strong>grows</strong> with the number of variables (<span class="math inline">\(p\)</span>).</li>
+</ol>
+<p>Hence, as we had stated earlier, the overfitting problem gets worse as <span class="math inline">\(p/n\)</span> gets bigger. Minimizing the in-sample MSPE completely ignores the overfitting by picking models which are too large and with a very poor out-of-sample prediction accuracy.</p>
+<p>Now we can calculate the size of overfitting in our simulation.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="overfitting.html#cb64-1" tabindex="-1"></a><span class="co"># New Table</span></span>
+<span id="cb64-2"><a href="overfitting.html#cb64-2" tabindex="-1"></a>tabb <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb64-3"><a href="overfitting.html#cb64-3" tabindex="-1"></a><span class="fu">row.names</span>(tabb) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ols1&quot;</span>, <span class="st">&quot;ols2&quot;</span>, <span class="st">&quot;ols3&quot;</span>, <span class="st">&quot;ols4&quot;</span>)</span>
+<span id="cb64-4"><a href="overfitting.html#cb64-4" tabindex="-1"></a><span class="fu">colnames</span>(tabb) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cov(yi, yhat)&quot;</span>,<span class="st">&quot;True MSPE&quot;</span>, <span class="st">&quot;TrueMSPE-Cov&quot;</span>)</span>
+<span id="cb64-5"><a href="overfitting.html#cb64-5" tabindex="-1"></a></span>
+<span id="cb64-6"><a href="overfitting.html#cb64-6" tabindex="-1"></a><span class="co">#COV</span></span>
+<span id="cb64-7"><a href="overfitting.html#cb64-7" tabindex="-1"></a>tabb[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(<span class="fu">diag</span>(<span class="fu">cov</span>(output1[[<span class="dv">2</span>]], output1[[<span class="dv">6</span>]])))</span>
+<span id="cb64-8"><a href="overfitting.html#cb64-8" tabindex="-1"></a>tabb[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(<span class="fu">diag</span>(<span class="fu">cov</span>(output2[[<span class="dv">2</span>]], output2[[<span class="dv">6</span>]])))</span>
+<span id="cb64-9"><a href="overfitting.html#cb64-9" tabindex="-1"></a>tabb[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(<span class="fu">diag</span>(<span class="fu">cov</span>(output3[[<span class="dv">2</span>]], output3[[<span class="dv">6</span>]])))</span>
+<span id="cb64-10"><a href="overfitting.html#cb64-10" tabindex="-1"></a>tabb[<span class="dv">4</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(<span class="fu">diag</span>(<span class="fu">cov</span>(output4[[<span class="dv">2</span>]], output4[[<span class="dv">6</span>]])))</span>
+<span id="cb64-11"><a href="overfitting.html#cb64-11" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="overfitting.html#cb64-12" tabindex="-1"></a><span class="co">#True MSPE</span></span>
+<span id="cb64-13"><a href="overfitting.html#cb64-13" tabindex="-1"></a>tabb[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> tab[<span class="dv">1</span>,<span class="dv">3</span>] <span class="sc">+</span> tab[<span class="dv">1</span>,<span class="dv">4</span>]</span>
+<span id="cb64-14"><a href="overfitting.html#cb64-14" tabindex="-1"></a>tabb[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> tab[<span class="dv">2</span>,<span class="dv">3</span>] <span class="sc">+</span> tab[<span class="dv">2</span>,<span class="dv">4</span>]</span>
+<span id="cb64-15"><a href="overfitting.html#cb64-15" tabindex="-1"></a>tabb[<span class="dv">3</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> tab[<span class="dv">3</span>,<span class="dv">3</span>] <span class="sc">+</span> tab[<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb64-16"><a href="overfitting.html#cb64-16" tabindex="-1"></a>tabb[<span class="dv">4</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> tab[<span class="dv">4</span>,<span class="dv">3</span>] <span class="sc">+</span> tab[<span class="dv">4</span>,<span class="dv">4</span>]</span>
+<span id="cb64-17"><a href="overfitting.html#cb64-17" tabindex="-1"></a></span>
+<span id="cb64-18"><a href="overfitting.html#cb64-18" tabindex="-1"></a><span class="co">#True MSPE - Cov (to compare with the measures in the earlier table)</span></span>
+<span id="cb64-19"><a href="overfitting.html#cb64-19" tabindex="-1"></a>tabb[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> tabb[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">-</span> tabb[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb64-20"><a href="overfitting.html#cb64-20" tabindex="-1"></a>tabb[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> tabb[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">-</span> tabb[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb64-21"><a href="overfitting.html#cb64-21" tabindex="-1"></a>tabb[<span class="dv">3</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> tabb[<span class="dv">3</span>,<span class="dv">2</span>] <span class="sc">-</span> tabb[<span class="dv">3</span>,<span class="dv">1</span>]</span>
+<span id="cb64-22"><a href="overfitting.html#cb64-22" tabindex="-1"></a>tabb[<span class="dv">4</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> tabb[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">-</span> tabb[<span class="dv">4</span>,<span class="dv">1</span>]</span>
+<span id="cb64-23"><a href="overfitting.html#cb64-23" tabindex="-1"></a></span>
+<span id="cb64-24"><a href="overfitting.html#cb64-24" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tab, tabb)</span>
+<span id="cb64-25"><a href="overfitting.html#cb64-25" tabindex="-1"></a><span class="fu">round</span>(t, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      bias^2 var(yhat)     MSE var(eps) In-sample MSPE Cov(yi, yhat) True MSPE
+## ols1 4.9959    0.9467  5.9427  49.1493        53.2219        1.8944   55.0920
+## ols2 0.0006    1.4224  1.4230  47.7574        47.7574        2.8463   49.1804
+## ols3 0.0010    2.9011  2.9021  49.1493        46.2783        5.8052   52.0514
+## ols4 0.0098   10.2528 10.2626  49.1493        38.9179       20.5158   59.4119
+##      TrueMSPE-Cov
+## ols1      53.1976
+## ols2      46.3341
+## ols3      46.2462
+## ols4      38.8961</code></pre>
+<p>Let’s have a pause and look at this table:</p>
+<ol style="list-style-type: decimal">
+<li>We know that the “true” model is “ols2” in this simulation. However, we cannot know the true model and we have only one sample in practice.</li>
+<li>If we use the in-sample MSPE to choose a model, we pick “ols4” as it has the minimum MSPE.</li>
+<li>Not only “ols4” is the worst <strong>predictor</strong> among all models, it is also the worst <strong>estimator</strong> among the <strong>unbiased</strong> estimators “ols2”, “ols3”, and “ols4”, as it has the highest MSE.</li>
+<li>If our task is to find the best predictor, we cannot use in-sample MSPE, as it give us “ols4”, the worst predictor.</li>
+</ol>
+<p><a href="https://web.stanford.edu/~rjohari/teaching/notes.html" class="uri">https://web.stanford.edu/~rjohari/teaching/notes.html</a></p>
+<p><a href="https://bookdown.org/marklhc/notes_bookdown/model-comparison-and-regularization.html" class="uri">https://bookdown.org/marklhc/notes_bookdown/model-comparison-and-regularization.html</a>
+use figure exaple.take data takesubset show that in figure</p>
+<p><strong>Detailed explanation of Simulation for MSPE decomposition</strong></p>
+<p>We will come back to this point, but before going further, to make the simulation calculations more understandable, I put here simple illustrations for each calculation.</p>
+<p>Think of a simulation as a big matrix: each row contains one sample and each column contains one observation of <span class="math inline">\(x_i\)</span>. For example, if we have 500 samples and each sample we have 100 observations, the “matrix” will be 500 by 100. The figures below show how the simulations are designed and each term is calculated</p>
+<p><img src="png/bias.png" width="130%" height="130%" /></p>
+<p><img src="png/Var.png" width="80%" height="80%" /></p>
+<p><img src="png/MSE.png" width="130%" height="130%" /></p>
+<p><img src="png/MSPE.png" width="130%" height="130%" /></p>
+<p><strong>Technical Explanation of MSPE out and in sample</strong></p>
+<p>Let’s look at <span class="math inline">\(\mathbf{E}\left[(y&#39;_i-\hat{f}(x_i))^{2}\right]\)</span> closer. By using the definition of variance,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{E}\left[(y&#39;_i-\hat{f}(x_i))^{2}\right]
+&amp;=\mathbf{Var}\left[y&#39;_{i}-\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y&#39;_{i}-\hat{f}(x_i)\right]\right)^{2}\\
+&amp;=\mathbf{Var}\left[y&#39;_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]-2 \mathbf{Cov}\left[y&#39;_{i}, \hat{f}(x_i)\right]+\left(\mathbf{E}\left[y&#39;_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}
+\end{aligned}
+\]</span></p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{E}\left[(y_i-\hat{f}(x_i))^{2}\right]
+&amp;=\mathbf{Var}\left[y_{i}-\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}-\hat{f}(x_i)\right]\right)^{2}\\
+&amp;=\mathbf{Var}\left[y_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]-2 \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}
+\end{aligned}
+\]</span></p>
+<p>Remember our earlier derivation of variance-bias decomposition: When we predict out-of-sample data points, we know that <span class="math inline">\(y_0\)</span> and <span class="math inline">\(\hat{f}(x_0)\)</span> are independent. We had stated it differently: <span class="math inline">\(\varepsilon_0\)</span> is independent from <span class="math inline">\(\hat{f}(x_0)\)</span>. In other words, how we estimate our estimator is an independent process from <span class="math inline">\(y&#39;_i\)</span>. Hence, <span class="math inline">\(\mathbf{Cov}\left[y&#39;_{i}, \hat{f}(x_i)\right]=0\)</span>. The critical point here is to understand is <span class="math inline">\(\mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]\)</span>, is <strong>not zero</strong>. This is because the estimator <span class="math inline">\(\hat{f}(x_i)\)</span> is chosen in a way that its difference from <span class="math inline">\(y_i\)</span> should be minimum. Hence, our estimator is not an independent than in-sample <span class="math inline">\(y_i\)</span> data points, on the contrary, we use them to estimate <span class="math inline">\(\hat{f}(x_i)\)</span>. In fact, we can even choose <span class="math inline">\(\hat{f}(x_i) = y_i\)</span> where the MSPE would be zero. In that case correlation between <span class="math inline">\(\hat{f}(x_i)\)</span> and <span class="math inline">\(y_i\)</span> would be 1.</p>
+<p>Using the fact that <span class="math inline">\(\mathbf{E}(y&#39;_i) = \mathbf{E}(y_i)\)</span> and <span class="math inline">\(\mathbf{Var}(y&#39;_i) = \mathbf{Var}(y_i)\)</span>, we can now re-write <span class="math inline">\(\mathbf{E}\left[(y&#39;_i-\hat{f}(x_i))^{2}\right]\)</span> as follows:</p>
+<p><span class="math display">\[
+\mathbf{E}\left[(y&#39;_i-\hat{f}(x_i))^{2}\right]=\mathbf{Var}\left[y_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}\\ =\mathbf{E}\left[(y_i-\hat{f}(x_i))^{2}\right]+2 \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right].
+\]</span></p>
+<p>Averaging over data points,</p>
+<p><span class="math display">\[
+\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}^{\prime}-\hat{f}(x_i)\right)^{2}\right]=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{f}(x_i)\right)^{2}\right]+\frac{2}{n} \sum_{i=1}^{n} \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right].
+\]</span></p>
+<p>For a linear model, it can be shown that</p>
+<p><span class="math display">\[
+\frac{2}{n} \sum_{i=1}^{n} \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]=\frac{2}{n} \sigma^{2}(p+1).
+\]</span>
+Hence,</p>
+<p><span class="math display">\[
+\mathbf{MSPE}_{out} =\mathbf{MSPE}_{in}+\frac{2}{n} \sigma^{2}(p+1).
+\]</span></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bias-variance-trade-off.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-v.s.-classification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mutluyuk/machinemetrics/edit/master/07-Overfitting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["machinemetrics.pdf", "machinemetrics.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">.</a></li>
+      after: |
+        <li><a href="https://github.com/mutluyuk/machinemetrics" target="blank">2023 Initial Draft</a></li>
+    edit: https://github.com/mutluyuk/machinemetrics/edit/master/%s
+    download: ["pdf", "epub"]

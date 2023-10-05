@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Bias-Variance Trade-off | MachineMetrics</title>
+  <meta name="description" content="Chapter 6 Bias-Variance Trade-off | MachineMetrics" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Bias-Variance Trade-off | MachineMetrics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/png/MachineMetrics.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Bias-Variance Trade-off | MachineMetrics" />
+  
+  
+  <meta name="twitter:image" content="/png/MachineMetrics.png" />
+
+<meta name="author" content="Yigit Aydede and Mutlu Yuksel" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="error.html"/>
+<link rel="next" href="overfitting.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book-is-different"><i class="fa fa-check"></i>Why this book is different?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-manuscript"><i class="fa fa-check"></i>Structure of Manuscript:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-can-use-this-book"><i class="fa fa-check"></i>Who Can Use This Book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION:</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prediction-vs.-estimation"><i class="fa fa-check"></i><b>1.1</b> Prediction vs. Estimation:</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-can-you-use-the-covered-topics-in-social-sciences"><i class="fa fa-check"></i><b>1.2</b> Where can you use the covered topics in Social Sciences?:</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html"><i class="fa fa-check"></i><b>2</b> Statistical Models and Simulations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#distinguishing-between-statistical-modeling-and-machine-learning-in-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#goals-and-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Goals and Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#prediction-vs.-inference"><i class="fa fa-check"></i><b>2.1.2</b> Prediction vs. Inference</a></li>
+<li class="chapter" data-level="2.1.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#conclusion"><i class="fa fa-check"></i><b>2.1.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#model-selection-and-approaches-in-data-modeling"><i class="fa fa-check"></i><b>2.4</b> Model Selection and Approaches in Data Modeling</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="counterfactual.html"><a href="counterfactual.html#qualitative-and-quantitative-research-methods"><i class="fa fa-check"></i><b>3.1</b> Qualitative and Quantitative research methods:</a></li>
+<li class="chapter" data-level="3.2" data-path="counterfactual.html"><a href="counterfactual.html#quantitative---research-methods"><i class="fa fa-check"></i><b>3.2</b> Quantitative - Research methods :</a></li>
+<li class="chapter" data-level="3.3" data-path="counterfactual.html"><a href="counterfactual.html#data-and-visualization"><i class="fa fa-check"></i><b>3.3</b> Data and visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="counterfactual.html"><a href="counterfactual.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="counterfactual.html"><a href="counterfactual.html#effect-of-x-on-y-regression"><i class="fa fa-check"></i><b>3.5</b> Effect of X on Y / Regression</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
+<li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="counterfactual.html"><a href="counterfactual.html#average-treatment-effectate"><i class="fa fa-check"></i><b>3.6.1</b> Average Treatment Effect(ATE)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="counterfactual.html"><a href="counterfactual.html#additional-treatment-effects"><i class="fa fa-check"></i><b>3.6.2</b> Additional Treatment Effects</a></li>
+<li class="chapter" data-level="3.6.3" data-path="counterfactual.html"><a href="counterfactual.html#selection-bias-and-heteregeneous-treatment-effect-bias"><i class="fa fa-check"></i><b>3.6.3</b> Selection Bias and Heteregeneous Treatment Effect Bias:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning.html"><a href="learning.html"><i class="fa fa-check"></i><b>4</b> Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.1</b> Biased estimator as a predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
+<li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
+<li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#parametric-estimations"><i class="fa fa-check"></i><b>9.1</b> Parametric Estimations</a></li>
+<li class="chapter" data-level="9.2" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#lpm"><i class="fa fa-check"></i><b>9.2</b> LPM</a></li>
+<li class="chapter" data-level="9.3" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#logistic-regression"><i class="fa fa-check"></i><b>9.3</b> Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html"><i class="fa fa-check"></i><b>10</b> Nonparametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#density-estimations"><i class="fa fa-check"></i><b>10.1</b> Density estimations</a></li>
+<li class="chapter" data-level="10.2" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#kernel-regression"><i class="fa fa-check"></i><b>10.2</b> Kernel regression</a></li>
+<li class="chapter" data-level="10.3" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#knn"><i class="fa fa-check"></i><b>10.3</b> Knn</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#adult-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Adult dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html"><i class="fa fa-check"></i><b>11</b> Hyperparameter Tuning</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#training-and-validation"><i class="fa fa-check"></i><b>11.1</b> Training and Validation</a></li>
+<li class="chapter" data-level="11.2" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#splitting-the-data-randomly"><i class="fa fa-check"></i><b>11.2</b> Splitting the data randomly</a></li>
+<li class="chapter" data-level="11.3" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>11.3</b> k-fold cross validation</a></li>
+<li class="chapter" data-level="11.4" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#grid-search"><i class="fa fa-check"></i><b>11.4</b> Grid Search</a></li>
+<li class="chapter" data-level="11.5" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#cross-validated-grid-search"><i class="fa fa-check"></i><b>11.5</b> Cross-validated grid search</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html"><i class="fa fa-check"></i><b>12</b> Optimization Algorithms - Basics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#brute-force-optimization"><i class="fa fa-check"></i><b>12.1</b> Brute-force optimization</a></li>
+<li class="chapter" data-level="12.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#derivative-based-methods"><i class="fa fa-check"></i><b>12.2</b> Derivative-based methods</a></li>
+<li class="chapter" data-level="12.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#ml-estimation-with-logistic-regression"><i class="fa fa-check"></i><b>12.3</b> ML Estimation with logistic regression</a></li>
+<li class="chapter" data-level="12.4" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#gradient-descent-algorithm"><i class="fa fa-check"></i><b>12.4</b> Gradient Descent Algorithm</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#one-variable"><i class="fa fa-check"></i><b>12.4.1</b> One-variable</a></li>
+<li class="chapter" data-level="12.4.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#adjustable-lr-and-sgd"><i class="fa fa-check"></i><b>12.4.2</b> Adjustable <code>lr</code> and SGD</a></li>
+<li class="chapter" data-level="12.4.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#multivariable"><i class="fa fa-check"></i><b>12.4.3</b> Multivariable</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#optimization-with-r"><i class="fa fa-check"></i><b>12.5</b> Optimization with R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prediction-intervals.html"><a href="prediction-intervals.html"><i class="fa fa-check"></i><b>13</b> Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="prediction-intervals.html"><a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor"><i class="fa fa-check"></i><b>13.1</b> Prediction interval for unbiased OLS predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="interpretability.html"><a href="interpretability.html"><i class="fa fa-check"></i><b>14</b> Interpretability</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="interpretability.html"><a href="interpretability.html#interpretable-vs-noninterpretable-models"><i class="fa fa-check"></i><b>14.1</b> Interpretable vs NonInterpretable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>15</b> Shrinkage Models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>15.1</b> Ridge</a></li>
+<li class="chapter" data-level="15.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>15.2</b> Lasso</a></li>
+<li class="chapter" data-level="15.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>15.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="15.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>16</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>16.1</b> CART - Classification Tree</a></li>
+<li class="chapter" data-level="16.2" data-path="regression-trees.html"><a href="regression-trees.html#rpart---recursive-partitioning"><i class="fa fa-check"></i><b>16.2</b> <code>rpart</code> - Recursive Partitioning</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>16.3</b> Pruning</a></li>
+<li class="chapter" data-level="16.4" data-path="regression-trees.html"><a href="regression-trees.html#classification-with-titanic"><i class="fa fa-check"></i><b>16.4</b> Classification with Titanic</a></li>
+<li class="chapter" data-level="16.5" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>16.5</b> Regression Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>17</b> Ensemble Methods</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a></li>
+<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-forest"><i class="fa fa-check"></i><b>17.2</b> Random Forest</a></li>
+<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>17.3</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#sequential-ensemble-with-gbm"><i class="fa fa-check"></i><b>17.3.1</b> Sequential ensemble with <code>gbm</code></a></li>
+<li class="chapter" data-level="17.3.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>17.3.2</b> AdaBoost</a></li>
+<li class="chapter" data-level="17.3.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.3.3</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.4</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.5</b> Classification</a></li>
+<li class="chapter" data-level="17.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>17.6</b> Regression</a></li>
+<li class="chapter" data-level="17.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.7</b> Exploration</a></li>
+<li class="chapter" data-level="17.8" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.8</b> Boosting Applications</a>
+<ul>
+<li class="chapter" data-level="17.8.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression-1"><i class="fa fa-check"></i><b>17.8.1</b> Regression</a></li>
+<li class="chapter" data-level="17.8.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.8.2</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="17.8.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.8.3</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="17.8.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-1"><i class="fa fa-check"></i><b>17.8.4</b> Classification</a></li>
+<li class="chapter" data-level="17.8.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost.m1"><i class="fa fa-check"></i><b>17.8.5</b> AdaBoost.M1</a></li>
+<li class="chapter" data-level="17.8.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.8.6</b> Classification with XGBoost</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>18</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>18.1</b> Random experiment</a></li>
+<li class="chapter" data-level="18.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>18.2</b> IV</a></li>
+<li class="chapter" data-level="18.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>18.3</b> DiffD</a></li>
+<li class="chapter" data-level="18.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>18.4</b> RD</a></li>
+<li class="chapter" data-level="18.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>18.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="18.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>18.6</b> Double/Debiased Lasso/Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>19</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>19.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="19.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>19.2</b> Causal Forest</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>20</b> Model selection and Sparsity</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>20.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="20.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#out-sample-prediction-accuracy"><i class="fa fa-check"></i><b>20.3</b> out-sample prediction accuracy</a></li>
+<li class="chapter" data-level="20.4" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>20.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="classification-2.html"><a href="classification-2.html"><i class="fa fa-check"></i><b>21</b> Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="classification-2.html"><a href="classification-2.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>21.1</b> Nonparametric Classifier - kNN</a></li>
+<li class="chapter" data-level="21.2" data-path="classification-2.html"><a href="classification-2.html#mnist-dataset"><i class="fa fa-check"></i><b>21.2</b> <code>mnist</code> Dataset</a></li>
+<li class="chapter" data-level="21.3" data-path="classification-2.html"><a href="classification-2.html#linear-classifiers-again"><i class="fa fa-check"></i><b>21.3</b> Linear classifiers (again)</a></li>
+<li class="chapter" data-level="21.4" data-path="classification-2.html"><a href="classification-2.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.4</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="21.5" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret"><i class="fa fa-check"></i><b>21.5</b> kNN with caret</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="classification-2.html"><a href="classification-2.html#mnist_27"><i class="fa fa-check"></i><b>21.5.1</b> <code>mnist_27</code></a></li>
+<li class="chapter" data-level="21.5.2" data-path="classification-2.html"><a href="classification-2.html#adult-dataset-1"><i class="fa fa-check"></i><b>21.5.2</b> Adult dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="classification-2.html"><a href="classification-2.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.6</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="21.7" data-path="classification-2.html"><a href="classification-2.html#confusion-matrix"><i class="fa fa-check"></i><b>21.7</b> Confusion matrix</a></li>
+<li class="chapter" data-level="21.8" data-path="classification-2.html"><a href="classification-2.html#performance-measures"><i class="fa fa-check"></i><b>21.8</b> Performance measures</a></li>
+<li class="chapter" data-level="21.9" data-path="classification-2.html"><a href="classification-2.html#roc-curve"><i class="fa fa-check"></i><b>21.9</b> ROC Curve</a></li>
+<li class="chapter" data-level="21.10" data-path="classification-2.html"><a href="classification-2.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>21.10</b> AUC - Area Under the Curve</a></li>
+<li class="chapter" data-level="21.11" data-path="classification-2.html"><a href="classification-2.html#classification-example"><i class="fa fa-check"></i><b>21.11</b> Classification Example</a></li>
+<li class="chapter" data-level="21.12" data-path="classification-2.html"><a href="classification-2.html#lpm-1"><i class="fa fa-check"></i><b>21.12</b> LPM</a></li>
+<li class="chapter" data-level="21.13" data-path="classification-2.html"><a href="classification-2.html#logistic-regression-1"><i class="fa fa-check"></i><b>21.13</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21.14" data-path="classification-2.html"><a href="classification-2.html#knn-1"><i class="fa fa-check"></i><b>21.14</b> kNN</a>
+<ul>
+<li class="chapter" data-level="21.14.1" data-path="classification-2.html"><a href="classification-2.html#knn-10-fold-cv"><i class="fa fa-check"></i><b>21.14.1</b> kNN 10-fold CV</a></li>
+<li class="chapter" data-level="21.14.2" data-path="classification-2.html"><a href="classification-2.html#knn-with-caret-1"><i class="fa fa-check"></i><b>21.14.2</b> kNN with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>22</b> Time Series</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="time-series.html"><a href="time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="22.2" data-path="time-series.html"><a href="time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>22.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="22.3" data-path="time-series.html"><a href="time-series.html#ts-plots"><i class="fa fa-check"></i><b>22.3</b> TS Plots</a></li>
+<li class="chapter" data-level="22.4" data-path="time-series.html"><a href="time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="22.5" data-path="time-series.html"><a href="time-series.html#stationarity"><i class="fa fa-check"></i><b>22.5</b> Stationarity</a></li>
+<li class="chapter" data-level="22.6" data-path="time-series.html"><a href="time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.6</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="22.7" data-path="time-series.html"><a href="time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.7</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="22.8" data-path="time-series.html"><a href="time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.8</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="22.9" data-path="time-series.html"><a href="time-series.html#speed"><i class="fa fa-check"></i><b>22.9</b> Speed</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="forecast.html"><a href="forecast.html"><i class="fa fa-check"></i><b>23</b> Forecast</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="forecast.html"><a href="forecast.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="23.2" data-path="forecast.html"><a href="forecast.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="23.3" data-path="forecast.html"><a href="forecast.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="23.4" data-path="forecast.html"><a href="forecast.html#random-forest-1"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
+<li class="chapter" data-level="23.5" data-path="forecast.html"><a href="forecast.html#univariate"><i class="fa fa-check"></i><b>23.5</b> Univariate</a></li>
+<li class="chapter" data-level="23.6" data-path="forecast.html"><a href="forecast.html#multivariate"><i class="fa fa-check"></i><b>23.6</b> Multivariate</a></li>
+<li class="chapter" data-level="23.7" data-path="forecast.html"><a href="forecast.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.7</b> Rolling and expanding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#optimal-separating-classifier"><i class="fa fa-check"></i><b>24.1</b> Optimal Separating Classifier</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-margin"><i class="fa fa-check"></i><b>24.1.1</b> The Margin</a></li>
+<li class="chapter" data-level="24.1.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#the-non-separable-case"><i class="fa fa-check"></i><b>24.1.2</b> The Non-Separable Case</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="support-vector-machine.html"><a href="support-vector-machine.html#nonlinear-boundary-with-kernels"><i class="fa fa-check"></i><b>24.2</b> Nonlinear Boundary with Kernels</a></li>
+<li class="chapter" data-level="24.3" data-path="support-vector-machine.html"><a href="support-vector-machine.html#application-with-svm"><i class="fa fa-check"></i><b>24.3</b> Application with SVM</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>25</b> Neural Networks</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>25.1</b> Neural Network - the idea</a></li>
+<li class="chapter" data-level="25.2" data-path="neural-networks.html"><a href="neural-networks.html#backpropagation"><i class="fa fa-check"></i><b>25.2</b> Backpropagation</a></li>
+<li class="chapter" data-level="25.3" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---more-inputs"><i class="fa fa-check"></i><b>25.3</b> Neural Network - More inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="deep-learning.html"><a href="deep-learning.html"><i class="fa fa-check"></i><b>26</b> Deep Learning</a></li>
+<li class="chapter" data-level="27" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html"><i class="fa fa-check"></i><b>27</b> Graphical Network Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
+<li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
+<li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#precision-matrix"><i class="fa fa-check"></i><b>27.4</b> Precision Matrix</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.5</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.6" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.6</b> Regularized Covariance Matrix</a></li>
+<li class="chapter" data-level="27.7" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#multivariate-gaussian-distribution"><i class="fa fa-check"></i><b>27.7</b> Multivariate Gaussian Distribution</a></li>
+<li class="chapter" data-level="27.8" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#high-dimensional-data"><i class="fa fa-check"></i><b>27.8</b> High-dimensional data</a></li>
+<li class="chapter" data-level="27.9" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#ridge-ell_2-and-glasso-ell_1"><i class="fa fa-check"></i><b>27.9</b> Ridge (<span class="math inline">\(\ell_{2}\)</span>) and glasso (<span class="math inline">\(\ell_{1}\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="decompositions.html"><a href="decompositions.html#matrix-decomposition"><i class="fa fa-check"></i><b>28.1</b> Matrix Decomposition</a></li>
+<li class="chapter" data-level="28.2" data-path="decompositions.html"><a href="decompositions.html#eigenvectors-and-eigenvalues"><i class="fa fa-check"></i><b>28.2</b> Eigenvectors and eigenvalues</a></li>
+<li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#rankr-approximations"><i class="fa fa-check"></i><b>28.4</b> Rank(r) Approximations</a></li>
+<li class="chapter" data-level="28.5" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.5</b> Moore-Penrose inverse</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html"><i class="fa fa-check"></i><b>29</b> PCA (Principle Component Analysis)</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.1</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="smoothing.html"><a href="smoothing.html#using-bins"><i class="fa fa-check"></i><b>30.1</b> Using bins</a></li>
+<li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#kernel-smoothing"><i class="fa fa-check"></i><b>30.2</b> Kernel smoothing</a></li>
+<li class="chapter" data-level="30.3" data-path="smoothing.html"><a href="smoothing.html#locally-weighted-regression-loess"><i class="fa fa-check"></i><b>30.3</b> Locally weighted regression <code>loess()</code></a></li>
+<li class="chapter" data-level="30.4" data-path="smoothing.html"><a href="smoothing.html#smooth-spline-regression"><i class="fa fa-check"></i><b>30.4</b> Smooth Spline Regression</a></li>
+<li class="chapter" data-level="30.5" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.5</b> Multivariate Loess</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="imbalanced-data.html"><a href="imbalanced-data.html#smote"><i class="fa fa-check"></i><b>31.1</b> <code>SMOTE</code></a></li>
+<li class="chapter" data-level="31.2" data-path="imbalanced-data.html"><a href="imbalanced-data.html#fraud-detection"><i class="fa fa-check"></i><b>31.2</b> Fraud detection</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>32</b> Text Analysis</a></li>
+<li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#other-nonparametric-estimation-methods-1"><i class="fa fa-check"></i><b>33.1</b> Other Nonparametric Estimation methods</a></li>
+<li class="chapter" data-level="33.2" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.2</b> Regression splines</a></li>
+<li class="chapter" data-level="33.3" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#mars"><i class="fa fa-check"></i><b>33.3</b> MARS</a></li>
+<li class="chapter" data-level="33.4" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#gam"><i class="fa fa-check"></i><b>33.4</b> GAM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/mutluyuk/machinemetrics" target="blank">2023 Initial Draft</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MachineMetrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bias-variance-trade-off" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Bias-Variance Trade-off<a href="bias-variance-trade-off.html#bias-variance-trade-off" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We already discuss bias and variance of estimator, and decomposition of MSE for estimation above in MSE section. Now, Lets discuss what is bias and variance and trade-off between them in predictive models. To remind,our task is prediction of an outcome, Y using the data (more accurately test/train data) .</p>
+<p>To “predict” Y using features X, means to find some <span class="math inline">\(f\)</span> which is close to <span class="math inline">\(Y\)</span>. We assume that <span class="math inline">\(Y\)</span> is some function of <span class="math inline">\(X\)</span> plus some random noise.</p>
+<p><span class="math display">\[Y=f(X)+ ϵ\]</span>
+However, we can never know real <span class="math inline">\(f(X)\)</span>. Thus our goal becomes to finding some <span class="math inline">\(\hat{f(X)}\)</span> that is a good estimate of the regression function <span class="math inline">\(f(X)\)</span>. There will be always difference between real <span class="math inline">\(f(X)\)</span> and <span class="math inline">\(\hat{f(X)}\)</span>. That difference is called reducible error. We find a good estimate of <span class="math inline">\(f(X)\)</span> by reducing the expected mean square of error of test data as much as possible. Thus, we can write</p>
+<p><strong>MSE for prediction function using training data</strong> (for test data, validation sample):</p>
+<p><span class="math display">\[
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(\mathbb{E}[\hat{f}(x)]-f(x))^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+\]</span></p>
+<p>Then,</p>
+<p><strong>Mean Square Prediction Error</strong> can be written as:</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+\]</span>
+<span class="math inline">\(\sigma^{2}=E[\varepsilon^{2}]\)</span></p>
+<p>Expected mean-squared prediction error (MSPE) on the validation/training sample is sum of squared bias of the fit and variance of the fit and variance of the error.</p>
+<p><strong>Variance</strong> is the amount by which <span class="math inline">\(\hat{f(X)}\)</span> could change if we estimated it using different test/training data set. <span class="math inline">\(\hat{f(X)}\)</span> depends on the training data. (More complete notation would be <span class="math inline">\(\hat{f}(X; Y_{train},X_{train})\)</span> )If the <span class="math inline">\(\hat{f(X)}\)</span> is less complex/less flexible, then it is more likely to change if we use different samples to estimate it. However, if <span class="math inline">\(\hat{f(X)}\)</span> is more complex/more flexible function, then it is more likely to change between different test samples.</p>
+<p>For instance, Lets assume we have a data set (test or training data) and we want to “predict” Y using features X, thus estimate function <span class="math inline">\(f(X)\)</span>. and lets assume we have 1-degree and 10-degree polynomial functions as a potential prediction functions. We say <span class="math inline">\(\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X\)</span> is less complex than 10-degree polynomial <span class="math inline">\(\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X...+ \hat{\beta_{10}} X^{10}\)</span> function. As, 10-degree polynomial function has more parameters <span class="math inline">\(\beta_{0},..\beta_{10}\)</span>, it is more flexible. That also means it has high variance (As it has more parameters, all these parameters are more inclined to have different values in different training data sets). Thus, a prediction function has high variance if it can change substantially when we use different training samples to estimate <span class="math inline">\(f(X)\)</span>. We can also say less flexible functions (functions with less parameters) have low variance. Low variance functions are less likely to change when we use different training sample or adding new data to the test sample. We will show all these with simulation in overfitting chapter as well.</p>
+<p><strong>Bias</strong> is the difference between the real! prediction function and expected estimated function. If the <span class="math inline">\(\hat{f(X)}\)</span> is less flexible, then it is more likely to have higher bias. We can think this as real function(reality) is always more complex than the function approximates the reality. So, it is more prone to have higher error, i.e. more bias.<br />
+In the context of regression, Parametric models are biased when the form of the model does not incorporate all the necessary variables, or the form of the relationship is too simple. For example, a parametric model assumes a linear relationship, but the true relationship is quadratic. In non-parametric models when the model provides too much smoothing.</p>
+<p>There is a bias-variance tradeoff. That is, often, the more bias in our estimation, the lesser the variance. Similarly, less variance is often accompanied by more bias. Flexible(i.e. complex) models tend to be unbiased, but highly variable. Simple models are often extremely biased, but have low variance.</p>
+<p>So for us, to select a model that appropriately balances the tradeoff between bias and variance, and thus minimizes the reducible error, we need to select a model of the appropriate flexibility for the data. However, this selected model should not overfit the data as well which we will discuss in the next section.</p>
+<p><a href="https://threadreaderapp.com/thread/1584515105374339073.html" class="uri">https://threadreaderapp.com/thread/1584515105374339073.html</a></p>
+<p><a href="https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance" class="uri">https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance</a></p>
+<p>Although conceptually the variance-bias trade-off seems intuitive, at least mathematically, we need to ask another practical question: Can we see the components of the decomposed MSPE? We may not see it in the actual data ( as we donot know real function and irreducible error) but we can show it with simulations.</p>
+<p>We will use the same example we worked with before. We have years of schooling , which changes between 9 and 16. We sample from this “population” multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="bias-variance-trade-off.html#cb35-1" tabindex="-1"></a><span class="co"># Here is our population</span></span>
+<span id="cb35-2"><a href="bias-variance-trade-off.html#cb35-2" tabindex="-1"></a>populationX <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>)</span>
+<span id="cb35-3"><a href="bias-variance-trade-off.html#cb35-3" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="bias-variance-trade-off.html#cb35-4" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="bias-variance-trade-off.html#cb35-5" tabindex="-1"></a><span class="co">#Let&#39;s have a containers to have repeated samples (2000)</span></span>
+<span id="cb35-6"><a href="bias-variance-trade-off.html#cb35-6" tabindex="-1"></a>Ms <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb35-7"><a href="bias-variance-trade-off.html#cb35-7" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">10</span>)</span>
+<span id="cb35-8"><a href="bias-variance-trade-off.html#cb35-8" tabindex="-1"></a><span class="fu">colnames</span>(samples) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;X3&quot;</span>, <span class="st">&quot;X4&quot;</span>, <span class="st">&quot;X5&quot;</span>, <span class="st">&quot;X6&quot;</span>, <span class="st">&quot;X7&quot;</span>, <span class="st">&quot;X8&quot;</span>, <span class="st">&quot;X9&quot;</span>, <span class="st">&quot;X10&quot;</span>)</span>
+<span id="cb35-9"><a href="bias-variance-trade-off.html#cb35-9" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="bias-variance-trade-off.html#cb35-10" tabindex="-1"></a><span class="co"># Let&#39;s have samples (with replacement always)</span></span>
+<span id="cb35-11"><a href="bias-variance-trade-off.html#cb35-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb35-12"><a href="bias-variance-trade-off.html#cb35-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)) {</span>
+<span id="cb35-13"><a href="bias-variance-trade-off.html#cb35-13" tabindex="-1"></a>  samples[i,] <span class="ot">&lt;-</span> <span class="fu">sample</span>(populationX, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-14"><a href="bias-variance-trade-off.html#cb35-14" tabindex="-1"></a>}</span>
+<span id="cb35-15"><a href="bias-variance-trade-off.html#cb35-15" tabindex="-1"></a><span class="fu">head</span>(samples)</span></code></pre></div>
+<pre><code>##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13</code></pre>
+<p>Now, Let’s use our predictors:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="bias-variance-trade-off.html#cb37-1" tabindex="-1"></a><span class="co"># Container to record all predictions</span></span>
+<span id="cb37-2"><a href="bias-variance-trade-off.html#cb37-2" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">2</span>)</span>
+<span id="cb37-3"><a href="bias-variance-trade-off.html#cb37-3" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="bias-variance-trade-off.html#cb37-4" tabindex="-1"></a><span class="co"># fhat_1 = 9</span></span>
+<span id="cb37-5"><a href="bias-variance-trade-off.html#cb37-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb37-6"><a href="bias-variance-trade-off.html#cb37-6" tabindex="-1"></a>  predictions[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb37-7"><a href="bias-variance-trade-off.html#cb37-7" tabindex="-1"></a>}</span>
+<span id="cb37-8"><a href="bias-variance-trade-off.html#cb37-8" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="bias-variance-trade-off.html#cb37-9" tabindex="-1"></a><span class="co"># fhat_2 - mean</span></span>
+<span id="cb37-10"><a href="bias-variance-trade-off.html#cb37-10" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb37-11"><a href="bias-variance-trade-off.html#cb37-11" tabindex="-1"></a>  predictions[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">sum</span>(samples[i,])<span class="sc">/</span><span class="fu">length</span>(samples[i,])</span>
+<span id="cb37-12"><a href="bias-variance-trade-off.html#cb37-12" tabindex="-1"></a>}</span>
+<span id="cb37-13"><a href="bias-variance-trade-off.html#cb37-13" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="bias-variance-trade-off.html#cb37-14" tabindex="-1"></a><span class="fu">head</span>(predictions)</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]   10 12.4
+## [2,]   10 12.1
+## [3,]   10 11.4
+## [4,]   10 12.0
+## [5,]   10 12.3
+## [6,]   10 12.6</code></pre>
+<p>Now let’s have our MSPE decomposition:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="bias-variance-trade-off.html#cb39-1" tabindex="-1"></a><span class="co"># MSPE</span></span>
+<span id="cb39-2"><a href="bias-variance-trade-off.html#cb39-2" tabindex="-1"></a>MSPE <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">2</span>)</span>
+<span id="cb39-3"><a href="bias-variance-trade-off.html#cb39-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb39-4"><a href="bias-variance-trade-off.html#cb39-4" tabindex="-1"></a>  MSPE[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="sc">-</span>predictions[i,<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb39-5"><a href="bias-variance-trade-off.html#cb39-5" tabindex="-1"></a>  MSPE[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="sc">-</span>predictions[i,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb39-6"><a href="bias-variance-trade-off.html#cb39-6" tabindex="-1"></a>}</span>
+<span id="cb39-7"><a href="bias-variance-trade-off.html#cb39-7" tabindex="-1"></a><span class="fu">head</span>(MSPE)</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] 11.5 5.26
+## [2,] 11.5 5.41
+## [3,] 11.5 6.46
+## [4,] 11.5 5.50
+## [5,] 11.5 5.29
+## [6,] 11.5 5.26</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="bias-variance-trade-off.html#cb41-1" tabindex="-1"></a><span class="co"># Bias</span></span>
+<span id="cb41-2"><a href="bias-variance-trade-off.html#cb41-2" tabindex="-1"></a>bias1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(populationX)<span class="sc">-</span><span class="fu">mean</span>(predictions[,<span class="dv">1</span>])</span>
+<span id="cb41-3"><a href="bias-variance-trade-off.html#cb41-3" tabindex="-1"></a>bias2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(populationX)<span class="sc">-</span><span class="fu">mean</span>(predictions[,<span class="dv">2</span>])</span>
+<span id="cb41-4"><a href="bias-variance-trade-off.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="bias-variance-trade-off.html#cb41-5" tabindex="-1"></a><span class="co"># Variance (predictor)</span></span>
+<span id="cb41-6"><a href="bias-variance-trade-off.html#cb41-6" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(predictions[,<span class="dv">1</span>])</span>
+<span id="cb41-7"><a href="bias-variance-trade-off.html#cb41-7" tabindex="-1"></a>var1</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="bias-variance-trade-off.html#cb43-1" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(predictions[,<span class="dv">2</span>])</span>
+<span id="cb43-2"><a href="bias-variance-trade-off.html#cb43-2" tabindex="-1"></a>var2</span></code></pre></div>
+<pre><code>## [1] 0.5385286</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="bias-variance-trade-off.html#cb45-1" tabindex="-1"></a><span class="co"># Variance (epsilon)</span></span>
+<span id="cb45-2"><a href="bias-variance-trade-off.html#cb45-2" tabindex="-1"></a>var_eps <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="fl">-12.5</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb45-3"><a href="bias-variance-trade-off.html#cb45-3" tabindex="-1"></a>var_eps</span></code></pre></div>
+<pre><code>## [1] 5.25</code></pre>
+<p>Let’s put them in a table:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="bias-variance-trade-off.html#cb47-1" tabindex="-1"></a>VBtradeoff <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb47-2"><a href="bias-variance-trade-off.html#cb47-2" tabindex="-1"></a><span class="fu">rownames</span>(VBtradeoff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;fhat_1&quot;</span>, <span class="st">&quot;fhat_2&quot;</span>)</span>
+<span id="cb47-3"><a href="bias-variance-trade-off.html#cb47-3" tabindex="-1"></a><span class="fu">colnames</span>(VBtradeoff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bias&quot;</span>, <span class="st">&quot;Var(fhat)&quot;</span>, <span class="st">&quot;Var(eps)&quot;</span>, <span class="st">&quot;MSPE&quot;</span>)</span>
+<span id="cb47-4"><a href="bias-variance-trade-off.html#cb47-4" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> bias1<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb47-5"><a href="bias-variance-trade-off.html#cb47-5" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> bias2<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb47-6"><a href="bias-variance-trade-off.html#cb47-6" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> var1</span>
+<span id="cb47-7"><a href="bias-variance-trade-off.html#cb47-7" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> var2</span>
+<span id="cb47-8"><a href="bias-variance-trade-off.html#cb47-8" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> var_eps</span>
+<span id="cb47-9"><a href="bias-variance-trade-off.html#cb47-9" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> var_eps</span>
+<span id="cb47-10"><a href="bias-variance-trade-off.html#cb47-10" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(MSPE[,<span class="dv">1</span>])</span>
+<span id="cb47-11"><a href="bias-variance-trade-off.html#cb47-11" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(MSPE[,<span class="dv">2</span>])</span>
+<span id="cb47-12"><a href="bias-variance-trade-off.html#cb47-12" tabindex="-1"></a><span class="fu">round</span>(VBtradeoff, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##        Bias Var(fhat) Var(eps)   MSPE
+## fhat_1 6.25     0.000     5.25 11.500
+## fhat_2 0.00     0.539     5.25  5.788</code></pre>
+<p>This table clearly shows the decomposition of MSPE. The first column is the contribution to the MSPE from the bias, and the second column is the contribution from the variance of the predictor. These together make up the reducible error. The third column is the variance that comes from the data, the irreducible error. The last column is, of course, the total MSPE, and we can see that <span class="math inline">\(\hat{f}_2\)</span> is the better predictor because of its lower MSPE.</p>
+<div id="biased-estimator-as-a-predictor" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Biased estimator as a predictor<a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Upto this point, we showed in the simulation prediction function with zero bias but high variance produce better prediction than the prediction function with zero variance but high bias. However, we can obtain better prediction function which has some bias and some variance. Better prediction function means smaller MSPE. Thus if the decline in variance would be more than then the bias in the second prediction function, then we have better predictor.<br />
+Lets show this with equation first and then with simulation.</p>
+<p>We saw earlier that <span class="math inline">\(\bar{X}\)</span> is a better estimator. Now, Let’s define a biased estimator of <span class="math inline">\(\mu_x\)</span>:</p>
+<p><span class="math display">\[
+\hat{X}_{biased} = \hat{\mu}_x=\alpha \bar{X}
+\]</span></p>
+<p>The sample mean <span class="math inline">\(\bar{X}\)</span> is an unbiased estimator of <span class="math inline">\(\mu_x\)</span>. The magnitude of the bias is <span class="math inline">\(\alpha\)</span> and as it goes to 1, the bias becomes zero. As before, we are given one sample with three observations from the same distribution (population). We want to guess the value of a new data point from the same distribution. We will make the prediction with the best predictor which has the minimum MSPE. By using the same decomposition we can show that:</p>
+<p><span class="math display">\[
+\hat{\mu}_x=\alpha \bar{X}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{E}[\hat{\mu}_x]=\alpha \mu_x
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{MSPE}=[(1-\alpha) \mu_x]^{2}+\frac{1}{n} \alpha^{2} \sigma_{\varepsilon}^{2}+\sigma_{\varepsilon}^{2}
+\]</span></p>
+<p>Our first observation is that when <span class="math inline">\(\alpha\)</span> is one, the bias will be zero. Since it seems that MSPE is a convex function of <span class="math inline">\(\alpha\)</span>, we can search for <span class="math inline">\(\alpha\)</span> that minimizes MSPE. The first-order-condition would give us the solution:</p>
+<p><span class="math display">\[
+\frac{\partial \mathbf{MSPE}}{\partial \alpha} =0 \rightarrow ~~ \alpha = \frac{\mu^2_x}{\mu^2_x+\sigma^2_\varepsilon/n}&lt;1
+\]</span></p>
+<p>Using the same simulation sample above , lets calculate alpha and MSPE with this new biased prediction function, and compare all 3 MSPEs.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="bias-variance-trade-off.html#cb49-1" tabindex="-1"></a>pred <span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">0</span>, Ms)</span>
+<span id="cb49-2"><a href="bias-variance-trade-off.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="bias-variance-trade-off.html#cb49-3" tabindex="-1"></a><span class="co"># The magnitude of bias</span></span>
+<span id="cb49-4"><a href="bias-variance-trade-off.html#cb49-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> (<span class="fu">mean</span>(populationX))<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>((<span class="fu">mean</span>(populationX)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>var_eps<span class="sc">/</span><span class="dv">10</span>))</span>
+<span id="cb49-5"><a href="bias-variance-trade-off.html#cb49-5" tabindex="-1"></a>alpha</span></code></pre></div>
+<pre><code>## [1] 0.9966513</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="bias-variance-trade-off.html#cb51-1" tabindex="-1"></a><span class="co"># Biased predictor</span></span>
+<span id="cb51-2"><a href="bias-variance-trade-off.html#cb51-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb51-3"><a href="bias-variance-trade-off.html#cb51-3" tabindex="-1"></a>  pred[i] <span class="ot">&lt;-</span> alpha<span class="sc">*</span>predictions[i,<span class="dv">2</span>]</span>
+<span id="cb51-4"><a href="bias-variance-trade-off.html#cb51-4" tabindex="-1"></a>}</span>
+<span id="cb51-5"><a href="bias-variance-trade-off.html#cb51-5" tabindex="-1"></a><span class="co"># Check if E(alpha*Xbar) = alpha*mu_x</span></span>
+<span id="cb51-6"><a href="bias-variance-trade-off.html#cb51-6" tabindex="-1"></a><span class="fu">mean</span>(pred)</span></code></pre></div>
+<pre><code>## [1] 12.45708</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bias-variance-trade-off.html#cb53-1" tabindex="-1"></a>alpha<span class="sc">*</span><span class="fu">mean</span>(populationX)</span></code></pre></div>
+<pre><code>## [1] 12.45814</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="bias-variance-trade-off.html#cb55-1" tabindex="-1"></a><span class="co"># MSPE</span></span>
+<span id="cb55-2"><a href="bias-variance-trade-off.html#cb55-2" tabindex="-1"></a>MSPE_biased <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, Ms)</span>
+<span id="cb55-3"><a href="bias-variance-trade-off.html#cb55-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb55-4"><a href="bias-variance-trade-off.html#cb55-4" tabindex="-1"></a>  MSPE_biased[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="sc">-</span>pred[i])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb55-5"><a href="bias-variance-trade-off.html#cb55-5" tabindex="-1"></a>}</span>
+<span id="cb55-6"><a href="bias-variance-trade-off.html#cb55-6" tabindex="-1"></a><span class="fu">mean</span>(MSPE_biased)</span></code></pre></div>
+<pre><code>## [1] 5.786663</code></pre>
+<p>Let’s add this predictor into our table:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="bias-variance-trade-off.html#cb57-1" tabindex="-1"></a>VBtradeoff <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb57-2"><a href="bias-variance-trade-off.html#cb57-2" tabindex="-1"></a><span class="fu">rownames</span>(VBtradeoff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;fhat_1&quot;</span>, <span class="st">&quot;fhat_2&quot;</span>, <span class="st">&quot;fhat_3&quot;</span>)</span>
+<span id="cb57-3"><a href="bias-variance-trade-off.html#cb57-3" tabindex="-1"></a><span class="fu">colnames</span>(VBtradeoff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bias&quot;</span>, <span class="st">&quot;Var(fhat)&quot;</span>, <span class="st">&quot;Var(eps)&quot;</span>, <span class="st">&quot;MSPE&quot;</span>)</span>
+<span id="cb57-4"><a href="bias-variance-trade-off.html#cb57-4" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> bias1<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb57-5"><a href="bias-variance-trade-off.html#cb57-5" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> bias2<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb57-6"><a href="bias-variance-trade-off.html#cb57-6" tabindex="-1"></a>VBtradeoff[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> (<span class="fu">mean</span>(populationX)<span class="sc">-</span><span class="fu">mean</span>(pred))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb57-7"><a href="bias-variance-trade-off.html#cb57-7" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> var1</span>
+<span id="cb57-8"><a href="bias-variance-trade-off.html#cb57-8" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> var2</span>
+<span id="cb57-9"><a href="bias-variance-trade-off.html#cb57-9" tabindex="-1"></a>VBtradeoff[<span class="dv">3</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">var</span>(pred)</span>
+<span id="cb57-10"><a href="bias-variance-trade-off.html#cb57-10" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> var_eps</span>
+<span id="cb57-11"><a href="bias-variance-trade-off.html#cb57-11" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> var_eps</span>
+<span id="cb57-12"><a href="bias-variance-trade-off.html#cb57-12" tabindex="-1"></a>VBtradeoff[<span class="dv">3</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> var_eps</span>
+<span id="cb57-13"><a href="bias-variance-trade-off.html#cb57-13" tabindex="-1"></a>VBtradeoff[<span class="dv">1</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(MSPE[,<span class="dv">1</span>])</span>
+<span id="cb57-14"><a href="bias-variance-trade-off.html#cb57-14" tabindex="-1"></a>VBtradeoff[<span class="dv">2</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(MSPE[,<span class="dv">2</span>])</span>
+<span id="cb57-15"><a href="bias-variance-trade-off.html#cb57-15" tabindex="-1"></a>VBtradeoff[<span class="dv">3</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(MSPE_biased)</span>
+<span id="cb57-16"><a href="bias-variance-trade-off.html#cb57-16" tabindex="-1"></a><span class="fu">round</span>(VBtradeoff, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##         Bias Var(fhat) Var(eps)   MSPE
+## fhat_1 6.250     0.000     5.25 11.500
+## fhat_2 0.000     0.539     5.25  5.788
+## fhat_3 0.002     0.535     5.25  5.787</code></pre>
+<p>As seen , increase in bias is lower than decrease in variance. The prediction function with some bias and variance is the <strong>best prediction function</strong> as it has the smallest MSPE.
+This example shows the difference between estimation and prediction for a simplest predictor, the mean of <span class="math inline">\(X\)</span>. We will see a more complex example when we have a regression later.</p>
+<p>Another simulation examples are
+<a href="https://blog.zenggyu.com/en/post/2018-03-11/understanding-the-bias-variance-decomposition-with-a-simulated-experiment/" class="uri">https://blog.zenggyu.com/en/post/2018-03-11/understanding-the-bias-variance-decomposition-with-a-simulated-experiment/</a></p>
+<p><a href="https://www.r-bloggers.com/2019/06/simulating-the-bias-variance-tradeoff-in-r/" class="uri">https://www.r-bloggers.com/2019/06/simulating-the-bias-variance-tradeoff-in-r/</a></p>
+<p>use this to create education-income simulation
+<a href="https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html" class="uri">https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="overfitting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mutluyuk/machinemetrics/edit/master/06-BiasVarTradeoff.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["machinemetrics.pdf", "machinemetrics.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

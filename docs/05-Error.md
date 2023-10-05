@@ -1,0 +1,642 @@
+
+
+# Error
+
+Lets assume you want to find an average years of schooling of all the people who reside in your city. In another words, you want to find mean of years of schooling of the population in your city. Most of the time gathering this information is very hard. One solution is waiting in main street and ask everyone who passes that day from there. You can say you collect data which is called the sample of the population. With this sample you can estimate this unknown parameter which is average years of schooling of the population. You need to come with a general rule about how to calculate the unknown parameter. This general rule is called estimator. You use your specific sample, i.e. realized data, to obtain specific number which is called estimate. You can collect different samples. In that case, the estimator will be same but the estimate will vary from sample to sample.Ideally you want the estimator from your sample will be equal to the real (unknown) parameter. As you will never know the real parameter, we use statistical properties to assume that your estimate is that parameter. Main assumption/requirement is you want a representative sample and to find unbiased estimator. However, you may have infinite number of unbiased estimators. Which one is the best unbiased estimator? There will be always some difference between the estimated value and the actual value of population characteristics. That difference is called as **error**. Specifically, this is called **estimation error** as this error is related with an estimation of a parameter. 
+
+With the data in your hand, you may want to predict the specific individual or groups years of schooling. Using predictive methods, you will obtain a specific value. But that value will contain an error. In that case, this is called **prediction error** as this is related with a prediction of an outcome. With the advent of statistical/machine learning techniques, people are talking a lot about prediction error, while in classical statistics, one is focusing on parameter estimation error.
+
+suppose you have X , there is error when you want to find mean X
+parameter error, estimation error for coefficients
+prediction error is related with function
+irreducible and reducible error
+training error vs test data error (for prediction functions)
+measurement error ?
+
+different ways to find/min. errors. median, etc.
+error in classification, error in regression in ml
+below we will discuss estimation error and prediction error
+
+**Reminder:** 
+
+Assuming a true linear model $y=X \beta_0+\varepsilon$, estimate $\hat{\beta}$ and prediction $\hat{y}=X \hat{\beta}$. One can define, with $\|$.$\|$ the mean square error norm for example:
+
+- Estimation error: $\|\beta-\hat{\beta}\|$
+
+- Prediction error: $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
+
+
+
+
+## Estimation error - MSE
+
+Let's simulate the situation people report 9 years of education if the finished only compulsory schooling, or 12 years if the graduated from high school, or 16 years if they are college graduate. Assume, people report their years of schooling is any discrete year between 9 to 16.  Lets assume each of our 10 different sample consist of 5000 individuals.
+
+The task is to **estimate an unknown population parameter**, say $\theta$, which could be a simple mean of $X$, $\mu_x$, or more complex slope coefficient of an unknown DGM, $\beta$.  Since we have only a random sample from the population, and because that sample could be unrepresentative of the population, or measurement error, we cannot say that $\hat{\theta}$ is equal to $\theta$.  Hence, we call $\hat{\theta}$ as an estimator of $\theta$.  
+
+We need to pick the best estimator to estimate $\theta$ among many possible estimators.
+In this simulation, we can use 3 different estimator if we want to estimate $\mu_x$.
+First, we could use the average of years of schooling for everyone who reported it,    
+
+$$
+\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}
+$$
+or alternatively, we can just take the half of the first person's and last person's years of schooling, 
+
+$$
+\hat{X}=0.5 x_{1}+0.5x_{n}
+$$
+or alternatively, we can just use weighted average of first person and the last person's schooling. We can assign weight as 0.25 for the first person, and 1-0.25=0.75 for the last person, (you will find unbiased estimator when you assign any values as long as the sum is 1) 
+
+$$ 
+  \tilde{X}=0.25 x_{1}+0.75x_{2}
+$$
+ 
+ 
+Therefore, we need to define what makes an estimator the "best" among others.  As we have seen before, the sampling distribution, which is the probability distribution of all possible **estimates** obtained from repeated sampling, would help us develop some principles. The first and the most important criteria should be that the expected mean of all estimates obtained from repeated samples should be equal to $\mu_x$.  Any estimator satisfying this condition is called as an **unbiased** estimator.  
+
+However, if $x$'s are independently and identically distributed (i.i.d), it can be shown that those two estimators, $\bar{X}$ and $\hat{X}$ are both unbiased.  That is $\mathbf{E}(\bar{X})=\mu_x$ and $\mathbf{E}(\hat{X})=\mu_x$.  Although, it would be easy to obtain the algebraic proof, a simulation exercise can help us visualize it.  
+
+ 
+
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+#Let's have a containers to have repeated samples (5000)
+samples <- matrix(0, 5000, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+  
+ Each row below is displaying the first 6 results of 5000 random samples drawn from the sample of the population.  Each column shows the order of random draws, that is $x_1, x_2, x_3$. We know the population $\mu_x$ is 12.5, because this is the mean of our  values (9...16) in the population.  Knowing this, we can test the following points:  
+
+1. Is $X$ i.i.d?  An identical distribution requires $\mathbf{E}(x_1)=\mathbf{E}(x_2)=\mathbf{E}(x_3)$ and $\mathbf{Var}(x_1)=\mathbf{Var}(x_2)=\mathbf{Var}(x_3)$.  And an independent distribution requires $\mathbf{Corr}(x_i,x_j)=0$ where $i\neq{j}$.  
+2. Are the three estimators unbiased.  That is, whether $\mathbf{E}(\bar{X})= \mathbf{E}(\hat{X})= \mathbf{E}(\tilde{X}) = \mu_x$.  
+
+Let's see:  
+  
+
+```r
+library(corrplot)
+
+# Check if E(x_1)=E(x_2)=E(x_3)
+round(colMeans(samples),2)
+```
+
+```
+##    X1    X2    X3    X4    X5    X6    X7    X8    X9   X10 
+## 12.48 12.51 12.48 12.57 12.54 12.51 12.45 12.50 12.51 12.45
+```
+
+```r
+# Check if Var(x_1)=Var(x_2)=Var(x_3)
+apply(samples, 2, var)
+```
+
+```
+##       X1       X2       X3       X4       X5       X6       X7       X8 
+## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
+##       X9      X10 
+## 5.271664 5.308739
+```
+
+```r
+# Check correlation
+cor(samples)
+```
+
+```
+##                X1           X2            X3           X4           X5
+## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
+## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
+## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
+## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
+## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
+## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
+## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
+## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
+## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
+## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
+##               X6           X7            X8            X9          X10
+## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
+## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
+## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
+## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
+## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
+## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
+## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
+## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
+## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
+## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
+```
+
+```r
+# Note that if you use only unique set of samples
+# you can get exact results
+uniqsam <- unique(samples)
+colMeans(uniqsam)
+```
+
+```
+##      X1      X2      X3      X4      X5      X6      X7      X8      X9     X10 
+## 12.4802 12.5106 12.4758 12.5694 12.5352 12.5094 12.4474 12.4958 12.5138 12.4518
+```
+
+```r
+apply(uniqsam, 2, var)
+```
+
+```
+##       X1       X2       X3       X4       X5       X6       X7       X8 
+## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
+##       X9      X10 
+## 5.271664 5.308739
+```
+
+```r
+cor(uniqsam)
+```
+
+```
+##                X1           X2            X3           X4           X5
+## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
+## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
+## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
+## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
+## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
+## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
+## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
+## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
+## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
+## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
+##               X6           X7            X8            X9          X10
+## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
+## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
+## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
+## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
+## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
+## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
+## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
+## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
+## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
+## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
+```
+
+It seems that the i.i.d condition is satisfied.  Now we need to answer the second question, whether the estimators are unbiased. For this, we need to apply each estimator to each sample:  
+
+
+```r
+# First Xbar
+X_bar <- rep(0, nrow(samples)) #Container to have all Xbars
+for(i in 1:nrow(samples)){
+  X_bar[i] <- sum(samples[i,])/ncol(samples)
+}
+
+EX_bar <- sum(X_bar)/length(X_bar)
+EX_bar
+```
+
+```
+## [1] 12.49894
+```
+
+```r
+# Xhat
+X_hat <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_hat[i] <- 0.5*samples[i,1] + 0.5*samples[i,10]
+}
+
+EX_hat <- sum(X_hat)/length(X_hat)
+EX_hat
+```
+
+```
+## [1] 12.466
+```
+
+```r
+# Xtilde
+X_tilde <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_tilde[i] <- 0.25*samples[i,1] + 0.75*samples[i,2]
+}
+
+EX_tilde <- sum(X_tilde)/length(X_tilde)
+EX_tilde
+```
+
+```
+## [1] 12.503
+```
+
+Yes, they are unbiased because $\mathbf{E}(\bar{X})\approx \mathbf{E}(\hat{X}) \approx \mathbf{E}(\tilde{X}) \approx \mu_x \approx 12.5$. (When we increase the sample size these expected values will be closer to 12.5)  As you can see, none of the averages are exact same population average. There is a difference between the estimated value and the actual value. That small difference is called **error**. Ideally, we want that difference to be zero. When number of observations in our sample get closer to our population that difference vanishes. As we can never know the actual population characteristics, we assume this error approaches to zero.
+
+
+Upto this point, we showed all 3 estimators gave us unbiased estimate. However, unbiasness is not the only desirable property. We want our estimator should give a close estimate of the population parameter with higher probability. In another words, estimators probability density function to be concentrated around true value, i.e. it should be efficient. Thus, the unbiased estimator with the smallest variance is the best estimate. Just be careful. If one estimator is more efficient than other one, it does not mean it will always give more accurate estimate, it means it is more likely to be accurate than the other one. 
+
+Let's see which one has the smallest variance in our simulation:   
+
+
+```r
+var(X_bar)
+```
+
+```
+## [1] 0.5385286
+```
+
+```r
+var(X_hat)
+```
+
+```
+## [1] 2.590462
+```
+
+```r
+var(X_tilde)
+```
+
+```
+## [1] 3.27012
+```
+  
+As seen above, the $\bar{X}$, the average of all sample, has the smallest variance.
+
+Let's summarize the important steps in estimations:  
+
+1. The main task is to estimate the population parameter using an estimator from a sample.
+2. The main requirement for a (linear) estimator is **unbiasedness**.
+3. An **unbiased** estimator is called as the **B**est **L**inear **U**nbiased **E**stimator (BLUE) of a population parameter if that estimator is **efficient** ,i.e. has the **minimum variance** among all other **unbiased** estimators.
+
+
+In the simulation above, we showed the sample average is the most efficient of the all unbiased estimators. We should use the term "Efficiency" when we compare different estimators, and when these alternative estimators use the same information (same data,same sample size)
+We cannot use it when you compare the same estimators variance obtained while using different sample sizes. Generally, the variance of an estimator decreases when sample size increases. We can not use one estimator is more efficient than another one, just because one variance is smaller than another one but these variances calculated using different sample sizes.
+So, there is always conflict between unbiasedness and the smallest possible variance.
+
+We can have 2 estimators to estimate population characteristics. First one can be unbiased but with higher variance, the other one can be biased but lower variance (figure page 31 from Dougherty book). Which estimator we choose depends on what we want. If we think errors in estimators is not a big problem, and errors will cancel is each other on average, then we may choose unbiased estimator even if it has higher variance. That is what we use nearly always in applied social sciences. You know this expected value of error term is 0, with a variance $sigma^2$. However, in some research questions, we can not tolerate large errors. Thus we need to choose an estimator with smaller variance even if it has a small bias. (We will show this in the next chapter with simulation as well)
+
+In another words, the decision of choosing the estimator depends on the cost to you of an error as a function of its size. The function that gives that cost is called **loss function** . One of the most common loss function used in social sciences is **mean square error (MSE)**
+We can define MSE as the average of the squares of the difference between the estimated value and the actual value. The MSE of the estimators could be simply used for the efficiency comparison, which includes the information of estimator variance and bias. This is called MSE criterion. The MSE can be decomposed between its variance and bias as such:
+
+$$
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+$$
+
+You can check the formal decomposition of MSE in technical point section at the end of this chapter. In typical economic models some parameters are involved, the original role of econometrics was to quantify them. So in economics/econometrics models the parameters are the core of the theory. Them carried out the causal meaning that economists looking for (or it should be so). Exactly for this reason econometrics manuals are mostly focused on concept like endogeneity and, then, bias. As the main goal is to obtain unbiased parameters, most econometrics textbook even do not discuss this decomposition. Mainly, they discuss variance or its square root, i.e. standard error.  
+
+
+**Reminder:**
+
+Assuming a true linear model $y=X \beta+\varepsilon$, we estimate $\hat{\beta_{i}}$. The Gauss-Markov theorem states that if your linear regression model satisfies the first six classical assumptions, then ordinary least squares (OLS) regression produces unbiased estimates that have the smallest variance of all possible linear estimators,i.e. OLS is BLUE.
+
+OLS Assumption 1: The regression model is linear in the coefficients and the error term.
+
+OLS Assumption 2: The error term has a population mean of zero.
+
+OLS Assumption 3: All independent variables are uncorrelated with the error term.
+
+OLS Assumption 4: Observations of the error term are uncorrelated with each other.
+
+OLS Assumption 5: The error term has a constant variance (no heteroscedasticity).
+
+OLS Assumption 6: No independent variable is a perfect linear function of other explanatory variables.
+
+OLS Assumption 7: The error term is normally distributed (optional)
+
+
+
+**Reminder:**
+
+Moreover, in practice, we have only one sample most of the time. We donot have 10 samples like in the simulation above.  We know that if the sample size is big enough (more than 50, for example), the sampling distribution would be normal according to [the Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem). In other words, if the number of observations in each sample large enough, $\bar{X} \sim N(\mu_x, \sigma^{2}/n)$ or when population variance is not known $\bar{X} \sim \mathcal{T}\left(\mu, S^{2}\right)$ where $S$ is the standard deviation of the sample and $\mathcal{T}$ is the Student's $t$-distribution.  
+
+Why is this important?  Because it works like a magic: with only one representative sample, we can **generalize** the results for the population.  We will not cover the details of interval estimation here, but by knowing $\bar{X}$ and the sample variance $S$, we can have the following interval for the $\mu_{x}$:  
+
+$$
+\left(\bar{x}-t^{*} \frac{s}{\sqrt{n}}, \bar{x}+t^{*} \frac{s}{\sqrt{n}}\right)
+$$
+  
+where $t^*$, the critical values in $t$-distribution, are usually around 1.96 for samples more than 100 observations and for the 95% confidence level.  This interval would be completely wrong or misleading if $\mathbf{E}(\bar{X}) \neq \mu_x$ and would be useless if it is very wide, which is caused by a large variance.  That's the reason why we don't like large variances.  
+
+
+## Prediction error- MSPE
+
+In the previous section, we defined mean square error (MSE), and then decomposed between its variance and bias. However, MSE differs according to whether one is describing an estimator or a predictor. We can define an estimator as a mathematical function mapping a sample of data to an estimate of a parameter of the population from which the data is sampled. We can define a predictor as a function mapping arbitrary inputs to a sample of values of some random variable. 
+
+Most common function used in social sciences is OLS. Most people are familiar with MSE of OLS function as the following.
+Predictor of least-squares fit, then the within-sample MSE of the predictor is computed as
+$$
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(Y_i-\hat{Y}_i\right)^2
+$$
+In matrix notation,
+$$
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(e_i\right)^2=\frac{1}{n} \mathbf{e}^{\top} \mathbf{e}
+$$
+where $e_i$ is $\left(Y_i-\hat{Y}_i\right)$ and $\mathbf{e}$ is the $n \times 1$ column vector.
+
+Eventhough OLS and its MSE is the most common used tools, we can use tons of other functions for prediction. Thus in this section we will define MSE for prediction for all functions. Also, **Mean Square Prediction Error** (MSPE) is more preferable term for prediction purposes.
+
+Our task is prediction of an outcome, Y (i.e. supervised learning as we know what outcome is, and regression set up when our outcome is non-binary):
+
+We assume that the response variable,Y, is some function of the features, X, plus some random noise.
+
+$$Y=f(X)+ ϵ$$
+To "predict" Y using features X, means to find some $f$ such that $f(X)$ is close to $Y$. But how do we define close? There are many ways but the most common way is minimizing the average squared error loss. Loss function is $(Y-f(X))^2$, Average square loss function is the expected value of loss function. That is called Risk function, which is $\mathbf{E}\left[(Y-f(X))^{2}\right]$. So, we can say we want to minimize risk function to "predict" Y using X. However, we can never know real $f(X)$. Thus our goal becomes to find a prediction function,$\hat{f(X)}$, which is an estimate of unknown f using the data we have. Then, there will be an expected prediction error of predicting  Y using $\hat{f(X)}$. All in all, our goal becomes to minimize the average square of this error, called as **Mean Square Prediction Error** (MSPE)
+$\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]$. A good $\hat{f(X)}$ will have a low MSPE. This error can be decomposed into two errors. The reducible error(mean squared error), which is the expected squared error loss of estimation $f(X)$ using $\hat{f(X)}$ at a fixed point $X$. The irreducible error, which is simply the variance of $Y$ given that $X=x$ ,essentially noise that we do not want to learn. 
+
+
+Reducible error: 
+
+**MSE of $\hat{f(X)}$ for a given $X=x$** (mean square error obtained with-in test/training sample))
+$$
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(f(x)-\mathbb{E}[\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+$$
+**Mean Square Prediction Error**
+$$
+\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+$$
+$\sigma^{2}=E[\varepsilon^{2}]$
+
+You can check the formal decomposition of MSPE in technical point section at the end of this chapter.
+
+(Note: if we assume our prediction function,$f(X)$, is linear then this is OLS.) 
+
+Our job is to pick a the best predictor, i.e. **predictor** that will have the minimum MSPE among alternatives.  In perfect setting, we want prediction function with zero bias and low variance to have the minimum MSPE. However, this is never happens. Unlike an **estimator**, we can accept some bias as long as the MSPE is lower.  More specifically, we can allow a predictor to have a bias if it reduces the variance more than the bias itself. 
+
+Unlike estimations, this shows that, in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss how we can achieve it in the next chapter. For instance, our predictor could be a constant, which, although it's a biased estimator, has **a zero variance**. Or our predictor could be mean of $X$ as this predictor has zero bias but it has high variance. Or we could choose predictor which has some bias and variance. We will show an example using these 3 predictors in the following simulation.
+
+We want to emphasize the difference between MSE and MSPE, and their decomposed forms between their variances and biases. Even though they look similar, they are really very different. For MSE, bias and variance comes from the parameter estimation. For MSPE, biad and variance derived from prediction functions. We try different prediction functions to find the best predictor function. Moreover, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
+
+$$
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+$$
+
+The predictor with the smallest MSPE will be our choice among other alternative predictor functions. Yet, we have another concern that leads over-fitting. We will discuss over fitting in detail later. //DISCUSS OVERFITTING HERE A BIT
+
+Let's summarize some important facts about our MSPE here:  
+
+1. $x_0$ is the number we want to predict and $\hat{f}$ is the predictor, which could be $\mathbf{E}(\bar{X})$, $\mathbf{E}(\hat{X})$, or $\mathbf{E}(\tilde{X})$ or any other predictor.
+2. $x_0 = \mu_x + \varepsilon_0$, where $f = \mu_x$.  Hence, $\mathbf{E}[x_0]=f$ so that $\mathbf{E}[\varepsilon_0]=0$.
+3. $\mathbf{E}[f]=f$.  In other words, the expected value of a constant is a constant: $\mathbf{E}[\mu_x]=\mu_x$.
+4. $\mathbf{Var}[x_0]=\mathbf{E}\left[(x_0-\mathbf{E}[x_0])^{2}\right]=\mathbf{E}\left[(x_0-f)^{2}\right]=\mathbf{E}\left[(f+\varepsilon_0-f)^{2}\right]=\mathbf{E}\left[\varepsilon_0^{2}\right]=\mathbf{Var}[\varepsilon_0]=\sigma^{2}$. (Remember that $\mathbf{E}[\varepsilon]=0$).  
+
+Note that we can use MSPE here because our example is not a classification problem.  When we have a binary outcome to predict, the loss function would have a different algebraic structure.  We will see the performance evaluation in classification problems later.  
+
+
+Let's follow the same simulation example. Our task is now different.  We want to predict the next persons years of schooling using the data we have. We want to **predict** the unobserved value of $X$ rather than to estimate $\mu_x$.  Therefore, we need a **predictor**, not an **estimator**.  
+
+To answer these questions, we need to compare MSPEs or their square roots (RMSPE) as well..  
+
+
+As we know that, most developed countries require to go to school between age 6 to 16 years old, we may predict that the years of schooling for the individual is 10 years.
+or we can use the average years of schooling in our data as a good predictor for the next individuals schooling level. Thus we have 2 prediction function. First one is a constant, 10, which has bias but zero variance. The other one is mean of our sample for each observation (average of each row), which has smaller bias and higher variance. For simplicity, we can use 1 sample which consist from 5000 individuals in this simulation.
+
+The two predictors are $\hat{f}_1 = 10$ and $\hat{f}_2 = \bar{X}$:  
+
+We will use the same example we worked with before.  We sample from this "population" multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.
+
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+
+#Let's have a containers to have repeated samples (2000)
+Ms <- 5000
+samples <- matrix(0, Ms, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+
+As you see, this is the same sample with the previous simulation. You can change the data either setting different values in the seed or changing the sammple size, Ms.  Now, Let's use our predictors and find MSPEs: 
+
+
+```r
+# Container to record all predictions
+predictions <- matrix(0, Ms, 2)
+
+# fhat_1 = 10
+for (i in 1:Ms) {
+  predictions[i,1] <- 10
+}
+
+# fhat_2 - mean
+for (i in 1:Ms) {
+  predictions[i,2] <- sum(samples[i,])/length(samples[i,])
+}
+
+head(predictions)
+```
+
+```
+##      [,1] [,2]
+## [1,]   10 12.4
+## [2,]   10 12.1
+## [3,]   10 11.4
+## [4,]   10 12.0
+## [5,]   10 12.3
+## [6,]   10 12.6
+```
+  
+
+```r
+# MSPE
+MSPE <- matrix(0, Ms, 2)
+for (i in 1:Ms) {
+  MSPE[i,1] <- mean((populationX-predictions[i,1])^2)
+  MSPE[i,2] <- mean((populationX-predictions[i,2])^2)
+}
+head(MSPE)
+```
+
+```
+##      [,1] [,2]
+## [1,] 11.5 5.26
+## [2,] 11.5 5.41
+## [3,] 11.5 6.46
+## [4,] 11.5 5.50
+## [5,] 11.5 5.29
+## [6,] 11.5 5.26
+```
+ 
+  
+
+```r
+colMeans(MSPE)
+```
+
+```
+## [1] 11.500000  5.788422
+```
+  
+The MSPE of the t $\hat{f}_2$ prediction function is the better as its MSPE is smaller than the other prediction function.  
+
+What makes a good predictor?  Is being unbiased predictor one of the required property?  would being a biased estimator make it automatically a bad predictor?  in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss this trade-off in the next chapter.  We will also show it by using the same simulation.
+
+
+## Technical points about MSE and MSPE
+
+**The formal decomposition of MSE**
+
+The MSE of an estimator $\hat{\theta}$ with respect to an unknown parameter $\theta$  is defined as  
+
+$$
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\mathbf{E}(\hat{\theta}))^{2}\right]
+$$
+  
+Since we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  Hence, evaluating the performance of all alternative **unbiased** estimators by MSE is actually comparing their variances and picking up the smallest one. More specifically,
+
+\begin{equation}
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^{2}\right]=\mathbf{E}\left\{\left(\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)+\mathbf{E}\left(\hat{\theta}\right)-\theta\right)^{2}\right\}
+  (\#eq:3-1)
+\end{equation} 
+
+$$
+=\mathbf{E}\left\{\left(\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]+\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right)^{2}\right\}
+$$
+
+\begin{equation}
+\begin{aligned}
+=& \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]^{2}\right\} \\
+&+2 \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right\}
+\end{aligned}
+  (\#eq:3-2)
+\end{equation} 
+  
+The first term in 3.2 is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, which represents the bias.  The last term is zero.  This is because $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, therefore it is again outside of expectations:  
+
+$$
+2\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right] \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\right\},
+$$
+and the last term is zero since $\mathbf{E}(\hat{\theta})-\mathbf{E}(\hat{\theta}) = 0$.  Hence,  
+
+$$
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+$$
+
+Because we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  In our case, the estimator can be $\hat{\theta}=\bar{X}$ and what we try to estimate $\theta = \mu_x$.   
+
+**The formal decomposition of MSPE**
+
+ let's look at MSPE closer. We will drop the subscript $0$ to keep the notation simple.  With a trick, adding and subtracting $\mathbf{E}(\hat{f})$, MSPE becomes 
+
+$$
+\mathbf{MSPE}=\mathbf{E}\left[(x-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f}+\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}])^{2}\right]
+$$
+$$
+=\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]+2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]+\\2 \mathbf{E}[(\mathbf{E}[\hat{f}]-\hat{f})(f-\mathbf{E}[\hat{f}])],
+$$
+  
+which can be simplified with the following few steps:  
+
+1. The first term, $\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]$, is $(f-\mathbf{E}[\hat{f}])^{2}$, because $(f-\mathbf{E}[\hat{f}])^{2}$ is a constant.
+2. Similarly, the same term, $(f-\mathbf{E}[\hat{f}])^{2}$ is in the $4^{th}$ term.  Hence, $2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]$ can be written as $2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]$.    
+3. Finally, the $5^{th}$ term, $2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]$ can be written as $2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$.  (Note that $\varepsilon$ and $\hat{f}$ are independent)
+
+As a result we have:  
+$$
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]+2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]+\\2 \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}](f-\mathbf{E}[\hat{f}])
+$$
+
+The $4^{th}$ and the $5^{th}$ terms are zero because $\mathbf{E}[\varepsilon]=0$.  The last term is also zero because $\mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$ is $\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}]$.  Hence, we have:  
+
+$$
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]
+$$
+
+Let's look at the second term first.  It's **irreducible error** because it comes with the data.  Thus, we can write:
+
+\begin{equation}
+\mathbf{MSPE}=(\mu_x-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{Var}\left[x\right]
+  (\#eq:3-4)
+\end{equation} 
+
+
+The first term of 3.4 is the bias squared.  It would be zero for an unbiased estimator, that is, if $\mathbf{E}[\hat{f}]=\mu_x.$  The second term is the variance of the estimator.  For example, if the predictor is $\bar{X}$ it would be $\mathbf{E}\left[(\bar{X} -\mathbf{E}[\bar{X}])^{2}\right]$.  Hence the variance comes from the sampling distribution.
+
+$$
+\mathbf{MSPE}=\mathbf{Bias}[\hat{f}]^{2}+\mathbf{Var}[\hat{f}]+\sigma^{2}
+$$
+
+These two terms, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
+
+$$
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+$$
+
+**The relation between MSE and MSPE**
+
+Before going further, we need to see the connection between MSPE and MSE in a regression setting:  
+
+
+\begin{equation}
+\mathbf{MSPE}=\mathbf{E}\left[(y_0-\hat{f})^{2}\right]=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]
+  (\#eq:4-1)
+\end{equation} 
+
+Equation 4.1 is simply an expected prediction error of predicting $y_0$ using $\hat{f}(x_0)$.  The estimate $\hat{f}$ is random depending on the sample we use to estimate it.  Hence, it varies from sample to sample.  We call the sum of the first two terms as "reducible error", as we have seen before.   
+
+The MSE of the estimator $\hat{f}$ is, on the other hand, shows the expected squared error loss of estimating $f(x)$ by using $\hat{f}$ at a fixed point $x$.  
+
+$$
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left[(\hat{f}-f)^{2}\right]=\mathbf{E}\left\{\left(\hat{f}-\mathbf{E}(\hat{f})+\mathbf{E}(\hat{f})-f\right)^{2}\right\}
+$$
+$$
+=\mathbf{E}\left\{\left(\left[\hat{f}-\mathbf{E}\left(\hat{f}\right)\right]+\left[\mathbf{E}\left(\hat{f}\right)-f\right]\right)^{2}\right\}
+$$
+
+\begin{equation}
+  =\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right   \}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}+2 \mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]\left[\mathbf{E}(\hat{f})-f\right]\right\}
+  (\#eq:4-2) 
+\end{equation} 
+
+The first term is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{f})-f]$ is not random, which represents the bias.  The last term is zero.  Hence,  
+
+\begin{equation}
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}
+(\#eq:4-3)
+\end{equation} 
+  
+We can now see how MSPE is related to MSE.  Since the estimator $\hat{f}$ is used in predicting $y_0$, MSPE should include MSE:  
+
+$$
+\mathbf{MSPE}=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]=\mathbf{MSE}(\hat{f})+\mathbf{E}\left[\varepsilon^{2}\right]
+$$
+
+The important difference between estimation and prediction processes is the data points that we use to calculate the mean squared error loss functions.  In estimations, our objective is to find the estimator that minimizes the MSE, $\mathbf{E}\left[(\hat{f}-f)^{2}\right]$.  However, since $f$ is not known to us, we use $y_i$ as a proxy for $f$ and calculate MSPE using in-sample data points.  Therefore, using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy. 
+
