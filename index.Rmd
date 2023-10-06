@@ -19,9 +19,9 @@ urlcolor: cyan
 
 # Preface {.unnumbered}
 
-%```{r, echo=FALSE, out.width = "500pt"}
-%knitr::include_graphics("png/MachineMetrics.png")
-%```
+```{r, echo=FALSE, out.width = "500pt"}
+knitr::include_graphics("png/MachineMetrics.png")
+```
 
 ## Why this book is different? {.unnumbered}
 

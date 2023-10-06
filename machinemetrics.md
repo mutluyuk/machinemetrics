@@ -1,7 +1,7 @@
 --- 
 title: 'MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2023-09-24'
+date: 'This version: 2023-10-06'
 subtitle: for Economists, Social and Health Scientists
 titlerunning: MachineMetrics
 site: bookdown::bookdown_site
@@ -19,9 +19,7 @@ urlcolor: cyan
 
 # Preface {.unnumbered}
 
-%```{r, echo=FALSE, out.width = "500pt"}
-%knitr::include_graphics("png/MachineMetrics.png")
-%```
+<img src="png/MachineMetrics.png" width="500pt" />
 
 ## Why this book is different? {.unnumbered}
 
@@ -98,7 +96,7 @@ Mutlu would like to extend his heartfelt thanks to his wife, Mevlude, whose love
 <!--chapter:end:index.Rmd-->
 
 
-#  INTRODUCTION:
+#  Introduction:
 
 Let’s start the book with an ancient parable. A group of blind men heard that a strange animal had been brought to the town, but none of them were aware of its shape and form. Out of curiosity, they said: "We must inspect and know it by touch, of which we are capable". So, they sought it out, and when they found it, they groped about it. They say the following one by one:
 
@@ -145,19 +143,19 @@ A more fitting example for this book's content would be the following:
 
 In a community with rising concerns about food allergies, Alex, a young individual, grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex meticulously documented each instance he consumed food as well as various nuts, leading to a preliminary data collection effort. 
 
-In a bid to learn the reason of his sporadic sickness after eating, Alex adopted an approach resembling machine learning. By systematically recording his meals and subsequent health reactions, he discerned a pattern linking his discomfort to peanut consumption. Testing and validating his hypothesis through various food experiments, Alex refined his understanding, confirming nuts and peanuts as the culprit while ruling out other foods. His methodical process of data collection, pattern recognition, hypothesis testing, and model refining mirrors the foundational steps in machine learning, showcasing how both humans and machines learn from data and adjust based on outcomes.
+In a bid to learn the reason of his sporadic sickness after eating, Alex adopted an approach resembling statistical and machine learning. By systematically recording his meals and subsequent health reactions, he discerned a pattern linking his discomfort to garlic consumption. Testing and validating his hypothesis through various food experiments, Alex refined his understanding, confirming garlic as the culprit while ruling out other foods. His methodical process of data collection, pattern recognition, hypothesis testing, and model refining mirrors the foundational steps in machine learning, showcasing how both humans and machines learn from data and adjust based on outcomes.
 
-Visualization of this gathered data unveiled stark patterns, underscoring the correlation between his various nuts and peanut consumption and the allergic reactions, with peanuts standing out prominently. Motivated to transition from mere correlation to concrete causation, Alex conducted controlled experiments, eventually confirming that peanuts were the definitive cause of his allergic symptoms.
+Visualization of this gathered data unveiled stark patterns, underscoring the correlation between his various nuts and garlic consumption and the allergic reactions, with garlic standing out prominently. Motivated to transition from mere correlation to concrete causation, Alex conducted controlled experiments, eventually confirming that garlic was the definitive cause of his allergic symptoms.
 
 Realizing the potential broader implications of his discovery, especially for those who might share similar susceptibilities, Alex's endeavor caught the attention of researchers. Researchers embarked on a study to gauge its prevalence among those similar to Alex in the larger community. They selected a representative sample and found a significant proportion exhibited allergic reactions. Through their findings, they estimated a certain percentage of the broader group might have this allergy. Using statistical tools, they provided a confidence interval to show the likely range of this percentage. They then extrapolated their findings to the broader community, highlighting potential allergen prevalence. Yet, they acknowledged that their conclusions depend on the sample's accuracy and potential biases. This exercise underscores the principles of statistical estimation, with a focus on sampling, confidence intervals, and extrapolation.
 
-Delving into statistical methods, they journeyed from basic correlations to deep causative insights, unraveling the true triggers behind such allergies. The research eventually progressed to other methodologies like time series forecasting of allergy intensities. Through using time series analysis and forecasting, researchers not only confirm the relationship between peanut consumption and allergic reactions in a larger sample but also provide valuable predictive insights for individuals similar to Alex.
+Delving into statistical methods, they journeyed from basic correlations to deep causative insights, unraveling the true triggers behind such allergies. The research eventually progressed to other methodologies like time series forecasting of allergy intensities. Through using time series analysis and forecasting, researchers not only confirm the relationship between garlic consumption and allergic reactions in a larger sample but also provide valuable predictive insights for individuals similar to Alex.
 
-Additionally, researchers employed graphical network analysis for the spread of allergy awareness in the population. By leveraging this analysis, they could grasp the intricacies of the community's social dynamics and the paths information took. This empowers them to deploy targeted interventions, ensuring that knowledge about peanut allergies is disseminated effectively.
+Additionally, researchers employed graphical network analysis for the spread of allergy awareness in the population. By leveraging this analysis, they could grasp the intricacies of the community's social dynamics and the paths information took. This empowers them to deploy targeted interventions, ensuring that knowledge about garlic allergies is disseminated effectively.
 
 Researchers also use of classification and regression models to ascertain risk categories and predict allergic reaction severity. While classification assists in grouping individuals as either high-risk or not, regression quantifies the anticipated intensity of their reactions.
 
-Starting with Alex's personal exploration into his peanut allergy, mirroring the steps of machine learning, the scope expanded into a wider research project. This broader study harnessed statistical learning methodologies, using samples to gauge the prevalence of such allergies in the community. Both machine and statistical learning techniques can be instrumental in addressing varied research questions, demonstrating the multifaceted nature of learning from data.
+Starting with Alex's personal exploration into his garlic allergy, mirroring the steps of machine learning, the scope expanded into a wider research project. This broader study harnessed statistical learning methodologies, using samples to gauge the prevalence of such allergies in the community. Both machine and statistical learning techniques can be instrumental in addressing varied research questions, demonstrating the multifaceted nature of learning from data.
 
 In general, there are four different starting points and approaches to Machine Learning Theory. Bias- variance trade-off approach, Vapnik-Chervonenkis theory, Computational Complexity of Machine Learning, and Bayesian Learning. In this book, we will focus on bias-variance trade-off approach. You can think this like in micro theory, when I teach, we will talk about preference relation or choice-based relation. Then I connect these concepts to utility maximization, and then continue from there. It is a similar idea but in economics especially as we will almost always deal with sampling issues and so on. We will start with bias- variance trade-off. We will also mainly follow frequentist approach not Bayesian approach.  Again, as a side note, you can learn everything by starting from Vapnik-Chervonenkis Theory, the Perceptron Algorithm, especially if you are interested in deep learning and neural networks and you will reach to the same point. However, we will also cover these topics (deep learning and neural networks) in our book as well.
 
@@ -948,9 +946,6 @@ In the upcoming chapters, we will delve into these approaches and explore the re
 
 
 <!--chapter:end:03-Counterfactuals.Rmd-->
-
-
-
 
 
 # Learning 
@@ -7150,7 +7145,7 @@ printcp(tree)
 ##         CP nsplit rel error  xerror    xstd
 ## 1 0.724138      0   1.00000 1.00000 0.14282
 ## 2 0.034483      1   0.27586 0.62069 0.12640
-## 3 0.010000      2   0.24138 0.65517 0.12863
+## 3 0.010000      2   0.24138 0.58621 0.12399
 ```
 
 The `rel error` of each iteration of the tree is the fraction of mislabeled elements in the iteration relative to the fraction of mislabeled elements in the root. Hence it's 100\% (1.00000 in the table) in the root node. In other words, `rel error` gives the percentage of misclassified labels, when it's multiplied with the `Root node error` (0.40845 x 0.24138 = 0.0986). This is the error rate when the fitted model applied to the training sets used by `rpart`'s CV.  
@@ -7198,11 +7193,11 @@ printcp(cart)
 ## 
 ## n= 71 
 ## 
-##         CP nsplit rel error  xerror     xstd
-## 1 0.586213      0   1.00000 1.02656 0.045968
-## 2 0.101694      1   0.41379 0.94673 0.170680
-## 3 0.028263      2   0.31209 0.78357 0.154050
-## 4 0.010000      3   0.28383 0.73456 0.152971
+##         CP nsplit rel error  xerror    xstd
+## 1 0.586213      0   1.00000 1.01503 0.04523
+## 2 0.101694      1   0.41379 0.72055 0.15295
+## 3 0.028263      2   0.31209 0.63185 0.14224
+## 4 0.010000      3   0.28383 0.60087 0.13700
 ```
 
 As you see, when the outcome is not a factor variable, `rpart` applies a **regression tree** method, which minimizes the sum of squares, $\sum_{i=1}^{n}\left(y_i-f(x_i)\right)^2$. However, when $y_i$ is a binary number with two values 0 and 1, the sum of squares becomes $np(1-p)$, which gives the same relative gain as Gini.  This is clear as both relative gains (our calculation and the calculation by `rpart` above) are the same.  
@@ -7279,10 +7274,10 @@ printcp(tree2)
 ## 
 ##         CP nsplit rel error  xerror    xstd
 ## 1 0.724138      0  1.000000 1.00000 0.14282
-## 2 0.103448      1  0.275862 0.48276 0.11560
-## 3 0.034483      2  0.172414 0.41379 0.10889
-## 4 0.017241      6  0.034483 0.51724 0.11861
-## 5 0.000000      8  0.000000 0.51724 0.11861
+## 2 0.103448      1  0.275862 0.51724 0.11861
+## 3 0.034483      2  0.172414 0.48276 0.11560
+## 4 0.017241      6  0.034483 0.58621 0.12399
+## 5 0.000000      8  0.000000 0.58621 0.12399
 ```
 
 ```r
@@ -7330,8 +7325,8 @@ printcp(ptree2)
 ## 
 ##         CP nsplit rel error  xerror    xstd
 ## 1 0.724138      0   1.00000 1.00000 0.14282
-## 2 0.103448      1   0.27586 0.48276 0.11560
-## 3 0.034483      2   0.17241 0.41379 0.10889
+## 2 0.103448      1   0.27586 0.51724 0.11861
+## 3 0.034483      2   0.17241 0.48276 0.11560
 ```
 
 ```r
@@ -7434,9 +7429,9 @@ printcp(titan)
 ##         CP nsplit rel error xerror     xstd
 ## 1 0.424000      0     1.000  1.000 0.035158
 ## 2 0.021000      1     0.576  0.576 0.029976
-## 3 0.015000      3     0.534  0.548 0.029438
-## 4 0.011333      5     0.504  0.544 0.029359
-## 5 0.010000      9     0.458  0.544 0.029359
+## 3 0.015000      3     0.534  0.578 0.030013
+## 4 0.011333      5     0.504  0.562 0.029710
+## 5 0.010000      9     0.458  0.552 0.029517
 ```
 
 ```r
@@ -10075,8 +10070,9 @@ $$
 We know from Elementary Econometrics that $\mathbf{Var}(\hat{\beta}_j)$ increases by $\sigma^2$, decreases by the $\mathbf{Var}(x_j)$, and rises by the correlation between $x_j$ and other $x$'s.  Let's look at   $\mathbf{Var}(\hat{\beta}_j)$ closer:  
 
 $$
-\mathbf{Var}\left(\hat{\beta}_{j}\right)=\frac{{\sigma}^{2}}{\mathbf{Var}\left(x_{j}\right)} \cdot \frac{1}{1-R_{j}^{2}},
+\mathbf{Var}(\hat{\beta}_{j}) = \frac{{\sigma}^{2}}{{\mathbf{Var}(x_{j})}} \cdot \frac{1}{1-R_{j}^{2}}
 $$
+
   
 where $R_j^2$ is $R^2$ in the regression on $x_j$ on the remaining $(k-2)$ regressors ($x$'s).  The second term is called the variance-inflating factor (VIF).  As usual, a higher variability in a particular $x$ leads to proportionately less variance in the corresponding coefficient estimate. Note that, however, as $R_j^2$ get closer to one, that is, as the correlation between $x_j$ with other regressors approaches to unity, $\mathbf{Var}(\hat{\beta}_j)$ goes to infinity.   
 
@@ -16607,9 +16603,9 @@ A
 
 ```
 ##      [,1] [,2] [,3]
-## [1,]   27   66   91
-## [2,]   36    2   61
-## [3,]   79   52   96
+## [1,]   66   47   40
+## [2,]   70   34   69
+## [3,]   28   79   61
 ```
 
 ```r
@@ -16619,13 +16615,13 @@ eigen(A)
 ```
 ## eigen() decomposition
 ## $values
-## [1] 183.76704+0.00000i -29.38352+6.08714i -29.38352-6.08714i
+## [1] 164.69386 -32.04717  28.35331
 ## 
 ## $vectors
-##               [,1]                  [,2]                  [,3]
-## [1,] -0.5771106+0i -0.8122822+0.0000000i -0.8122822+0.0000000i
-## [2,] -0.3602603+0i -0.0070249-0.2544411i -0.0070249+0.2544411i
-## [3,] -0.7329092+0i  0.5083843+0.1302049i  0.5083843-0.1302049i
+##            [,1]       [,2]        [,3]
+## [1,] -0.5289779  0.1173621 -0.69930710
+## [2,] -0.6001133 -0.7741817 -0.04690701
+## [3,] -0.6000387  0.6219879  0.71328067
 ```
 
 ```r
@@ -16670,9 +16666,9 @@ A
 
 ```
 ##      [,1] [,2] [,3]
-## [1,]   94   47   61
-## [2,]   45   32   82
-## [3,]    7   66    8
+## [1,]   29   70   85
+## [2,]   91   38   62
+## [3,]   28    1   57
 ```
 
 ```r
@@ -16684,10 +16680,10 @@ solve(A)
 ```
 
 ```
-##               [,1]         [,2]         [,3]
-## [1,]  0.0167893194 -0.011885379 -0.006193422
-## [2,] -0.0006968414 -0.001058287  0.016160860
-## [3,] -0.0089417128  0.019130576 -0.002907848
+##              [,1]         [,2]        [,3]
+## [1,] -0.007992129  0.014833301 -0.00421638
+## [2,]  0.013108764  0.002761539 -0.02255194
+## [3,]  0.003695980 -0.007334982  0.02001071
 ```
 
 ```r
@@ -16696,10 +16692,10 @@ V %*% solve(Lam) %*% solve(V)
 ```
 
 ```
-##               [,1]         [,2]         [,3]
-## [1,]  0.0167893194 -0.011885379 -0.006193422
-## [2,] -0.0006968414 -0.001058287  0.016160860
-## [3,] -0.0089417128  0.019130576 -0.002907848
+##              [,1]         [,2]        [,3]
+## [1,] -0.007992129  0.014833301 -0.00421638
+## [2,]  0.013108764  0.002761539 -0.02255194
+## [3,]  0.003695980 -0.007334982  0.02001071
 ```
 
 The inverse of $\mathbf{\Lambda}$ is just the inverse of each diagonal element (the eigenvalues).  But, this can only be done if a matrix is diagonalizable.  So if $\mathbf{A}$ is not $n \times n$, then we can use $\mathbf{A'A}$ or $\mathbf{AA'}$, both symmetric now.

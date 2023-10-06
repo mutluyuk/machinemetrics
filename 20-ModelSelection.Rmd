@@ -131,8 +131,9 @@ $$
 We know from Elementary Econometrics that $\mathbf{Var}(\hat{\beta}_j)$ increases by $\sigma^2$, decreases by the $\mathbf{Var}(x_j)$, and rises by the correlation between $x_j$ and other $x$'s.  Let's look at   $\mathbf{Var}(\hat{\beta}_j)$ closer:  
 
 $$
-\mathbf{Var}\left(\hat{\beta}_{j}\right)=\frac{{\sigma}^{2}}{\mathbf{Var}\left(x_{j}\right)} \cdot \frac{1}{1-R_{j}^{2}},
+\mathbf{Var}(\hat{\beta}_{j}) = \frac{{\sigma}^{2}}{{\mathbf{Var}(x_{j})}} \cdot \frac{1}{1-R_{j}^{2}}
 $$
+
   
 where $R_j^2$ is $R^2$ in the regression on $x_j$ on the remaining $(k-2)$ regressors ($x$'s).  The second term is called the variance-inflating factor (VIF).  As usual, a higher variability in a particular $x$ leads to proportionately less variance in the corresponding coefficient estimate. Note that, however, as $R_j^2$ get closer to one, that is, as the correlation between $x_j$ with other regressors approaches to unity, $\mathbf{Var}(\hat{\beta}_j)$ goes to infinity.   
 

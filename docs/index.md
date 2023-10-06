@@ -1,7 +1,7 @@
 --- 
 title: 'MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2023-09-24'
+date: 'This version: 2023-10-06'
 subtitle: for Economists, Social and Health Scientists
 titlerunning: MachineMetrics
 site: bookdown::bookdown_site
@@ -19,9 +19,7 @@ urlcolor: cyan
 
 # Preface {.unnumbered}
 
-%```{r, echo=FALSE, out.width = "500pt"}
-%knitr::include_graphics("png/MachineMetrics.png")
-%```
+<img src="png/MachineMetrics.png" width="500pt" />
 
 ## Why this book is different? {.unnumbered}
 
