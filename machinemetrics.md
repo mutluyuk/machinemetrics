@@ -7144,8 +7144,8 @@ printcp(tree)
 ## 
 ##         CP nsplit rel error  xerror    xstd
 ## 1 0.724138      0   1.00000 1.00000 0.14282
-## 2 0.034483      1   0.27586 0.62069 0.12640
-## 3 0.010000      2   0.24138 0.58621 0.12399
+## 2 0.034483      1   0.27586 0.51724 0.11861
+## 3 0.010000      2   0.24138 0.51724 0.11861
 ```
 
 The `rel error` of each iteration of the tree is the fraction of mislabeled elements in the iteration relative to the fraction of mislabeled elements in the root. Hence it's 100\% (1.00000 in the table) in the root node. In other words, `rel error` gives the percentage of misclassified labels, when it's multiplied with the `Root node error` (0.40845 x 0.24138 = 0.0986). This is the error rate when the fitted model applied to the training sets used by `rpart`'s CV.  
@@ -7193,11 +7193,11 @@ printcp(cart)
 ## 
 ## n= 71 
 ## 
-##         CP nsplit rel error  xerror    xstd
-## 1 0.586213      0   1.00000 1.01503 0.04523
-## 2 0.101694      1   0.41379 0.72055 0.15295
-## 3 0.028263      2   0.31209 0.63185 0.14224
-## 4 0.010000      3   0.28383 0.60087 0.13700
+##         CP nsplit rel error  xerror     xstd
+## 1 0.586213      0   1.00000 1.04497 0.047317
+## 2 0.101694      1   0.41379 0.77352 0.158659
+## 3 0.028263      2   0.31209 0.73381 0.159985
+## 4 0.010000      3   0.28383 0.69759 0.152268
 ```
 
 As you see, when the outcome is not a factor variable, `rpart` applies a **regression tree** method, which minimizes the sum of squares, $\sum_{i=1}^{n}\left(y_i-f(x_i)\right)^2$. However, when $y_i$ is a binary number with two values 0 and 1, the sum of squares becomes $np(1-p)$, which gives the same relative gain as Gini.  This is clear as both relative gains (our calculation and the calculation by `rpart` above) are the same.  
@@ -7274,10 +7274,10 @@ printcp(tree2)
 ## 
 ##         CP nsplit rel error  xerror    xstd
 ## 1 0.724138      0  1.000000 1.00000 0.14282
-## 2 0.103448      1  0.275862 0.51724 0.11861
-## 3 0.034483      2  0.172414 0.48276 0.11560
-## 4 0.017241      6  0.034483 0.58621 0.12399
-## 5 0.000000      8  0.000000 0.58621 0.12399
+## 2 0.103448      1  0.275862 0.58621 0.12399
+## 3 0.034483      2  0.172414 0.55172 0.12140
+## 4 0.017241      6  0.034483 0.51724 0.11861
+## 5 0.000000      8  0.000000 0.51724 0.11861
 ```
 
 ```r
@@ -7292,7 +7292,7 @@ min_cp
 ```
 
 ```
-## [1] 0.03448276
+## [1] 0.01724138
 ```
 
 Remember `rpart` has a built-in process for cross-validation. The `xerror` is the cross-validation error, the classification error that is calculated on the test data with a cross-validation process. In general, the cross-validation error grows as the tree gets more levels (each row represents a different height of the tree).
@@ -7317,16 +7317,17 @@ printcp(ptree2)
 ##     control = rpart.control(minsplit = 2, minbucket = 1, cp = 0))
 ## 
 ## Variables actually used in tree construction:
-## [1] INSYS PVENT
+## [1] INCAR INSYS PVENT
 ## 
 ## Root node error: 29/71 = 0.40845
 ## 
 ## n= 71 
 ## 
 ##         CP nsplit rel error  xerror    xstd
-## 1 0.724138      0   1.00000 1.00000 0.14282
-## 2 0.103448      1   0.27586 0.51724 0.11861
-## 3 0.034483      2   0.17241 0.48276 0.11560
+## 1 0.724138      0  1.000000 1.00000 0.14282
+## 2 0.103448      1  0.275862 0.58621 0.12399
+## 3 0.034483      2  0.172414 0.55172 0.12140
+## 4 0.017241      6  0.034483 0.51724 0.11861
 ```
 
 ```r
@@ -7429,9 +7430,9 @@ printcp(titan)
 ##         CP nsplit rel error xerror     xstd
 ## 1 0.424000      0     1.000  1.000 0.035158
 ## 2 0.021000      1     0.576  0.576 0.029976
-## 3 0.015000      3     0.534  0.578 0.030013
-## 4 0.011333      5     0.504  0.562 0.029710
-## 5 0.010000      9     0.458  0.552 0.029517
+## 3 0.015000      3     0.534  0.536 0.029198
+## 4 0.011333      5     0.504  0.516 0.028785
+## 5 0.010000      9     0.458  0.512 0.028701
 ```
 
 ```r
@@ -10069,9 +10070,12 @@ $$
   
 We know from Elementary Econometrics that $\mathbf{Var}(\hat{\beta}_j)$ increases by $\sigma^2$, decreases by the $\mathbf{Var}(x_j)$, and rises by the correlation between $x_j$ and other $x$'s.  Let's look at   $\mathbf{Var}(\hat{\beta}_j)$ closer:  
 
+{% raw %}
 $$
-\mathbf{Var}(\hat{\beta}_{j}) = \frac{{\sigma}^{2}}{{\mathbf{Var}(x_{j})}} \cdot \frac{1}{1-R_{j}^{2}}
+\mathbf{Var}(\hat{\beta}_{j}) = \frac{\sigma^{2}}{\mathbf{Var}(x_{j})} \cdot \frac{1}{1-R_{j}^{2}}
 $$
+{% endraw %}
+
 
   
 where $R_j^2$ is $R^2$ in the regression on $x_j$ on the remaining $(k-2)$ regressors ($x$'s).  The second term is called the variance-inflating factor (VIF).  As usual, a higher variability in a particular $x$ leads to proportionately less variance in the corresponding coefficient estimate. Note that, however, as $R_j^2$ get closer to one, that is, as the correlation between $x_j$ with other regressors approaches to unity, $\mathbf{Var}(\hat{\beta}_j)$ goes to infinity.   
@@ -16603,9 +16607,9 @@ A
 
 ```
 ##      [,1] [,2] [,3]
-## [1,]   66   47   40
-## [2,]   70   34   69
-## [3,]   28   79   61
+## [1,]   83   62   81
+## [2,]    3   19   67
+## [3,]   52   16   72
 ```
 
 ```r
@@ -16615,13 +16619,13 @@ eigen(A)
 ```
 ## eigen() decomposition
 ## $values
-## [1] 164.69386 -32.04717  28.35331
+## [1] 158.2224+ 0.00000i   7.8888+29.87303i   7.8888-29.87303i
 ## 
 ## $vectors
-##            [,1]       [,2]        [,3]
-## [1,] -0.5289779  0.1173621 -0.69930710
-## [2,] -0.6001133 -0.7741817 -0.04690701
-## [3,] -0.6000387  0.6219879  0.71328067
+##              [,1]                  [,2]                  [,3]
+## [1,] 0.8002326+0i -0.2924139-0.4927725i -0.2924139+0.4927725i
+## [2,] 0.2739645+0i  0.7334935+0.0000000i  0.7334935+0.0000000i
+## [3,] 0.5334522+0i -0.1085486+0.3491043i -0.1085486-0.3491043i
 ```
 
 ```r
@@ -16666,9 +16670,9 @@ A
 
 ```
 ##      [,1] [,2] [,3]
-## [1,]   29   70   85
-## [2,]   91   38   62
-## [3,]   28    1   57
+## [1,]   41   58   30
+## [2,]    3   57   84
+## [3,]   60   65   89
 ```
 
 ```r
@@ -16681,9 +16685,9 @@ solve(A)
 
 ```
 ##              [,1]         [,2]        [,3]
-## [1,] -0.007992129  0.014833301 -0.00421638
-## [2,]  0.013108764  0.002761539 -0.02255194
-## [3,]  0.003695980 -0.007334982  0.02001071
+## [1,] -0.002356638 -0.019559485  0.01925501
+## [2,]  0.029065200  0.011259492 -0.02042419
+## [3,] -0.019638649  0.004962945  0.01317160
 ```
 
 ```r
@@ -16692,10 +16696,10 @@ V %*% solve(Lam) %*% solve(V)
 ```
 
 ```
-##              [,1]         [,2]        [,3]
-## [1,] -0.007992129  0.014833301 -0.00421638
-## [2,]  0.013108764  0.002761539 -0.02255194
-## [3,]  0.003695980 -0.007334982  0.02001071
+##                 [,1]            [,2]           [,3]
+## [1,] -0.002356638+0i -0.019559485+0i  0.01925501+0i
+## [2,]  0.029065200+0i  0.011259492-0i -0.02042419+0i
+## [3,] -0.019638649+0i  0.004962945+0i  0.01317160-0i
 ```
 
 The inverse of $\mathbf{\Lambda}$ is just the inverse of each diagonal element (the eigenvalues).  But, this can only be done if a matrix is diagonalizable.  So if $\mathbf{A}$ is not $n \times n$, then we can use $\mathbf{A'A}$ or $\mathbf{AA'}$, both symmetric now.
