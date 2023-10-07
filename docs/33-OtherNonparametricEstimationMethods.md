@@ -1,11 +1,9 @@
 
 # Other Nonparametric Estimation methods
 
-## Other Nonparametric Estimation methods
-
 
 ## Regression splines
-
+TBA
 
 ## MARS
 

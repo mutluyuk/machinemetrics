@@ -214,3 +214,4 @@ other-nonparametric-estimation-methods-1
 regression-splines
 mars
 gam
+linear-classifiers
