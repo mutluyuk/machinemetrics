@@ -16,24 +16,6 @@ link-citations: yes
 cover-image: png/MachineMetrics.png
 urlcolor: cyan
 ---
---- 
-title: 'MachineMetrics '
-author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2023-10-07'
-subtitle: for Economists, Social and Health Scientists
-titlerunning: MachineMetrics
-site: bookdown::bookdown_site
-documentclass: book
-bibliography:
-- book.bib
-- packages.bib
-biblio-style: apalike
-nocite: '@*'
-description: ''
-link-citations: yes
-cover-image: png/MachineMetrics.png
-urlcolor: cyan
----
 
 # Preface {.unnumbered}
 
@@ -116,112 +98,2976 @@ Mutlu would like to extend his heartfelt thanks to his wife, Mevlude, whose love
 
 #  Introduction:
 
-Placeholder
+Let’s start the book with an ancient parable. A group of blind men heard that a strange animal had been brought to the town, but none of them were aware of its shape and form. Out of curiosity, they said: "We must inspect and know it by touch, of which we are capable". So, they sought it out, and when they found it, they groped about it. They say the following one by one:
+
+An animal such as a tree! ... said while holding his leg
+
+An animal, such as walls! ... said while touching its broad and sturdy side
+
+An animal like a snake! ... said while holding the squirming trunk within his hands
+
+An animal, such as rope! ... said while seizing on the swinging tail
+
+An animal like a fan! ... said while touching the ear 
+
+An animal such as a spear! ... said while touching his tusk
+
+What is this animal?
+
+This animal is elephant!
+
+Like in this parable, think someone, who just wanted to start to learn econometrics, came to you and ask for some advice. They're asking you the following question. How can I learn Econometrics? Your answer will depend on yours and that persons interest. You can tell that person to start with cross section, time-series, or panel data. Or you can start with frequentist approach or Bayesian approach. You can start with Econometrics theory then applied or vice versa. You can start with Applied Micro Econometrics or Macro Econometrics. You can start with parametric econometrics or nonparametric econometrics. You can provide any sources and courses and lectures with any of these topics and all of them are rightfully starting point to learn Econometrics. But people within this field even within the subfields don't agree totally which is the real econometrics and which is not.
+
+Why are we telling this? Because everyone is talking about what machine learning is. Everyone explains this depending on their own field or from their own subfield or own perspective or what they're doing. Even finding a good definition for Machine Learning has become a subtle job as "machine learning" seems increasingly an *overloaded* term implying that a robot-like *machine* predicts the things by learning itself without being explicitly programmed.  
+
+Ethem Alpaydin, defines machine learning as follows:
+
+> Machine learning is programming computers to optimize a performance criterion using example data or past experience. We have a model defined up to some parameters, and learning is the execution of a computer program to optimize the parameters of the model using the training data of past experience. (...) Machine learning uses the ***theory of statistics in building mathematical models***, because the core task is making inference from sample.  The role of computer science is twofold: First, in training, we need efficient algorithms to solve the optimization problem, as well as to store and process the massive amount of data we generally have.  Second, once the model is learned, its representation and algorithmic solution for inference needs to be efficient as well.
+>
+
+Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics
 
 
+
+ The following machine learning visualization shows separate fields in machine learning.  
+ 
+ INSERT PICTURE
+ 
+We designed this book for researchers who deal with data and aimed to provide toolkit which is easily accessible. When we started to learn these topics years ago, we did not know where to start and poke in each topic in that graph. We tried to learn one topic or how we can use it in our own research. We tried to identify the topics we can use as an applied microeconomics and in general as an economist as we are not dealing in robot navigation or game AI or similar topics in our research. Thus, we are only interested in subtopics which are relevant for our research such as dimension reduction and the structure discovery, the regression part and forecasting mostly for finance and so on (these topics from figure). We can use topics related to predictions and optimizations and some new insights.  As a social scientist the part we can employ in our research is just some part of the topics in that figure.  Because of that, when you discuss with someone who is in machine learning from computer science and robotics or AI sector and so on, they may try to explain where ML can be used as recommending songs, pictures, the fraud detection, computer vision, speech recognition, document classification, automated driving, but it may not be interesting or relevant for us directly. However, nearly all these subfields start and build on the statistical learning methods we will cover in this book.
+
+Imagine guiding a child to distinguish between animals, particularly identifying what a dog is and what a cat is. By the end of this exercise, the child will learn to recognize these animals. Instead of detailing every nuance of what differentiates a dog from a cat, you might show the child various pictures of dogs and cats. Over time, the child will start to notice patterns and be able to differentiate between the two animals. Machine learning works in a similar way. You feed a computer lots of data (like pictures of cats and dogs), and over time, the computer learns to recognize the patterns in the data.
+
+Put simply, machine learning teaches computers to recognize patterns much as we teach children—though the former relies on data and algorithms, while the latter uses tangible examples and verbal explanations. Distinguishing between cats and dogs in images is just one facet of machine learning. Similarly, these techniques power our email filters to sort spam from important messages, enable virtual assistants like Siri or Alexa to understand voice commands, and help streaming platforms like Netflix or Spotify suggest movies or songs tailored to our preferences. These instances, alongside text analysis and speech recognition, underscore the pervasive role of machine learning in modern life. Yet, our primary emphasis will be on the techniques and uses of machine learning in data analysis, which is used for estimation procedures, data exploration, and causal inference.
+
+A more fitting example for this book's content would be the following:
+
+In a community with rising concerns about food allergies, Alex, a young individual, grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex meticulously documented each instance he consumed food as well as various nuts, leading to a preliminary data collection effort. 
+
+In a bid to learn the reason of his sporadic sickness after eating, Alex adopted an approach resembling statistical and machine learning. By systematically recording his meals and subsequent health reactions, he discerned a pattern linking his discomfort to garlic consumption. Testing and validating his hypothesis through various food experiments, Alex refined his understanding, confirming garlic as the culprit while ruling out other foods. His methodical process of data collection, pattern recognition, hypothesis testing, and model refining mirrors the foundational steps in machine learning, showcasing how both humans and machines learn from data and adjust based on outcomes.
+
+Visualization of this gathered data unveiled stark patterns, underscoring the correlation between his various nuts and garlic consumption and the allergic reactions, with garlic standing out prominently. Motivated to transition from mere correlation to concrete causation, Alex conducted controlled experiments, eventually confirming that garlic was the definitive cause of his allergic symptoms.
+
+Realizing the potential broader implications of his discovery, especially for those who might share similar susceptibilities, Alex's endeavor caught the attention of researchers. Researchers embarked on a study to gauge its prevalence among those similar to Alex in the larger community. They selected a representative sample and found a significant proportion exhibited allergic reactions. Through their findings, they estimated a certain percentage of the broader group might have this allergy. Using statistical tools, they provided a confidence interval to show the likely range of this percentage. They then extrapolated their findings to the broader community, highlighting potential allergen prevalence. Yet, they acknowledged that their conclusions depend on the sample's accuracy and potential biases. This exercise underscores the principles of statistical estimation, with a focus on sampling, confidence intervals, and extrapolation.
+
+Delving into statistical methods, they journeyed from basic correlations to deep causative insights, unraveling the true triggers behind such allergies. The research eventually progressed to other methodologies like time series forecasting of allergy intensities. Through using time series analysis and forecasting, researchers not only confirm the relationship between garlic consumption and allergic reactions in a larger sample but also provide valuable predictive insights for individuals similar to Alex.
+
+Additionally, researchers employed graphical network analysis for the spread of allergy awareness in the population. By leveraging this analysis, they could grasp the intricacies of the community's social dynamics and the paths information took. This empowers them to deploy targeted interventions, ensuring that knowledge about garlic allergies is disseminated effectively.
+
+Researchers also use of classification and regression models to ascertain risk categories and predict allergic reaction severity. While classification assists in grouping individuals as either high-risk or not, regression quantifies the anticipated intensity of their reactions.
+
+Starting with Alex's personal exploration into his garlic allergy, mirroring the steps of machine learning, the scope expanded into a wider research project. This broader study harnessed statistical learning methodologies, using samples to gauge the prevalence of such allergies in the community. Both machine and statistical learning techniques can be instrumental in addressing varied research questions, demonstrating the multifaceted nature of learning from data.
+
+In general, there are four different starting points and approaches to Machine Learning Theory. Bias- variance trade-off approach, Vapnik-Chervonenkis theory, Computational Complexity of Machine Learning, and Bayesian Learning. In this book, we will focus on bias-variance trade-off approach. You can think this like in micro theory, when I teach, we will talk about preference relation or choice-based relation. Then I connect these concepts to utility maximization, and then continue from there. It is a similar idea but in economics especially as we will almost always deal with sampling issues and so on. We will start with bias- variance trade-off. We will also mainly follow frequentist approach not Bayesian approach.  Again, as a side note, you can learn everything by starting from Vapnik-Chervonenkis Theory, the Perceptron Algorithm, especially if you are interested in deep learning and neural networks and you will reach to the same point. However, we will also cover these topics (deep learning and neural networks) in our book as well.
+
+ 
+Machine Learning has three main paradigms build on the aforementioned theories. Supervised learning, Unsupervised learning, and Reinforcement learning.  The main paradigm we will cover in this book is supervised learning. Simply put, when we know the outcome, it is called supervised learning, and when we do not it is called unsupervised learning. The main topics we will cover under these paradigms are classification, regression, clustering, and dimensionality reduction. We will also cover some additional topics such as …… Some of these uninterpretable ML methods’ goal and aim are different as we will cover in this book.
+ 
 ## Prediction vs. Estimation:
+
+As a researcher our aim is finding associations and predictions using different dataset. We want to clarify some concepts that are used interchangeably, which is a mistake, in different machine learning sources.  
+
+Keep in mind, the main aspect of machine learning is to use one set of data to generalize the findings on new data not seen yet.  We use the term Prediction to describe this process in Machine Learning. The other similar terms are extrapolation and forecasting. In social sciences, the most common term is estimation while analyzing main data. However, these terms have different connotations, and we think using them in the right place will help all of us to understand certain topics better.
+
+Let’s started by describing the term of prediction first.
+
+**Prediction** (Latin præ-, "before," and dicere, "to say"), or forecast, is a statement about a future event. They are often, but not always, based upon experience or knowledge. There is no universal agreement about the exact difference from "estimation"; different authors and disciplines ascribe different connotations. Prediction in the non-economic social sciences differs from the natural sciences and includes multiple alternative methods such as trend projection, forecasting, scenario-building and surveys. You can read different definitions of prediction and its use from 12 different fields from science, sports, finance, and non-scientific context. Here is the link (https://en.wikipedia.org/wiki/Prediction).  
+
+
+**Extrapolation**: the action of estimating or concluding something by assuming that existing trends will continue, or a current method will remain applicable. Extrapolation is estimating the value of a variable outside a known range of values by assuming that the estimated value follows some pattern from the known ones. In mathematics, extrapolation is a type of estimation, beyond the original observation range, the value of a variable is based on its relationship with another variable.
+
+**Forecasting**: the process of making predictions based on past and present data. Risk and uncertainty are central to forecasting and prediction; it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts. In any case, the data must be up to date in order for the forecast to be as accurate as possible.  “Good forecasts capture the genuine patterns and relationships which exist in the historical data, but do not replicate past events that will not occur again.” (reference Hydman book ). This term is more commonly used in fields of Finance and Economics. Generally, people use time series data and methods for forecasting.  
+
+Even though, we think extrapolation is better term, we use forecast in Economics, Finance, or prediction in Machine Learning.
+
+We should be aware that prediction in economics and social sciences differs from the natural sciences. If you discover a relationship in the natural sciences and explain the conditions for that relationship, then that relationship holds regardless of where and when it is found unlike social sciences. Hence, this relationship can be understood as both a prediction as well as an extrapolation. Consider the example of a chemical reaction occurring in a laboratory under well-defined conditions; the findings become immediately applicable to other locations with the same conditions. Moreover, in natural sciences, prediction incorporates multiple alternative methods such as trend projection, forecasting, and scenario building.
+
+The hardest part of prediction in the social sciences, "predictors are part of the social context about which they are trying to make a prediction and may influence that context in the process". In another word, you predict something and implement the policy using this prediction, people change their behaviour based on this new policy, even before implementing the policy. In economics, this is well known as Lucas Critique.  “Lucas summarized his critique: Given that the structure of an econometric model consists of optimal decision rules of economic agents, and that optimal decision rules vary systematically with changes in the structure of series relevant to the decision maker, it follows that any change in policy will systematically alter the structure of econometric models.”
+
+Estimation is various procedures to find an estimate using a sample drawn from the population. Estimate is the potential range of values of some property of a population and generated by projecting results from samples onto the entire population. Both effect and prediction research questions are inherently estimation questions, but they are distinct in their goals. In encapsulating Effect, the researcher is mainly interested in estimating the effect of exposure on outcome adjusted for covariates. On the other hand, when the focus is Prediction, the researcher is mainly interested in generating a function to input covariates and predict a value for the outcome. Mostly, economists and social and health scientists estimate an effect, and try to find Causal Explanation/Attribution. Even though, Economists prefer to use causal relation or explanation, statisticians studying these topics prefer to use the term of attribution.
+
+**What about prediction?**
+
+Most economist claim that economics research is not about prediction but estimation and finding a causal explanation. For instance, Ludwig von Mises, “[predicting the economic future is] beyond the power of mortal man”. Or Applied economists act as if unbiased estimation is prediction (on average). Even some claims prediction is not a good thing, and it is unscientific. We are interested in understanding things, not just predicting, or controlling them. However, “being able to predict something is a sign that you understand it, not being able to predict is a good sign that you don’t.”	
+
+However, in real life, most people or firms are interested in prediction.  For instance, individually you ask whether this education policy is good for my children, and you don't care about the average estimates. You care about what will happen to your own kids education with this specific teacher or specific education policy. Similarly, crime forecasting in the law enforcement operations, or the change in specific treatment might cure the patient, or improve the prediction of one-year survival probability after sickness, treatment, etc.
+All in all, you want a specific individual prediction. You don't care too much about the average estimated effect of the population.
+
+Here you can see two very good sources that you can read about this discussion.
+\footnotetext[1]{Bradley Efron,(2020) \href{https://doi.org/10.1080/01621459.2020.1762613}{"Prediction, Estimation, and Attribution"}, \textit{Journal of the American Statistical Association}, 115:530, 636-655}
+\footnotetext[2]{Shmueli, Galit,(2010) \href{https://dx.doi.org/10.2139/ssrn.1351252}{"To Explain or To Predict?"}, \textit{Statistical Science}}
+
+
+
+
+
+
 ## Where can you use the covered topics in Social Sciences?:
+
+In addition to clarifying the terms and terminology above, we would like to emphasize that even though Machine Learning is used primarily for prediction, we, as economists,social and health scientists, can use machine learning and other statistical and econometric tools  covered in this book for estimation procedures, exploration of data, causal inference, and more.
+
+To begin, we can transform text, images, historical documents, and similar unconventional information into new data. It may be possible to incorporate job descriptions, language and sentiment of financial documents, social media, court transcripts, and health reports into indexes or other types of variables. Researchers can implement these types of new tools in almost any program in a straightforward and reliable way with ready-to-use packages.
+
+The standard machine learning methods are correlational approaches; therefore, we can use some of these methods to visualize data in a more meaningful way, analyze it better, and identify patterns in the data. We have discussed several of these methods in this book, such as graphical modelling, semi-partial correlation, regularized covariance matrix, graphical ridge and lasso models.
+
+There are some statistical methods which assist researchers in reducing dimensions when they are attempting to identify patterns between variables and identify significant influences, i.e. correlation analysis. The correlation analysis is a statistical method used to determine the degree of relationship between two or more variables while accounting for both spatial and temporal dimensions of these static and dynamic relationships. Correlation analysis may become complicated when the model includes too many variables as well as ‘latent variables’. These latent variables are unobserved but influential factors that explain a significant proportion of the variation common among the input variables. In the social sciences, it is common to use either random or fixed effect indicators to account for these unobserved factors.  However, dimension reduction methods should be used for settings which has too many latent variables, as well as dynamic spatial and temporal relationships. Some of these methods we cover are Principle Component Analysis, Factor Analysis, as well as Dynamic Mode Decomposition which can be thought of as an ideal combination of spatial dimensionality-reduction techniques.
+
+In economics as well as other health and social sciences, finding causal relationship is the ultimate goal for any researcher, policy maker or business. Researchers use some machine learning methods to improve some of the usual causal methods. Researchers work with Rubin causal framework, in which they compare the representative sample in actual and counterfactual situations to find treatment or causal effect. Thus, imputing missing counterfactual values are mainly a prediction problem. Hence, researchers implement various ML methods for Direct and conditional randomization, Indirect randomization: Instrumental variables, Local randomization: Regression discontinuity, Second-order randomization: Difference-in-difference, as well as Propensity Score matching, and Synthetic Control methods.
+
+Both Athey&Imbens (2019) and Mullainathan & Spiess (2017) highlight, “some substantive problems are naturally cast as prediction problems, and assessing their goodness of fit on a test set may be sufficient for the purposes of the analysis in such cases. In other cases, the output of a prediction problem is an input to the primary analysis of interest, and statistical analysis of the prediction component beyond convergence rates is not needed.” As an example , Variable Selection in $ y=D\gamma+X\beta+\epsilon$ as most coefficients besides treatment one are inconsequential! Another common example is first stage selection (since the first stage deals with prediction problems) in instrumental variable models. Debiased Machine Learning for Treatment is another recently developed method.
+[footnote: [https://doi.org/10.1146/annurev-economics-080217-053433 ])  ]
+(https://arxiv.org/pdf/1712.10024.pdf)
+
+Researchers are also interested in knowing how treatment affects certain sub-populations in addition to finding the average treatment effect. A given treatment may have different effects on different units. Heterogeneity of treatment effects refers to the study of these differences across subjects. There are several machine-learning methods that can help to improve heterogeneous treatments or causal effects, including Causal Forest. The casual forest approach splits the covariate sample and calculates predictions as a local average treatment effect. (footnote: https://arxiv.org/abs/1712.09988 )
+
+Almost always, in social sciences, we assume our models are linear and parametric. Model selection, however, is the process of selecting one model out of numerous potentials for a predictive problem. We discuss in detail the importance and usefulness of model selection as well.
+	
+Time series forecasting is a fundamental task at the core of many data-driven applications. Forecasting models were developed using a variety of advanced autoregressive methods, including ARIMA. Rather than using normal time series tests, we show how to grid search ARIMA model hyperparameters. Furthermore, methods based on deep learning have been explored for time series forecasting. Additionally, we cover an embedding method that enhances the performance of many deep learning models on time series data. As a result of the embedding layers, the model can simultaneously learn from several time series of different units. These categorical features (e.g., holidays, weather, geography) are embedded in a lower dimensional space to extract useful information.
+
+
+The dynamic discrete choice (DDC) models are used for modeling an agent's choices among discrete options. As opposed to the assumption that observed choices are the result of static utility maximization, DDC models assume that observed choices are the result of maximization of the present value of utility. DDC methods aim to determine the structural parameters of the decision process of agents. By using these parameters, researchers can simulate how the agent would behave in a counterfactual setting. Recently developed machine learning methods have the potential to improve DDC models . [Dynamic Discrete Choice models (https://arxiv.org/abs/1808.02569) (https://sites.google.com/view/semenovavira/research?authuser=0)]
+
+Obtaining reliable estimates of demand is fundamental to a wide range of studies in Industrial Organization and other fields of economics. For every counterfactual question concerning a market, it is necessary to quantify the response of choices to ceteris paribus changes in prices and other characteristics of the market. The most common methods of estimating demand are linear, logit, nested logit, and DDC. Recently, ML methods have been incorporated into routine demand estimation techniques to improve the out-of-sample prediction accuracy.
+ [Footnote: Recent very extensive review about demand estimation: https://cowles.yale.edu/sites/default/files/d2301.pdf]
+
 ## Translation of Concepts: Different Terminology
+
+-	Raw data and labels; create features (covariates(x)) which is input data
+
+-	to train an algorithm: to run an estimation procedure
+
+-	Estimation sample; Training data
+
+- Features – Predictive covariates, Regressors
+
+-	Labels- Outcome
+
+-	Training Data- Sample
+
+-	Prediction Rule (hypotheses): A function for prediction
+
+-	Hypothesis testing:  testing whether prediction rule (function) is true or not (not a coefficient test)
+
+-	Learning algorithms: algorithm which map samples into predictor functions.
+
+-	a (categorical) dependent variable (y); Label
+
+-	a (continuous) dependent variable (y); Response
+
+-	Classification: predicting Discrete variables (-1, 1)
+
+-	Regression: predicting a continuous value		
+
+-	Use training data, validation data and test data (in-sample and out-sample)	
+
+-	Linear regression is one type of parametric algorithm
+
+-	Bias-Variance Tradeoff
+
+-	The main goal is to get good out-of-sample predictions. To do so, we must overcome a problem known as overfitting.
+
+-	Regularization ; hyperparameter by model tuning using cross-validation or penalty measure (like Akaike’s information criterion (AIC))
+
+-	Minimize loss function and Learning parameters (minimize cost function using Lagrangian or gradient descent)
+
+-	Non-parametric supervised learning algorithms: k-NN and	decision trees
+
+-	Unsupervised learning (no y): principal components analysis (PCA), k-means clustering, Hierarchical clustering (\href{https://towardsdatascience.com/how-gene-expression-related-to-leukemia-type-using-pca-and-hierarchical-clustering-c8561303853a}{Real life example}), Singular value decomposition (SVD)
+
+- Support Vector Machine
+
+-	Ensemble methods; Bagging; Boosting
+
+-	Neural Networks; Deep Learning
+
 ## Is Machine Learning Better?
+
+Machine learning, while a powerful tool, may not always be the most suitable approach for every research inquiry. A crucial aspect of conducting research is the formulation of a precise and answerable research question. The strengths and weaknesses of conventional research methods versus machine learning techniques differ, and it is vital to establish the research objective before embarking on any study.
+
+Traditional estimation methods still hold significant value and will continue to be employed in various research settings. However, machine learning techniques can be harnessed for their predictive capabilities. It is essential to understand that machine learning does not provide a solution to the core identification problem in social sciences, which revolves around the fact that counterfactual situations remain unobservable. Nonetheless, machine learning can enhance our ability to create certain counterfactual scenarios.
+
+Machine learning demonstrates exceptional performance in tasks involving the prediction of patterns or structures, such as letters, words, and images. For example, it can accurately predict handwritten letters with a remarkable 99.97 percent accuracy rate. Despite these impressive capabilities, machine learning cannot replace human intuition or theoretical understanding when addressing the question of "why?" Furthermore, it is limited in its ability to predict large, unforeseen events (also known as "black swans"), as its predictions are grounded in historical data, and predicting such exceptional occurrences proves to be challenging.
+
+In conclusion, researchers should carefully consider the purpose of their study and the specific research question at hand when deciding whether to employ machine learning techniques or rely on conventional statistical and econometrics methods. While machine learning offers notable advancements in predictive accuracy, it remains limited in addressing certain aspects of research, such as explaining causality and anticipating unexpected events.
+
+
+
+
+
+
+
+
+
 
 <!--chapter:end:01-intro.Rmd-->
 
 
+
 # Statistical Models and Simulations
 
-Placeholder
 
 
 ## Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis
+
+In the age of data, understanding the tools and techniques available for data analysis is paramount. Machine learning and statistical modeling are two such techniques that frequently emerge in discussions. While they have similarities, they are distinct in their purposes and goals. 
+
+Though machine learning models and statistical models are sometimes used interchangeably in data analysis, they are not identical. Each serves its own unique purpose and function. Recognizing the fundamental distinctions between these methodologies is essential for navigating the realm of data analysis effectively.
+
+Both machine learning and statistical modeling play crucial roles in data analysis, offering tools for predictions, model building, and making informed decisions.  Statistical learning, often equated with machine learning, emphasizes the use of various methods for predictions, such as decision trees, neural networks, and support vector machines. On the other hand, main emphasis of Statistical learning, often connected to inferential statistics in social and health sciences, is developing statistical models that accurately represent the data and explaining and interpreting the relationships between variables.
+
+In this section, we will explore machine learning and statistical learning in more detail, discussing their key features, objectives, and differences.
+
 ### Goals and Objectives
+
+At its core, the distinction between statistical models and machine learning is their primary objectives.  Statistical models aim to investigate the relationships between variables, while machine learning models focus on delivering precise predictions.
+
+Machine learning, often termed "Algorithm-Based Learning," offers a dynamic approach that allows algorithms to learn directly from data, eliminating the need for rule-based programming. As these algorithms process more data, they continually refine their performance, enhancing their prediction accuracy and decision-making capabilities.
+
+The overarching goal of machine learning is to utilize input data to generate accurate predictions. Through the application of mathematical and statistical techniques, these models identify patterns and relationships, setting the stage for predictions on new and unseen data.
+
+At its essence, machine learning revolves around creating models that predict future outcomes. What sets it apart is its ability to predict without being pre-programmed or having explicit assumptions for specific outcomes or functionals. The more data these models process, the sharper their predictive accuracy becomes.
+
+On the other hand, statistical models are designed to infer relationships between variables. Their main goal is to deeply analyze data, revealing intrinsic patterns or connections between variables. Such insights then become the foundation for well-informed decisions.
+
+Statistical learning, often described as "Learning from Data," focuses on using data to determine its originating distribution. A typical task in statistical inference could be identifying the underlying distribution, F, from a sample set like X1,...,Xn ∼ F.
+
+Statistical modeling can be thought of as the formalization of relationships within data. It aims to define connections between variables through mathematical equations. At its heart, a statistical model is a hypothesis about how the observed data came to be, rooted in probability distributions. This encompasses a range of models, from regression and classification to non-parametric models.
+
+The main goal of statistical learning theory is to provide a framework for studying the problem of inference, which includes gaining knowledge, making predictions, making decisions, and constructing models from a set of data. This analysis is undertaken within a statistical paradigm, making certain assumptions about the nature of the underlying data generation process.
+
 ### Prediction vs. Inference
+
+Statistical learning, often equated with machine learning, emphasizes the use of various methods for predictions, such as decision trees, neural networks, and support vector machines. The model is trained using the training set, aiming to optimize its prediction accuracy on the test set. Techniques like cross-validation and boosting are frequently employed to improve this accuracy. The overarching goal in statistical learning is to identify a useful approximation, fˆ(x), to the function f(x) that defines the predictive relationship between inputs and outputs. This approximation subsequently serves as a tool for making predictions or decisions based on the data at hand.
+
+Statistical learning, often connected to inferential statistics in social and health sciences do not involve a formal splitting of data into training and testing sets. The emphasis here is developing statistical models that accurately represent the data and explaining and interpreting the relationships between variables. Once developed, these models become instrumental for tasks like hypothesis testing, estimation, and other inference-related tasks. In inferential statistical modeling, models are assumed or derived through theory or information about the data generation process. Then these probabilistic models are used to interpret and identify the relationships between data and variables, such as the effects of predictor variables. These models establish the magnitude and significance of relationships between variables and their magnitudes. In contrast, machine learning or statistical learning models take a more empirical approach, focusing on making accurate predictions based on observed data patterns.
+
 ### Conclusion
+
+In summary, while statistical learning and machine learning have overlapping areas, they are distinct in their core objectives. Machine learning models predominantly aim to make accurate predictions. In contrast, statistical models are tailored to infer and understand the relationships between variables. Statistical learning can be considered a subset of machine learning that applies regression and various methods for prediction. The primary difference between statistical learning and inferential statistics lies in the methods used and their focus on prediction versus inference.
+
+Both these approaches, statistical learning and inferential statistics, have the capability to make predictions and inferences. Yet, the primary focus of statistical learning is on prediction, with inference often playing a secondary role. In contrast, inferential statistics prioritize inference over prediction.
+
+It is crucial to emphasize the importance of Accuracy and Interpretability as well. Statistical models can sometimes be less accurate in capturing complex relationships between data, even if they can offer insights and predict outcomes. On the other hand, machine learning models tend to provide more accurate predictions. However, a trade-off exists, as these predictions, despite their accuracy, can often be complicated and less straightforward to interpret and explain.
+
+Statistical modeling and machine learning are distinct yet complementary techniques in data analysis, each with its unique features and applications. They allow for the development of algorithms that can learn from data and make predictions or decisions based on observed patterns. By understanding the key concepts, goals, and applications of these techniques, researchers and practitioners can harness their potential for a wide range of data-driven tasks and challenges.
+
+======================
+
 ## Parametric and Nonparametric Models:
+
+Parametric and nonparametric models serve as foundational statistical tools for data analysis, predictions, and inferences about populations. Each type of model has its own strengths and limitations. The decision to employ a particular model depends on the nature of the data at hand and the specific research question being addressed. In this section, we will compare parametric and nonparametric models.
+
+Parametric models make assumptions regarding the underlying distribution of the data, such as a normal distribution or a binomial distribution. By making these assumptions, parametric models can estimate the parameters of the distribution, such as the mean and standard deviation, and use these estimates to make predictions or inferences about the population.
+
+Some examples of parametric models include linear regression, logistic regression, and ANOVA multiple regression, polynomial regression, and Poisson regression. Typically, these models are viewed as more efficient and robust compared to nonparametric models, provided the data aligns with the model's assumptions. However, when these assumptions aren't satisfied, the estimates from parametric models may be biased or inaccurate.
+
+Nonparametric models, on the other hand, do not make assumptions about the underlying distribution of the data and specify functional forms. These models are often used when the distribution of the data is unknown or when the assumptions of parametric models are not met. Nonparametric models are generally more flexible and robust than parametric models, but they may be less efficient and have lower statistical power.
+
+Examples of nonparametric models encompass k-Nearest Neighbors, the Spearman rank correlation, and kernel density estimation, Decision Trees like CART. Nonparametric models are generally used when the data is ordinal or categorical, or when the data does not meet the assumptions of parametric models.
+
+In summary, parametric and nonparametric models offer distinct approaches for analyzing data and making predictions or inferences about a population. Parametric models assume that the data follows a certain probability distribution and estimate the parameters of the distribution, while nonparametric models do not make any assumptions about the distribution of the data. Each type of model has its own strengths and limitations, and the choice of which model to use depends on the characteristics of the data and the research question being addressed.
+
+In Chapter 10, we will delve into the topic of nonparametric estimation, focusing on the conditional expectation function (CEF), denoted as E[Y | X = x] = m(x). Unlike parametric models, which impose a specific functional form on m(x), nonparametric models allow m(x) to take any nonlinear shape. This flexibility in form arises when an economic model does not restrict m(x) to a parametric function. As we progress through this chapter, we will discuss the various aspects of nonparametric estimation and its implications in modeling and analysis.
+
 ## Predictive vs. Causal Models
+
+Predictive models and causal models are two types of statistical models used to analyze data and make predictions or inferences about a population. They differ in their goals and approaches: predictive models focus on forecasting future outcomes, while causal models aim to understand the underlying causes of a particular outcome. In this section, we will compare predictive and causal models.
+
+Predictive models are statistical models used to make predictions about future outcomes based on past data. Commonly employed in finance, marketing, and healthcare, researchers and analysts forecast trends or predict the likelihood of specific events. These models primarily rely on correlations between variables, using samples of data collected over time to construct a statistical model for future predictions. However, their focus on correlations limits their ability to identify causal relationships.
+
+Examples of predictive models include time series analysis, forecasting models, and machine learning algorithms for classification and regression tasks. These models are well-suited for predicting future events or trends but may not provide insights into the underlying causes of these outcomes.
+
+Causal models, in contrast, aim to understand the causal relationship between variables and identify factors that cause a particular outcome to occur. These models are often used in economics, sociology, and medicine to investigate the underlying causes of a phenomenon and to identify contributing factors.
+
+Causal models rely on the concept of causality, suggesting that one event or factor can cause another event or outcome. Researchers use experimental or quasi-experimental designs, manipulating or controlling variables of interest to establish causality. By doing so, they can isolate the effect of a specific variable on the outcome and determine its causal effect.
+
+Statistical techniques commonly used in building causal models include experimental design, observational studies, and instrumental variables analysis. These methods enable researchers to control for confounding variables and estimate the causal effect of a particular variable on the outcome of interest.
+
+In summary, predictive and causal models serve different purposes in the analysis of data and the generation of predictions or inferences about a population. Predictive models focus on forecasting future outcomes based on correlations between variables, while causal models seek to understand the underlying causes of outcomes by investigating causal relationships. 
+
 ## Model Selection and Approaches in Data Modeling
+
+Model Selection and Approaches in Data Modeling
+
+Introduction
+
+Data modeling, a cornerstone of modern analytics, necessitates a series of judicious decisions. This section offers an in-depth exploration of these choices, spotlighting the nuances between parametric and nonparametric models, and weaving in illustrative examples for clarity.
+
+Choosing the Model Family
+
+The journey of data modeling commences with the selection of an appropriate model family. Parametric models, delineated by specific parameters (βj), are refined by adjusting these parameters—a method exemplified by linear regression. Conversely, non-parametric models, a staple in machine learning, sidestep fixed parameter specifications, operating in a more fluid, algorithmic manner. For perspective, envision modeling housing prices: a parametric approach might rely on fixed factors like square footage and location, whereas a non-parametric method, such as a decision tree, might dynamically evaluate a myriad of factors.
+
+Linear vs. Polynomial Models
+
+The inherent traits of the data steer the choice between linear and polynomial models. When data hints at intricate relationships, the selection of variables and the degree of polynomial terms become paramount. For instance, a linear model might suggest a direct correlation between years of education and income. In contrast, a polynomial model might unveil nuances, such as the diminishing income benefits after a certain educational threshold. Importantly, in scenarios devoid of predictor interactions, a variable's influence remains steadfast. This accentuates the importance of envisioning the "true" Data Generating Mechanism (DGM) during model selection.
+
+Model Fitting Techniques
+
+Upon settling on a model type, the focus shifts to the fitting technique. While methods like ordinary least squares (OLS) and maximum likelihood estimation (MLE) are widely acknowledged, a spectrum of alternatives beckons. The choice often mirrors the data's characteristics and the desired estimate properties. For instance, when data showcases varying variances across observations, techniques like generalized least squares might emerge as more apt.
+
+Causal vs. Predictive Analyses
+
+The foundational decisions outlined above pave the way for discerning variable relationships, which can oscillate between causal and predictive analyses. Causal analyses unravel the intricate "why" behind relationships (e.g., discerning the health ramifications of certain diets), while predictive analyses are primed for forecasting future scenarios based on extant data (e.g., gauging a region's rainfall for the upcoming month).
+
+Parametric vs. Nonparametric Models
+
+Parametric and nonparametric models serve as the bedrock of statistical modeling, guiding data analysis, predictions, and inferences. While parametric models predicate a defined relationship between variables, nonparametric models, lauded for their adaptability, can encapsulate more layered relationships. For instance, while a parametric model might linearly correlate age with fitness levels, a nonparametric model might discern unexpected fitness peaks or troughs at specific ages.
+
+Conclusion
+
+The art and science of data modeling hinge on astute model selection and approach. By meticulously evaluating the model family, its nature, and the fitting technique, one can craft models that resonate deeply with the inherent relationships between variables, fostering robust predictions and inferences. A profound grasp of the intricacies between parametric and nonparametric models is indispensable for tailored, effective model selection.
+
 ## Simulation
+
+Simulation combines statistical and computational methods to model and analyze intricate systems and processes. By developing a mathematical or digital model of a system, researchers can produce synthetic data or forecast the system's behavior. This technique is instrumental in fields like statistics, economics, and data science, providing deep insights into model characteristics and the effects of various factors on results.
+
+Why Use Simulation?
+There are three main reasons to employ simulation in modeling:
+
+a. Predictive Challenges: For some models, especially complex or nonlinear ones, predicting behavior can be tough.
+Example: Predicting stock market movements based on numerous unpredictable factors.
+
+b. Analytical Challenges: At times, the underlying mathematics of a model might be too complex or even unsolvable using standard methods, making simulation necessary.
+Example: Calculating the trajectory of a satellite in space with multiple gravitational influences.
+
+c. Change Impact Analysis: Simulation enables researchers to examine the effects of altering initial values, parameters, or assumptions, offering a glimpse into potential scenarios.
+Example: Testing the impact of different interest rates on an economic model.
+
+Applications of Simulation:
+
+a. Statistics: Simulation is frequently used in statistics to assess properties of statistical models, such as their reliability. It's also beneficial for understanding how various factors influence statistical estimates and for validating and comparing model performance.
+Example: Bootstrapping techniques to estimate the accuracy of sample statistics.
+
+b. Economics: In economics, simulations help model and scrutinize intricate economic structures, from the global economic landscape to financial markets and supply chains. This aids in forecasting the repercussions of policy shifts or market dynamics, equipping policymakers and businesses with the knowledge to make informed choices.
+Example: Simulating the global economic impact of a sudden oil price surge.
+
+c. Data Science: Simulation is pivotal in data science for modeling vast, intricate datasets. It's essential for forecasting data-driven system behaviors and for verifying the efficacy of machine learning and statistical models.
+Example: Using simulation to test the performance of a new recommendation algorithm before deploying it on a live platform.
+
+Simulation Techniques: Simulation techniques are essential when addressing challenges related to prediction, calculation, or adaptability in systems. Key techniques include Monte Carlo, discrete event, and agent-based simulations.
+
+Types of Simulation Techniques:
+
+a. Monte Carlo Simulation: This technique involves running a model multiple times with different random inputs to estimate potential outcomes. It's widely used in finance, risk analysis, and for solving intricate problems in physics.
+Example: Estimating the risk of a financial portfolio over a given time period.
+
+b. Discrete Event Simulation: This approach represents systems as sequences of individual events, each with its own timestamp. Commonly used in manufacturing and healthcare, it helps in refining processes and evaluating performance.
+Example: Simulating patient flow in a hospital to optimize bed allocation and reduce waiting times.
+
+c. Agent-Based Simulation: In this method, systems are portrayed as groups of interacting agents. This is particularly useful in social sciences and economics to understand large-scale behaviors that arise from individual interactions.
+Example: Modeling the spread of opinions in a community based on individual interactions.
+
+
+Benefits of Simulation:
+
+a. Deep Insights: Simulations allow for an in-depth understanding of system behaviors and enable well-informed projections.
+
+b. Clarifying Complex Models: When models are intricate, simulations provide a clearer perspective.
+
+c. Alternative to Analytical Solutions: When direct analytical solutions are unavailable, simulations offer a method to understand and predict system behaviors.
+
+d. Sensitivity Analysis: Through simulation, researchers can determine how changes in variables affect the system, pinpointing key variables and predicting system responses to these changes.
+
+Conclusion
+
+Simulation techniques are invaluable in analyzing complex systems across various disciplines. They provide insights into system behaviors, simplify complexities, and offer solutions when analytical methods fall short. By employing simulations, researchers gain the ability to understand systems under varied conditions, leading to informed decisions, future predictions, and the development of optimized processes and strategies.
+
 
 <!--chapter:end:02-ModelsAndSimulations.Rmd-->
 
 
 # Counterfactual:
 
-Placeholder
+Imagine a college student,Alex, who occasionally gets sick after eating but doesn't know which specific food is the culprit. In a community increasingly concerned about food allergies, this young individual grappled with recurring allergic reactions. Driven by a pressing need to pinpoint the root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex meticulously documented every instance in which he consumed food, noting all the ingredients, leading to a comprehensive data collection effort.
+
+In his quest to uncover the reason for his sporadic sickness after eating, Alex adopted an approach that resembled common quantitative research methods: collecting data, utilizing descriptive statistics, visualizing the data, finding correlations, and ultimately using methods to determine the causation of the allergy.
+
+As Alex continues to gather more data about his dietary intake and subsequent health reactions, he starts by creating a simple table for each day. After visualizing the data, he begins to spot correlations between certain foods and his well-being.
+
+**Data Visualization**:
+
+Based on this recorded data, Alex can employ various visualization methods to better understand and identify patterns:
+
+a) For the Histogram of Reaction Intensity, this chart allows Alex to see the frequency of days with varying intensities of reactions. The X-axis represents the Reaction Intensity ranging from 1 to 10, while the Y-axis shows the Number of Days. An observation he might make is if he notices a high number of days with intensities around 8-10 after consuming garlic, providing an initial clue.
+
+b) In the Bar Chart of Reactions by Food, he can visually compare the average reaction intensities for various foods. The X-axis displays different foods or ingredients such as garlic, dairy, and wheat. The Y-axis represents the Average Reaction Intensity. If the bar for garlic consistently stands out in comparison to other foods, it further signals a potential issue.
+
+c) The Time Series Line Graph enables Alex to track the evolution of reactions over time. With the X-axis indicating the Date and the Y-axis highlighting the Reaction Intensity, a line tracing the intensity of reactions over time can help him pinpoint if certain clusters of high-intensity days align with the consumption of specific food.
+
+Recognizing correlations visually with these tools means Alex can discern if there's a pronounced spike in the histogram every time garlic is consumed. The bar chart might indicate that garlic has a noticeably higher average reaction intensity than other foods. Similarly, the time series graph can demonstrate peaks in reaction intensities on specific dates, which Alex can then cross-reference with the food he consumed on those days.
+
+By visually plotting the data, Alex can more effectively recognize patterns and correlations, offering a foundational understanding before venturing into more intricate statistical analyses.
+
+**Delving Into Correlations**:
+
+Observing Correlations: Alex began to rank his reactions on a scale from 1 to 10, with 10 marking the most severe reaction. As days turned to weeks, he noticed that every time he consumed garlic, the intensity of his reaction consistently hovered between 8 to 10. Contrastingly, other foods such as dairy or wheat might occasionally result in a reaction intensity of 3 or 4, but not always.
+
+Potential Confounding Factors: On a particular day, Alex felt unwell after a meal without garlic, but recalled having a milkshake. Wondering if dairy might be another trigger, he started noting down dairy consumption alongside garlic. However, after several dairy-heavy days without any reaction, it becomes clear that the milkshake incident might have been a coincidence or caused by another factor.
+
+Strength of Correlation: As weeks go by, the association between garlic ingestion and feeling under the weather becomes more evident. The consistency and strength of this correlation are much higher than with any other food. In statistical terms, one might say that garlic have a strong positive correlation with Alex's adverse reactions.
+
+Spurious Correlations: A pattern Alex took note of was his increased tendency to fall ill on weekends. However, after some contemplation, he discerned that weekends were when he often dined out, inadvertently upping the odds of ingesting garlic. his is an example of a spurious correlation: the actual problem wasn't the weekend itself, but rather the increased exposure to the allergen.
+
+Drawing Conclusions: While correlation does not imply causation, the consistent and strong correlation between garlic consumption and adverse reactions, gives Alex confidence in the hypothesis that he is allergic to garlic.
+
+In this example, Alex's observations and data tracking are analogous to the process of determining correlation in statistical or machine learning contexts. Correlations can highlight patterns, yet it's crucial to ensure that confounding factors or spurious correlations aren't misleading the conclusions.
+
+**The Mystery of Mia’s Illness:**
+
+On certain weekends, Mia, Alex's girlfriend, also started feeling unwell. As she began to correlate her illness to the days she spent with Alex, she grew concerned. Was she allergic to something at Alex’s place? Or, even more alarmingly, was she developing an allergy to garlic, having shared many garlic-laden dishes with him?
+
+Mia decided to chart her symptoms alongside Alex’s diary of garlic consumption. To her surprise, she found that she felt sick on several occasions when Alex had garlic in his meals, even if she hadn’t consumed any garlic herself.
+
+Spurious Correlation Revealed:Further probing revealed an interesting detail. Whenever Alex prepared dishes with garlic at his place, he'd also light up a particular brand of aromatic candle to mask the strong garlic smell. Mia wasn't reacting to the garlic, but to the scent of that specific candle. Her sickness wasn’t directly linked to the days Alex consumed garlic, but rather to the days the candle was lit. The correlation between her sickness and Alex's garlic consumption was spurious, with the actual causative agent being the candle’s aroma.
+
+In this example, Mia’s conclusion, based on initial observations, would lead her down the wrong path, emphasizing the importance of not mistaking correlation for causation. It serves as a cautionary tale on the pitfalls of spurious correlations in both real-life and statistical contexts.
+
+**Alex's Deep Dive into the effect of his garlic consumption on his allergy severity:**
+
+After discovering a strong correlation between his garlic consumption and allergic reactions, Alex decided to take his investigation a step further. While the correlation was evident, he wanted to quantitatively understand the exact impact of garlic consumption on his reactions. He suspected that while garlic was the primary association with his reactions, other variables might exacerbate or alleviate his symptoms. Beyond just the amount of garlic he consumed, could factors like his weight, the weather temperature, and even eating outside influence the severity of his reactions?
+
+Gathering Data: For several weeks, Alex meticulously documented the amount of garlic in his meals, his weight each day, the day's peak weather temperature, whether he dined inside or outside.
+
+To understand the relationship better, Alex used an Ordinary Least Squares (OLS) regression. This approach would allow him to understand how each variable, when considered together, might predict the severity of his allergic reaction. He find that the coefficient for garlic quantity was positive, reaffirming that the more garlic he consumed, the stronger the allergic reaction. Interestingly, on days when he weighed more, the severity of his allergic reaction was slightly less, all else being equal. Perhaps his body was better equipped to handle allergens when he was at a slightly higher weight. On warmer days, Alex's allergic reactions were milder than on colder days. Dining outside frequently correlated with more intense reactions. This puzzled Alex until he realized that eating outside often meant dining at restaurants or cafes where he had less control over ingredients, and the chance of consuming hidden garlic was higher.
+
+Alex remembered that his girlfriend once mentioned he seemed to react more during weekends. Reflecting on it, he saw that weekends were indeed when they often dined out, leading to more exposure to garlic-rich dishes. It wasn't the fact that it was a weekend causing the reactions but the increased likelihood of eating garlic-containing food outside. This was a classic case of spurious correlation; the real culprit was the garlic, not the weekend!
+
+Equipped with these insights, Alex made some lifestyle changes. He became cautious about eating out, especially on weekends. He also kept an eye on the day's temperature, preparing for potential reactions on colder days. Knowing that his weight had a buffering effect was an added insight, but he decided that a balanced diet and regular exercise were more crucial for his overall health.
+
+**Investigating Causation**
+
+Building on the previously identified correlation between garlic and adverse reactions, Alex feels the pressing need to ascertain whether garlic truly triggers his allergic responses. Although correlation had provided some preliminary insights, he recognized the limitations of correlation evidence in proving causation. He turned to Ordinary Least Squares (OLS) regression analysis, aiming to isolate the impact of garlic relative to other potential variables, like his weight, weather temperature, and the environment where he eats.
+
+He remembered a recent news article discussing certain foods that were structurally and chemically similar to garlic. The article suggested that these foods could also trigger allergic reactions in individuals sensitive to garlic. This revelation complicated his inquiry, as neither correlation nor regression methods could offer him a definitive answer. Could there be other foods amplifying his reactions? Or was garlic the sole offender?
+
+Determined to get to the bottom of this mystery, Alex decided to undertake a more rigorous approach: the experimental method. Often hailed as the gold standard for establishing causality, this method would allow Alex to control specific variables and thereby isolate the effects of garlic and other similar foods on his system. By methodically introducing and removing these foods from his diet in a controlled setting, he aimed to definitively ascertain the root cause of his adverse reactions.
+
+To unravel this mystery, Alex approached his friend Mia, who didn't have any known food allergies, to participate in a controlled experiment. By having Mia as a control group, Alex could compare reactions between them, potentially teasing out the specific effects of garlic.
+
+They both embarked on a week-long experiment, where their diets were standardized, with the only variance being the consumption of garlic and its similar foods. Mia's consistent lack of adverse reactions when consuming the same meals as Alex, especially those containing garlic, reinforced its role in Alex's allergic symptoms. Meanwhile, Alex's symptoms persisted, lending more weight to the hypothesis about garlic's culpability.
+
+When Mia remained symptom-free even after consuming the foods similar to garlic that the news had warned about, it provided Alex with further clarity. It became evident that while those foods might be problematic for some, they weren't the culprits in Alex's case. By incorporating Mia into the experiment as a control group, Alex was not only able to more confidently ascertain the role of garlic in his reactions but also to rule out other potential allergens. 
+
+Causation Established: With consistent results across multiple trials, combined with the knowledge that other potential causes have been ruled out, Alex concludes that garlic is not just correlated with, but is the actual cause of his allergic reactions. In scientific terms, Alex has moved from observing a correlation (a relationship between garlic consumption and allergic reactions) to establishing causation (determining that garlic directly causes the allergic reactions).
+
+This journey mirrors the scientific process where controlled experiments, repeated trials, and the isolation of variables are crucial for determining the true cause of an observed effect.
 
 
 ## Qualitative and Quantitative research methods:
+
+In the realm of research, there are two primary methodologies: qualitative and quantitative. Qualitative research methods often involve focus groups, unstructured or in-depth interviews, and the review of documents to discern specific themes. For instance, in social sciences, a qualitative study might explore the lived experiences of individuals living in poverty, capturing their stories and challenges through in-depth interviews. In economics, qualitative research might delve into understanding the socio-economic factors influencing a community's resistance to adopting digital currencies.
+
+On the other hand, quantitative research typically employs surveys, structured interviews, and measurements. It also involves reviewing records or documents to gather numeric or quantifiable data. Quantitative methods emphasize objective measurements and the statistical, mathematical, or numerical analysis of data collected through polls, questionnaires, and surveys. An example from economics might be a study analyzing the correlation between unemployment rates and economic recessions using historical data. Another economic example could be a quantitative analysis of the impact of interest rate changes on consumer spending patterns over a decade.
+
+Additionally, quantitative research can involve manipulating pre-existing statistical data using computational techniques. For instance, in economics, researchers might use computational models to predict the future growth rate of an economy based on various indicators. Quantitative research is not just a method but a way to learn about a specific group of people, known as a sample population. In the health sector, a quantitative study might examine the efficacy of a new drug on a sample population, measuring specific health outcomes and side effects. In economics, a study might evaluate the spending habits of millennials compared to baby boomers using structured surveys. Through scientific inquiry, it relies on data that are observed or measured to examine questions about this sample population. There are various designs under quantitative research, including Descriptive non-experimental, Quasi-experimental, and Experimental.
+
+The processes that underpin these two research types differ significantly. Qualitative research is characterized by its inductive approach, which aids in the formulation of theories or hypotheses. In contrast, quantitative research follows a deductive approach, aiming to test predefined concepts, constructs, and hypotheses that together form a theory.
+
+When considering the nature of the data, qualitative research is inherently subjective. It seeks to describe issues or conditions from the vantage point of those experiencing them. For example, in economics, a qualitative study might investigate the perceptions of small business owners towards global trade agreements. Quantitative research, however, is more objective. It focuses on observing the effects of a program on an issue or condition, with these observations subsequently interpreted by researchers.
+
+The type of data these methodologies yield is also distinct. Qualitative research is text-based, delving deep to provide rich information on a limited number of cases. Quantitative research, meanwhile, is number-based, offering a broader scope of information but spread across a larger number of cases, often sacrificing depth for breadth.
+
+In terms of response options, qualitative research tends to use unstructured or semi-structured options, allowing for more open-ended answers. Quantitative research, in contrast, relies on fixed response options, measurements, or observations. Furthermore, while qualitative research does not typically employ statistical tests in its analysis, quantitative research does, ensuring a more structured and numerical interpretation of data.
+
+Lastly, when it comes to generalizability, qualitative research findings are often less generalizable due to their in-depth focus on specific cases. Quantitative research, with its broader scope, tends to be more generalizable to larger populations.
+
+In summary, while both qualitative and quantitative research methodologies offer valuable insights, they differ in their methods, processes, nature of data, and generalizability, each serving unique purposes in the research landscape, as evidenced by their applications in fields like economics, social sciences, and health. In this book, we cover quantitative methods. 
+
+https://libguides.usc.edu/writingguide/quantitative
+
 ## Quantitative - Research methods :
+
+General perspective about research methods in health, economics, and social sciences:
+
+A researcher asks a good answerable question. It does not mean we can always find the answer right away with available data and methods.  Yet we know that we can find an answer which will expand our knowledge of how the world works. A good answerable research question can be defined as a hypothesis which can be a phenomenon what we observe in the world. Also, hypothesis, that we want to prove, comes from theory as well.  If the theory explains or predicts this is the specific hypothesis how the world works, then we should observe it with the data. 
+
+To answer these questions, we collect or obtain data, then explore data.  After making certain assumptions, we analyze the data. Then, we reach conclusions which can be associations, correlations, or causal relations. We use results to explain, extrapolate or predict! our hypothesis.	 We covered these concepts in detail in the introduction of this book.
+
+Different fields have dominant methods within their field to answer research questions. 
+[The main source for health section is C. Manski, Patient Care under Uncertainty, Princeton University Press, 2019.]
+Health research use “Evidence Based Research!” 	
+Manski told in his seminal book “Research on treatment response and personalized risk assessment shares a common objective: Probabilistic prediction of some patient outcome conditional on specified patient attributes...Econometricians and Statisticians refer to conditional prediction as regression, a term in use since the nineteenth century. Some psychologists use the term actuarial prediction and statistical prediction. Computer scientists may refer to machine learning and artificial intelligence. Researchers in business school may speak of predictive analytics.”
+In most general way, after collecting and analyzing data, they present descriptive analysis seeks to understand associations. By various medical research methods, especially “Gold standard methods!”, when(if) they determine X causes Y. They propose treatment and surveillance. By using clinical trials, they want to determine treatment/surveillance and find its efficacy and effectiveness. Using Prescriptive analyses, they attempt to improve the performance of actual decision making. They try to find optimal solution between surveillance and aggressive treatment. Mainly, they use clinical judgment and evidence-based research.
+In general, statistical imprecision and identification problems affect empirical (evidence-based) research that uses sample data to predict population outcomes. There is a tension between the strength of assumptions and their credibility. The credibility of the inference decreases with the strength of the assumptions maintained.
+
+The most credible and acceptable method is The Gold Standard! In health.  The "Gold Standard" Method for Health researchers is obtaining the effect of tested treatment comparing the results from trials and experiments which has treatment and control groups, and. In machine learning this is known as A/B testing, in economics it is random and field experiments. 
+
+Even though this method is the most credible method in empirical research, it has problems like any other empirical methods. First, study/trial sample and actual patient population can be very different. Second, Due to small sample sizes, estimates and identification of treatment effects are imprecise. Third, it is wishful extrapolation to assume that treatment response in trials performed on volunteers is the same as what would occur in actual patient populations. Thus, predictions are fragile as they have limited data and do not handle uncertainty sufficiently.
+
+Most of health researcher give more value for the results obtained by a randomized trial with 200 observations than results from observational studies with 200,000 observations. Why do most of the medical and health researchers have this perspective?	 To justify trials performed on study populations that may differ substantially from patient populations, researchers in public health and the social sciences often cite Donald Campbell, who made a distinction between the internal and external validity of studies of the treatment response (Campbell and Stanley, 1963). A study has internal validity if it has credible findings for the study population (in-sample data in Machine Learning). It has external validity if an invariance assumption permits credible extrapolation (out-sample in ML). The appeal of randomized trials is their internal validity. Campbell argued that studies should be judged primarily by their internal validity and secondarily by their external validity. Since 1960s, this perspective has been used to argue for the primacy of experimental research over observational studies, whatever the study population may be.
+
+In contrast, observational studies which uses the representative sample of the population have more credibility in economics than randomized control trials with a small sample.  The Campbell perspective has also been used to argue that the best observational studies are those that most closely approximate randomized experiments if they are done with representative samples. 
+
+We should keep in mind that statistics and economics have the following perspective which is weird in other fields. For instance, "All models are wrong, but some are useful" (Box, 1976), and "Economists should not worry if their assumptions are wrong, as long as their conclusions are relatively accurate." (Friedman, 1953)
+
 ## Data and visualization
+
+Data and Visualization in Health, Economics, Business, and Social Sciences
+
+Researchers in fields such as health, economics, business, and social sciences primarily utilize three types of datasets: cross-sectional data, time series data, and panel data (also known as longitudinal data). 
+
+Cross-sectional data is collected at a single point in time or over a short period from a sample of subjects, such as individuals, companies, or countries. This type of data is often used to describe the characteristics or attributes of a group at a specific point in time.
+
+Time series data, collected over an extended period at regular intervals, tracks changes in a particular variable over time. This data is useful for identifying trends and patterns over time and making predictions about future developments.
+
+Panel data, collected over an extended period from the same sample of subjects, tracks changes in a particular variable over time for each subject in the sample. This type of data is valuable for studying the relationship between different variables and identifying trends and patterns over time.
+
+When working with any type of data, it is crucial to follow the following steps:
+
+Examine the raw data: Understand the structure and content of the data.
+
+Clean and prepare the data: Check for errors, missing values, and outliers, and ensure that the data is in a usable format.
+
+Understand the data: Investigate the variables and their relationships through statistical analysis, visualizations, and other methods.
+
+Effective visualization can reveal data features that inform further analysis. Visualizing data is an essential step in the process of understanding and analyzing data in various fields. Effective visualization techniques, such as histograms, barplots, boxplots, scatterplots, and heatmaps, can provide valuable insights into patterns and trends within the data, guiding further analysis and decision-making.
+
+A histogram is a graphical representation that displays the frequency or distribution of a set of continuous or discrete data. It helps visualize the data and understand the underlying distribution. A histogram comprises a set of bins, which represent ranges of values, and the height of each bin indicates the frequency of data points within that range. For instance, a histogram displaying the weights of a group of animals might have bins representing weight ranges (e.g., 20-29 kg, 30-39 kg, etc.), and the height of each bin would indicate the number of animals within that weight range.
+
+A barplot is a graphical representation that illustrates the mean or median of a dataset. It serves to visualize the central tendency of the data and compare different groups or categories. A barplot comprises a set of bars, with the height of each bar representing the mean or median of the data for that group or category. For instance, a barplot might compare the average fuel efficiency of various car models or the median home prices in different neighborhoods.
+
+A boxplot is a graphical representation that displays the distribution of a dataset. It helps visualize the spread, skewness, and potential outliers in the data. A boxplot consists of a box representing the interquartile range (the middle 50% of the data), a line denoting the median, and "whiskers" extending from the box to the minimum and maximum values of the data. Boxplots are particularly useful for comparing the distributions of different groups or categories of data, such as the distribution of exam scores for students in different classes.
+
+A scatterplot is a graphical representation that exhibits the relationship between two variables. It enables the visualization of the relationship between the variables and identification of patterns and trends. A scatterplot consists of a set of points, with each point's position representing the values of the two variables for that data point. For example, a scatterplot might demonstrate the relationship between advertising expenditures and sales revenue or between hours of study and test scores.
+
+A heatmap is a graphical representation that depicts the relationship between two or more variables. It aids in visualizing the relationship between the variables and identifying patterns and trends. A heatmap consists of a set of cells, with the color of each cell representing the value of the variables for that cell. Heatmaps are especially useful for visualizing data organized in a grid or matrix, such as the correlation between various stock prices or the frequency of crime incidents across different times and locations.
+
+
+
+
 ##  Correlation
+
+The phrase "correlation does not imply causation" is often used in discussions of statistical relationships, but what exactly does it mean? To answer this question, it is essential to understand the concept of correlation and its role in assessing the connection between two variables.
+
+Correlation is a statistical measure that quantifies the degree of association between two variables. It is often used to describe a linear relationship between the variables. The term "association" is broader than correlation, referring to any relationship between two variables, whether linear or not.
+
+In everyday life, we often observe correlations between events. Various industries, such as finance, healthcare, and marketing, frequently utilize correlation measurements to analyze data and make informed decisions. The word "correlation" can be broken down into "co," meaning together, and "relation," signifying a connection between two quantities.
+
+Correlation can be positive, negative, or uncorrelated. A positive correlation exists when two variables move in the same direction, i.e., an increase in one variable corresponds to an increase in the other. For example, if an increase in advertising expenditure leads to a rise in sales revenue, the variables are positively correlated.
+
+Conversely, a negative correlation occurs when two variables move in opposite directions, with an increase in one variable resulting in a decrease in the other. For instance, a negative correlation may exist between the number of hours spent watching television and academic performance, where increased television time leads to lower grades.
+
+Variables are considered uncorrelated when a change in one variable does not impact the other. Understanding how two variables are correlated enables us to predict future trends and discern the nature of their relationship or lack thereof.
+
+However, it is crucial to remember that correlation does not imply causation. A strong correlation between two variables does not necessarily mean that one causes the other. There may be confounding variables or other factors at play that influence the observed relationship. Therefore, it is essential to consider the context and perform additional analyses before drawing conclusions about causality from correlation alone.
+
+
+Correlation Analysis: Exploring Relationships Between Variables
+
+Correlation analysis is a statistical method used to study the association or absence of a relationship between two variables. By examining the correlation between variables, researchers can measure the strength and nature of their association.
+
+The primary goal of correlation analysis is to determine a numerical value that indicates the relationship between two variables and how they move together. When a change in one variable is accompanied by a change in another variable, whether direct or indirect, correlation analysis helps quantify the relationship between the two variables.
+
+One of the most popular correlation measures is the Pearson correlation coefficient, which quantifies the strength and direction of a linear relationship between two numerical variables (usually continuous, but not always). When people refer to "the correlation," they usually mean the Pearson correlation coefficient. This coefficient ranges from -1 to 1, with -1 representing a strong negative relationship, 0 indicating no relationship, and 1 signifying a strong positive relationship. For instance, a Pearson correlation of 0.8 between two variables suggests a strong positive relationship, where an increase in one variable typically results in an increase in the other variable.
+
+Beyond the Pearson correlation, other correlation measures include partial correlation, conditional correlation, spatial correlation, and dynamic correlation.
+
+Partial correlation is a statistical method used to measure the relationship between two variables while controlling for the effects of one or more other variables. This technique isolates the relationship between the two variables of interest and examines how it is influenced by the other variables.
+For example, when examining the relationship between education level and income, partial correlation could be employed to control for the effects of variables such as age or work experience.
+
+Conditional correlation measures the relationship between two variables while accounting for the effects of one or more categorical variables. Similar to partial correlation, conditional correlation aims to understand the relationship between two variables of interest by considering the influence of other variables.
+
+Spatial correlation assesses the relationship between variables measured at different locations in space. This technique is particularly useful when analyzing data collected across geographical areas, such as climate, population, or economic indicators. Spatial correlation helps determine the extent to which observations close to one another in space are related.
+
+For instance, spatial correlation might be used to study the relationship between pollution levels and population density across various cities.
+
+Dynamic correlation measures the relationship between variables that change over time. This technique is especially valuable when analyzing data collected over extended periods, such as stock prices, economic indicators, or demographic trends. Dynamic correlation estimates the correlation between variables at different points in time and can help researchers understand how the relationship between variables evolves over time.
+In summary, correlation analysis is a powerful statistical tool for examining the relationships between variables, allowing researchers to measure the strength and nature of these associations. By employing various correlation measures such as Pearson correlation, partial correlation, conditional correlation, spatial correlation, and dynamic correlation, researchers can gain valuable insights into the complex relationships between variables in numerous fields.
+
+Correlation and Regression
+
+Correlation and regression are two statistical methods used to analyze the relationships between variables. While they share some similarities, their purposes and applications differ significantly.
+
+Similarities:
+
+Both correlation and regression are used to explore relationships between variables.
+They both assume a linear relationship between the variables in question.
+Both techniques involve the calculation of coefficients that quantify the relationships between variables.
+
+Key Differences:
+
+Correlation measures the strength and direction of the relationship between two variables, whereas regression models and predicts the value of one variable based on the value of another.
+
+Correlation is a descriptive statistical technique, providing a summary of the relationship between variables. In contrast, regression is a predictive statistical technique, employed to make predictions or explain the relationship between variables.
+
+Correlation typically analyzes relationships between two continuous variables, such as height and weight, or age and income. Regression can analyze relationships between two continuous variables but can also assess relationships between a continuous variable and a categorical variable, such as GPA and major.
+
+Correlation is quantified using a correlation coefficient, which ranges from -1 to 1. A coefficient of 0 indicates no relationship, while coefficients of 1 or -1 signify strong positive or negative relationships, respectively. Regression utilizes various statistics, including the coefficient of determination (R-squared), the standard error, and the p-value.
+
+In conclusion, while correlation and regression are related statistical techniques used to explore relationships between variables, they serve different purposes and applications. Correlation is a descriptive technique that measures the strength and direction of a relationship between two variables, while regression is a predictive technique that models and predicts the value of one variable based on another. Understanding these differences is essential when selecting the appropriate statistical method for data analysis.
+
+
 ##  Effect of X on Y / Regression
+
+Economists and social scientists predominantly utilize observational survey data to answer research questions or test hypotheses. By analyzing samples, they make inferences about the larger population. When conducting such analyses, it is crucial to address three key issues:
+
+1. How can factors other than x be allowed to influence y?
+
+2. What is the functional relationship between y and x?
+
+3. How can we ensure that we are capturing a ceteris paribus (all other things being equal) relationship between y and x?
+
+The simple linear regression model addresses these concerns effectively. While this model assumes a linear relationship between x and y, machine learning (ML) techniques do not assume a specific functional form and instead attempt to find the optimal functional form for the best predictive model. In contrast, economists and social scientists are more interested in interpreting the relationship between x and y rather than making predictions.
+
+Victor Chernozhukov's presentation at the 2013 NBER Summer Institute demonstrated that Lasso, a linear method in ML, can better approximate the conditional expectation function (CEF) than ordinary least squares (OLS) for certain datasets.
+
+As Bruce Hansen notes in his recent book, "The OLS regression yields the best linear approximation of the conditional expectation function (CEF). This mathematical property makes regression a favorite tool among economists and social scientists, as it emphasizes the interpretation of an approximation of reality rather than complicated curve fitting."
+
+The predictive power of x on y can be summarized using the conditional expectation function, E(y|xi). This function represents the expected value (population average) of y, given certain covariate x is held constant. It provides a useful representation of how y changes with x. The primary interest lies in the distribution of yi rather than predicting individual yi. The regression CEF theorem states that even if the CEF is nonlinear, regression provides the best linear approximation to it.
+
+OLS estimates the coefficient (β1) using a random sample of data to represent the population and makes assumptions about the relationships between the error term (u) and x. These assumptions include the expected value of the error term being zero in the population, mean independence of the error term, and the zero conditional mean assumption.
+
+In summary, simple linear regression and machine learning methods offer different approaches to understanding the relationship between x and y in observational survey data. While regression emphasizes interpretation and provides the best linear approximation to the CEF, machine learning techniques focus on finding the best functional form for predictive modeling. Both methods have their merits and can provide valuable insights for economists and social scientists.
+
 ### How can we estimate the population parameters, $\beta_{0}$ and $\beta_{1}$?
+
+ We find a random sample, which represents the population. We plug observations into the population equation, and use two assumptions $$ E(u)=0 , Cov(x,u)=0$$
+ We estimate $$y_{i}=\hat{\beta_{0}}+\Sigma_{1}^{k}\hat{\beta_{k}}x_{i}+u_{i}$$. i.e we minimize sum of squared residuals by solving the following linear regression equation algebraically. This is also known as ordinary least squares(OLS).
+$$
+		\sum_{i=1}^{n}\hat{u}_{i}^{2}=\underset{\hat{\beta_{0}}, \hat{\beta_{1}}..\hat{\beta_{k}}}{\operatorname{argmin}} \sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta_{0}}+\hat{\beta_{1}} x_{i}+\hat{\beta_{2}} x_{i}+...+\hat{\beta_{k}} x_{i}\right)\right)^{2}
+$$		
+		
+$$y=X^{'}\beta+u$$, where $$u_{i}\sim(0, \sigma^2)$$ then $$\hat{\beta}= (X^{'}X)^{-1}X^{'}y$$ follows from $$1/n \sum [x_{i}(y_{i} - x_{i}^{'}\hat{\beta})] = 0$$
+
+
 ### Predicting $y$
+
+For any candidates $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$, define a fitted value for each $i$ as		
+
+$$
+		\hat{y}_{i}=\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}
+$$
+		
+We have $n$ of these.  $\hat{y}_i$ is the value we predict for $y_{i}$ given that $x=x_{i}$ and $\beta=\hat{\beta}$.
+		
+The "mistake" from our prediction is called the residual:
+$$
+		\hat{u}_{i}=y_{i}-\hat{y}_{i}
+		=y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{i}
+$$
+		
+NOTE: Econometric applications typically are not interested in forecasting yi but rather in understanding relationship between $y_{i}$ and some elements of $x_{i}$ with other factors held fixed (ceteris paribus)
+
+We estimate the coefficients by minimizing sum of squared residuals in OLS. Different samples will generate different estimates $(β^1)$ for the true $β_{1}$ which makes $β_{1}$ a random variable. But never forget that β^1 is an estimator of that causal! parameter obtained with a specific sample from the population.  We say the effect of x on y is β1 as long as it is unbiased. We also want our estimates to be consistent, and satisfy asymptotic normality. 
+
+Unbiasedness is the idea that if we could take as many random samples on Y as we want from the population, and compute an estimate each time, the average of these estimates would be equal to β1. OLS is unbiased under the following assumptions.  These assumptions are the population model can be Linear in Parameters, Random Sampling, Sample Variation in the Explanatory Variable, Zero Conditional Mean, Homoskedasticity - Constant Variance (or heteroskedasticity).This tells us that, on average, the estimates will be equal the population values.
+
+Consistency states that if one uses a larger sample size, one reduces the likelihood of obtaining an estimate $\hat{\beta}$ that deviates substantially from the true effect $β$.  Thus, consistency implies that, as a sample size approaches the entire population, an estimate $\hat{\beta}$ is more and more likely to reflect the true estimate $β$. This holds true, for example, when $β$ is unbiased and its variance decreases as the sample size increases.  
+
+Assuming that many samples are drawn randomly, and $β$ is estimated in each sample, asymptotic normality implies that, given the very large size of each sample, the pooled estimate $\hat{\beta}$ obtained from the samples follows a normal distribution. Having this property makes it possible to approximate the distribution of an estimate across many samples well, even if we have only one sample with a sufficient number of observations rather than many samples. In statistical inference, it is very important to understand an estimate's distribution.
+
+Be aware, most of the time, obtaining unbiased $β$ is very hard (even impossible as population DGM is unknown!).  Errors are not iid. For instance, maybe observations between units in a group are related to each other (clustered), non-representative sample, Exclusion or inclusion of variables, Measurement error, Endogeneity, Reverse causality, Missing observations. Thus, most of the time, we can only find associations, or correlations. In this situation, we can only say what is the relationship, association, or correlation between y and x. 
+
+
 ### MLE
+
+Maximum Likelihood Estimation (MLE) is a statistical method used to estimate parameters of a given statistical model based on the observed data. MLE aims to find the parameter values that maximize the likelihood of the observed data under the assumed probability distribution. Unlike Ordinary Least Squares (OLS), which focuses on minimizing the squared differences between the observed and predicted values, MLE seeks to find the parameter values that make the observed data most likely.
+
+In MLE, the main objective is to estimate the unknown parameters of a given statistical model by maximizing the likelihood function. The likelihood function measures the probability of observing the data given the parameters of the model. By maximizing the likelihood function, we find the parameter values that best explain the observed data under the assumed distribution.
+
+MLE has several advantages over other estimation methods, such as OLS, including:
+
+Consistency: As the sample size increases, MLE estimates tend to converge to the true parameter values, assuming that the model is correctly specified. This property ensures that MLE provides reliable estimates as more data becomes available.
+
+Asymptotic Normality: Under certain regularity conditions, the MLE estimates are asymptotically normally distributed. This property allows for the construction of confidence intervals and hypothesis testing using standard statistical techniques.
+
+Efficiency: MLE estimates are asymptotically efficient, meaning they achieve the lowest possible variance among all unbiased estimators. This property ensures that MLE provides the most precise estimates given the available data.
+
+Invariance: MLE estimates are invariant under transformations, which means that if we apply a transformation to the parameter space, the MLE estimate of the transformed parameter will be the same as the transformation of the MLE estimate of the original parameter.
+
+However, MLE also has some limitations, such as:
+
+Dependence on distribution assumptions: MLE requires the assumption of a specific probability distribution for the data. If the assumed distribution is incorrect, the MLE estimates may be biased or inconsistent.
+
+Sensitivity to outliers: MLE estimates can be sensitive to outliers in the data, as they aim to maximize the likelihood of the entire dataset. This sensitivity can lead to biased estimates if the data contains extreme values.
+
+Computational complexity: The maximization of the likelihood function can be computationally intensive, especially for large datasets and complex models.
+
+In summary, Maximum Likelihood Estimation (MLE) is a powerful statistical method for estimating the parameters of a given statistical model based on the observed data. It provides a flexible and efficient approach to parameter estimation under the assumption of a specific probability distribution. However, it is essential to consider the limitations of MLE when applying it to real-world data and carefully assess the distributional assumptions and the presence of outliers in the data.
+
 ##  Causal Effect
+
+You have most likely heard the term “Correlation is not
+causation”, which means, loosely that “just because two things
+happen together, doesn't mean that one of them caused the
+other.” A better term is “correlation is not sufficient for causation.”There are some things we can do to make causal inference
+possible, but they happen before the sample is taken.
+This is a big change from most of the statistics you learn.
+Usually, you're given numbers from some random sample, and
+you don't have any control over that sample. You just have to
+take the numbers and make sense of them.
+In the design phase, you decide how treatments are going to
+be assigned to sample units/patients. If you can't directly
+assign treatments, you need to collect data about covariates.
+
+"You may have heard the phrase "correlation does not equal causation," which means that just because two things are related or happen together does not necessarily mean that one of them caused the other. A more accurate statement would be "correlation is not enough to establish causation." To make causal inferences, there are certain steps that must be taken before collecting data, such as designing how treatments will be assigned to sample units or patients. In contrast, statistical analysis typically involves working with data that has already been collected, and the focus is on understanding and interpreting the relationships between variables within the given data set. It is important to keep in mind that correlation does not necessarily imply causation, and other factors may be at play when trying to understand the relationships between variables."
+
+Most of the time though, we also want to find out not only the relationship or correlation between observations but also the reason behind it. Using this information, we are able to take action to alter the relationships and causes. Essentially, we want to know what the consequences are of not doing one thing or the other. Our goal is to understand the effects and consequences of specific actions, policies, and decisions.
+In order to develop a hypothesis about such causal effects, we rely upon previous observations, personal experiences, and other information. Researchers in economics, health, and social sciences analyze empirical data to evaluate policies, actions, and choices based on quantitative methods.
+
+When we want to say something about why? We work with potential outcomes Potential Outcomes (Neyman, 1923 - Rubin, 1975) framework, especially in applied economics, or directed acyclic graphs (DAG) which you can think presenting a chain of causal effects with a graph. We will review causal analysis as short as possible, and considering the approaches integrating the machine learning with causal analysis. The books we can recommend in this topic are Causal Inference-The Mixtape, The Effect, Mostly Harmless Econometrics,...
+
+At the center of interest is the causal effect of some intervention or treatment on an outcome of interest by inferring what the outcome would be in the presence and in the absence of a specific treatment. Causality is tied to a unit (person, firm, classroom, city) exposed to an action (manipulation, treatment or intervention) at a particular point in time. The Causal Effect is the comparison or difference of potential outcomes,$Y_{i}(1)$ and $Y_{i}(0)$, for the same unit, at the same moment in time post-treatment. where $Y_{i}(1)$ is the outcome when unit $i$ exposed the treatment (active treatment state), and $Y_{i}(0)$ is the outcome when same unit $i$ has not exposed the treatment (control state) (at the same point in time)
+
+Let's say $D$ is the treatment indicator (or intervention, or policy). When $D=1$ , the unit receives the treatment or participates in the intervention, thus these units constitute "treatment group". When $D=0$ , the unit does not receive treatment or does not participate in the intervention, thus these units constitute "control group". 
+
+The causal effect of treatment,$D$, on outcome,$Y$, is the difference between the potential outcomes $Y_{i}(1)- Y_{i}(0)$ for unit $i$. 
+
+However, we can not observe the unit in 2 different state at the same time. We can not observe "The Road Not Taken" (by Robert Frost). "The fundamental problem of causal inference" is therefore the problem that at most one of the potential
+outcomes can be realized and thus observed (Holland, 1986). Thus, Holland (1986, 2003) says "No causation without manipulation" 
+
+ Keep in mind that counter-factual state is and never will be observable. We can define counterfactual as what would have happened in the absence of a policy/treatment. Donald Rubin has been known to say that "causal inference is a missing data problem" (Ding and Li, 2018)
+Hence, there are several methods used to find causal effect. Experiments (Randomized Control Trials) and Quasi-natural Experiments such as Regression Discontinuity (Sharp, Fuzzy), Instrumental Variable, Difference-in-Difference(-in-Difference), Synthetic Cohort, Propensity Score, and Partial identification. 
+
+We can never know the real! causal effect (of a unit) in social sciences. Using Rubin’s framework, we can only estimate the causal effect under certain assumptions. Overcoming the missing data problem arising from the fact that only one state of nature is realized is very difficult. To do so requires credible assumptions!
+
+
+Main implicit assumption in Rubin framework for all the aforementioned methods is the Stable Unit Treatment Value Assumption (SUTVA, Rubin 1978). SUTVA implies that potential outcomes of observation $i$ are independent of the treatment assignment of all other units. In another word, the unit's potential outcome are not affected by the spillover or interference effects by the treatment of other units. Thus, SUTVA rules out general equilibrium or indirect effects via spillovers.  Moreover, SUTVA also implies that the treatment, $D$, is identical for all observations and no variation in treatment intensity. Most of the current empirical work assumed this assumption satisfied. However, it may not be always plausible to assume no spillover effect when treated group is very large share of the population. We also need to reassess our policy proposal, which are based on the findings of randomized or natural experiments, for all population as they may violate SUTVA assumption when these studies are designed with small sample. 
+
+
+
 ### Average Treatment Effect(ATE)
+
+
+While causal effects cannot be observed and measured at a unit level, under certain statistical assumptions we may identify causal effect of treatment,D, on outcome,Y, at an aggregate level, while using treatment and control groups.  
+
+Even though we cannot observe treatment effect for each individual/unit separately, we know that for a given population these individual causal effects-if exist- will generate a distribution of treatment effects. [footnote: A distribution is simply a collection of data, or scores, on a variable. Usually, these scores are arranged in order from smallest to largest and then they can be presented graphically. — Page 6, Statistics in Plain English, Third Edition, 2010.]Thus, we can estimate the mean, variance and other parameters related to this distribution. 
+
+ Most common parameter we want to estimate is the mean of treatment distribution. We can think the average treatment effect(ATE) is the population average of all individual treatment effects. We can formally write:
+$$	
+		 \delta^{ATE} = E[\delta_{i}]= E[Y_{i}(1) - Y_{i}(0)] = E[Y_{i}(1)] - E[Y_{i}(0)]
+$$
+
+ As known, the expected value of a random variable X is often denoted by E(X). 
+ 
+ 
+ Assume government implement a policy, an agency act, or a doctor prescribe a pill. All in all, we can think 2 states. Treatment state in which every units in the population exposed a treatment, and control state in which every units in the population has not exposed the treatment . The equation above shows that the average of the outcome for everyone in treatment state and the average of the outcome for everyone in control state is called the average treatment effect for all population.
+ 
+Depends on the question, we may want to estimate different treatment effects as well. Some of them are:
+  
+ Average Treatment Effect on the Treated (ATT, or ATET): The average treatment effect on the treatment group is equal to the average treatment effect conditional on being a treatment group member (D=1).
+ 
+$$ 
+ ATT= E[Y_{i}(1)|D=1] - E[Y_{i}(0) | D=1]
+ $$
+Average Treatment Effect on the Untreated (ATU): The average treatment effect on the control group is equal to the average treatment effect conditional on being untreated.
+$$ 
+ ATU= E[Y_{i}(1)|D=0] - E[Y_{i}(0) | D=0]
+ $$
+
+However,we want to emphasize ATE (ATT, and ATU) is unknowable because of the fundamental problem of causal inference.i.e. we can only observe individuals either when they receive treatment state or when they do not, thus we cannot calculate the average treatment effect. However, we can estimate it. How?
+
+If we can find a population or split the population such as some of whom receive this treatment or act on it and some of whom has not. Then we can estimate "causal/treatment effect" as the difference between average outcome of the treated group and average outcome of control group.
+
+How does the population split into treatment and control group? Whether units have any choice to be eligible for the treatment or not? Whether splitting process has any direct effect on outcome or not? How large, how many and how similar similar these groups? Whether treatment level is equal or not? Whether everyone who are eligible for treatment receive treatment or not? 
+Answers of all these questions require different identification strategies and leads all the different causal methods we use.
+ 
 ### Additional Treatment Effects
+
+yesil pdf fileindan
+Local Average Treatment Effect (LATE): g = E[dijCompliers]The Local Average Treatment Effect (LATE) is a statistical measure that is used to estimate the effect of a treatment or intervention on a specific subgroup of the population. It is a measure of the average treatment effect for a group of individuals who would not have received the treatment if they had not been eligible for it.
+
+LATE is typically estimated using a technique called instrumental variables (IV) regression, which involves using a variable that is correlated with the treatment but is not directly affected by the outcome of interest. By using this "instrumental" variable, researchers can estimate the effect of the treatment on the subgroup of individuals who are eligible for the treatment based on their values of the instrumental variable.
+
+LATE is a useful measure when the treatment effect is not the same for all individuals in the population. For example, a study might estimate the LATE of a new medication on individuals with a specific type of disease, in order to understand how the medication affects this subgroup compared to the overall population.
+
+It is important to note that LATE is only applicable when the treatment is randomly assigned, meaning that individuals are assigned to receive the treatment or not receive the treatment based on chance rather than their characteristics or other factors. This is necessary in order to ensure that the treatment effect can be accurately estimated and is not confounded by other factors.
+
+
+
+Conditional Average Treatment Effect (CATE)
+d(x) = E[Yi(1)−Yi(0)jXi = x] = E[dijXi = x]
+• Xi exogenous pre-treatment covariates/features
+• Xi includes not only confounders but also other covariates which are potentially
+responsible for effect heterogeneity
+• CATEs are often called individualised or personalised treatment effects
+• CATEs can differ from CATET, r(x), and CLATE, g(x)
+
+The Conditional Average Treatment Effect (CATE) is a statistical measure that is used to estimate the effect of a treatment or intervention on a specific subgroup of the population. It is a measure of the average treatment effect for a group of individuals who are similar in some way, such as having the same level of a certain characteristic or risk factor.
+
+CATE is typically estimated using a technique called conditional mean regression, which involves estimating the expected value of the outcome variable for individuals with different values of the conditioning variable. By using this conditioning variable, researchers can estimate the effect of the treatment on the subgroup of individuals who are similar in terms of the conditioning variable, compared to the overall population.
+
+CATE is a useful measure when the treatment effect is not the same for all individuals in the population and when there is a characteristic or factor that may influence the treatment effect. For example, a study might estimate the CATE of a new medication on individuals with a specific type of disease, in order to understand how the medication affects this subgroup compared to individuals with a different type of disease.
+
+It is important to note that CATE is only applicable when the treatment is randomly assigned, meaning that individuals are assigned to receive the treatment or not receive the treatment based on chance rather than their characteristics or other factors. This is necessary in order to ensure that the treatment effect can be accurately estimated and is not confounded by other factors.
+
+Group Average Treatment Effects (GATEs):
+d(g) = E[d(x)jGi = g]
+where the groups g can be defined based on exogenous or endogenous
+variables
+
+Group Average Treatment Effects (GATE) is a statistical measure that is used to estimate the effect of a treatment or intervention on a specific subgroup of the population. It is a measure of the average treatment effect for a group of individuals who are similar in some way, such as having the same level of a certain characteristic or risk factor.
+
+GATE is typically estimated using a technique called group mean regression, which involves estimating the mean of the outcome variable for individuals with different values of the grouping variable. By using this grouping variable, researchers can estimate the effect of the treatment on the subgroup of individuals who are similar in terms of the grouping variable, compared to the overall population.
+
+GATE is a useful measure when the treatment effect is not the same for all individuals in the population and when there is a characteristic or factor that may influence the treatment effect. For example, a study might estimate the GATE of a new medication on individuals with a specific type of disease, in order to understand how the medication affects this subgroup compared to individuals with a different type of disease.
+
+It is important to note that GATE is only applicable when the treatment is randomly assigned, meaning that individuals are assigned to receive the treatment or not receive the treatment based on chance rather than their characteristics or other factors. This is necessary in order to ensure that the treatment effect can be accurately estimated and is not confounded by other factors.
+ 
 ### Selection Bias and Heteregeneous Treatment Effect Bias:
+
+ When a group of individuals receive a treatment and a group does not, most inclined to calculate the treatment effect just calculating the simple difference between average outcomes of treated group and control group. However, this is (nearly) always wrong.
+ 
+Can we find average treatment effect by calculating the simple difference between the average outcome for the treatment group and the average outcome for the control group? 
+
+There may be already intrinsic differences between these 2 groups as some already decided to choose treatment, or there may be differences with some other characteristics that will already effect outcome directly or through another path. Hence, all of these will be included in the simple difference between average of outcome of these 2 groups. That "misassigned" effect is called as treatment selection bias. We can think the selection bias as the difference between a treatment group and a control group if there was no treatment at all. We want to emphasize that we may not observe this difference, we may not verify that. However, the main purpose of all causal inference methods is to eliminate as much as possible this bias by imposing different identifying assumptions.
+
+Heteregeneous treatment effect bias always exist if we want to calculate ATE. However, when we assume that treatment effects -dosage effect- are constant then this bias disappears. Even though this is a strong assumption, this is very common and plausible in social sciences and economics as we want to analyze average effects, not individual effect. That average treatment/causal effect is presented either treatment effect for average person or "homogeneous" average treatment effect for everyone. However, heterogeneous treatment effect and dealing its bias is one of the major topic in which machine learning methods are contributing recently.  
+
+Decomposition of difference in means
+$$
+		\begin{eqnarray*}
+			\underbrace{E[Y_{i}(1) | D=1] - E[Y_{i}(0) | D=0]}_{{\text{Simple Difference in Outcomes}}}&=& \underbrace{E[Y_{i}(1)] - E[Y_{i}(0)]}_{{\text{Average Treatment Effect}}} \\
+			&&+ \underbrace{E[Y_{i}(0)|D=1] - E[Y_{i}(0) | D=0]}_{{\text{Selection bias}}}  \\
+			&& + \underbrace{(1-\pi)(ATT - ATU)}_{{\text{Heterogenous treatment effect bias}}} 
+		\end{eqnarray*}
+		$$
+		where $(1-\pi)$ is the share of the population in the control group.(Detailed derivation of this equation in Mixtape page 131-133)
+
+
+
+As we mentioned the simple difference between the average outcome for the treatment group and the average outcome for the control group can be assumed by most as an average treatment effect. It may be true only if we do not have selection and heterogeneous treatment bias. However, most of the time already the difference exist between a treatment group and a control group before treatment implemented. Thus selection bias exists. 
+Most of the time the treatment effects individuals as well as groups differentially. Thus, the average effect of treatment for the group consist from treated individuals and for the group consist from untreated individuals differ. The multiplication of that difference and the share of the population in the control group is called as Heterogenous treatment effect bias.
+
+As previously noted, we are unable to directly observe individuals in both treatment and control states, making it impossible to explicitly calculate treatment effects and associated biases. Social scientists have been devising strategies to address these biases and estimate treatment effects, with machine learning methods contributing to these advancements in recent years. The various methodologies can be categorized as follows:
+
+Regression, penalized regression, and fixed effects
+
+Matching and propensity score methods
+
+Randomization inference
+
+Instrumental variables, difference-in-differences, regression discontinuity, and event studies
+
+Synthetic control method
+
+Causal forest method
+
+In the upcoming chapters, we will delve into these approaches and explore the relevant machine learning techniques that complement and enhance these methods in estimating treatment effects.
+
 
 <!--chapter:end:03-Counterfactuals.Rmd-->
 
 
 # Learning 
 
-Placeholder
+Imagine a child named Alex who occasionally gets sick after eating but doesn't know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.
+
+Data Collection: Each time Alex eats, he makes a list of everything he's consumed that day. He also records how he felt afterward, specifically noting any days he felt ill.
+
+Pattern Recognition: After several weeks, Alex starts to see a pattern. Every time he ate dishes containing garlic, he felt sick within a few hours. However, on days he avoided garlic, he generally felt fine.
+
+Making Predictions: With this new insight, Alex hypothesizes that garlic might be the cause of his discomfort. To test this theory, he deliberately avoids garlic for a few days and notes his health. Conversely, on another day, with all other foods being consistent, he consumes garlic to see if the reaction recurs.
+
+Validation: During the days without garlic, Alex feels perfectly fine. However, after the day he reintroduces garlic, the familiar sickness returns. This strengthens Alex's belief in the connection between garlic and his adverse reactions.
+
+Updating the Model: Wanting to be thorough, Alex decides to test other ingredients, wondering if the allergy might extend beyond garlic. After trying onions and shallots on different days and noticing no adverse reactions, Alex concludes that his allergy seems specific to garlic.
+
+In this example, Alex is acting like a basic machine learning model.
+
+Collect data (observations of the food).
+
+Recognize patterns in the data.
+
+Make informed predictions based on identified patterns.
+
+Validate predictions against actual occurrences.
+
+Adjust the predictive model considering new or contradictory data.
+
+While Alex's learning process strongly suggests that garlic triggers his symptoms, it's important to recognize the limitations of his informal "model." Just as in any learning model, prediction errors could arise from multiple factors. For instance, there might be times when he consumes garlic but doesn't get sick because of variations in the quantity consumed, or the form in which it's ingested (raw versus cooked). There could also be external factors, like the combination of garlic with other foods, that influence his reaction. It's also possible that, on some days, other confounding variables like stress or a different underlying illness might mask or exaggerate his garlic-induced symptoms. Thus, while Alex feels confident in his findings, he understands that real-life scenarios can introduce unpredictability, making it essential to continually refine and reassess his conclusions.
+
+This analogy showcases the parallels between Alex's learning process and that of machines. In a manner mirroring machine learning's approach to refining predictions with data, Alex has learned his very rare allergy. While he might not grasp the precise mechanisms or reasons behind his garlic allergy, and there could be some prediction errors, he has effectively employed a method reminiscent of machine learning. The insights he's gained are invaluable, allowing him to make informed decisions about his diet in the future.
+
+
+
+Machine Learning comes more from the computer science field. While machine learning also wants to understand and interpret data similar to statistical learning as we talked in previous chapter, its main goal often leans more towards making accurate predictions or decisions. It might not always need to understand why something happens as long as it can predict it accurately. Think of it as an engineer who builds a tool that works efficiently, even if they don't fully grasp the science behind every component.
+
+So, why do some people call machine learning "statistical learning"? Because many machine learning techniques are grounded in statistical methods. As both fields evolved, they started to overlap more and more. In many cases, the boundary between them has become blurry. For a layperson, you might think of statistical learning as a close cousin to machine learning. They both aim to understand and learn from data, but they might have slightly different priorities or approaches. At its heart, machine learning is a method of teaching computers to make decisions or predictions based on data, rather than being explicitly programmed to do so.
+
+In machine learning, the main aim is to create a model with specific settings or parameters. This model should be good at making predictions on new, unseen data. Later in this book, we'll explore the three key steps in machine learning: prediction, training, and hyperparameter tuning.
+
+Everything in machine learning starts with data. This could be photos, texts, economic indicators, political polling data, public health records, or employment statistics. This data is then organized and used as training data for the machine learning model. Generally, the more data we have, the better the model will be.
+
+Once we have the data ready, the next steps are clear:
+
+First, there's the Prediction or Inference Phase. This stage unfolds when a predictor, already trained, is employed on test data it hasn't encountered before. By this time, the model and its settings are already decided, and we're just using it to make predictions on new data points.
+
+Next is the Training or Parameter Estimation Phase. This is when we refine our predictive model using training data. Broadly, there are two strategies to pinpoint robust predictors given our data. One strategy is searching for the best predictor based on a designated measure of quality, often referred to as identifying a point estimate. The other is Bayesian inference outscope of this book. Irrespective of the strategy, the goal remains the same: using numerical methods to find parameters that align or "fit" our data. 
+
+Last, we have the Hyperparameter Tuning or Model Selection Phase. Here, we're trying to pick the optimal model and its corresponding hyperparameters on how well they do on a test or validation data. The main goal is to find a model that not only works well on our training data but will also make good predictions on new data it hasn't seen before.
+
+After gathering and preparing the data, we select a model, train it, evaluate its performance, and fine-tune its parameters. Once optimized, the model is then employed to make predictions. In this section, we've touched upon the concepts of prediction, training, and hyperparameter tuning. However, rest assured, in future chapters, we will delve into these topics in comprehensive detail.
+
+Learning systems in machine learning refer to algorithms and models that improve their performance or adapt to new data over time without being explicitly programmed for each specific task. These systems "learn" from data, identifying patterns or making decisions based on input.
+
+In the realm of machine learning, systems are designed for various purposes and roles. Together, these roles underscore what machine learning models strive to accomplish, each offering insights and recommendations suited to particular situations and requirements.
+
+The Descriptive role is foundational. True to its name, it's centered around understanding and articulating the information encapsulated within the data. This is particularly useful for understanding historical trends and patterns.
+
+Next is the Predictive role. This goes a step beyond by not just reflecting on past events but by forecasting the future one. By analyzing existing data, the system forms informed predictions about upcoming occurrences.
+
+Lastly, the Prescriptive role stands out. It's arguably the most forward-looking of the trio. Rather than merely explaining or projecting, it escalates its function by recommending specific courses of action derived from its data analysis. For instance, industrial economists using machine learning might recommend optimal pricing strategies, suggest resource allocation, and guide firms on ideal hiring practices by analyzing consumer demand, competitor prices, product line performance, employment trends, and skill set data. Moreover, based on diverse data such as patient outcomes, resource availability, population health trends, drug efficacy, and claim histories, health economists can use machine learning to recommend cost-effective treatment paths, optimize resource allocation in hospitals, suggest preventive interventions for high-risk groups, advise on pharmaceutical pricing, and offer insights into health insurance premium setting.
+
+In the next subsection, we'll explore step by step how to find and train models, and how these models generalize well to unseen data.
 
 
 ## Learning Systems {-}
 
+A Machine Learning System is a dynamic framework often seen in various Machine Learning projects. This system generally unfolds in an iterative manner, encompassing several key phases. It all begins with Data Collection, where datasets are not only created but also maintained and updated. This phase is crucial as the quality and relevance of data significantly influence the outcomes. Following this, the system dives into the Experimentation phase. During this stage, the data is thoroughly explored, various hypotheses about the data and potential models are formulated, tested, and validated, resulting in the construction of both training and prediction pipelines. With a robust model at hand, the next step is Deployment, which entails integrating this model into a tangible, working product. But the journey doesn't conclude here. The Operations phase ensures that the deployed model is under constant surveillance, ensuring it remains current and in tune with the ever-evolving environment. Together, these phases epitomize the core mechanics of a Machine Learning System, emphasizing continuous learning and adaptation.
+
+Machine learning systems are algorithms and models that adapt to new data over time, improving their performance without specific programming for every task. These systems "learn" from data, identifying patterns or making decisions based on given input. In this book, our primary focus will be on machine learning models, which are integral components of learning systems. A machine learning model combines programming code with data. How do we find, train, and make sure our machine learning models work well on unseen data? 
+
+Here's a step-by-step guide:
+
+Splitting the Data: We take our whole dataset and split it into two parts: one for training our model, training data, and one for testing its performance, testing data.
+
+Use Training Data Wisely: Most of the time, we use 80% of our total data for training. But even within this training data, we divide it further: estimation data and validation data.
+
+Keeping Testing Data Untouched: We don't use the testing data to make any decision that lead to the selection of the model. It's set aside only to see how well our finished model works.
+
+Choose Possible Models: Before we start training, we decide on a few potential models we might want to use. For parametric models: We assume a form of the model up to but not including the model parameters. For nonparametric models: We pick feature variables to be used and possible values of any tuning parameters.
+
+Training the Model: We take each potential model and train(fit) it using the estimation data which is usually bigger chunk of our training data.
+
+Check and Compare Models: Once trained, we see how well each model does using validation data, usually the smaller chunk of training data it hasn't seen before. This performance is all about how good the model is at predicting on the validation data which was not used to train the models.
+
+Pick the Best Model: Based on how well they did on the validation performance, we choose the best model.
+
+Final Training: With our best model in hand, we then use all the training data, both estimation and validation data together, to give it one last thorough training.
+
+Test: Finally, we use our untouched test data to estimate model performance and see how well the best model does.
+
+Note that we are using the validation data to select a model, while the testing data is used to estimate model performance.
+
+Above, we outlined the machine learning process using plain language for clarity. Below, we'll delve into these steps using more technical terms commonly accepted in the field. If certain concepts seem unfamiliar, rest assured, we'll unpack each one in greater detail in the upcoming chapters.
+
+1. The learner has a sample of observations.  This is an arbitrary (random) set of objects or instances each of which has a set of features ($\mathbf{X}$ - features vector) and labels/outcomes ($y$).  We call this sequence of pairs as a training set: $S=\left(\left(\mathbf{X}_{1}, y_{1}\right) \ldots\left(\mathbf{X}_{m}, y_{m}\right)\right)$.  
+2. We ask the learner to produce a **prediction rule** (a predictor or a classifier model), so that we can use it to predict the outcome of **new** domain points (observations/instances).  
+3. We assume that the training dataset $S$ is generated by a data-generating model (DGM) or some "correct" labeling function, $f(x)$.  The learner does not know about $f(x)$.  In fact, we ask the learner to discover it.  
+4. The learner will come up with a **prediction rule**, $\hat{f}(x)$, by using $S$, which will be different than $f(x)$.  Hence, we can measure the learning system's performance by a loss function:  $L_{(S, f)}(\hat{f})$, which is a kind of function that defines the difference between $\hat{f}(x)$ and $f(x)$. This is also called as the **generalization error** or the **risk**.  
+5. The goal of the algorithm is to find $\hat{f}(x)$ that minimizes the error with respect to the unknown $f(x)$. The key point here is that, since the learner does not know $f(x)$, it cannot calculate **the loss function**.  However, it calculates the training error also called as the **empirical error** or the **empirical risk**, which is a function that defines the difference between $\hat{f}(x)$ and $y_i$.  
+6. Hence, the learning process can be defined as coming up with a predictor $\hat{f}(x)$ that minimizes the empirical error.  This process is called **Empirical Risk Minimization** (ERM).  
+7. Now the question becomes what sort of conditions would lead to bad or good ERM?  
+
+If we use the training data (in-sample data points) to minimize the empirical risk, the process can lead to $L_{(S, f)}(\hat{f}) = 0$.  This problem is called **overfitting** and the only way to rectify it is to restrict the number of features in the learning model.  The common way to do this is to "train" the model over a subsection of the data ("seen" or in-sample data points) and apply ERM by using the test data ("unseen" or out-sample data points).  Since this process restrict the learning model by limiting the number of features in it, this procedure is also called **inductive bias** in the process of learning.  
+
+There are always two "universes" in a statistical analysis: the population and the sample.  The population is usually unknown or inaccessible to us. We consider the sample as a random subset of the population.  Whatever the statistical analysis we apply almost always uses that sample dataset, which could be very large or very small.  Although the sample we have is randomly drawn from the population, it may not always be representative of the population.  There is always some risk that the sampled data happens to be very unrepresentative of the population.  Intuitively, the sample is a window through which we have partial information about the population.  We use the sample to **estimate** an unknown parameter of the population, which is the main task of **inferential statistics**.  Or, we use the sample to develop a **prediction rule** to predict unknown population outcomes.  
+
+When we have a numeric outcome (non-binary), the lost function, which can be expressed as the **mean squared error** (MSE), assesses the quality of a **predictor** or an **estimator**. Note that we call $\hat{f}(x)$ as a predictor or estimator.  Can we use an **estimator** as a **predictor**?  Could a "good" estimator also be a "good" predictor.  We had some simulations in the previous chapter showing that the best estimator could be the worst predictor.  Why? In this section we will try to delve deeper into these questions to find answers.  
+
+The starting point will be to define these two different but similar processes. 
+
+
 <!--chapter:end:04-Learning.Rmd-->
+
 
 
 # Error
 
-Placeholder
+Lets assume you want to find an average years of schooling of all the people who reside in your city. In another words, you want to find mean of years of schooling of the population in your city. Most of the time gathering this information is very hard. One solution is waiting in main street and ask everyone who passes that day from there. You can say you collect data which is called the sample of the population. With this sample you can estimate this unknown parameter which is average years of schooling of the population. You need to come with a general rule about how to calculate the unknown parameter. This general rule is called estimator. You use your specific sample, i.e. realized data, to obtain specific number which is called estimate. You can collect different samples. In that case, the estimator will be same but the estimate will vary from sample to sample.Ideally you want the estimator from your sample will be equal to the real (unknown) parameter. As you will never know the real parameter, we use statistical properties to assume that your estimate is that parameter. Main assumption/requirement is you want a representative sample and to find unbiased estimator. However, you may have infinite number of unbiased estimators. Which one is the best unbiased estimator? There will be always some difference between the estimated value and the actual value of population characteristics. That difference is called as **error**. Specifically, this is called **estimation error** as this error is related with an estimation of a parameter. 
+
+With the data in your hand, you may want to predict the specific individual or groups years of schooling. Using predictive methods, you will obtain a specific value. But that value will contain an error. In that case, this is called **prediction error** as this is related with a prediction of an outcome. With the advent of statistical/machine learning techniques, people are talking a lot about prediction error, while in classical statistics, one is focusing on parameter estimation error.
+
+suppose you have X , there is error when you want to find mean X
+parameter error, estimation error for coefficients
+prediction error is related with function
+irreducible and reducible error
+training error vs test data error (for prediction functions)
+measurement error ?
+
+different ways to find/min. errors. median, etc.
+error in classification, error in regression in ml
+below we will discuss estimation error and prediction error
+
+**Reminder:** 
+
+Assuming a true linear model $y=X \beta_0+\varepsilon$, estimate $\hat{\beta}$ and prediction $\hat{y}=X \hat{\beta}$. One can define, with $\|$.$\|$ the mean square error norm for example:
+
+- Estimation error: $\|\beta-\hat{\beta}\|$
+
+- Prediction error: $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
+
+
 
 
 ## Estimation error - MSE
+
+Let's simulate the situation people report 9 years of education if the finished only compulsory schooling, or 12 years if the graduated from high school, or 16 years if they are college graduate. Assume, people report their years of schooling is any discrete year between 9 to 16.  Lets assume each of our 10 different sample consist of 5000 individuals.
+
+The task is to **estimate an unknown population parameter**, say $\theta$, which could be a simple mean of $X$, $\mu_x$, or more complex slope coefficient of an unknown DGM, $\beta$.  Since we have only a random sample from the population, and because that sample could be unrepresentative of the population, or measurement error, we cannot say that $\hat{\theta}$ is equal to $\theta$.  Hence, we call $\hat{\theta}$ as an estimator of $\theta$.  
+
+We need to pick the best estimator to estimate $\theta$ among many possible estimators.
+In this simulation, we can use 3 different estimator if we want to estimate $\mu_x$.
+First, we could use the average of years of schooling for everyone who reported it,    
+
+$$
+\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}
+$$
+or alternatively, we can just take the half of the first person's and last person's years of schooling, 
+
+$$
+\hat{X}=0.5 x_{1}+0.5x_{n}
+$$
+or alternatively, we can just use weighted average of first person and the last person's schooling. We can assign weight as 0.25 for the first person, and 1-0.25=0.75 for the last person, (you will find unbiased estimator when you assign any values as long as the sum is 1) 
+
+$$ 
+  \tilde{X}=0.25 x_{1}+0.75x_{2}
+$$
+ 
+ 
+Therefore, we need to define what makes an estimator the "best" among others.  As we have seen before, the sampling distribution, which is the probability distribution of all possible **estimates** obtained from repeated sampling, would help us develop some principles. The first and the most important criteria should be that the expected mean of all estimates obtained from repeated samples should be equal to $\mu_x$.  Any estimator satisfying this condition is called as an **unbiased** estimator.  
+
+However, if $x$'s are independently and identically distributed (i.i.d), it can be shown that those two estimators, $\bar{X}$ and $\hat{X}$ are both unbiased.  That is $\mathbf{E}(\bar{X})=\mu_x$ and $\mathbf{E}(\hat{X})=\mu_x$.  Although, it would be easy to obtain the algebraic proof, a simulation exercise can help us visualize it.  
+
+ 
+
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+#Let's have a containers to have repeated samples (5000)
+samples <- matrix(0, 5000, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+  
+ Each row below is displaying the first 6 results of 5000 random samples drawn from the sample of the population.  Each column shows the order of random draws, that is $x_1, x_2, x_3$. We know the population $\mu_x$ is 12.5, because this is the mean of our  values (9...16) in the population.  Knowing this, we can test the following points:  
+
+1. Is $X$ i.i.d?  An identical distribution requires $\mathbf{E}(x_1)=\mathbf{E}(x_2)=\mathbf{E}(x_3)$ and $\mathbf{Var}(x_1)=\mathbf{Var}(x_2)=\mathbf{Var}(x_3)$.  And an independent distribution requires $\mathbf{Corr}(x_i,x_j)=0$ where $i\neq{j}$.  
+2. Are the three estimators unbiased.  That is, whether $\mathbf{E}(\bar{X})= \mathbf{E}(\hat{X})= \mathbf{E}(\tilde{X}) = \mu_x$.  
+
+Let's see:  
+  
+
+```r
+library(corrplot)
+
+# Check if E(x_1)=E(x_2)=E(x_3)
+round(colMeans(samples),2)
+```
+
+```
+##    X1    X2    X3    X4    X5    X6    X7    X8    X9   X10 
+## 12.48 12.51 12.48 12.57 12.54 12.51 12.45 12.50 12.51 12.45
+```
+
+```r
+# Check if Var(x_1)=Var(x_2)=Var(x_3)
+apply(samples, 2, var)
+```
+
+```
+##       X1       X2       X3       X4       X5       X6       X7       X8 
+## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
+##       X9      X10 
+## 5.271664 5.308739
+```
+
+```r
+# Check correlation
+cor(samples)
+```
+
+```
+##                X1           X2            X3           X4           X5
+## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
+## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
+## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
+## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
+## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
+## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
+## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
+## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
+## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
+## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
+##               X6           X7            X8            X9          X10
+## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
+## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
+## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
+## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
+## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
+## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
+## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
+## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
+## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
+## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
+```
+
+```r
+# Note that if you use only unique set of samples
+# you can get exact results
+uniqsam <- unique(samples)
+colMeans(uniqsam)
+```
+
+```
+##      X1      X2      X3      X4      X5      X6      X7      X8      X9     X10 
+## 12.4802 12.5106 12.4758 12.5694 12.5352 12.5094 12.4474 12.4958 12.5138 12.4518
+```
+
+```r
+apply(uniqsam, 2, var)
+```
+
+```
+##       X1       X2       X3       X4       X5       X6       X7       X8 
+## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
+##       X9      X10 
+## 5.271664 5.308739
+```
+
+```r
+cor(uniqsam)
+```
+
+```
+##                X1           X2            X3           X4           X5
+## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
+## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
+## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
+## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
+## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
+## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
+## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
+## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
+## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
+## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
+##               X6           X7            X8            X9          X10
+## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
+## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
+## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
+## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
+## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
+## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
+## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
+## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
+## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
+## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
+```
+
+It seems that the i.i.d condition is satisfied.  Now we need to answer the second question, whether the estimators are unbiased. For this, we need to apply each estimator to each sample:  
+
+
+```r
+# First Xbar
+X_bar <- rep(0, nrow(samples)) #Container to have all Xbars
+for(i in 1:nrow(samples)){
+  X_bar[i] <- sum(samples[i,])/ncol(samples)
+}
+
+EX_bar <- sum(X_bar)/length(X_bar)
+EX_bar
+```
+
+```
+## [1] 12.49894
+```
+
+```r
+# Xhat
+X_hat <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_hat[i] <- 0.5*samples[i,1] + 0.5*samples[i,10]
+}
+
+EX_hat <- sum(X_hat)/length(X_hat)
+EX_hat
+```
+
+```
+## [1] 12.466
+```
+
+```r
+# Xtilde
+X_tilde <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_tilde[i] <- 0.25*samples[i,1] + 0.75*samples[i,2]
+}
+
+EX_tilde <- sum(X_tilde)/length(X_tilde)
+EX_tilde
+```
+
+```
+## [1] 12.503
+```
+
+Yes, they are unbiased because $\mathbf{E}(\bar{X})\approx \mathbf{E}(\hat{X}) \approx \mathbf{E}(\tilde{X}) \approx \mu_x \approx 12.5$. (When we increase the sample size these expected values will be closer to 12.5)  As you can see, none of the averages are exact same population average. There is a difference between the estimated value and the actual value. That small difference is called **error**. Ideally, we want that difference to be zero. When number of observations in our sample get closer to our population that difference vanishes. As we can never know the actual population characteristics, we assume this error approaches to zero.
+
+
+Upto this point, we showed all 3 estimators gave us unbiased estimate. However, unbiasness is not the only desirable property. We want our estimator should give a close estimate of the population parameter with higher probability. In another words, estimators probability density function to be concentrated around true value, i.e. it should be efficient. Thus, the unbiased estimator with the smallest variance is the best estimate. Just be careful. If one estimator is more efficient than other one, it does not mean it will always give more accurate estimate, it means it is more likely to be accurate than the other one. 
+
+Let's see which one has the smallest variance in our simulation:   
+
+
+```r
+var(X_bar)
+```
+
+```
+## [1] 0.5385286
+```
+
+```r
+var(X_hat)
+```
+
+```
+## [1] 2.590462
+```
+
+```r
+var(X_tilde)
+```
+
+```
+## [1] 3.27012
+```
+  
+As seen above, the $\bar{X}$, the average of all sample, has the smallest variance.
+
+Let's summarize the important steps in estimations:  
+
+1. The main task is to estimate the population parameter using an estimator from a sample.
+2. The main requirement for a (linear) estimator is **unbiasedness**.
+3. An **unbiased** estimator is called as the **B**est **L**inear **U**nbiased **E**stimator (BLUE) of a population parameter if that estimator is **efficient** ,i.e. has the **minimum variance** among all other **unbiased** estimators.
+
+
+In the simulation above, we showed the sample average is the most efficient of the all unbiased estimators. We should use the term "Efficiency" when we compare different estimators, and when these alternative estimators use the same information (same data,same sample size)
+We cannot use it when you compare the same estimators variance obtained while using different sample sizes. Generally, the variance of an estimator decreases when sample size increases. We can not use one estimator is more efficient than another one, just because one variance is smaller than another one but these variances calculated using different sample sizes.
+So, there is always conflict between unbiasedness and the smallest possible variance.
+
+We can have 2 estimators to estimate population characteristics. First one can be unbiased but with higher variance, the other one can be biased but lower variance (figure page 31 from Dougherty book). Which estimator we choose depends on what we want. If we think errors in estimators is not a big problem, and errors will cancel is each other on average, then we may choose unbiased estimator even if it has higher variance. That is what we use nearly always in applied social sciences. You know this expected value of error term is 0, with a variance $sigma^2$. However, in some research questions, we can not tolerate large errors. Thus we need to choose an estimator with smaller variance even if it has a small bias. (We will show this in the next chapter with simulation as well)
+
+In another words, the decision of choosing the estimator depends on the cost to you of an error as a function of its size. The function that gives that cost is called **loss function** . One of the most common loss function used in social sciences is **mean square error (MSE)**
+We can define MSE as the average of the squares of the difference between the estimated value and the actual value. The MSE of the estimators could be simply used for the efficiency comparison, which includes the information of estimator variance and bias. This is called MSE criterion. The MSE can be decomposed between its variance and bias as such:
+
+$$
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+$$
+
+You can check the formal decomposition of MSE in technical point section at the end of this chapter. In typical economic models some parameters are involved, the original role of econometrics was to quantify them. So in economics/econometrics models the parameters are the core of the theory. Them carried out the causal meaning that economists looking for (or it should be so). Exactly for this reason econometrics manuals are mostly focused on concept like endogeneity and, then, bias. As the main goal is to obtain unbiased parameters, most econometrics textbook even do not discuss this decomposition. Mainly, they discuss variance or its square root, i.e. standard error.  
+
+
+**Reminder:**
+
+Assuming a true linear model $y=X \beta+\varepsilon$, we estimate $\hat{\beta_{i}}$. The Gauss-Markov theorem states that if your linear regression model satisfies the first six classical assumptions, then ordinary least squares (OLS) regression produces unbiased estimates that have the smallest variance of all possible linear estimators,i.e. OLS is BLUE.
+
+OLS Assumption 1: The regression model is linear in the coefficients and the error term.
+
+OLS Assumption 2: The error term has a population mean of zero.
+
+OLS Assumption 3: All independent variables are uncorrelated with the error term.
+
+OLS Assumption 4: Observations of the error term are uncorrelated with each other.
+
+OLS Assumption 5: The error term has a constant variance (no heteroscedasticity).
+
+OLS Assumption 6: No independent variable is a perfect linear function of other explanatory variables.
+
+OLS Assumption 7: The error term is normally distributed (optional)
+
+
+
+**Reminder:**
+
+Moreover, in practice, we have only one sample most of the time. We donot have 10 samples like in the simulation above.  We know that if the sample size is big enough (more than 50, for example), the sampling distribution would be normal according to [the Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem). In other words, if the number of observations in each sample large enough, $\bar{X} \sim N(\mu_x, \sigma^{2}/n)$ or when population variance is not known $\bar{X} \sim \mathcal{T}\left(\mu, S^{2}\right)$ where $S$ is the standard deviation of the sample and $\mathcal{T}$ is the Student's $t$-distribution.  
+
+Why is this important?  Because it works like a magic: with only one representative sample, we can **generalize** the results for the population.  We will not cover the details of interval estimation here, but by knowing $\bar{X}$ and the sample variance $S$, we can have the following interval for the $\mu_{x}$:  
+
+$$
+\left(\bar{x}-t^{*} \frac{s}{\sqrt{n}}, \bar{x}+t^{*} \frac{s}{\sqrt{n}}\right)
+$$
+  
+where $t^*$, the critical values in $t$-distribution, are usually around 1.96 for samples more than 100 observations and for the 95% confidence level.  This interval would be completely wrong or misleading if $\mathbf{E}(\bar{X}) \neq \mu_x$ and would be useless if it is very wide, which is caused by a large variance.  That's the reason why we don't like large variances.  
+
+
 ## Prediction error- MSPE
+
+In the previous section, we defined mean square error (MSE), and then decomposed between its variance and bias. However, MSE differs according to whether one is describing an estimator or a predictor. We can define an estimator as a mathematical function mapping a sample of data to an estimate of a parameter of the population from which the data is sampled. We can define a predictor as a function mapping arbitrary inputs to a sample of values of some random variable. 
+
+Most common function used in social sciences is OLS. Most people are familiar with MSE of OLS function as the following.
+Predictor of least-squares fit, then the within-sample MSE of the predictor is computed as
+$$
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(Y_i-\hat{Y}_i\right)^2
+$$
+In matrix notation,
+$$
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(e_i\right)^2=\frac{1}{n} \mathbf{e}^{\top} \mathbf{e}
+$$
+where $e_i$ is $\left(Y_i-\hat{Y}_i\right)$ and $\mathbf{e}$ is the $n \times 1$ column vector.
+
+Eventhough OLS and its MSE is the most common used tools, we can use tons of other functions for prediction. Thus in this section we will define MSE for prediction for all functions. Also, **Mean Square Prediction Error** (MSPE) is more preferable term for prediction purposes.
+
+Our task is prediction of an outcome, Y (i.e. supervised learning as we know what outcome is, and regression set up when our outcome is non-binary):
+
+We assume that the response variable,Y, is some function of the features, X, plus some random noise.
+
+$$Y=f(X)+ ϵ$$
+To "predict" Y using features X, means to find some $f$ such that $f(X)$ is close to $Y$. But how do we define close? There are many ways but the most common way is minimizing the average squared error loss. Loss function is $(Y-f(X))^2$, Average square loss function is the expected value of loss function. That is called Risk function, which is $\mathbf{E}\left[(Y-f(X))^{2}\right]$. So, we can say we want to minimize risk function to "predict" Y using X. However, we can never know real $f(X)$. Thus our goal becomes to find a prediction function,$\hat{f(X)}$, which is an estimate of unknown f using the data we have. Then, there will be an expected prediction error of predicting  Y using $\hat{f(X)}$. All in all, our goal becomes to minimize the average square of this error, called as **Mean Square Prediction Error** (MSPE)
+$\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]$. A good $\hat{f(X)}$ will have a low MSPE. This error can be decomposed into two errors. The reducible error(mean squared error), which is the expected squared error loss of estimation $f(X)$ using $\hat{f(X)}$ at a fixed point $X$. The irreducible error, which is simply the variance of $Y$ given that $X=x$ ,essentially noise that we do not want to learn. 
+
+
+Reducible error: 
+
+**MSE of $\hat{f(X)}$ for a given $X=x$** (mean square error obtained with-in test/training sample))
+$$
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(f(x)-\mathbb{E}[\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+$$
+**Mean Square Prediction Error**
+$$
+\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+$$
+$\sigma^{2}=E[\varepsilon^{2}]$
+
+You can check the formal decomposition of MSPE in technical point section at the end of this chapter.
+
+(Note: if we assume our prediction function,$f(X)$, is linear then this is OLS.) 
+
+Our job is to pick a the best predictor, i.e. **predictor** that will have the minimum MSPE among alternatives.  In perfect setting, we want prediction function with zero bias and low variance to have the minimum MSPE. However, this is never happens. Unlike an **estimator**, we can accept some bias as long as the MSPE is lower.  More specifically, we can allow a predictor to have a bias if it reduces the variance more than the bias itself. 
+
+Unlike estimations, this shows that, in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss how we can achieve it in the next chapter. For instance, our predictor could be a constant, which, although it's a biased estimator, has **a zero variance**. Or our predictor could be mean of $X$ as this predictor has zero bias but it has high variance. Or we could choose predictor which has some bias and variance. We will show an example using these 3 predictors in the following simulation.
+
+We want to emphasize the difference between MSE and MSPE, and their decomposed forms between their variances and biases. Even though they look similar, they are really very different. For MSE, bias and variance comes from the parameter estimation. For MSPE, biad and variance derived from prediction functions. We try different prediction functions to find the best predictor function. Moreover, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
+
+$$
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+$$
+
+The predictor with the smallest MSPE will be our choice among other alternative predictor functions. Yet, we have another concern that leads over-fitting. We will discuss over fitting in detail later. //DISCUSS OVERFITTING HERE A BIT
+
+Let's summarize some important facts about our MSPE here:  
+
+1. $x_0$ is the number we want to predict and $\hat{f}$ is the predictor, which could be $\mathbf{E}(\bar{X})$, $\mathbf{E}(\hat{X})$, or $\mathbf{E}(\tilde{X})$ or any other predictor.
+2. $x_0 = \mu_x + \varepsilon_0$, where $f = \mu_x$.  Hence, $\mathbf{E}[x_0]=f$ so that $\mathbf{E}[\varepsilon_0]=0$.
+3. $\mathbf{E}[f]=f$.  In other words, the expected value of a constant is a constant: $\mathbf{E}[\mu_x]=\mu_x$.
+4. $\mathbf{Var}[x_0]=\mathbf{E}\left[(x_0-\mathbf{E}[x_0])^{2}\right]=\mathbf{E}\left[(x_0-f)^{2}\right]=\mathbf{E}\left[(f+\varepsilon_0-f)^{2}\right]=\mathbf{E}\left[\varepsilon_0^{2}\right]=\mathbf{Var}[\varepsilon_0]=\sigma^{2}$. (Remember that $\mathbf{E}[\varepsilon]=0$).  
+
+Note that we can use MSPE here because our example is not a classification problem.  When we have a binary outcome to predict, the loss function would have a different algebraic structure.  We will see the performance evaluation in classification problems later.  
+
+
+Let's follow the same simulation example. Our task is now different.  We want to predict the next persons years of schooling using the data we have. We want to **predict** the unobserved value of $X$ rather than to estimate $\mu_x$.  Therefore, we need a **predictor**, not an **estimator**.  
+
+To answer these questions, we need to compare MSPEs or their square roots (RMSPE) as well..  
+
+
+As we know that, most developed countries require to go to school between age 6 to 16 years old, we may predict that the years of schooling for the individual is 10 years.
+or we can use the average years of schooling in our data as a good predictor for the next individuals schooling level. Thus we have 2 prediction function. First one is a constant, 10, which has bias but zero variance. The other one is mean of our sample for each observation (average of each row), which has smaller bias and higher variance. For simplicity, we can use 1 sample which consist from 5000 individuals in this simulation.
+
+The two predictors are $\hat{f}_1 = 10$ and $\hat{f}_2 = \bar{X}$:  
+
+We will use the same example we worked with before.  We sample from this "population" multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.
+
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+
+#Let's have a containers to have repeated samples (2000)
+Ms <- 5000
+samples <- matrix(0, Ms, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+
+As you see, this is the same sample with the previous simulation. You can change the data either setting different values in the seed or changing the sammple size, Ms.  Now, Let's use our predictors and find MSPEs: 
+
+
+```r
+# Container to record all predictions
+predictions <- matrix(0, Ms, 2)
+
+# fhat_1 = 10
+for (i in 1:Ms) {
+  predictions[i,1] <- 10
+}
+
+# fhat_2 - mean
+for (i in 1:Ms) {
+  predictions[i,2] <- sum(samples[i,])/length(samples[i,])
+}
+
+head(predictions)
+```
+
+```
+##      [,1] [,2]
+## [1,]   10 12.4
+## [2,]   10 12.1
+## [3,]   10 11.4
+## [4,]   10 12.0
+## [5,]   10 12.3
+## [6,]   10 12.6
+```
+  
+
+```r
+# MSPE
+MSPE <- matrix(0, Ms, 2)
+for (i in 1:Ms) {
+  MSPE[i,1] <- mean((populationX-predictions[i,1])^2)
+  MSPE[i,2] <- mean((populationX-predictions[i,2])^2)
+}
+head(MSPE)
+```
+
+```
+##      [,1] [,2]
+## [1,] 11.5 5.26
+## [2,] 11.5 5.41
+## [3,] 11.5 6.46
+## [4,] 11.5 5.50
+## [5,] 11.5 5.29
+## [6,] 11.5 5.26
+```
+ 
+  
+
+```r
+colMeans(MSPE)
+```
+
+```
+## [1] 11.500000  5.788422
+```
+  
+The MSPE of the t $\hat{f}_2$ prediction function is the better as its MSPE is smaller than the other prediction function.  
+
+What makes a good predictor?  Is being unbiased predictor one of the required property?  would being a biased estimator make it automatically a bad predictor?  in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss this trade-off in the next chapter.  We will also show it by using the same simulation.
+
+
 ## Technical points about MSE and MSPE
+
+**The formal decomposition of MSE**
+
+The MSE of an estimator $\hat{\theta}$ with respect to an unknown parameter $\theta$  is defined as  
+
+$$
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\mathbf{E}(\hat{\theta}))^{2}\right]
+$$
+  
+Since we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  Hence, evaluating the performance of all alternative **unbiased** estimators by MSE is actually comparing their variances and picking up the smallest one. More specifically,
+
+\begin{equation}
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^{2}\right]=\mathbf{E}\left\{\left(\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)+\mathbf{E}\left(\hat{\theta}\right)-\theta\right)^{2}\right\}
+  (\#eq:3-1)
+\end{equation} 
+
+$$
+=\mathbf{E}\left\{\left(\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]+\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right)^{2}\right\}
+$$
+
+\begin{equation}
+\begin{aligned}
+=& \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]^{2}\right\} \\
+&+2 \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right\}
+\end{aligned}
+  (\#eq:3-2)
+\end{equation} 
+  
+The first term in 3.2 is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, which represents the bias.  The last term is zero.  This is because $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, therefore it is again outside of expectations:  
+
+$$
+2\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right] \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\right\},
+$$
+and the last term is zero since $\mathbf{E}(\hat{\theta})-\mathbf{E}(\hat{\theta}) = 0$.  Hence,  
+
+$$
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+$$
+
+Because we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  In our case, the estimator can be $\hat{\theta}=\bar{X}$ and what we try to estimate $\theta = \mu_x$.   
+
+**The formal decomposition of MSPE**
+
+ let's look at MSPE closer. We will drop the subscript $0$ to keep the notation simple.  With a trick, adding and subtracting $\mathbf{E}(\hat{f})$, MSPE becomes 
+
+$$
+\mathbf{MSPE}=\mathbf{E}\left[(x-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f}+\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}])^{2}\right]
+$$
+$$
+=\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]+2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]+\\2 \mathbf{E}[(\mathbf{E}[\hat{f}]-\hat{f})(f-\mathbf{E}[\hat{f}])],
+$$
+  
+which can be simplified with the following few steps:  
+
+1. The first term, $\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]$, is $(f-\mathbf{E}[\hat{f}])^{2}$, because $(f-\mathbf{E}[\hat{f}])^{2}$ is a constant.
+2. Similarly, the same term, $(f-\mathbf{E}[\hat{f}])^{2}$ is in the $4^{th}$ term.  Hence, $2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]$ can be written as $2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]$.    
+3. Finally, the $5^{th}$ term, $2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]$ can be written as $2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$.  (Note that $\varepsilon$ and $\hat{f}$ are independent)
+
+As a result we have:  
+$$
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]+2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]+\\2 \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}](f-\mathbf{E}[\hat{f}])
+$$
+
+The $4^{th}$ and the $5^{th}$ terms are zero because $\mathbf{E}[\varepsilon]=0$.  The last term is also zero because $\mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$ is $\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}]$.  Hence, we have:  
+
+$$
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]
+$$
+
+Let's look at the second term first.  It's **irreducible error** because it comes with the data.  Thus, we can write:
+
+\begin{equation}
+\mathbf{MSPE}=(\mu_x-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{Var}\left[x\right]
+  (\#eq:3-4)
+\end{equation} 
+
+
+The first term of 3.4 is the bias squared.  It would be zero for an unbiased estimator, that is, if $\mathbf{E}[\hat{f}]=\mu_x.$  The second term is the variance of the estimator.  For example, if the predictor is $\bar{X}$ it would be $\mathbf{E}\left[(\bar{X} -\mathbf{E}[\bar{X}])^{2}\right]$.  Hence the variance comes from the sampling distribution.
+
+$$
+\mathbf{MSPE}=\mathbf{Bias}[\hat{f}]^{2}+\mathbf{Var}[\hat{f}]+\sigma^{2}
+$$
+
+These two terms, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
+
+$$
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+$$
+
+**The relation between MSE and MSPE**
+
+Before going further, we need to see the connection between MSPE and MSE in a regression setting:  
+
+
+\begin{equation}
+\mathbf{MSPE}=\mathbf{E}\left[(y_0-\hat{f})^{2}\right]=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]
+  (\#eq:4-1)
+\end{equation} 
+
+Equation 4.1 is simply an expected prediction error of predicting $y_0$ using $\hat{f}(x_0)$.  The estimate $\hat{f}$ is random depending on the sample we use to estimate it.  Hence, it varies from sample to sample.  We call the sum of the first two terms as "reducible error", as we have seen before.   
+
+The MSE of the estimator $\hat{f}$ is, on the other hand, shows the expected squared error loss of estimating $f(x)$ by using $\hat{f}$ at a fixed point $x$.  
+
+$$
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left[(\hat{f}-f)^{2}\right]=\mathbf{E}\left\{\left(\hat{f}-\mathbf{E}(\hat{f})+\mathbf{E}(\hat{f})-f\right)^{2}\right\}
+$$
+$$
+=\mathbf{E}\left\{\left(\left[\hat{f}-\mathbf{E}\left(\hat{f}\right)\right]+\left[\mathbf{E}\left(\hat{f}\right)-f\right]\right)^{2}\right\}
+$$
+
+\begin{equation}
+  =\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right   \}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}+2 \mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]\left[\mathbf{E}(\hat{f})-f\right]\right\}
+  (\#eq:4-2) 
+\end{equation} 
+
+The first term is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{f})-f]$ is not random, which represents the bias.  The last term is zero.  Hence,  
+
+\begin{equation}
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}
+(\#eq:4-3)
+\end{equation} 
+  
+We can now see how MSPE is related to MSE.  Since the estimator $\hat{f}$ is used in predicting $y_0$, MSPE should include MSE:  
+
+$$
+\mathbf{MSPE}=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]=\mathbf{MSE}(\hat{f})+\mathbf{E}\left[\varepsilon^{2}\right]
+$$
+
+The important difference between estimation and prediction processes is the data points that we use to calculate the mean squared error loss functions.  In estimations, our objective is to find the estimator that minimizes the MSE, $\mathbf{E}\left[(\hat{f}-f)^{2}\right]$.  However, since $f$ is not known to us, we use $y_i$ as a proxy for $f$ and calculate MSPE using in-sample data points.  Therefore, using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy. 
+
 
 <!--chapter:end:05-Error.Rmd-->
 
 
 # Bias-Variance Trade-off 
 
-Placeholder
+We already discuss bias and variance of estimator, and decomposition of MSE for estimation above in MSE section. Now, Lets discuss what is bias and variance and trade-off between them in predictive models. To remind,our task is prediction of an outcome, Y using the data (more accurately test/train data) .
+
+To "predict" Y using features X, means to find some $f$ which is close to $Y$. We assume that $Y$ is some function of $X$ plus some random noise.
+
+$$Y=f(X)+ ϵ$$
+However, we can never know real $f(X)$. Thus our goal becomes to finding some $\hat{f(X)}$ that is a good estimate of the regression function $f(X)$. There will be always difference between real $f(X)$ and $\hat{f(X)}$. That difference is called reducible error. We find a good estimate of $f(X)$ by reducing the expected mean square of error of test data as much as possible. Thus, we can write 
+
+**MSE for prediction function using training data** (for test data, validation sample):
+
+$$
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(\mathbb{E}[\hat{f}(x)]-f(x))^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+$$
+
+Then,  
+
+**Mean Square Prediction Error** can be written as:
+
+$$
+\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+$$
+$\sigma^{2}=E[\varepsilon^{2}]$
+
+Expected mean-squared prediction error (MSPE) on the validation/training sample is sum of squared bias of the fit and variance of the fit and variance of the error.
+
+**Variance** is the amount by which $\hat{f(X)}$ could change if we estimated it using different test/training data set. $\hat{f(X)}$ depends on the training data. (More complete notation would be $\hat{f}(X; Y_{train},X_{train})$ )If the $\hat{f(X)}$ is less complex/less flexible, then it is more likely to change if we use different samples to estimate it. However, if $\hat{f(X)}$ is more complex/more flexible function, then it is more likely to change between different test samples. 
+
+For instance, Lets assume we have a data set (test or training data) and we want to "predict" Y using features X, thus estimate function $f(X)$. and lets assume we have 1-degree and 10-degree polynomial functions as a potential prediction functions. We say $\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X$ is less complex than 10-degree polynomial $\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X...+ \hat{\beta_{10}} X^{10}$ function. As, 10-degree polynomial function has more parameters $\beta_{0},..\beta_{10}$, it is more flexible. That also means it has high variance (As it has more parameters, all these parameters are more inclined to have different values in different training data sets). Thus, a prediction function has high variance if it can change substantially when we use different training samples to estimate $f(X)$. We can also say less flexible functions (functions with less parameters) have low variance. Low variance functions are less likely to change when we use different training sample or adding new data to the test sample. We will show all these with simulation in overfitting chapter as well.     
+
+**Bias** is the difference between the real! prediction function and expected estimated function. If the $\hat{f(X)}$ is less flexible, then it is more likely to have higher bias. We can think this as real function(reality) is always more complex than the function approximates the reality. So, it is more prone to have higher error, i.e. more bias.  
+In the context of regression, Parametric models are biased when the form of the model does not incorporate all the necessary variables, or the form of the relationship is too simple. For example, a parametric model assumes a linear relationship, but the true relationship is quadratic. In non-parametric models when the model provides too much smoothing.
+
+There is a bias-variance tradeoff. That is, often, the more bias in our estimation, the lesser the variance. Similarly, less variance is often accompanied by more bias. Flexible(i.e. complex) models tend to be unbiased, but highly variable. Simple models are often extremely biased, but have low variance.
+
+So for us, to select a model that appropriately balances the tradeoff between bias and variance, and thus minimizes the reducible error, we need to select a model of the appropriate flexibility for the data. However, this selected model should not overfit the data as well which we will discuss in the next section.
+
+https://threadreaderapp.com/thread/1584515105374339073.html
+
+https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance
+
+Although conceptually the variance-bias trade-off seems intuitive, at least mathematically, we need to ask another practical question: Can we see the components of the decomposed MSPE? We may not see it in the actual data ( as we donot know real function and irreducible error) but we can show it with simulations.  
+
+We will use the same example we worked with before.  We have years of schooling , which changes between 9 and 16.  We sample from this "population" multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.
+
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+
+#Let's have a containers to have repeated samples (2000)
+Ms <- 5000
+samples <- matrix(0, Ms, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+
+Now, Let's use our predictors: 
+
+
+
+```r
+# Container to record all predictions
+predictions <- matrix(0, Ms, 2)
+
+# fhat_1 = 9
+for (i in 1:Ms) {
+  predictions[i,1] <- 10
+}
+
+# fhat_2 - mean
+for (i in 1:Ms) {
+  predictions[i,2] <- sum(samples[i,])/length(samples[i,])
+}
+
+head(predictions)
+```
+
+```
+##      [,1] [,2]
+## [1,]   10 12.4
+## [2,]   10 12.1
+## [3,]   10 11.4
+## [4,]   10 12.0
+## [5,]   10 12.3
+## [6,]   10 12.6
+```
+
+Now let's have our MSPE decomposition:
+
+
+```r
+# MSPE
+MSPE <- matrix(0, Ms, 2)
+for (i in 1:Ms) {
+  MSPE[i,1] <- mean((populationX-predictions[i,1])^2)
+  MSPE[i,2] <- mean((populationX-predictions[i,2])^2)
+}
+head(MSPE)
+```
+
+```
+##      [,1] [,2]
+## [1,] 11.5 5.26
+## [2,] 11.5 5.41
+## [3,] 11.5 6.46
+## [4,] 11.5 5.50
+## [5,] 11.5 5.29
+## [6,] 11.5 5.26
+```
+
+```r
+# Bias
+bias1 <- mean(populationX)-mean(predictions[,1])
+bias2 <- mean(populationX)-mean(predictions[,2])
+
+# Variance (predictor)
+var1 <- var(predictions[,1])
+var1
+```
+
+```
+## [1] 0
+```
+
+```r
+var2 <- var(predictions[,2])
+var2
+```
+
+```
+## [1] 0.5385286
+```
+
+```r
+# Variance (epsilon)
+var_eps <- mean((populationX-12.5)^2)
+var_eps
+```
+
+```
+## [1] 5.25
+```
+
+Let's put them in a table:
+
+
+```r
+VBtradeoff <- matrix(0, 2, 4)
+rownames(VBtradeoff) <- c("fhat_1", "fhat_2")
+colnames(VBtradeoff) <- c("Bias", "Var(fhat)", "Var(eps)", "MSPE")
+VBtradeoff[1,1] <- bias1^2
+VBtradeoff[2,1] <- bias2^2
+VBtradeoff[1,2] <- var1
+VBtradeoff[2,2] <- var2
+VBtradeoff[1,3] <- var_eps
+VBtradeoff[2,3] <- var_eps
+VBtradeoff[1,4] <- mean(MSPE[,1])
+VBtradeoff[2,4] <- mean(MSPE[,2])
+round(VBtradeoff, 3)
+```
+
+```
+##        Bias Var(fhat) Var(eps)   MSPE
+## fhat_1 6.25     0.000     5.25 11.500
+## fhat_2 0.00     0.539     5.25  5.788
+```
+  
+This table clearly shows the decomposition of MSPE. The first column is the contribution to the MSPE from the bias, and the second column is the contribution from the variance of the predictor. These together make up the reducible error. The third column is the variance that comes from the data, the irreducible error. The last column is, of course, the total MSPE, and we can see that $\hat{f}_2$ is the better predictor because of its lower MSPE.  
+
 
 
 ## Biased estimator as a predictor
+
+Upto this point, we showed in the simulation prediction function with zero bias but high variance produce better prediction than the prediction function with zero variance but high bias. However, we can obtain better prediction function which has some bias and some variance. Better prediction function means smaller MSPE. Thus if the decline in variance would be more than then the bias in the second prediction function, then we have better predictor.  
+Lets show this with equation first and then with simulation.
+
+We saw earlier that $\bar{X}$ is a better estimator. Now, Let's define a biased estimator of $\mu_x$:
+
+$$
+\hat{X}_{biased} = \hat{\mu}_x=\alpha \bar{X}
+$$
+  
+The sample mean $\bar{X}$ is an unbiased estimator of $\mu_x$. The magnitude of the bias is $\alpha$ and as it goes to 1, the bias becomes zero.  As before, we are given one sample with three observations from the same distribution (population). We want to guess the value of a new data point from the same distribution.  We will make the prediction with the best predictor which has the minimum MSPE.   By using the same decomposition we can show that:  
+
+$$
+\hat{\mu}_x=\alpha \bar{X}
+$$
+  
+$$
+\mathbf{E}[\hat{\mu}_x]=\alpha \mu_x
+$$
+  
+$$
+\mathbf{MSPE}=[(1-\alpha) \mu_x]^{2}+\frac{1}{n} \alpha^{2} \sigma_{\varepsilon}^{2}+\sigma_{\varepsilon}^{2}
+$$
+  
+Our first observation is that when $\alpha$ is one, the bias will be zero.  Since it seems that MSPE is a convex function of $\alpha$, we can search for $\alpha$ that minimizes MSPE.  The first-order-condition would give us the solution:
+
+$$
+\frac{\partial \mathbf{MSPE}}{\partial \alpha} =0 \rightarrow ~~ \alpha = \frac{\mu^2_x}{\mu^2_x+\sigma^2_\varepsilon/n}<1
+$$
+
+Using the same simulation sample above , lets calculate alpha and MSPE with this new biased prediction function, and compare all 3 MSPEs. 
+
+
+```r
+pred <-rep(0, Ms)
+
+# The magnitude of bias
+alpha <- (mean(populationX))^2/((mean(populationX)^2+var_eps/10))
+alpha
+```
+
+```
+## [1] 0.9966513
+```
+
+```r
+# Biased predictor
+for (i in 1:Ms) {
+  pred[i] <- alpha*predictions[i,2]
+}
+# Check if E(alpha*Xbar) = alpha*mu_x
+mean(pred)
+```
+
+```
+## [1] 12.45708
+```
+
+```r
+alpha*mean(populationX)
+```
+
+```
+## [1] 12.45814
+```
+
+```r
+# MSPE
+MSPE_biased <- rep(0, Ms)
+for (i in 1:Ms) {
+  MSPE_biased[i] <- mean((populationX-pred[i])^2)
+}
+mean(MSPE_biased)
+```
+
+```
+## [1] 5.786663
+```
+  
+Let's add this predictor into our table:  
+
+
+```r
+VBtradeoff <- matrix(0, 3, 4)
+rownames(VBtradeoff) <- c("fhat_1", "fhat_2", "fhat_3")
+colnames(VBtradeoff) <- c("Bias", "Var(fhat)", "Var(eps)", "MSPE")
+VBtradeoff[1,1] <- bias1^2
+VBtradeoff[2,1] <- bias2^2
+VBtradeoff[3,1] <- (mean(populationX)-mean(pred))^2
+VBtradeoff[1,2] <- var1
+VBtradeoff[2,2] <- var2
+VBtradeoff[3,2] <- var(pred)
+VBtradeoff[1,3] <- var_eps
+VBtradeoff[2,3] <- var_eps
+VBtradeoff[3,3] <- var_eps
+VBtradeoff[1,4] <- mean(MSPE[,1])
+VBtradeoff[2,4] <- mean(MSPE[,2])
+VBtradeoff[3,4] <- mean(MSPE_biased)
+round(VBtradeoff, 3)
+```
+
+```
+##         Bias Var(fhat) Var(eps)   MSPE
+## fhat_1 6.250     0.000     5.25 11.500
+## fhat_2 0.000     0.539     5.25  5.788
+## fhat_3 0.002     0.535     5.25  5.787
+```
+
+As seen , increase in bias is lower than decrease in variance. The prediction function with some bias and variance is the **best prediction function** as it has the smallest MSPE.
+ This example shows the difference between estimation and prediction for a simplest predictor, the mean of $X$.  We will see a more complex example when we have a regression later.   
+
+Another simulation examples are
+https://blog.zenggyu.com/en/post/2018-03-11/understanding-the-bias-variance-decomposition-with-a-simulated-experiment/
+
+https://www.r-bloggers.com/2019/06/simulating-the-bias-variance-tradeoff-in-r/
+
+use this to create education-income simulation
+https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html
+
+
+
+
+
 
 <!--chapter:end:06-BiasVarTradeoff.Rmd-->
 
 
 # Overfitting
 
-Placeholder
+Overfitting is a phenomenon that occurs when a statistical model describes random error (noise, irreducible error) instead of the underlying relationship. A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.
+ 
+A simple example is the curve-fitting of a polynomial of a certain degree to a set of data points. A low-degree polynomial, such as a straight line, may fit the data points reasonably well, but would fail to capture the behavior of the data outside the range of the data points. However, a high-degree polynomial may fit the data points well, but would have wild fluctuations outside the range of the data points. The wild fluctuations would be fitting to the random noise in the data, and would fail to generalize to new data. We will simulate this example below. Another example is a decision tree with a large number of branches, may overfit the training data.
+ 
+All in all, we say that The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.
+
+To **detect overfitting**, you need to monitor the training error and the test error during the training process. As the model becomes more complex, the training error will decrease. However, when the model overfits the training data (i.e when model complexity increases), the test error will begin to increase.
+
+To detect model complexity in the linear population model, we use Mallows' $C_{p}$ statistic, or Akaike information criterion (AIC) or Bayesian information criterion (BIC). Accuracy of $C_{p}$, AIC, and BIC depends on some knowledge of population model. 
+(https://online.stat.psu.edu/stat462/node/197/)
+**Cross-validation** is common way to for estimating prediction error of a model while handling overfitting, when data is (relatively) limited. The data is divided into a training set and a test set. The model is trained on the training set and evaluated on the test set. To reduce variability, the procedure is repeated for different partitions of the data into training and test sets, and the results are averaged. We discuss these model complexity scores and techniques in related chapters.
+
+Overfitting can be **reduced or avoided** by using a simpler model, collecting more data, using regularization, or applying early stopping. The simplest way to prevent overfitting is to use a simpler model. The model should be as simple as possible, consistent with the bias–variance tradeoff. For example, a polynomial of low degree may be used instead of a polynomial of high degree. Another way to prevent overfitting is to use more data. More data can help to reduce the variance of the model. For example, if a model overfits the training data because it has too many parameters relative to the number of data points, then the model may not overfit if more data points are used. A third way to prevent overfitting is to use regularization. Regularization techniques add a penalty term to the loss function that measures the complexity of the model. The penalty term is called a regularizer. In neural networks, overfitting can be reduced by early stopping. During training, the error on the training set and the error on a validation set are monitored. When the error on the validation set begins to increase, training is stopped.
+
+In time series, the problem of overfitting can be addressed by applying a smoothing technique, such as moving average, to the data. Overfitting can also be reduced by removing seasonal trends from the data. The seasonal trends are then reintroduced after forecasting has been performed.
+
+https://www.r-bloggers.com/2017/06/machine-learning-explained-overfitting/
+
+regularization:
+https://towardsdatascience.com/regularization-the-path-to-bias-variance-trade-off-b7a7088b4577
+
+https://statisticsbyjim.com/regression/overfitting-regression-models/
+
+Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.  
 
 
+$$ 
+MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}=MSE(\hat{f(X)})+\sigma^{2}
+$$
+
+using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.
+Let's start with an example:  
+
+
+```r
+# Getting one-sample.
+set.seed(123)
+x_1 <- rnorm(100, mean= 0, sd= 1) 
+f <- 1 + 2*x_1 - 2*(x_1^2)+ 3*(x_1^3) # DGM
+#y <- f + rnorm(100, 0, 8) yigits eqn
+y <- f + rnorm(100, 0, 2)
+inn <- data.frame(y, x_1)
+
+# OLS
+ols1 <- lm(y~ poly(x_1, degree = 1), inn)
+ols2 <- lm(y~ poly(x_1, degree = 2), inn)
+ols3 <- lm(y~ poly(x_1, degree = 3), inn)
+ols4 <- lm(y~ poly(x_1, degree = 20), inn)
+ror <- order(x_1)
+plot(x_1, y, col="darkgrey")
+lines(x_1[ror], predict(ols1)[ror], col="pink", lwd = 1.5)
+lines(x_1[ror], predict(ols2)[ror], col="green", lwd = 1.5)
+lines(x_1[ror], predict(ols3)[ror], col="blue", lwd = 1.5)
+lines(x_1[ror], predict(ols4)[ror], col="red" , lwd = 1.5)
+legend("bottomright", c("ols1", "ols2", "ols3", "ols4"),
+       col = c("pink", "green", "blue", "red"), lwd = 2)
+```
+
+<img src="07-Overfitting_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+  
+As this is simulation, we know that the "true" estimator, $f(x)$, which is the "blue" line, is:  
+
+$$
+f(x_i)=\beta_0+\beta_1 x_{1i}+\beta_2 x_{1i}^2+\beta_2 x_{1i}^3 = 1+2x_{1i}-2x_{1i}^2+3 x_{1i}^3.
+$$
+
+Now we can calculate in-sample **empirical** MSPE:  
+$$~$$
+
+```r
+# MSE
+MSPE1 <- mean((predict(ols1)-y)^2) # which is also mean(ols1$residuals^2)
+MSPE2 <- mean((predict(ols2)-y)^2)
+MSPE3 <- mean((predict(ols3)-y)^2)
+MSPE4 <- mean((predict(ols4)-y)^2)
+all <- c(MSPE1, MSPE2, MSPE3, MSPE4)
+MSPE <- matrix(all, 4, 1)
+row.names(MSPE) <- c("ols1", "ols2", "ols3", "ols4")
+colnames(MSPE) <- "In-sample MSPE's"
+MSPE
+```
+
+```
+##      In-sample MSPE's
+## ols1        27.400554
+## ols2        23.198011
+## ols3         3.650487
+## ols4         3.055368
+```
+  
+As we see, the **overfitted** $\hat{f}(x)$, the $4^{th}$ model, has a lower **empirical in-sample** MSPE.  If we use nonparametric models, we can even find a better fitting model with a lower empirical in-sample MSPE.  We call these MSPE's **empirical** because they are not calculated based on repeated samples, which would give an **expected value** of squared errors over all samples.  In practice, however, we have only one sample. Therefore, even if our objective is to find an **unbiased** estimator of ${f}(x)$, not a prediction of $y$, since we choose our estimator, $\hat{f}(x)$, by the **empirical** in-sample MSPE, we may end up with an **overfitted** $\hat{f}(x)$, such as the $4^{th}$ estimator.  
+
+Would an overfitted model create a biased estimator?  We will see the answer in a simulation later.  However, in estimations, our objective is not only to find an unbiased estimator but also to find the one that has the minimum variance.  We know that our $3^{rd}$ model is unbiased estimator of $f(x)$ as is the overfitted $4^{th}$ estimator.  Which one should we choose?  We have answered this question at the beginning of this chapter: the one with the minimum variance. Since overfitting would create a greater variance, our choice must be the $3^{rd}$ model.  
+
+That is why we do not use the **empirical** in-sample MSPE as a "cost" or "risk" function in finding the best estimator.  This process is called a "data mining" exercise based on one sample without any theoretical justification on what the "true" model would be.  This is a general problem in **empirical risk minimization** specially in finding unbiased estimators of population parameters.
+
+To see all these issues in actions, let's have a simulation for the decomposition of in-sample unconditional MSPE's.  
+
+
+```r
+# Function for X - fixed at repeated samples
+xfunc <- function(n){
+  set.seed(123)
+  x_1 <- rnorm(n, 0, 1) 
+  return(x_1)
+}
+  
+# Function for simulation (M - number of samples)
+simmse <- function(M, n, sigma, poldeg){
+  
+  x_1 <- xfunc(n) # Repeated X's in each sample
+
+  # Containers
+  MSPE <- rep(0, M)
+  yhat <- matrix(0, M, n)
+  olscoef <- matrix(0, M, poldeg+1)
+  ymat <- matrix(0, M, n)
+  
+  # Loop for samples
+  for (i in 1:M) {
+    f <- 1 + 2*x_1 - 2*I(x_1^2) # DGM
+    y <- f + rnorm(n, 0, sigma)
+    samp <- data.frame("y" = y, x_1)
+    # Estimator
+    ols <- lm(y ~ poly(x_1, degree = poldeg, raw=TRUE), samp)
+    olscoef[i, ] <- ols$coefficients
+    # Yhat's
+    yhat[i,] <- predict(ols, samp)
+    # MSPE - That is, residual sum of squares
+    MSPE[i] <- mean((ols$residuals)^2)
+    ymat[i,] <- y
+  }
+  output <- list(MSPE, yhat, sigma, olscoef, f, ymat)
+  return(output)
+}
+
+# running different fhat with different polynomial degrees
+output1 <- simmse(2000, 100, 7, 1)
+output2 <- simmse(2000, 100, 7, 2) #True model (i.e fhat = f)
+output3 <- simmse(2000, 100, 7, 5) 
+output4 <- simmse(2000, 100, 7, 20)
+
+# Table
+tab <- matrix(0, 4, 5)
+row.names(tab) <- c("ols1", "ols2", "ols3", "ols4")
+colnames(tab) <- c("bias^2", "var(yhat)", "MSE", "var(eps)", "In-sample MSPE")
+
+f <- output1[[5]]
+
+# Var(yhat) -  We use our own function instead of "var()"
+tab[1,2] <- mean(apply(output1[[2]], 2, function(x) mean((x-mean(x))^2)))
+tab[2,2] <- mean(apply(output2[[2]], 2, function(x) mean((x-mean(x))^2)))
+tab[3,2] <- mean(apply(output3[[2]], 2, function(x) mean((x-mean(x))^2)))
+tab[4,2] <- mean(apply(output4[[2]], 2, function(x) mean((x-mean(x))^2)))
+
+# Bias^2 = (mean(yhat))-f)^2
+tab[1,1] <- mean((apply(output1[[2]], 2, mean) - f)^2)
+tab[2,1] <- mean((apply(output2[[2]], 2, mean) - f)^2)
+tab[3,1] <- mean((apply(output3[[2]], 2, mean) - f)^2)
+tab[4,1] <- mean((apply(output4[[2]], 2, mean) - f)^2)
+
+# MSE
+fmat <- matrix(f, nrow(output1[[6]]), length(f), byrow = TRUE)
+tab[1,3] <- mean(colMeans((fmat - output1[[2]])^2))
+tab[2,3] <- mean(colMeans((fmat - output2[[2]])^2))
+tab[3,3] <- mean(colMeans((fmat - output3[[2]])^2))
+tab[4,3] <- mean(colMeans((fmat - output4[[2]])^2))
+
+# # MSPE - This can be used as well, which is RSS
+# tab[1,5] <- mean(output1[[1]])
+# tab[2,5] <- mean(output2[[1]])
+# tab[3,5] <- mean(output3[[1]])
+# tab[4,5] <- mean(output4[[1]])
+
+# MSPE
+tab[1,5] <- mean(colMeans((output1[[6]] - output1[[2]])^2))
+tab[2,5] <- mean(colMeans((output2[[6]] - output2[[2]])^2))
+tab[3,5] <- mean(colMeans((output3[[6]] - output3[[2]])^2))
+tab[4,5] <- mean(colMeans((output4[[6]] - output4[[2]])^2))
+
+# Irreducable error - var(eps) = var(y)
+tab[1,4] <- mean(apply(output1[[6]], 2,  function(x) mean((x-mean(x))^2)))
+tab[2,4] <- mean(apply(output2[[6]] - output2[[2]], 2,  function(x) mean(x^2)))
+tab[3,4] <- mean(apply(output3[[6]], 2,  function(x) mean((x-mean(x))^2)))
+tab[4,4] <- mean(apply(output4[[6]], 2,  function(x) mean((x-mean(x))^2)))
+
+round(tab, 4)
+```
+
+```
+##      bias^2 var(yhat)     MSE var(eps) In-sample MSPE
+## ols1 4.9959    0.9467  5.9427  49.1493        53.2219
+## ols2 0.0006    1.4224  1.4230  47.7574        47.7574
+## ols3 0.0010    2.9011  2.9021  49.1493        46.2783
+## ols4 0.0098   10.2528 10.2626  49.1493        38.9179
+```
+
+(SIMULATION TRAINING ERROR VS TEST ERROR CH 6, (https://web.stanford.edu/~rjohari/teaching/notes.html)
+
+The table verifies that $\mathbf{MSE}(\hat{f})=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}.$  However, it seems that the MSPE (in-sample) of each model is "wrong", which is not the sum of MSE and $\mathbf{Var}(\varepsilon)$.  
+Now, back to our question:  Why is the in-sample MSPE not the sum of MSE and $\sigma^2$?  Let's look at MSPE again but this time with different angle.  
+
+**For linear regression with a linear population model**
+
+We define MSPE over some data points, as we did in our simulation above, and re-write it as follows:
+
+$$
+\mathbf{MSPE}_{out}=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y'_{i}-\hat{f}(x_i)\right)^{2}\right],~~~~~~\text{where}~~y'_i=f(x_i)+\varepsilon'_i
+$$
+  
+This type of MSPE is also called as **unconditional** MSPE.  Inside of the brackets is the "prediction error" for a range of out-of-sample data points.  The only difference here is that we distinguish $y'_i$ as out-of-sample data points.  Likewise, we define MSPE for in-sample data points $y_i$ as  
+
+$$
+\mathbf{MSPE}_{in}=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{f}(x_i)\right)^{2}\right],~~~~~~\text{where}~~y_i=f(x_i)+\varepsilon_i.
+$$
+  
+Note that $\varepsilon'_i$ and $\varepsilon_i$ are independent but identically distributed. Moreover $y'_i$ and $y_i$ has the same distribution.  
+
+
+$$
+\mathbf{MSPE}_{out} =\mathbf{MSPE}_{in}+\frac{2}{n} \sigma^{2}(p+1).
+$$
+
+
+
+The last term quantifies the **overfitting**, the the amount by which the in-sample MSPE systematically underestimates its true MSPE, i.e. out-of-sample MSPE.  Note also that the overfitting  
+
+1. **grows** with the "noise" ($\sigma^2$) in the data, 
+2. **shrinks** with the sample size ($n$),
+3. **grows** with the number of variables ($p$).  
+
+Hence, as we had stated earlier, the overfitting problem gets worse as $p/n$ gets bigger.  Minimizing the in-sample MSPE completely ignores the overfitting by picking models which are too large and with a very poor out-of-sample prediction accuracy.  
+
+Now we can calculate the size of overfitting in our simulation.
+
+
+```r
+# New Table
+tabb <- matrix(0, 4, 3)
+row.names(tabb) <- c("ols1", "ols2", "ols3", "ols4")
+colnames(tabb) <- c("Cov(yi, yhat)","True MSPE", "TrueMSPE-Cov")
+
+#COV
+tabb[1,1] <- 2*mean(diag(cov(output1[[2]], output1[[6]])))
+tabb[2,1] <- 2*mean(diag(cov(output2[[2]], output2[[6]])))
+tabb[3,1] <- 2*mean(diag(cov(output3[[2]], output3[[6]])))
+tabb[4,1] <- 2*mean(diag(cov(output4[[2]], output4[[6]])))
+
+#True MSPE
+tabb[1,2] <- tab[1,3] + tab[1,4]
+tabb[2,2] <- tab[2,3] + tab[2,4]
+tabb[3,2] <- tab[3,3] + tab[3,4]
+tabb[4,2] <- tab[4,3] + tab[4,4]
+
+#True MSPE - Cov (to compare with the measures in the earlier table)
+tabb[1,3] <- tabb[1,2] - tabb[1,1]
+tabb[2,3] <- tabb[2,2] - tabb[2,1]
+tabb[3,3] <- tabb[3,2] - tabb[3,1]
+tabb[4,3] <- tabb[4,2] - tabb[4,1]
+
+t <- cbind(tab, tabb)
+round(t, 4)
+```
+
+```
+##      bias^2 var(yhat)     MSE var(eps) In-sample MSPE Cov(yi, yhat) True MSPE
+## ols1 4.9959    0.9467  5.9427  49.1493        53.2219        1.8944   55.0920
+## ols2 0.0006    1.4224  1.4230  47.7574        47.7574        2.8463   49.1804
+## ols3 0.0010    2.9011  2.9021  49.1493        46.2783        5.8052   52.0514
+## ols4 0.0098   10.2528 10.2626  49.1493        38.9179       20.5158   59.4119
+##      TrueMSPE-Cov
+## ols1      53.1976
+## ols2      46.3341
+## ols3      46.2462
+## ols4      38.8961
+```
+  
+Let's have a pause and look at this table:
+
+
+1. We know that the "true" model is "ols2" in this simulation. However, we cannot know the true model and we have only one sample in practice. 
+2. If we use the in-sample MSPE to choose a model, we pick "ols4" as it has the minimum MSPE. 
+3. Not only "ols4" is the worst **predictor** among all models, it is also the worst **estimator** among the **unbiased** estimators "ols2", "ols3", and "ols4", as it has the highest MSE. 
+4. If our task is to find the best predictor, we cannot use in-sample MSPE, as it give us "ols4", the worst predictor.  
+
+
+https://web.stanford.edu/~rjohari/teaching/notes.html
+
+https://bookdown.org/marklhc/notes_bookdown/model-comparison-and-regularization.html
+use figure exaple.take data takesubset show that in figure
+
+**Detailed explanation of Simulation for MSPE decomposition**
+
+We will come back to this point, but before going further, to make the simulation calculations more understandable, I put here simple illustrations for each calculation.  
+  
+Think of a simulation as a big matrix: each row contains one sample and each column contains one observation of $x_i$.  For example, if we have 500 samples and each sample we have 100 observations, the "matrix" will be 500 by 100.  The figures below show how the simulations are designed and each term is calculated
+  
+<img src="png/bias.png" width="130%" height="130%" />
+  
+<img src="png/var.png" width="80%" height="80%" />
+  
+<img src="png/mse.png" width="130%" height="130%" />
+  
+<img src="png/mspe.png" width="130%" height="130%" />
+ 
+**Technical Explanation of MSPE out and in sample**
+
+ Let's look at $\mathbf{E}\left[(y'_i-\hat{f}(x_i))^{2}\right]$ closer.  By using the definition of variance,  
+
+$$
+\begin{aligned}
+\mathbf{E}\left[(y'_i-\hat{f}(x_i))^{2}\right]
+&=\mathbf{Var}\left[y'_{i}-\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y'_{i}-\hat{f}(x_i)\right]\right)^{2}\\
+&=\mathbf{Var}\left[y'_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]-2 \mathbf{Cov}\left[y'_{i}, \hat{f}(x_i)\right]+\left(\mathbf{E}\left[y'_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}
+\end{aligned}
+$$
+
+Similarly,  
+
+$$
+\begin{aligned}
+\mathbf{E}\left[(y_i-\hat{f}(x_i))^{2}\right]
+&=\mathbf{Var}\left[y_{i}-\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}-\hat{f}(x_i)\right]\right)^{2}\\
+&=\mathbf{Var}\left[y_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]-2 \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}
+\end{aligned}
+$$
+
+Remember our earlier derivation of variance-bias decomposition:  When we predict out-of-sample data points, we know that $y_0$ and $\hat{f}(x_0)$ are independent.  We had stated it differently: $\varepsilon_0$ is independent from $\hat{f}(x_0)$.  In other words, how we estimate our estimator is an independent process from $y'_i$.  Hence, $\mathbf{Cov}\left[y'_{i}, \hat{f}(x_i)\right]=0$.  The critical point here is to understand is $\mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]$, is **not zero**.  This is because the estimator $\hat{f}(x_i)$ is chosen in a way that its difference from $y_i$ should be minimum.  Hence, our estimator is not an independent than in-sample $y_i$ data points, on the contrary, we use them to estimate $\hat{f}(x_i)$.  In fact, we can even choose $\hat{f}(x_i) = y_i$ where the MSPE would be zero.  In that case correlation between $\hat{f}(x_i)$ and $y_i$ would be 1.
+
+Using the fact that $\mathbf{E}(y'_i) = \mathbf{E}(y_i)$ and $\mathbf{Var}(y'_i) = \mathbf{Var}(y_i)$, we can now re-write $\mathbf{E}\left[(y'_i-\hat{f}(x_i))^{2}\right]$ as follows:    
+
+$$
+\mathbf{E}\left[(y'_i-\hat{f}(x_i))^{2}\right]=\mathbf{Var}\left[y_{i}\right]+\mathbf{Var}\left[\hat{f}(x_i)\right]+\left(\mathbf{E}\left[y_{i}\right]-\mathbf{E}\left[\hat{f}(x_i)\right]\right)^{2}\\ =\mathbf{E}\left[(y_i-\hat{f}(x_i))^{2}\right]+2 \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right].
+$$
+  
+Averaging over data points,  
+
+$$
+\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}^{\prime}-\hat{f}(x_i)\right)^{2}\right]=\mathbf{E}\left[\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{f}(x_i)\right)^{2}\right]+\frac{2}{n} \sum_{i=1}^{n} \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right].
+$$
+
+For a linear model, it can be shown that    
+
+$$
+\frac{2}{n} \sum_{i=1}^{n} \mathbf{Cov}\left[y_{i}, \hat{f}(x_i)\right]=\frac{2}{n} \sigma^{2}(p+1).
+$$
+Hence,   
+
+$$
+\mathbf{MSPE}_{out} =\mathbf{MSPE}_{in}+\frac{2}{n} \sigma^{2}(p+1).
+$$
+   
 
 <!--chapter:end:07-Overfitting.Rmd-->
 
 
+
 # Regression v.s. Classification 
 
-Placeholder
+Both regression and classification problems fall into the supervised learning category. Each task involves developing a model that learns from historical data which enables it to make predictions on new instances that we do not have answers for. More formally, all supervised learning tasks involve learning a function that maps an input to an output based on example input-output pairs. But the distinction between classification vs regression is how they are used on particular machine learning problems. For weather forecast/prediction, if we predict temperature, which is continuous outcome, then it is regression. if we predict whether it will rain or not,then it is classification as outcome is categorical value.
+
+The key distinction between Classification vs Regression algorithms is Regression algorithms are used to determine continuous values such as price, income, age, etc. Classification algorithms are used to predict or classify several categorical classes, i.e. discrete values. The regression Algorithm can be further separated into Non-linear and Linear Regression. The Classification algorithms can be classified into Multi-class Classifier and Binary Classifier. Regression attempt to find the best fit line, which predicts the output more accurately. Classification tries to find the decision boundary, which divides the dataset into different classes.
+
+Classification algorithms used in ML used to solve problems such as Voice Recognition, Identification of spam emails, Identification of cancer cells, etc.  HEre are some common problems we can use Classification and regressions in social sciences:
+
+1. Regression: Y is a continuous variable (numeric). 
+  Examples:
+ Predict income given demographic factors
+ Predict consumption amount given profile
+ Predict the price of a product
+ Predict the test score of a student
+ Predict Cholesterol levels
+ Predict hospital expenditure
+ 
+2. Classification: Y is a categorical variable (factor). 
+  Examples:
+ Predict whether the individual employed or not
+ Predict whether the individual have kids or not
+ Predict whether this customer going to buy an item or not
+ Predict whether a company will default or not
+ Predict whether a student will drop out of a school or not
+ Predict whether an individual will have an heart attact or not
+ 
+ 
+Popular types of Regression Algorithms include: Simple Linear Regression; Multiple Linear Regression;Polynomial Regression; Ridge Regression; Lasso Regression; Neural Networks Regression; Support Vector Regression; Decision Tree Regression; Random Forest Regression
+
+Popular classification algorithms include: Logistic Regression; Naive Bayes; K-Nearest Neighbors; Decision Tree; Support Vector Machines; Kernel SVM; Naive Bayes; Random Forest Classification
+
+As a Final Thoughts, the way we determine whether a task is a classification or regression problem is by the output. Regression tasks are concerned with predicting a continuous value, whereas classification tasks are concerned with predicting discrete values. Also, the way we evaluate each type of problem is different for example the mean squared error is a useful metric for regression tasks but this wouldn’t work for a classification. Similarly, accuracy wouldn’t be an effective metric for regression tasks but it can be useful for classification tasks.
 
 
 
 <!--chapter:end:08-RegvsClass.Rmd-->
 
 
+
 # Parametric Estimations - Basics
 
-Placeholder
+ Parametric vs. Nonparametric methods {-}
 
+https://towardsdatascience.com/parametric-vs-non-parametric-methods-2cea475da1a
+
+In parametric methods, we typically make an assumption with regards to the form of the function f. For example, you could make an assumption that the unknown function f is linear. parametric methods in Machine Learning usually take a model-based approach where we make an assumption with respect to form of the function to be estimated and then we select a suitable model based on this assumption in order to estimate the set of parameters.The biggest disadvantage of parametric methods is that the assumptions we make may not always be true. For instance, you may assume that the form of the function is linear, whilst it is not. Therefore, these methods involve less flexible algorithms and are usually used for less complex problems.
+
+However, parametric methods tend to be quite fast and they also require significantly less data compared to non-parametric methods (more on this in the following section). Additionally, since parametric methods tend to be less flexible and suitable for less complex problems, they are more interpretable.
+On the other hand, non-parametric methods refer to a set of algorithms that do not make any underlying assumptions with respect to the form of the function to be estimated. And since no assumption is being made, such methods are capable of estimating the unknown function f that could be of any form.
+
+Non-parametric methods tend to be more accurate as they seek to best fit the data points. However, this comes at the expense of requiring a very large number of observations that is needed in order to estimate the unknown function f accurately. Additionally, these methods tend to be less efficient when it comes to training the models. Furthermore, non-parametric methods may sometimes introduce overfitting. Since these algorithms tend to be more flexible, they may sometimes learn the errors and noise in a way that they cannot generalise well to new, unseen data points.
+
+On the flip side, non-parametric methods are quite flexible and can lead to better model performance since no assumptions are being made about the underlying function.
+
+http://www2.math.uu.se/~thulin/mm/breiman.pdf
+
+https://www.quora.com/What-was-Leo-Breiman-trying-to-convey-in-his-research-paper-Statistical-Modeling-The-Two-Cultures-Was-he-trying-to-say-that-the-field-is-odd-Did-he-mean-that-algorithmic-modelling-machine-learning-is-superior-to-traditional-data-modelling
+
+https://www.uio.no/studier/emner/matnat/math/STK9200/h21/two_cultures_pdf.pdf
+
+http://www.stat.columbia.edu/~gelman/research/published/gelman_breiman.pdf
+
+https://muse.jhu.edu/article/799731/pdf
+
+https://muse.jhu.edu/issue/45147
+
+Leo Breiman [@Breiman_2001]: [Statistical Modeling: The Two Cultures](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726):
+
+> For instance, in the Journal of the American Statistical Association (JASA), virtually every article contains a statement of the form: *Assume that the data are generated by the following model:... I am deeply troubled by the current and past use of data models in applications, where quantitative conclusions are drawn and perhaps policy decisions made.*
+>
+>... assume the data is generated by independent draws from the model*
+>
+>$$
+>y=b_{0}+\sum_{1}^{M} b_{m} x_{m}+\varepsilon
+>$$
+>
+>where the coefficients are to be estimated. The error term is N(0, $\sigma^2$) and $\sigma^2$ is to be estimated. Given that the data is generated this way, elegant tests of hypotheses,confidence intervals,distributions of the residual sum-of-squares and asymptotics can be derived. This made the model attractive in terms of the mathematics involved. This theory was used both by academics statisticians and others to derive significance levels for coefficients on the basis of model (R), with little consideration as to whether the data on hand could have been generated by a linear model. Hundreds, perhaps thousands of articles were published claiming proof of something or other because the coefficient was significant at the 5% level...
+>
+>...With the insistence on data models, multivariate analysis tools in statistics are frozen at discriminant analysis and logistic regression in classification and multiple linear regression in regression. Nobody really believes that multivariate data is multivariate normal, but that data model occupies a large number of pages in every graduate text book on multivariate statistical analysis...
+>
+
+According to Breiman, there are two "cultures":  
+**The Data Modeling Culture** : One assumes that the data are generated by a given stochastic data model (econometrics) ...  
+**Algorithmic Modeling Culture**: One uses algorithmic models and treats the data mechanism as unknown (machine learning) ...    
+
+He argues that the focus in the statistical community on data models has:
+  
+- Led to irrelevant theory and questionable scientific conclusions; 
+- Kept statisticians from using more suitable algorithmic models; 
+- Prevented statisticians from working on exciting new problems.  
+
+In **parametric econometrics** we assume that the data come from a generating process that takes the following form:
+
+$$
+y=X \beta+\varepsilon
+$$
+
+Model ($X$'s) are determined by the researcher and probability theory is a foundation of econometrics
+
+
+In **Machine learning** we do not make any assumption on how the data have been generated:
+
+$$
+y \approx m(X)
+$$
+
+Model ($X$'s) is not selected by the researcher and probability theory is not required
+
+Nonparametric econometrics makes the link between the two: **Machine Learning: an extension of nonparametric econometrics**
+   
+To see the difference between two "cultures", we start with parametric modeling in classification problems.
 
 ## Parametric Estimations
+
+So far we have only considered models for numeric response variables. What happens if the response variable is categorical? Can we use linear models in these situations? Yes, we can.  To understand how, let's look at the model that we have been using, ordinary least-square (OLS) regression, which is actually a specific case of the more general, generalized linear model (GLM).  So, in general, GLMs relate the mean of the response to a linear combination of the predictors, $\eta(x)$, through the use of a link function, $g()$. That is,  
+
+\begin{equation}
+\eta(\mathbf{x})=g(\mathrm{E}[Y | \mathbf{X}=\mathbf{x}]),
+  (\#eq:5-1)
+\end{equation} 
+
+Or,  
+
+\begin{equation}
+\eta(\mathbf{x})=\beta_{0}+\beta_{1} x_{1}+\beta_{2} x_{2}+\ldots+\beta_{p-1} x_{p-1} = g(\mathrm{E}[Y | \mathbf{X}=\mathbf{x}])
+  (\#eq:5-2)
+\end{equation} 
+  
+In the case of a OLS,  
+
+$$
+g(\mathrm{E}[Y | \mathbf{X}=\mathbf{x}]) = E[Y | \mathbf{X}=\mathbf{x}],
+$$
+  
+To illustrate the use of a GLM we’ll focus on the case of binary responses variable coded using 0 and 1. In practice, these 0 and 1s will code for two classes such as yes/no, committed-crime/not, sick/healthy, etc.  
+
+$$
+Y=\left\{\begin{array}{ll}{1} & {\text { yes }} \\ {0} & {\text { no }}\end{array}\right.
+$$
+
+
+##	LPM
+
+Estimate the regression function, which under squared error loss is the conditional mean of $Y$ , the response, given  $X$, the features. These goal are essentially the same. We want to fit a model that “generalizes” well, that is, works well on new data that was not used to fit the model. To do this, we want to use a model of appropriate flexibility so as not to overfit to the training data.
+
+Linear models are a family of parametric models which assume that the regression function (outcome is known and continuous) is a linear combination of the features. The $\beta$ coefficients are model parameters that are learned from the data via least squares or maximum likelihood.
+
+
+
+A linear classifier (like LPM and Logistic) is one where a “hyperplane” is formed by taking a linear combination of the features, such that one side of the hyperplane predicts one class and the other side predicts the other.
+nonparametric classifier such as knn
+
+Let's use the same dataset, **Vehicles**, that we used in the lab sections and create a new variable, `mpg`:  
+
+
+```r
+#Inspect the data before doing anything
+library(fueleconomy)  #install.packages("fueleconomy")
+data(vehicles)
+df <- as.data.frame(vehicles)
+
+#Keep only observations without NA
+dim(df)
+```
+
+```
+## [1] 33442    12
+```
+
+```r
+data <- df[complete.cases(df), ]
+dim(data)
+```
+
+```
+## [1] 33382    12
+```
+
+```r
+#Let's create a binary variable, mpg = 1 if hwy > mean(hwy), 0 otherwise
+mpg <- c(rep(0, nrow(data))) #Create vector mpg
+data2 <- cbind(data, mpg) # add it to data
+data2$mpg[data2$hwy > mean(data2$hwy)] <- 1
+```
+  
+We are going to have a model that will predict whether the vehicle is a high mpg (i.e. `mpg` = 1) or low mpg (`mpg` = 0) car. As you notice, we have lots of character variables. Our model cannot accept character variables, but we can convert them into factor variables that give each unique character variable a number. This allows our model to accept our data. Let's convert them to factor variables now:  
+  
+
+```r
+for (i in 1:ncol(data2)) {
+  if(is.character(data2[,i])) data2[,i] <- as.factor(data2[,i])
+}
+str(data2)
+```
+
+```
+## 'data.frame':	33382 obs. of  13 variables:
+##  $ id   : num  13309 13310 13311 14038 14039 ...
+##  $ make : Factor w/ 124 levels "Acura","Alfa Romeo",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ model: Factor w/ 3174 levels "1-Ton Truck 2WD",..: 28 28 28 29 29 29 29 29 29 30 ...
+##  $ year : num  1997 1997 1997 1998 1998 ...
+##  $ class: Factor w/ 34 levels "Compact Cars",..: 29 29 29 29 29 29 29 29 29 1 ...
+##  $ trans: Factor w/ 46 levels "Auto (AV-S6)",..: 32 43 32 32 43 32 32 43 32 32 ...
+##  $ drive: Factor w/ 7 levels "2-Wheel Drive",..: 5 5 5 5 5 5 5 5 5 5 ...
+##  $ cyl  : num  4 4 6 4 4 6 4 4 6 5 ...
+##  $ displ: num  2.2 2.2 3 2.3 2.3 3 2.3 2.3 3 2.5 ...
+##  $ fuel : Factor w/ 12 levels "CNG","Diesel",..: 11 11 11 11 11 11 11 11 11 7 ...
+##  $ hwy  : num  26 28 26 27 29 26 27 29 26 23 ...
+##  $ cty  : num  20 22 18 19 21 17 20 21 17 18 ...
+##  $ mpg  : num  1 1 1 1 1 1 1 1 1 0 ...
+```
+
+Done! We are ready to have a model to predict `mpg`.  For now, we'll use only `fuel`.  
+
+
+```r
+model1 <- lm(mpg ~ fuel + 0, data = data2) #No intercept
+summary(model1)
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ fuel + 0, data = data2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8571 -0.4832 -0.2694  0.5168  0.7306 
+## 
+## Coefficients:
+##                                 Estimate Std. Error t value Pr(>|t|)    
+## fuelCNG                         0.362069   0.065383   5.538 3.09e-08 ***
+## fuelDiesel                      0.479405   0.016843  28.463  < 2e-16 ***
+## fuelGasoline or E85             0.269415   0.015418  17.474  < 2e-16 ***
+## fuelGasoline or natural gas     0.277778   0.117366   2.367   0.0180 *  
+## fuelGasoline or propane         0.000000   0.176049   0.000   1.0000    
+## fuelMidgrade                    0.302326   0.075935   3.981 6.87e-05 ***
+## fuelPremium                     0.507717   0.005364  94.650  < 2e-16 ***
+## fuelPremium and Electricity     1.000000   0.497942   2.008   0.0446 *  
+## fuelPremium Gas or Electricity  0.857143   0.188205   4.554 5.27e-06 ***
+## fuelPremium or E85              0.500000   0.053081   9.420  < 2e-16 ***
+## fuelRegular                     0.483221   0.003311 145.943  < 2e-16 ***
+## fuelRegular Gas and Electricity 1.000000   0.176049   5.680 1.36e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4979 on 33370 degrees of freedom
+## Multiple R-squared:  0.4862,	Adjusted R-squared:  0.486 
+## F-statistic:  2631 on 12 and 33370 DF,  p-value: < 2.2e-16
+```
+  
+What we estimated is LPM.  Since $Y$ is 1 or 0,  
+
+$$
+E[Y | \mathbf{X}=\mathbf{Regular}]) = Probability(Y|X = \mathbf{Regular}),
+$$
+  
+In this context, the link function is called "identity" because it directly “links” the probability to the linear function of the predictor variables. Let's see if we can verify this:  
+
+
+```r
+tab <- table(data2$fuel, data2$mpg)
+ftable(addmargins(tab))
+```
+
+```
+##                                  0     1   Sum
+##                                               
+## CNG                             37    21    58
+## Diesel                         455   419   874
+## Gasoline or E85                762   281  1043
+## Gasoline or natural gas         13     5    18
+## Gasoline or propane              8     0     8
+## Midgrade                        30    13    43
+## Premium                       4242  4375  8617
+## Premium and Electricity          0     1     1
+## Premium Gas or Electricity       1     6     7
+## Premium or E85                  44    44    88
+## Regular                      11688 10929 22617
+## Regular Gas and Electricity      0     8     8
+## Sum                          17280 16102 33382
+```
+
+```r
+prop.table(tab, 1)
+```
+
+```
+##                              
+##                                       0         1
+##   CNG                         0.6379310 0.3620690
+##   Diesel                      0.5205950 0.4794050
+##   Gasoline or E85             0.7305849 0.2694151
+##   Gasoline or natural gas     0.7222222 0.2777778
+##   Gasoline or propane         1.0000000 0.0000000
+##   Midgrade                    0.6976744 0.3023256
+##   Premium                     0.4922827 0.5077173
+##   Premium and Electricity     0.0000000 1.0000000
+##   Premium Gas or Electricity  0.1428571 0.8571429
+##   Premium or E85              0.5000000 0.5000000
+##   Regular                     0.5167794 0.4832206
+##   Regular Gas and Electricity 0.0000000 1.0000000
+```
+  
+Yes!  That's why OLS with a binary $Y$ is actually LPM.  That is,  
+
+$$
+Pr[Y = 1 | x=\mathbf{Regular}]) = \beta_{0}+\beta_{1} x_{i}.
+$$
+  
+A more formal explanation is related to how $Y$ is distributed.  Since $Y$ has only 2 possible outcomes (1 and 0), it has a specific probability distribution.  First, let's refresh our memories about Binomial and Bernoulli distributions.  In general, if a random variable, $X$, follows the **binomial distribution** with parameters $n \in \mathbb{N}$ and $p \in [0,1]$, we write $X \sim B(n, p)$. The probability of getting exactly $k$ successes in $n$ trials is given by the probability mass function:  
+
+\begin{equation}
+\operatorname{Pr}(X=k)=\left(\begin{array}{l}{n} \\ {k}\end{array}\right) p^{k}(1-p)^{n-k}
+  (\#eq:5-3)
+\end{equation} 
+for $k = 0, 1, 2, ..., n$, where  
+
+$$
+\left(\begin{array}{l}{n} \\ {k}\end{array}\right)=\frac{n !}{k !(n-k) !}
+$$
+  
+Formula 5.3 can be understood as follows: $k$ successes occur with probability $p^k$ and $n-k$ failures occur with probability $(1-p)^{n−k}$. However, the $k$ successes can occur anywhere among the $n$ trials, and there are $n!/k!(n!-k!)$ different ways of distributing $k$ successes in a sequence of $n$ trials. Suppose a *biased coin* comes up heads with probability 0.3 when tossed. What is the probability of achieving 4 heads after 6 tosses?  
+  
+$$
+\operatorname{Pr}(4 \text { heads})=f(4)=\operatorname{Pr}(X=4)=\left(\begin{array}{l}{6} \\ {4}\end{array}\right) 0.3^{4}(1-0.3)^{6-4}=0.059535
+$$
+  
+The **Bernoulli distribution** on the other hand, is a discrete probability distribution of a random variable which takes the value 1 with probability $p$ and the value 0 with probability $q = (1 - p)$, that is, the probability distribution of any single experiment that asks a yes–no question.  The **Bernoulli distribution** is a special case of the **binomial distribution**, where $n = 1$. Symbolically, $X \sim B(1, p)$ has the same meaning as $X \sim Bernoulli(p)$. Conversely, any binomial distribution, $B(n, p)$, is the distribution of the sum of $n$ Bernoulli trials, $Bernoulli(p)$, each with the same probability $p$.  
+
+$$
+\operatorname{Pr}(X=k) =p^{k}(1-p)^{1-k} \quad \text { for } k \in\{0,1\}
+$$
+  
+Formally, the outcomes $Y_i$ are described as being Bernoulli-distributed data, where each outcome is determined by an unobserved probability $p_i$ that is specific to the outcome at hand, but related to the explanatory variables. This can be expressed in any of the following equivalent forms:  
+
+\begin{equation}
+\operatorname{Pr}\left(Y_{i}=y | x_{1, i}, \ldots, x_{m, i}\right)=\left\{\begin{array}{ll}{p_{i}} & {\text { if } y=1} \\ {1-p_{i}} & {\text { if } y=0}\end{array}\right.
+  (\#eq:5-4)
+\end{equation} 
+  
+The expression 5.4 is the probability mass function of the Bernoulli distribution, specifying the probability of seeing each of the two possible outcomes. Similarly, this can be written as follows, which avoids having to write separate cases and is more convenient for certain types of calculations. This relies on the fact that $Y_{i}$ can take only the value 0 or 1. In each case, one of the exponents will be 1, which will make the outcome either $p_{i}$ or 1−$p_{i}$, as in 5.4.^[Intuitively, when $n=1$, achieving head once ($k=1$) is $P(head)= p^{k}(1-p)^{1-k}=p$ or $P(tail)= p^{k}(1-p)^{1-k}=1-p.$]  
+
+$$
+\operatorname{Pr}\left(Y_{i}=y | x_{1, i}, \ldots, x_{m, i}\right)=p_{i}^{y}\left(1-p_{i}\right)^{(1-y)}
+$$
+  
+Hence this shows that  
+
+$$
+\operatorname{Pr}\left(Y_{i}=1 | x_{1, i}, \ldots, x_{m, i}\right)=p_{i}=E[Y_{i}  | \mathbf{X}=\mathbf{x}])
+$$
+
+Let's have a more complex model:  
+
+
+```r
+model2 <- lm(mpg ~ fuel + drive + cyl, data = data2)
+summary(model2)
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ fuel + drive + cyl, data = data2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.09668 -0.21869  0.01541  0.12750  0.97032 
+## 
+## Coefficients:
+##                                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                      0.858047   0.049540  17.320  < 2e-16 ***
+## fuelDiesel                       0.194540   0.047511   4.095 4.24e-05 ***
+## fuelGasoline or E85              0.030228   0.047277   0.639  0.52258    
+## fuelGasoline or natural gas      0.031187   0.094466   0.330  0.74129    
+## fuelGasoline or propane          0.031018   0.132069   0.235  0.81432    
+## fuelMidgrade                     0.214471   0.070592   3.038  0.00238 ** 
+## fuelPremium                      0.189008   0.046143   4.096 4.21e-05 ***
+## fuelPremium and Electricity      0.746139   0.353119   2.113  0.03461 *  
+## fuelPremium Gas or Electricity   0.098336   0.140113   0.702  0.48279    
+## fuelPremium or E85               0.307425   0.059412   5.174 2.30e-07 ***
+## fuelRegular                      0.006088   0.046062   0.132  0.89485    
+## fuelRegular Gas and Electricity  0.092330   0.132082   0.699  0.48454    
+## drive4-Wheel Drive               0.125323   0.020832   6.016 1.81e-09 ***
+## drive4-Wheel or All-Wheel Drive -0.053057   0.016456  -3.224  0.00126 ** 
+## driveAll-Wheel Drive             0.333921   0.018879  17.687  < 2e-16 ***
+## driveFront-Wheel Drive           0.497978   0.016327  30.499  < 2e-16 ***
+## drivePart-time 4-Wheel Drive    -0.078447   0.039258  -1.998  0.04570 *  
+## driveRear-Wheel Drive            0.068346   0.016265   4.202 2.65e-05 ***
+## cyl                             -0.112089   0.001311 -85.488  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3501 on 33363 degrees of freedom
+## Multiple R-squared:  0.5094,	Adjusted R-squared:  0.5091 
+## F-statistic:  1924 on 18 and 33363 DF,  p-value: < 2.2e-16
+```
+  
+Since OLS is a "Gaussian" member of GLS family, we can also estimate it as GLS. We use glm() and define the family as "gaussian".  
+
+
+```r
+model3 <- glm(mpg ~ fuel + drive + cyl, family = gaussian, data = data2)
+#You can check it by comparing model2 above to summary(model3)
+#Let's check only the coefficients  
+identical(round(coef(model2),2), round(coef(model3),2))
+```
+
+```
+## [1] TRUE
+```
+  
+With this LPM model, we can now predict the classification of future cars in term of high (`mpg` = 1) or low (`mpg` = 0), which was our objective.  Let's see how successful we are in identifying cars with `mpg` = 1 in our own sample.  
+
+
+```r
+#How many cars we have with mpg = 1 and mpg = 0 in our data
+table(data2$mpg) 
+```
+
+```
+## 
+##     0     1 
+## 17280 16102
+```
+
+```r
+#In-sample fitted values or predicted probabilities for mpg = 1
+#Remember our E(Y|X) is Pr(Y=1|X)
+mpg_hat <- fitted(model2)
+
+#If you think that any predicted mpg above 0.5 should be consider 1 then
+length(mpg_hat[mpg_hat > 0.5]) 
+```
+
+```
+## [1] 14079
+```
+
+```r
+length(mpg_hat[mpg_hat <= 0.5])
+```
+
+```
+## [1] 19303
+```
+  
+This is Problem 1: we are using 0.5 as our threshold (discriminating) probability to convert predicted probabilities to predicted "labels". When we use 0.5 as our threshold probability though, our prediction is significantly off:  we predict many cars with `mpg` = 0 as having `mpg` = 1.  
+
+And here is Problem 2:  
+
+
+```r
+summary(mpg_hat)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -0.7994  0.2187  0.4429  0.4824  0.9138  1.2088
+```
+  
+The predicted probabilities (of `mpg` = 1) are not bounded between 1 and 0.  We will talk about these issues later.  First let's see our next classification model or GLM.  
+
+
 ## Logistic Regression
+
+Logistic Regression
+Linear vs. Logistic Probability Models, which is better and when?  We will briefly talk about it here. You can find a nice summary by Paul Von Hippel here as well (<https://statisticalhorizons.com/linear-vs-logistic>) [@Hippel_2015].  
+
+First, let's define some notation that we will use throughout. (Note that many machine learning texts use $p$ as the number of parameters.  Here we use as a notation for probability.  You should be aware of it.)  
+
+$$
+p(\mathbf{x})=P[Y=1 | \mathbf{X}=\mathbf{x}]
+$$
+
+With a binary (Bernoulli) response, we will mostly focus on the case when $Y = 1$, since, with only two possibilities, it is trivial to obtain probabilities when $Y = 0$.  
+
+$$
+\begin{array}{c}{P[Y=0 | \mathbf{X}=\mathbf{x}]+P[Y=1 | \mathbf{X}=\mathbf{x}]=1} \\\\ {P[Y=0 | \mathbf{X}=\mathbf{x}]=1-p(\mathbf{x})}\end{array}
+$$
+  
+An explanation of logistic regression can begin with an explanation of the standard logistic function. The logistic function is a sigmoid function, which takes any real input $z$, and outputs a value between zero and one. The standard logistic function is defined as follows:  
+
+\begin{equation}
+\sigma(z)=\frac{e^{z}}{e^{z}+1}=\frac{1}{1+e^{-z}}
+  (\#eq:5-5)
+\end{equation} 
+
+Let's see possible $\sigma(z)$ values and plot them against $z$.  
+
+
+```r
+set.seed(1)
+n <- 500
+x = rnorm(n, 0,2)
+sigma <- 1/(1+exp(-x))
+plot(sigma ~ x, col ="blue", cex.axis = 0.7)
+```
+
+<img src="09-ParametricEst_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+This logistic function is nice because: (1) whatever the $x$'s are $\sigma(z)$ is always between 0 and 1, (2) The effect of $x$ on $\sigma(z)$ is not linear.  That is, there is lower and upper thresholds in $x$ that before and after those values (around -2 and 2 here) the marginal effect of $x$ on $\sigma(z)$ is very low.  Therefore, it seems that if we use a logistic function and replace $\sigma(z)$ with $p(x)$, we can solve issues related to these 2 major drawbacks of LPM.  
+
+Let us assume that $z = y = \beta_{0}+\beta_{1} x_{1}$, the general logistic function can now be written as:  
+
+\begin{equation}
+p(x)=P[Y=1|\mathbf{X}=\mathbf{x}]=\frac{1}{1+e^{-\left(\beta_{0}+\beta_{1} x\right)}}
+  (\#eq:5-6)
+\end{equation} 
+
+
+To understand why nonlinearity would be a desirable future in some probability predictions, let's imagine we try to predict the effect of saving ($x$) on home ownership ($p(x)$).  If you have no saving now ($x=0$), additional \$10K saving would not make a significant difference in your decision to buy a house ($P(Y=1|x)$).  Similarly, when you have \$500K ($x$) saving but without having house,  additional \$10K ($dx$) saving should not make you buy a house (with \$500K, you could've bought a house already, had you wanted one).  That is why flat lower and upper tails of $\sigma(z)$ are nice futures reflecting very low marginal effects of $x$ on the probability of having a house in this case.  
+
+After a simple algebra, we can also write the same function as follows,  
+
+\begin{equation}
+\ln \left(\frac{p(x)}{1-p(x)}\right)=\beta_{0}+\beta_{1} x,
+  (\#eq:5-7)
+\end{equation}
+
+where $p(x)/[1-p(x)]$ is called *odds*, a ratio of success over failure.  The natural log (ln) of this ratio is called, **log odds**, or **Logit**, usually denoted as $\mathbf(L)$.  Let's see if this expression is really linear. 
+  
+
+
+```r
+p_x <- sigma
+Logit <- log(p_x/(1-p_x)) #By defult log() calculates natural logarithms
+plot(Logit ~ x, col ="red", cex.axis = 0.7)
+```
+
+<img src="09-ParametricEst_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+In many cases, researchers use a logistic function, when the outcome variable in a regression is dichotomous.  Although there are situations where the linear model is clearly problematic (as described above), there are many common situations where the linear model is just fine, and even has advantages.  Let’s start by comparing the two models explicitly. If the outcome $Y$ is dichotomous with values 1 and 0, we define $P[Y=1|X] = E(Y|X)$ as proved earlier, which is just the probability that $Y$ is 1, given some value of the regressors $X$. Then the linear and logistic probability models are:  
+
+$$
+P[Y = 1|\mathbf{X}=\mathbf{x}]=E[Y | \mathbf{X}=\mathbf{x}] = \beta_{0}+\beta_{1} x_{1}+\beta_{2} x_{2}+\ldots+\beta_{k} x_{k},
+$$
+$~$
+
+$$
+\ln \left(\frac{P[Y=1|\mathbf{X}]}{1-P[Y=1|\mathbf{X}]}\right)=\beta_{0}+\beta_{1} x_{1}+\ldots+\beta_{k} x_{k}
+$$
+
+$~$
+
+The linear model assumes that the probability $P$ is a linear function of the regressors, while the logistic model assumes that the natural log of the odds $P/(1-P)$ is a linear function of the regressors.  Note that applying the inverse logit transformation allows us to obtain an expression for $P(x)$.  With LPM you don't need that transformation to have $P(x)$.  While LPM can be estimated easily with OLS, the Logistic model needs MLE.  
+
+$$
+p(\mathbf{x})=E[Y | \mathbf{X}=\mathbf{x}]=P[Y=1 | \mathbf{X}=\mathbf{x}]=\frac{1}{1+e^{-(\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{p-1} x_{(p-1)})}}
+$$
+$~$
+
+The major advantage of LPM is its interpretability. In the linear model, if $\beta_{2}$ is (say) 0.05, that means that a one-unit increase in $x_{2}$ is associated with a 5-percentage point increase in the probability that $Y$ is 1. Just about everyone has some understanding of what it would mean to increase by 5 percentage points their probability of, say, voting, or dying, or becoming obese.  The logistic model is less interpretable. In the logistic model, if $\beta_{1}$ is 0.05, that means that a one-unit increase in $x_{1}$ is associated with a 0.05 "unit" increase in the log odds, $\text{log}(P/{(1-P)})$, that $Y$ is 1. And what does that mean? I’ve never had any intuition for log odds.  So you have to convert it to the odd ratio (OR) or use the above equation to calculate fitted (predicted) probabilities.  Not a problem with R, Stata, etc.  
+
+But the main question is when we should use the logistic model?  The logistic model is unavoidable if it fits the data much better than the linear model. And sometimes it does. But in many situations the linear model fits just as well, or almost as well, as the logistic model. In fact, in many situations, the linear and logistic model give results that are practically indistinguishable except that the logistic estimates are harder to interpret.  Here is the difference: **For the logistic model to fit better than the linear model, it must be the case that the log odds are a linear function of X, but the probability is not.**  
+
+
+Lets review these concepts in a simulation exercise: 
+
+
+```r
+#Creating random data
+set.seed(1) # In order to get the same data everytime 
+n <- 500 # number of observation
+x = rnorm(n) # this is our x
+z = -2 + 3 * x
+
+#Probablity is defined by a logistic function
+#Therefore it is not a linear function of x!
+p = 1 / (1 + exp(-z))
+
+#Remember Bernoulli distribution defines Y as 1 or 0 
+#Bernoulli is the special case of the binomial distribution with size = 1
+y = rbinom(n, size = 1, prob = p)
+
+#And we create our data
+data <-  data.frame(y, x)
+head(data)
+```
+
+```
+##   y          x
+## 1 0 -0.6264538
+## 2 0  0.1836433
+## 3 0 -0.8356286
+## 4 0  1.5952808
+## 5 0  0.3295078
+## 6 0 -0.8204684
+```
+
+```r
+table(y)
+```
+
+```
+## y
+##   0   1 
+## 353 147
+```
+
+We know that probablity is defined by a logistic function (see above).  What happens if we fit it as LPM, which is $Pr[Y = 1 | x=\mathbf{x}]) = \beta_{0}+\beta_{1} x_{i}$?
+
+
+```r
+lpm <- lm(y ~ x, data = data)
+summary(lpm)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.76537 -0.25866 -0.08228  0.28686  0.82338 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.28746    0.01567   18.34   <2e-16 ***
+## x            0.28892    0.01550   18.64   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3504 on 498 degrees of freedom
+## Multiple R-squared:  0.411,	Adjusted R-squared:  0.4098 
+## F-statistic: 347.5 on 1 and 498 DF,  p-value: < 2.2e-16
+```
+
+```r
+#Here is the plot Probabilities (fitted and DGM) vs x. 
+plot(x, p, col = "green", cex.lab = 0.7, cex.axis = 0.8)
+abline(lpm, col = "red")
+legend("topleft", c("Estimated Probability by LPM", "Probability"), lty = c(1, 1),
+pch = c(NA, NA), lwd = 2, col = c("red", "green"), cex = 0.7)
+```
+
+<img src="09-ParametricEst_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+How about a logistic regression?
+
+
+```r
+logis <- glm(y ~ x, data = data, family = binomial)
+summary(logis)
+```
+
+```
+## 
+## Call:
+## glm(formula = y ~ x, family = binomial, data = data)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  -1.8253     0.1867  -9.776   <2e-16 ***
+## x             2.7809     0.2615  10.635   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 605.69  on 499  degrees of freedom
+## Residual deviance: 328.13  on 498  degrees of freedom
+## AIC: 332.13
+## 
+## Number of Fisher Scoring iterations: 6
+```
+
+```r
+#Here is the plot Probabilities (fitted and DGM) vs x. 
+
+plot(x, p, col = "green", cex.lab = 0.8, cex.axis = 0.8)
+curve(predict(logis, data.frame(x), type = "response"), add = TRUE, col = "red", lty = 2)
+legend("topleft", c("Estimated Probability by GLM", "Probability"), lty = c(1, 1),
+pch = c(NA, NA), lwd = 2, col = c("red", "green"), cex = 0.7)
+```
+
+<img src="09-ParametricEst_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
+As you can see, the estimated logistic regression coefficients are in line with our DGM coefficients (-2, 3).
+  
+$$
+\log \left(\frac{\hat{p}(\mathbf{x})}{1-\hat{p}(\mathbf{x})}\right)=-1.8253+2.7809 x
+$$
+
 
 <!--chapter:end:09-ParametricEst.Rmd-->
 
@@ -263,16 +3109,43 @@ TBA
 <!--chapter:end:11-HyperTuning.Rmd-->
 
 
+
 #  Optimization Algorithms - Basics
 
-Placeholder
 
+In this appendix, we will review some important concepts in algorithmic optimization.
 
 ## Brute-force optimization
+
+TBA
+
 ## Derivative-based methods
+ 
+TBA
+
 ## ML Estimation with logistic regression
+
+TBA
+  
 ## Gradient Descent Algorithm
+
+TBA
+  
 ## Optimization with R
+
+A good summary of tools for optimization in R given in this guide: [Optimization and Mathematical Programming](https://cran.r-project.org/web/views/Optimization.html). There are many optimization methods, each of which would only be appropriate for specific cases.  In choosing a numerical optimization method, we need to consider following points:  
+
+1. We need to know if it is a constrained or unconstrained problem.  For example, the MLE method is an unconstrained problem. Most regularization problems, like Lasso or Ridge, are constraint optimization problems.   
+2. Do we know how the objective function is shaped a priori?  MLE and OLS methods have well-known objective functions (Residual Sum of Squares and Log-Likelihood).  Maximization and minimization problems can be used in both cases by flipping the sign of the objective function.  
+3. Multivariate optimization problems are much harder than single-variable optimization problems.  There is, however, a large set of available optimization methods for multivariate problems.  
+4. In multivariate cases, the critical point is whether the objective function has available gradients.  If only the objective function is available without gradient or Hessian, the Nelder-Mead algorithm is the most common method for numerical optimization.  If gradients are available, the best and most used method is the gradient descent algorithm.  We have seen its application for OLS.  This method can be applied to MLE as well. It is also called a Steepest Descent Algorithm.  In general, the gradient descent method has three types: Batch Gradient Descent, Stochastic Gradient Descent, and Mini-Batch Gradient Descent.    
+5. If the gradient and Hessian are available, we can also use the Newton-Raphson Method. This is only possible if the dataset is not high-dimensional, as calculating the Hessian would otherwise be very expensive.  
+6. Usually the Nelder-Mead method is slower than the Gradient Descent method. `Optim()` uses the Nelder-Mead method, but the optimization method can be chosen in its arguments.  
+
+More details can be found in this educational [slides](http://bigdatasummerinst.sph.umich.edu/wiki/images/a/ad/Bdsi_optimization_2019.pdf).  The most detailed and advance source is [Numerical Recipes](https://en.wikipedia.org/wiki/Numerical_Recipes), which uses `C++` and `R`. 
+
+
+
 
 <!--chapter:end:12-AlgorithmicOpt.Rmd-->
 
@@ -361,21 +3234,56 @@ TBA
 
 # Ensemble Methods
 
-Placeholder
-
+BTBA
 
 ## Bagging
+
+TBA
 ## Boosting
+
+TBA
 ### AdaBoost
+
+TBA
+  
 ### XGBoost
+
+TBA
+
 ## Ensemble Applications
+
+To conclude this section we will cover classification and regression applications using bagging, random forest and, boosting. First we will start with a classification problem.  In comparing different ensemble methods, we must look not only at their accuracy, but evaluate their stability as well.
+
+
 ## Classification
+TBA
 ## Regression
+
+TBA
+
 ## Exploration
+
+TBA
+  
 ## Boosting Applications
+
+TBA
+
 ### Random search with parallel processing
+  
+Now, we will apply a random grid search introduced by Bergstra and Bengio in [Random Search for Hyper-Parameter Optimization](https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf)) [@Bergs_2012].  This paper shows that randomly chosen trials are more efficient for hyperparameter optimization than trials on a grid.  Random search is a slight variation on grid search. Instead of searching over the entire grid, random search evaluates randomly selected parts on the grid. 
+
+TBA
+
 ### Boosting vs. Others
+
+TBA
+  
 ### Classification with XGBoost
+
+TBA
+
+  
 
 <!--chapter:end:17-EnsembleMethods.Rmd-->
 
@@ -434,34 +3342,88 @@ TBA
 
 # Classification
 
-Placeholder
-
-
 ## Nonparametric Classifier - kNN
+
+TBA
 ## Linear classifiers 
+
+TBA
+
 ## k-Nearest Neighbors
+
+TBA
+
+
 ## Tuning in Classification
+
+TBA
 ## Confusion matrix
+
+TBA
+
 ## Performance measures
+
+TBA
 ## ROC Curve
+
+TBA
 ## AUC - Area Under the Curve
+  
+TBA
+
+
 
 <!--chapter:end:21-Classification.Rmd-->
 
 
 # Time Series
 
-Placeholder
 
+ TBA
 
 ## ARIMA models
+
+TBA
 ## Hyndman-Khandakar algorithm
+
+TBA
 ## TS Plots
+
+TBA
+
 ## Box-Cox transformation
+
+TBA
+
 ## Modeling ARIMA
+TBA
+
+
+
 ## Grid search for ARIMA
+
+TBA
+
+
 ## Hyperparameter tuning with time-series data:
+TBA
+
+
 ## Speed
+  
+Before concluding this section, notice that as the sample size rises, the learning algorithms take longer to complete, specially for cross sectional data.  That's why there are some other cross-validation methods that use only a subsample randomly selected from the original sample to speed up the validation and the test procedures. You can think how slow the conventional cross validation would be if the dataset has 1-2 million observations, for example.
+
+There are some methods to accelerate the training process.  One method is to increase the delta (the increments) in our grid and identify the range of hyperparameters where the RMSPE becomes the lowest.  Then we reshape our grid with finer increments targeting that specific range.
+  
+Another method is called a random grid search.  In this method, instead of the exhaustive enumeration of all combinations of hyperparameters, we select them randomly.  This can be found in [Random Search for Hyper-Parameter Optimization](https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf) by James Bergstra and
+Yoshua Bengio [-@Berg_2012].  
+  
+To accelerate the grid search, we can also use parallel processing so that each loop will be assigned to a separate core in capable computers.  
+
+TBA
+
+
+
 
 <!--chapter:end:22-TimeSeries.Rmd-->
 
@@ -517,39 +3479,118 @@ TBA
 
 # Neural Networks
 
-Placeholder
-
+Artificial neural networks (ANNs) are a type of machine learning model that are inspired by the structure and function of the human brain. They consist of interconnected units called artificial neurons or nodes, which are organized into layers. The concept of artificial neural networks dates back to the 1940s, 
+TBA
 
 ## Neural Network - the idea
+Both Support Vector Machines and Neural Networks employ some kind of data transformation that moves them into a higher dimensional space. What the kernel function does for the SVM, the hidden layers do for neural networks.  
+
+Let's start with a predictive model with a single input (covariate).  The simplest model could be a linear model: 
+
+$$
+y \approx \alpha+\beta x
+$$
+
+TBA
+
+
 ## Backpropagation
+
+In 1986, [Rumelhart et al.](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf) found a way to train neural networks with the backpropagation algorithm. Today, we would call it a Gradient Descent using reverse-mode autodiff.  Backpropagation is an algorithm used to train neural networks by adjusting the weights and biases of the network to minimize the cost function.  TBA
+TBA
+
 ## Neural Network - More inputs
+
+TBA
+
+
+# Deep Learning
+
+Simply, a Deep Neural Network (DNN), or Deep Learning, is an artificial neural network that has two or more hidden layers. Even greater flexibility is achieved via composition of activation functions:  
+
+$$
+y \approx \alpha+\sum_{m=1}^M \beta_m f\left(\alpha_m^{(1)}+\underbrace{\sum_{p=1}^P f\left(\alpha_p^{(2)}+\textbf{X} \delta_p^{(2)}\right)}_{\text {it replaces } \textbf{X}} \delta_m^{(1)}\right)
+$$
+   
+ 
+ TBA
 
 <!--chapter:end:25-NeuralNetworks.Rmd-->
 
 
 # Graphical Network Analysis
 
-Placeholder
+  
+A network represents a structure of relationships between objects. Graphical modeling presents a network structure in a graph, which consists of nodes and edges, by expressing conditional (in)dependence between the nodes. If we think of these nodes (objects) as variables and their relationship with each other as edges, a graphical model represents the probabilistic relationships among a set of variables. For example, the absence of edges (partial correlations) corresponds to conditional independence. Graphical models are becoming more popular in statistics because it helps us understand a very complex structure of relationships in networks, such as the dynamic structure of biological systems or social events.  
 
+The central idea is that, since any pair of nodes may be joined by an edge, a missing edge represents some form of independency between the pair of variables. The complexity in network analysis comes from the fact that the independency may be either marginal or conditional on some or all of the other variables.  Therefore, defining a graphical model requires identification of a type of graph needed for each particular case.
+
+In general, a graphical model could be designed with directed and undirected edges. In a directed graph, an arrow indicates the direction of dependency between nodes. In undirected graphs, however, the edges do not have directions.  The field of graphical modeling is vast, hence it is beyond the scope of this book. 
+
+Yet, we will look at the precision matrix, which has been shown that its regularization captures the network connections.  Hence, the central theme of this section is the estimation of sparse standardized precision matrices, whose results can be illustrated by undirected graphs.
 
 ## Fundementals
+
+In this chapter, we will cover several concepts related to statistical (in)dependence measured by correlations.
+
 ## Covariance
+
+TBA
+
 ## Correlation
+
+TBA
 ## Semi-partial Correlation
+
+With partial correlation, we find the correlation between $X$ and $Y$ after controlling for the effect of $Z$ on both $X$ and $Y$. If we want to hold $Z$ constant for just $X$ or just $Y$, we use a semipartial correlation.
+  
+While a partial correlation is computed between two residuals, a semipartial is computed between one residual and another variable. One interpretation of the semipartial is that the influence of a third variable is removed from one of two variables (hence, semipartial). T
+
+TBA
+  
+
 ## Regularized Covariance Matrix
+
+Due an increasing availability of high-dimensional data sets, graphical models have become powerful tools to discover conditional dependencies over a graph structure.
+
+
+ TBA
+
 
 <!--chapter:end:27-GraphicalNetworkAnalysis.Rmd-->
 
-
 # Decompositions
 
-Placeholder
-
-
 ## Matrix Decomposition
+
+
+  
+Matrix decomposition, also known as matrix factorization, is a process of breaking down a matrix into simpler components that can be used to simplify calculations, solve systems of equations, and gain insight into the underlying structure of the matrix. 
+  
+Matrix decomposition plays an important role in machine learning, particularly in the areas of dimensionality reduction, data compression, and feature extraction. For example, Principal Component Analysis (PCA) is a popular method for dimensionality reduction, which involves decomposing a high-dimensional data matrix into a lower-dimensional representation while preserving the most important information. PCA achieves this by finding the eigenvectors and eigenvalues of the covariance matrix of the data and then selecting the top eigenvectors as the new basis for the data.
+
+Singular Value Decomposition (SVD) is also commonly used in recommender systems to find latent features in user-item interaction data. SVD decomposes the user-item interaction matrix into three matrices: a left singular matrix, a diagonal matrix of singular values, and a right singular matrix. The left and right singular matrices represent user and item features, respectively, while the singular values represent the importance of those features.
+
+Rank optimization is another method that finds a low-rank approximation of a matrix that best fits a set of observed data. In other words, it involves finding a lower-rank approximation of a given matrix that captures the most important features of the original matrix.  For example, SVD decomposes a matrix into a product of low-rank matrices, while PCA finds the principal components of a data matrix, which can be used to create a lower-dimensional representation of the data.   In machine learning, rank optimization is often used in applications such as collaborative filtering, image processing, and data compression. By finding a low-rank approximation of a matrix, it is possible to reduce the amount of memory needed to store the matrix and improve the efficiency of algorithms that work with the matrix.
+
+We start with the eigenvalue decomposition (EVD), which is the foundation to many matrix decomposition methods
+
 ## Eigenvectors and eigenvalues  
+
+Eigenvalues and eigenvectors have many important applications in linear algebra and beyond. For example, in machine learning, principal component analysis (PCA) involves computing the eigenvectors and eigenvalues of the covariance matrix of a data set, which can be used to reduce the dimensionality of the data while preserving its important features. 
+
+TBA
+
 ## Singular Value Decomposition
+
+Singular Value Decomposition (SVD) is another type of decomposition. Different than eigendecomposition, which requires a square matrix, SVD allows us to decompose a rectangular matrix. This is more useful because the rectangular matrix usually represents data in practice.
+
+TBA
+  
 ## Moore-Penrose inverse 
+
+TBA
+  
 
 <!--chapter:end:28-MatrixDecomposition.Rmd-->
 
