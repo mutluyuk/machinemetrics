@@ -6,6 +6,7 @@ The main reason for using smoothing methods is noise reduction, which makes patt
 TBA
 
 ## Smooth Spline Regression
+
 TBA
 
 ## Multivariate Loess

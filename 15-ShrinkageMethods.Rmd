@@ -2,12 +2,15 @@
 # Shrinkage Models
 
 TBA
+
 ## Ridge
 
 TBA
+
 ## Lasso
 
 TBA
+
 ## Adaptive Lasso
 
 TBA

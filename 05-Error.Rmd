@@ -25,8 +25,42 @@ Assuming a true linear model $y=X \beta_0+\varepsilon$, estimate $\hat{\beta}$ a
 
 - Prediction error: $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
 
+```{r, warning=FALSE, message=FALSE}
+set.seed(123456)  # For reproducibility
+
+# Generate integer x values within the desired range
+x <- c(0, sample(2:25, 20, replace=TRUE))
+
+# Generate y values with a positive shift for all 21 x values
+y <- 50 + 3*x + rnorm(21, mean=0, sd=30)
+
+model <- lm(y ~ x)
+
+# Calculate predicted values
+predicted <- predict(model)
+
+# Adjust the y-limit for the plot
+y_lim_upper <- max(y, predicted) + 10
+y_lim_lower <- min(y, predicted) - 10
+
+# Plotting
+plot(x, y, xlim=c(0, 25), ylim=c(y_lim_lower, y_lim_upper), main='OLS', xaxt="n")
+abline(model, col='red')
+
+# Add segments from each data point to the regression line
+for (i in 1:length(x)) {
+  segments(x[i], y[i], x[i], predicted[i], col='blue', lty=2)
+}
 
 
+# Adding integer x-axis labels using the unique x values
+axis(1, at=sort(unique(x)), labels=sort(unique(x)))
+
+# Display y-values on each data point
+for (i in 1:length(y)) {
+  text(x[i], y[i], labels=round(y[i], 0), pos=3, cex=0.7, col="blue", offset=0.5)
+}
+```
 
 ## Estimation error - MSE
 

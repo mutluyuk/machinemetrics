@@ -1,6 +1,8 @@
 
 
-# Support Vector Machine
+# ATE with Support Vector Machine
+
+## Support Vector Machine
 
 In this section, we will delve into two of the most advanced learning algorithms, Support Vector Machines (SVM) and Neural Networks (NN), and explore their similarities and differences in terms of predictive power and explanatory capability. Both SVM and NN are parametric algorithms, but for different reasons. SVMs use a kernel method to embed non-linearity, while NNs use non-linear activation functions. Therefore, they have different types and numbers of parameters.
 
@@ -12,5 +14,6 @@ Up to this point we have seen "probabilistic" binary classifiers, such as kNN, C
 
 TBA
 
+## ATE with SVM
   
 

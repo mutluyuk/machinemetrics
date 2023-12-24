@@ -1,5 +1,3 @@
-
-
 # Nonparametric Estimations - Basics
 
 TBA

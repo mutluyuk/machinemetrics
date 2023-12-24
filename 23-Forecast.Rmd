@@ -1,5 +1,5 @@
 
-# Forecast
+# Causal Forecasting
 
 ## Time Series Embedding
 
@@ -23,5 +23,7 @@ TBA
 ## Rolling and expanding windows
 
 A seven-day window is not enough for a reliable judgment on the forecast accuracy.  One way to deal with this issue is to use rolling or expanding windows to predict the next h days. 
+
 TBA
+
 

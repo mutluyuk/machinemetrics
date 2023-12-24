@@ -4,11 +4,14 @@
 
 
 ## Model selection
+
 TBA
+
 ## Dropping a variable in a regression
 
 
 TBA
+
 ## Sparsity
 
 TBA

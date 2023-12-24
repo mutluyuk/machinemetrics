@@ -21,6 +21,7 @@ TBA
 ## Correlation
 
 TBA
+
 ## Semi-partial Correlation
 
 With partial correlation, we find the correlation between $X$ and $Y$ after controlling for the effect of $Z$ on both $X$ and $Y$. If we want to hold $Z$ constant for just $X$ or just $Y$, we use a semipartial correlation.

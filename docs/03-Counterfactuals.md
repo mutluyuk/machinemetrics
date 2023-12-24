@@ -447,9 +447,8 @@ $$
 		$$
 		where $(1-\pi)$ is the share of the population in the control group.(Detailed derivation of this equation in Mixtape page 131-133)
 
-
-
 As we mentioned the simple difference between the average outcome for the treatment group and the average outcome for the control group can be assumed by most as an average treatment effect. It may be true only if we do not have selection and heterogeneous treatment bias. However, most of the time already the difference exist between a treatment group and a control group before treatment implemented. Thus selection bias exists. 
+
 Most of the time the treatment effects individuals as well as groups differentially. Thus, the average effect of treatment for the group consist from treated individuals and for the group consist from untreated individuals differ. The multiplication of that difference and the share of the population in the control group is called as Heterogenous treatment effect bias.
 
 As previously noted, we are unable to directly observe individuals in both treatment and control states, making it impossible to explicitly calculate treatment effects and associated biases. Social scientists have been devising strategies to address these biases and estimate treatment effects, with machine learning methods contributing to these advancements in recent years. The various methodologies can be categorized as follows:

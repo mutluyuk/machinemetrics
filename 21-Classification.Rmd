@@ -4,6 +4,7 @@
 ## Nonparametric Classifier - kNN
 
 TBA
+
 ## Linear classifiers 
 
 TBA
@@ -16,6 +17,7 @@ TBA
 ## Tuning in Classification
 
 TBA
+
 ## Confusion matrix
 
 TBA
@@ -23,9 +25,11 @@ TBA
 ## Performance measures
 
 TBA
+
 ## ROC Curve
 
 TBA
+
 ## AUC - Area Under the Curve
   
 TBA

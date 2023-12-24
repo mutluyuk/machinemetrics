@@ -1,7 +1,7 @@
 --- 
-title: 'MachineMetrics '
+title: 'Causal MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2023-10-07'
+date: 'This version: 2023-12-24'
 subtitle: for Economists, Social and Health Scientists
 titlerunning: MachineMetrics
 site: bookdown::bookdown_site
@@ -95,6 +95,11 @@ Mutlu would like to extend his heartfelt thanks to his wife, Mevlude, whose love
 
 <!--chapter:end:index.Rmd-->
 
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 #  Introduction:
 
@@ -125,14 +130,166 @@ Ethem Alpaydin, defines machine learning as follows:
 > Machine learning is programming computers to optimize a performance criterion using example data or past experience. We have a model defined up to some parameters, and learning is the execution of a computer program to optimize the parameters of the model using the training data of past experience. (...) Machine learning uses the ***theory of statistics in building mathematical models***, because the core task is making inference from sample.  The role of computer science is twofold: First, in training, we need efficient algorithms to solve the optimization problem, as well as to store and process the massive amount of data we generally have.  Second, once the model is learned, its representation and algorithmic solution for inference needs to be efficient as well.
 >
 
-Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics
+Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics**
+
+<img src="png/mlapplications2.png" width="700pt" />
+
+ The following machine learning visualization/list shows separate fields in machine learning.  
 
 
+- **Supervised Learning**
+  - **Classification**
+    - Fraud detection
+    - Image classification
+    - Customer retention
+    - Diagnostics
+    - Email spam and malware filtering
+    - Sentiment analysis
+  - **Regression**
+    - Forecasting (weather, stock prices)
+    - Predictions (sales, revenue)
+    - Process optimization (manufacturing, supply chain)
+    - Real estate pricing
+    - Energy demand modeling
 
- The following machine learning visualization shows separate fields in machine learning.  
- 
- INSERT PICTURE
- 
+- **Unsupervised Learning**
+  - **Clustering**
+    - Recommendation systems
+    - Targeted marketing
+    - Customer segmentation
+    - Genetic clustering
+    - Social network analysis
+  - **Dimensionality Reduction**
+    - Big data visualizations
+    - Meaningful compression
+    - Structure discovery
+    - Feature elicitation
+    - Noise reduction
+    - Data preprocessing for supervised learning
+
+- **Semi-Supervised Learning**
+  - Data labeling
+  - Web content classification
+  - Image and video annotation
+  - Medical image analysis
+
+- **Reinforcement Learning**
+  - Real-time decisions
+  - Game AI
+  - Learning tasks
+  - Skill acquisition
+  - Robot navigation
+  - Autonomous vehicles
+  - Personalized recommendations
+
+- **Deep Learning**
+  - **Convolutional Neural Networks (CNNs)**
+    - Image and video recognition
+    - Image segmentation
+    - Medical image analysis
+  - **Recurrent Neural Networks (RNNs)**
+    - Language modeling
+    - Speech recognition
+    - Time series prediction
+  - **Generative Adversarial Networks (GANs)**
+    - Image generation
+    - Art creation
+    - Data augmentation
+  - **Transformer Models**
+    - Natural language understanding
+    - Machine translation
+    - Text summarization
+
+$$
+\begin{table}[h]
+\centering
+\caption{Overview of Machine Learning Categories}
+\label{table:ml_categories}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{6.5cm}|}
+\hline
+\textbf{ML Category} & \textbf{Subcategory} & \textbf{Details} \\
+\hline
+\multirow{6}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Supervised \\ Learning\end{tabular}}} & \textbf{Classification} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Fraud detection \\
+    - Image classification \\
+    - Customer retention \\
+    - Diagnostics \\
+    - Email spam and malware filtering \\
+    - Sentiment analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Regression} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Forecasting (weather, stock prices) \\
+    - Predictions (sales, revenue) \\
+    - Process optimization (manufacturing, supply chain) \\
+    - Real estate pricing \\
+    - Energy demand modeling \\
+    \end{tabular} \\
+\hline
+\multirow{6}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Unsupervised \\ Learning\end{tabular}}} & \textbf{Clustering} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Recommendation systems \\
+    - Targeted marketing \\
+    - Customer segmentation \\
+    - Genetic clustering \\
+    - Social network analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Dimensionality Reduction} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Big data visualizations \\
+    - Meaningful compression \\
+    - Structure discovery \\
+    - Feature elicitation \\
+    - Noise reduction \\
+    - Data preprocessing \\
+    \end{tabular} \\
+\hline
+\textbf{\begin{tabular}[c]{@{}c@{}}Reinforcement \\ Learning\end{tabular}} & & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Real-time decisions \\
+    - Game AI \\
+    - Learning tasks \\
+    - Skill acquisition \\
+    - Robot navigation \\
+    - Autonomous vehicles \\
+    - Personalized recommendations \\
+    \end{tabular} \\
+\hline
+\multirow{12}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Deep \\ Learning\end{tabular}}} & \textbf{Convolutional Neural Networks (CNNs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Image and video recognition \\
+    - Image segmentation \\
+    - Medical image analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Recurrent Neural Networks (RNNs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Language modeling \\
+    - Speech recognition \\
+    - Time series prediction \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Generative Adversarial Networks (GANs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Image generation \\
+    - Art creation \\
+    - Data augmentation \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Transformer Models} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Natural language understanding \\
+    - Machine translation \\
+    - Text summarization \\
+    \end{tabular} \\
+\hline
+\end{tabular}
+\end{table}
+$$
+
 We designed this book for researchers who deal with data and aimed to provide toolkit which is easily accessible. When we started to learn these topics years ago, we did not know where to start and poke in each topic in that graph. We tried to learn one topic or how we can use it in our own research. We tried to identify the topics we can use as an applied microeconomics and in general as an economist as we are not dealing in robot navigation or game AI or similar topics in our research. Thus, we are only interested in subtopics which are relevant for our research such as dimension reduction and the structure discovery, the regression part and forecasting mostly for finance and so on (these topics from figure). We can use topics related to predictions and optimizations and some new insights.  As a social scientist the part we can employ in our research is just some part of the topics in that figure.  Because of that, when you discuss with someone who is in machine learning from computer science and robotics or AI sector and so on, they may try to explain where ML can be used as recommending songs, pictures, the fraud detection, computer vision, speech recognition, document classification, automated driving, but it may not be interesting or relevant for us directly. However, nearly all these subfields start and build on the statistical learning methods we will cover in this book.
 
 Imagine guiding a child to distinguish between animals, particularly identifying what a dog is and what a cat is. By the end of this exercise, the child will learn to recognize these animals. Instead of detailing every nuance of what differentiates a dog from a cat, you might show the child various pictures of dogs and cats. Over time, the child will start to notice patterns and be able to differentiate between the two animals. Machine learning works in a similar way. You feed a computer lots of data (like pictures of cats and dogs), and over time, the computer learns to recognize the patterns in the data.
@@ -301,176 +458,99 @@ In conclusion, researchers should carefully consider the purpose of their study 
 <!--chapter:end:01-intro.Rmd-->
 
 
+# Spectrum of Data Modeling:
 
-# Statistical Models and Simulations
+In the rapidly evolving landscape of data analysis, the ability to effectively model and interpret data stands as a cornerstone of insight and innovation. 'Spectrum of Data Modeling' offers on an exploratory journey through the multifaceted world of data modeling, weaving together the threads of statistical and machine learning approaches, the nuances of parametric and nonparametric models, and the distinct realms of predictive and causal models. This chapter aims to demystify the complexities inherent in choosing the right modeling approach, delving into the critical aspects of model selection and the transformative role of simulation in understanding and predicting complex systems. As we navigate through these diverse methodologies and their applications, we aim to provide a comprehensive guide that not only enlightens the theoretical underpinnings but also illuminates their practical implications in various fields.
 
+## Statistical vs. Machine Learning Approaches
 
+In the modern era of data-driven decision-making, comprehending the array of tools and techniques for data analysis is crucial. Machine learning and statistical modeling stand out as two prominent techniques in this domain. While they share similarities, it's important to understand that they are distinct in their purposes and goals, each contributing uniquely to the field of data analysis.
 
-## Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis
+Machine learning models and statistical models, though sometimes used interchangeably, have distinct identities and functions. Each serves a specific purpose, and recognizing these fundamental distinctions is key to effectively navigating the complex landscape of data analysis. This understanding is not just academic; it has practical implications in how data is interpreted and used in various fields.
 
-In the age of data, understanding the tools and techniques available for data analysis is paramount. Machine learning and statistical modeling are two such techniques that frequently emerge in discussions. While they have similarities, they are distinct in their purposes and goals. 
+Both machine learning and statistical modeling are pivotal in data analysis, providing essential tools for predictions, model building, and informed decision-making. Statistical learning, which is often equated with machine learning, focuses on methods like decision trees, neural networks, and support vector machines, primarily for predictive purposes. In contrast, statistical learning, particularly in the context of inferential statistics in social and health sciences, places a stronger emphasis on developing models that accurately represent data, explaining and interpreting the relationships between variables. This distinction highlights the different orientations of these two approaches: one towards prediction and the other towards explanation.
 
-Though machine learning models and statistical models are sometimes used interchangeably in data analysis, they are not identical. Each serves its own unique purpose and function. Recognizing the fundamental distinctions between these methodologies is essential for navigating the realm of data analysis effectively.
+In this section, we delve deeper into machine learning and statistical learning, discussing their key features, objectives, and the nuances that set them apart. This exploration is not just about understanding definitions; it's about appreciating how these methodologies shape the way we analyze data, draw conclusions, and make predictions in various fields. By the end of this section, the reader should have a clearer understanding of when and how to use these powerful tools in their data analysis endeavors.
 
-Both machine learning and statistical modeling play crucial roles in data analysis, offering tools for predictions, model building, and making informed decisions.  Statistical learning, often equated with machine learning, emphasizes the use of various methods for predictions, such as decision trees, neural networks, and support vector machines. On the other hand, main emphasis of Statistical learning, often connected to inferential statistics in social and health sciences, is developing statistical models that accurately represent the data and explaining and interpreting the relationships between variables.
+In the realm of data analysis, the **primary objectives** of statistical models and machine learning models mark a fundamental distinction between the two. Statistical models are primarily concerned with investigating the relationships between variables, aiming to uncover and explain intrinsic patterns and connections. In contrast, machine learning models, often referred to as "Algorithm-Based Learning," focus on delivering precise predictions, learning directly from data without the need for explicit rule-based programming.
 
-In this section, we will explore machine learning and statistical learning in more detail, discussing their key features, objectives, and differences.
+Machine learning stands out for its dynamic approach, where algorithms continually refine their performance as they process more data, thereby enhancing their prediction accuracy and decision-making capabilities. The core goal of machine learning is to use input data to generate accurate predictions. These models employ mathematical and statistical techniques to identify patterns and relationships, preparing them to make predictions on new and unseen data. The distinguishing feature of machine learning is its ability to predict future outcomes without being pre-programmed with specific assumptions about outcomes or functionals. The more data these models process, the more refined and accurate their predictions become.
 
-### Goals and Objectives
+Conversely, statistical models are tailored to infer relationships between variables. Their primary aim is to analyze data deeply, revealing the underlying patterns or connections between variables, which then serve as the foundation for informed decisions. Statistical learning, often described as "Learning from Data," focuses on using data to determine its originating distribution. A typical task in statistical inference might involve identifying the underlying distribution, \( F \), from a sample set like \( X_{1},...,X_{n} \sim F \).
 
-At its core, the distinction between statistical models and machine learning is their primary objectives.  Statistical models aim to investigate the relationships between variables, while machine learning models focus on delivering precise predictions.
+Statistical modeling is essentially the formalization of relationships within data, defining connections between variables through mathematical equations. At its heart, a statistical model is a hypothesis about the genesis of the observed data, grounded in probability distributions. This encompasses a wide range of models, from regression and classification to non-parametric models.
 
-Machine learning, often termed "Algorithm-Based Learning," offers a dynamic approach that allows algorithms to learn directly from data, eliminating the need for rule-based programming. As these algorithms process more data, they continually refine their performance, enhancing their prediction accuracy and decision-making capabilities.
+The overarching goal of statistical learning theory is to provide a framework for studying the problem of inference. This includes gaining knowledge, making predictions, making decisions, and constructing models from a dataset. The analysis is conducted within a statistical paradigm, which involves making certain assumptions about the nature of the underlying data generation process. This contrast in objectives and methodologies highlights the unique roles that machine learning and statistical modeling play in the field of data analysis, each with its distinct approach to understanding and utilizing data.
 
-The overarching goal of machine learning is to utilize input data to generate accurate predictions. Through the application of mathematical and statistical techniques, these models identify patterns and relationships, setting the stage for predictions on new and unseen data.
+Statistical learning, often paralleled with machine learning, primarily focuses on predictive methods such as decision trees, neural networks, and support vector machines. This approach involves training models on a set dataset, with the goal of maximizing prediction accuracy on a test set. Techniques like cross-validation and boosting are integral to this process, enhancing the model's ability to accurately predict outcomes. The essence of statistical learning lies in developing an effective approximation, $\hat{f}(x)$, of the function $f(x)$ that captures the relationship between inputs and outputs. This approximation is then used as a predictive tool based on the data at hand.
 
-At its essence, machine learning revolves around creating models that predict future outcomes. What sets it apart is its ability to predict without being pre-programmed or having explicit assumptions for specific outcomes or functionals. The more data these models process, the sharper their predictive accuracy becomes.
+In fields like social and health sciences, where statistical learning aligns more closely with inferential statistics, the methodology differs significantly. Here, the emphasis is not on splitting data into training and testing sets but on creating models that accurately represent the data and elucidate the relationships between variables. These models are pivotal for tasks such as hypothesis testing and estimation. Typically, these models are formulated based on theoretical understanding or insights into the data generation process. They are used to interpret relationships between data and variables, determining the effects and significance of predictor variables. This approach is more about understanding the magnitude and dynamics of these relationships rather than just predicting outcomes.
 
-On the other hand, statistical models are designed to infer relationships between variables. Their main goal is to deeply analyze data, revealing intrinsic patterns or connections between variables. Such insights then become the foundation for well-informed decisions.
+Machine learning, or statistical learning in a predictive context, takes a distinctly empirical approach. It prioritizes accurate predictions based on observed data patterns over theoretical model assumptions. This focus on empirical data and prediction accuracy is what differentiates machine learning from traditional statistical modeling. While inferential statistical models aim to explain and understand, machine learning models are designed to predict and adapt, reflecting the diverse methodologies and applications within data analysis. This distinction highlights the unique contributions of each approach to the field, underscoring their respective strengths in explanation and prediction.
 
-Statistical learning, often described as "Learning from Data," focuses on using data to determine its originating distribution. A typical task in statistical inference could be identifying the underlying distribution, F, from a sample set like X1,...,Xn ∼ F.
+In concluding this exploration of statistical learning and machine learning, it's clear that while they share common ground, they are fundamentally distinct in their primary objectives and applications. Machine learning models are primarily designed for making accurate predictions, harnessing the power of algorithms to learn from data and adapt accordingly. In contrast, statistical models delve into understanding and inferring the relationships between variables, offering a more traditional approach to data analysis.
 
-Statistical modeling can be thought of as the formalization of relationships within data. It aims to define connections between variables through mathematical equations. At its heart, a statistical model is a hypothesis about how the observed data came to be, rooted in probability distributions. This encompasses a range of models, from regression and classification to non-parametric models.
+Statistical learning, often seen as a subset of machine learning, incorporates methods like regression to make predictions. However, it differs from inferential statistics, which focuses more on inference than prediction. The key distinction lies in the methodologies employed and their respective emphasis on prediction versus inference.
 
-The main goal of statistical learning theory is to provide a framework for studying the problem of inference, which includes gaining knowledge, making predictions, making decisions, and constructing models from a set of data. This analysis is undertaken within a statistical paradigm, making certain assumptions about the nature of the underlying data generation process.
+Both statistical learning and inferential statistics are capable of making predictions and inferences, but they prioritize these objectives differently. Statistical learning tends to focus more on prediction, sometimes at the expense of detailed inference. Conversely, inferential statistics place a higher value on inference, often prioritizing it over the predictive accuracy.
 
-### Prediction vs. Inference
+The balance between accuracy and interpretability is also a crucial aspect to consider. Statistical models, while insightful and capable of making predictions, may sometimes fall short in capturing complex relationships within data. Machine learning models, on the other hand, often excel in prediction accuracy. However, this comes with a trade-off, as their predictions, though accurate, can be complex and challenging to interpret and explain.
 
-Statistical learning, often equated with machine learning, emphasizes the use of various methods for predictions, such as decision trees, neural networks, and support vector machines. The model is trained using the training set, aiming to optimize its prediction accuracy on the test set. Techniques like cross-validation and boosting are frequently employed to improve this accuracy. The overarching goal in statistical learning is to identify a useful approximation, fˆ(x), to the function f(x) that defines the predictive relationship between inputs and outputs. This approximation subsequently serves as a tool for making predictions or decisions based on the data at hand.
+In the broader context of data analysis, statistical modeling and machine learning emerge as distinct yet complementary techniques. Each brings unique features and applications to the table, enabling the development of sophisticated algorithms that learn from data and make informed predictions or decisions. By grasping the fundamental concepts, goals, and applications of these techniques, researchers and practitioners can effectively leverage their strengths to address a wide array of data-driven tasks and challenges, thereby enhancing their understanding and decision-making processes in an increasingly data-centric world. As we delve deeper into the intricacies of statistical and machine learning approaches, it becomes essential to explore the nuances of Parametric and Nonparametric Models. 
 
-Statistical learning, often connected to inferential statistics in social and health sciences do not involve a formal splitting of data into training and testing sets. The emphasis here is developing statistical models that accurately represent the data and explaining and interpreting the relationships between variables. Once developed, these models become instrumental for tasks like hypothesis testing, estimation, and other inference-related tasks. In inferential statistical modeling, models are assumed or derived through theory or information about the data generation process. Then these probabilistic models are used to interpret and identify the relationships between data and variables, such as the effects of predictor variables. These models establish the magnitude and significance of relationships between variables and their magnitudes. In contrast, machine learning or statistical learning models take a more empirical approach, focusing on making accurate predictions based on observed data patterns.
-
-### Conclusion
-
-In summary, while statistical learning and machine learning have overlapping areas, they are distinct in their core objectives. Machine learning models predominantly aim to make accurate predictions. In contrast, statistical models are tailored to infer and understand the relationships between variables. Statistical learning can be considered a subset of machine learning that applies regression and various methods for prediction. The primary difference between statistical learning and inferential statistics lies in the methods used and their focus on prediction versus inference.
-
-Both these approaches, statistical learning and inferential statistics, have the capability to make predictions and inferences. Yet, the primary focus of statistical learning is on prediction, with inference often playing a secondary role. In contrast, inferential statistics prioritize inference over prediction.
-
-It is crucial to emphasize the importance of Accuracy and Interpretability as well. Statistical models can sometimes be less accurate in capturing complex relationships between data, even if they can offer insights and predict outcomes. On the other hand, machine learning models tend to provide more accurate predictions. However, a trade-off exists, as these predictions, despite their accuracy, can often be complicated and less straightforward to interpret and explain.
-
-Statistical modeling and machine learning are distinct yet complementary techniques in data analysis, each with its unique features and applications. They allow for the development of algorithms that can learn from data and make predictions or decisions based on observed patterns. By understanding the key concepts, goals, and applications of these techniques, researchers and practitioners can harness their potential for a wide range of data-driven tasks and challenges.
-
-======================
 
 ## Parametric and Nonparametric Models:
 
-Parametric and nonparametric models serve as foundational statistical tools for data analysis, predictions, and inferences about populations. Each type of model has its own strengths and limitations. The decision to employ a particular model depends on the nature of the data at hand and the specific research question being addressed. In this section, we will compare parametric and nonparametric models.
+Each model type brings its unique strengths and limitations to the table, and the choice between them hinges on the specific nature of the data and the research question at hand.
 
-Parametric models make assumptions regarding the underlying distribution of the data, such as a normal distribution or a binomial distribution. By making these assumptions, parametric models can estimate the parameters of the distribution, such as the mean and standard deviation, and use these estimates to make predictions or inferences about the population.
+Parametric models operate on the premise of certain assumptions about the data's underlying distribution, such as normal or binomial distributions. These models are instrumental in estimating distribution parameters like mean and standard deviation, which are then utilized for making predictions or inferences about the population. Common examples of parametric models include linear regression, logistic regression, ANOVA, polynomial regression, and Poisson regression. Generally, these models are considered more efficient and robust, especially when the data adheres to the assumptions underpinning the model. However, when these assumptions are not met, parametric models may yield biased or inaccurate results.
 
-Some examples of parametric models include linear regression, logistic regression, and ANOVA multiple regression, polynomial regression, and Poisson regression. Typically, these models are viewed as more efficient and robust compared to nonparametric models, provided the data aligns with the model's assumptions. However, when these assumptions aren't satisfied, the estimates from parametric models may be biased or inaccurate.
+In contrast, nonparametric models do not assume a specific distribution for the data. They are particularly useful when the data distribution is unknown or when it does not conform to the assumptions required by parametric models. Nonparametric models, characterized by their flexibility and robustness, can be less efficient and might possess lower statistical power. These models include techniques like k-Nearest Neighbors, the Spearman rank correlation, kernel density estimation, and Decision Trees like CART. They are often the go-to choice for ordinal or categorical data, or in situations where parametric model assumptions do not hold.
 
-Nonparametric models, on the other hand, do not make assumptions about the underlying distribution of the data and specify functional forms. These models are often used when the distribution of the data is unknown or when the assumptions of parametric models are not met. Nonparametric models are generally more flexible and robust than parametric models, but they may be less efficient and have lower statistical power.
+The decision between parametric and nonparametric models is not just a matter of preference but a strategic choice based on data characteristics and research objectives. Parametric models are adept at estimating parameters within a known probability distribution, while nonparametric models offer a more flexible approach without making specific distributional assumptions.
 
-Examples of nonparametric models encompass k-Nearest Neighbors, the Spearman rank correlation, and kernel density estimation, Decision Trees like CART. Nonparametric models are generally used when the data is ordinal or categorical, or when the data does not meet the assumptions of parametric models.
+As we venture further into the intricacies of statistical modeling, Chapter 10 will focus on nonparametric estimation, particularly on the conditional expectation function (CEF), denoted as 
+$E[Y | X = x] = m(x)$. This approach contrasts with parametric models, which typically impose a specific functional form on $m(x)$. Nonparametric models allow for a more flexible, nonlinear shape of $m(x)$, especially useful when economic models do not restrict $m(x)$ to a parametric function. This chapter will delve into the various facets of nonparametric estimation, exploring its significant role in modeling and analysis, and highlighting its implications in the broader context of economic and statistical research.
 
-In summary, parametric and nonparametric models offer distinct approaches for analyzing data and making predictions or inferences about a population. Parametric models assume that the data follows a certain probability distribution and estimate the parameters of the distribution, while nonparametric models do not make any assumptions about the distribution of the data. Each type of model has its own strengths and limitations, and the choice of which model to use depends on the characteristics of the data and the research question being addressed.
+## Predictive vs. Causal Models:
 
-In Chapter 10, we will delve into the topic of nonparametric estimation, focusing on the conditional expectation function (CEF), denoted as E[Y | X = x] = m(x). Unlike parametric models, which impose a specific functional form on m(x), nonparametric models allow m(x) to take any nonlinear shape. This flexibility in form arises when an economic model does not restrict m(x) to a parametric function. As we progress through this chapter, we will discuss the various aspects of nonparametric estimation and its implications in modeling and analysis.
+Predictive and causal models represent two distinct approaches in statistical analysis, each with its specific objectives and methodologies. While predictive models concentrate on forecasting future outcomes, causal models delve into understanding the underlying causes of specific outcomes. This section aims to elucidate the differences between these two types of models.
 
-## Predictive vs. Causal Models
+Predictive models are a staple in fields like finance, marketing, and healthcare, where forecasting future trends or predicting the likelihood of certain events is crucial. These models harness past data to predict future outcomes, relying heavily on correlations between variables. They use samples of data collected over time to construct a statistical model that can forecast future events. However, it's important to note that predictive models, with their focus on correlations, are not designed to unravel causal relationships. They are adept at predicting future events or trends but may fall short in providing insights into the reasons behind these outcomes. Time series analysis, forecasting models, and machine learning algorithms for classification and regression tasks are typical examples of predictive models.
 
-Predictive models and causal models are two types of statistical models used to analyze data and make predictions or inferences about a population. They differ in their goals and approaches: predictive models focus on forecasting future outcomes, while causal models aim to understand the underlying causes of a particular outcome. In this section, we will compare predictive and causal models.
+On the other hand, causal models are primarily concerned with understanding the causal relationships between variables. They are extensively used in disciplines like economics, sociology, and medicine, where identifying the underlying causes of a phenomenon is key. These models are built on the concept of causality, which posits that certain events or factors can directly cause other events or outcomes. To establish causality, researchers often employ experimental or quasi-experimental designs, where they manipulate or control variables to isolate their effect on the outcome. This approach allows them to determine the causal impact of specific variables. Techniques like experimental design, observational studies, and instrumental variables analysis are commonly used in building causal models. These methods help control for confounding variables and accurately estimate the causal effect of a particular variable on the outcome of interest.
 
-Predictive models are statistical models used to make predictions about future outcomes based on past data. Commonly employed in finance, marketing, and healthcare, researchers and analysts forecast trends or predict the likelihood of specific events. These models primarily rely on correlations between variables, using samples of data collected over time to construct a statistical model for future predictions. However, their focus on correlations limits their ability to identify causal relationships.
+In essence, predictive and causal models cater to different needs in data analysis. Predictive models excel in forecasting future outcomes by identifying correlations, whereas causal models strive to uncover the underlying causes of those outcomes through the study of causal relationships. Understanding the distinction between these models is crucial for researchers and analysts, as it guides them in choosing the appropriate approach based on their specific goals and the nature of the data at hand.
 
-Examples of predictive models include time series analysis, forecasting models, and machine learning algorithms for classification and regression tasks. These models are well-suited for predicting future events or trends but may not provide insights into the underlying causes of these outcomes.
+## Model Selection:
 
-Causal models, in contrast, aim to understand the causal relationship between variables and identify factors that cause a particular outcome to occur. These models are often used in economics, sociology, and medicine to investigate the underlying causes of a phenomenon and to identify contributing factors.
+Data modeling, a pivotal aspect of modern analytics, involves a series of critical decisions that shape the effectiveness of data analysis. This section delves into these choices, highlighting the differences between parametric and nonparametric models and providing examples for better understanding.
 
-Causal models rely on the concept of causality, suggesting that one event or factor can cause another event or outcome. Researchers use experimental or quasi-experimental designs, manipulating or controlling variables of interest to establish causality. By doing so, they can isolate the effect of a specific variable on the outcome and determine its causal effect.
+The process of data modeling begins with choosing an appropriate model family. Parametric models, defined by specific parameters (β_{j}), are refined by adjusting these parameters, as seen in linear regression. In contrast, non-parametric models, often used in machine learning, do not rely on fixed parameter specifications and instead use a more fluid, algorithmic approach. For example, when modeling housing prices, a parametric approach might use fixed factors like square footage and location, while a non-parametric method, such as a decision tree, might dynamically evaluate various factors.
 
-Statistical techniques commonly used in building causal models include experimental design, observational studies, and instrumental variables analysis. These methods enable researchers to control for confounding variables and estimate the causal effect of a particular variable on the outcome of interest.
+The nature of the data guides the choice between linear and polynomial models. Complex relationships within the data necessitate careful selection of variables and the degree of polynomial terms. A linear model might indicate a straightforward correlation between years of education and income, whereas a polynomial model could reveal subtleties, such as diminishing returns on income beyond a certain level of education. In cases where there are no interactions between predictors, the influence of a variable remains consistent, emphasizing the need to understand the true Data Generating Mechanism (DGM) during model selection.
 
-In summary, predictive and causal models serve different purposes in the analysis of data and the generation of predictions or inferences about a population. Predictive models focus on forecasting future outcomes based on correlations between variables, while causal models seek to understand the underlying causes of outcomes by investigating causal relationships. 
+Once a model type is chosen, the next step is to decide on the fitting technique. While ordinary least squares (OLS) and maximum likelihood estimation (MLE) are common, other methods may be more suitable depending on the data's characteristics and the desired properties of the estimates. For example, generalized least squares might be preferable when data shows varying variances across observations.
 
-## Model Selection and Approaches in Data Modeling
+The decisions made in model selection set the stage for either causal or predictive analyses. Causal analyses seek to understand the reasons behind relationships, such as the health effects of certain diets, while predictive analyses focus on forecasting future events based on existing data, like predicting rainfall in a region.
 
-Model Selection and Approaches in Data Modeling
+Parametric and nonparametric models are fundamental in statistical modeling, influencing data analysis, predictions, and inferences. Parametric models assume a defined relationship between variables, whereas nonparametric models are more adaptable and can capture more complex relationships. For instance, a parametric model might linearly relate age to fitness levels, while a nonparametric model could identify unexpected patterns at certain ages.
 
-Introduction
+In conclusion, the art of data modeling lies in the careful selection of the model family, its nature, and the fitting technique. Understanding the nuances between parametric and nonparametric models is crucial for effective model selection, allowing for the creation of models that accurately reflect the relationships between variables and enable robust predictions and inferences.
 
-Data modeling, a cornerstone of modern analytics, necessitates a series of judicious decisions. This section offers an in-depth exploration of these choices, spotlighting the nuances between parametric and nonparametric models, and weaving in illustrative examples for clarity.
+## Simulation:
 
-Choosing the Model Family
+Simulation is an integral technique that combines statistical and computational methods to model and analyze complex systems and processes. By creating mathematical or digital representations of real-world systems, researchers can generate synthetic data or predict system behavior, a method that proves crucial in fields like statistics, economics, and data science. It offers profound insights into the characteristics of models and the influence of different factors on outcomes.
 
-The journey of data modeling commences with the selection of an appropriate model family. Parametric models, delineated by specific parameters (βj), are refined by adjusting these parameters—a method exemplified by linear regression. Conversely, non-parametric models, a staple in machine learning, sidestep fixed parameter specifications, operating in a more fluid, algorithmic manner. For perspective, envision modeling housing prices: a parametric approach might rely on fixed factors like square footage and location, whereas a non-parametric method, such as a decision tree, might dynamically evaluate a myriad of factors.
+The **value of simulation** is highlighted in its ability to address predictive challenges. For instance, in complex or nonlinear models, such as forecasting stock market movements, predicting behavior can be difficult due to the involvement of numerous unpredictable factors. Additionally, simulation tackles analytical challenges where the mathematics underlying a model are too intricate or even unsolvable using conventional methods, such as calculating the trajectory of a satellite in space with multiple gravitational influences. Furthermore, simulation plays a critical role in change impact analysis, allowing researchers to explore the effects of altering initial values, parameters, or assumptions, which is crucial for understanding potential scenarios like testing the impact of different interest rates on an economic model.
 
-Linear vs. Polynomial Models
+The **applications of simulation** are diverse and impactful. In statistics, it is a key tool for assessing the properties of statistical models, such as their reliability, and helps in understanding the influence of various factors on statistical estimates. It is instrumental in validating and comparing model performance, with techniques like bootstrapping used to estimate the accuracy of sample statistics. In the realm of economics, simulations are employed to model and analyze complex economic structures, aiding in forecasting the effects of policy changes or market dynamics. This is invaluable for policymakers and businesses, as it equips them with the knowledge to make informed decisions, such as understanding the global economic impact of a sudden oil price increase. In data science, simulation is pivotal for modeling large, complex datasets, essential for predicting behaviors of data-driven systems and verifying the effectiveness of machine learning and statistical models. An example of this is testing the performance of a new recommendation algorithm before its live implementation.
 
-The inherent traits of the data steer the choice between linear and polynomial models. When data hints at intricate relationships, the selection of variables and the degree of polynomial terms become paramount. For instance, a linear model might suggest a direct correlation between years of education and income. In contrast, a polynomial model might unveil nuances, such as the diminishing income benefits after a certain educational threshold. Importantly, in scenarios devoid of predictor interactions, a variable's influence remains steadfast. This accentuates the importance of envisioning the "true" Data Generating Mechanism (DGM) during model selection.
+Several key **simulation techniques** address challenges related to prediction, calculation, or adaptability in systems. Monte Carlo Simulation, for instance, involves running a model multiple times with varying random inputs to estimate potential outcomes and is extensively used in finance, risk analysis, and physics. Discrete Event Simulation represents systems as sequences of individual events and is commonly used in manufacturing and healthcare to improve processes and evaluate performance. Agent-Based Simulation, on the other hand, models systems as groups of interacting agents and is especially useful in social sciences and economics to understand behaviors emerging from individual interactions.
 
-Model Fitting Techniques
+The **benefits of simulation** are manifold. It offers deep insights into system behaviors and enables informed projections, clarifying complex models and providing an alternative to direct analytical solutions when they are unavailable. Through sensitivity analysis, researchers can determine the impact of variable changes on the system, identifying key variables and predicting system responses to these changes.
 
-Upon settling on a model type, the focus shifts to the fitting technique. While methods like ordinary least squares (OLS) and maximum likelihood estimation (MLE) are widely acknowledged, a spectrum of alternatives beckons. The choice often mirrors the data's characteristics and the desired estimate properties. For instance, when data showcases varying variances across observations, techniques like generalized least squares might emerge as more apt.
-
-Causal vs. Predictive Analyses
-
-The foundational decisions outlined above pave the way for discerning variable relationships, which can oscillate between causal and predictive analyses. Causal analyses unravel the intricate "why" behind relationships (e.g., discerning the health ramifications of certain diets), while predictive analyses are primed for forecasting future scenarios based on extant data (e.g., gauging a region's rainfall for the upcoming month).
-
-Parametric vs. Nonparametric Models
-
-Parametric and nonparametric models serve as the bedrock of statistical modeling, guiding data analysis, predictions, and inferences. While parametric models predicate a defined relationship between variables, nonparametric models, lauded for their adaptability, can encapsulate more layered relationships. For instance, while a parametric model might linearly correlate age with fitness levels, a nonparametric model might discern unexpected fitness peaks or troughs at specific ages.
-
-Conclusion
-
-The art and science of data modeling hinge on astute model selection and approach. By meticulously evaluating the model family, its nature, and the fitting technique, one can craft models that resonate deeply with the inherent relationships between variables, fostering robust predictions and inferences. A profound grasp of the intricacies between parametric and nonparametric models is indispensable for tailored, effective model selection.
-
-## Simulation
-
-Simulation combines statistical and computational methods to model and analyze intricate systems and processes. By developing a mathematical or digital model of a system, researchers can produce synthetic data or forecast the system's behavior. This technique is instrumental in fields like statistics, economics, and data science, providing deep insights into model characteristics and the effects of various factors on results.
-
-Why Use Simulation?
-There are three main reasons to employ simulation in modeling:
-
-a. Predictive Challenges: For some models, especially complex or nonlinear ones, predicting behavior can be tough.
-Example: Predicting stock market movements based on numerous unpredictable factors.
-
-b. Analytical Challenges: At times, the underlying mathematics of a model might be too complex or even unsolvable using standard methods, making simulation necessary.
-Example: Calculating the trajectory of a satellite in space with multiple gravitational influences.
-
-c. Change Impact Analysis: Simulation enables researchers to examine the effects of altering initial values, parameters, or assumptions, offering a glimpse into potential scenarios.
-Example: Testing the impact of different interest rates on an economic model.
-
-Applications of Simulation:
-
-a. Statistics: Simulation is frequently used in statistics to assess properties of statistical models, such as their reliability. It's also beneficial for understanding how various factors influence statistical estimates and for validating and comparing model performance.
-Example: Bootstrapping techniques to estimate the accuracy of sample statistics.
-
-b. Economics: In economics, simulations help model and scrutinize intricate economic structures, from the global economic landscape to financial markets and supply chains. This aids in forecasting the repercussions of policy shifts or market dynamics, equipping policymakers and businesses with the knowledge to make informed choices.
-Example: Simulating the global economic impact of a sudden oil price surge.
-
-c. Data Science: Simulation is pivotal in data science for modeling vast, intricate datasets. It's essential for forecasting data-driven system behaviors and for verifying the efficacy of machine learning and statistical models.
-Example: Using simulation to test the performance of a new recommendation algorithm before deploying it on a live platform.
-
-Simulation Techniques: Simulation techniques are essential when addressing challenges related to prediction, calculation, or adaptability in systems. Key techniques include Monte Carlo, discrete event, and agent-based simulations.
-
-Types of Simulation Techniques:
-
-a. Monte Carlo Simulation: This technique involves running a model multiple times with different random inputs to estimate potential outcomes. It's widely used in finance, risk analysis, and for solving intricate problems in physics.
-Example: Estimating the risk of a financial portfolio over a given time period.
-
-b. Discrete Event Simulation: This approach represents systems as sequences of individual events, each with its own timestamp. Commonly used in manufacturing and healthcare, it helps in refining processes and evaluating performance.
-Example: Simulating patient flow in a hospital to optimize bed allocation and reduce waiting times.
-
-c. Agent-Based Simulation: In this method, systems are portrayed as groups of interacting agents. This is particularly useful in social sciences and economics to understand large-scale behaviors that arise from individual interactions.
-Example: Modeling the spread of opinions in a community based on individual interactions.
-
-
-Benefits of Simulation:
-
-a. Deep Insights: Simulations allow for an in-depth understanding of system behaviors and enable well-informed projections.
-
-b. Clarifying Complex Models: When models are intricate, simulations provide a clearer perspective.
-
-c. Alternative to Analytical Solutions: When direct analytical solutions are unavailable, simulations offer a method to understand and predict system behaviors.
-
-d. Sensitivity Analysis: Through simulation, researchers can determine how changes in variables affect the system, pinpointing key variables and predicting system responses to these changes.
-
-Conclusion
-
-Simulation techniques are invaluable in analyzing complex systems across various disciplines. They provide insights into system behaviors, simplify complexities, and offer solutions when analytical methods fall short. By employing simulations, researchers gain the ability to understand systems under varied conditions, leading to informed decisions, future predictions, and the development of optimized processes and strategies.
-
+In conclusion, simulation techniques are indispensable in analyzing complex systems across various disciplines. They simplify complexities, provide insights, and offer solutions when analytical methods are inadequate. By employing simulations, researchers gain a comprehensive understanding of systems under different conditions, leading to informed decisions, accurate predictions, and the development of optimized processes and strategies. This makes simulation an invaluable asset in the toolkit of researchers and analysts across a broad spectrum of fields, underscoring its significance in contemporary research and analysis.
 
 <!--chapter:end:02-ModelsAndSimulations.Rmd-->
 
@@ -923,9 +1003,8 @@ $$
 		$$
 		where $(1-\pi)$ is the share of the population in the control group.(Detailed derivation of this equation in Mixtape page 131-133)
 
-
-
 As we mentioned the simple difference between the average outcome for the treatment group and the average outcome for the control group can be assumed by most as an average treatment effect. It may be true only if we do not have selection and heterogeneous treatment bias. However, most of the time already the difference exist between a treatment group and a control group before treatment implemented. Thus selection bias exists. 
+
 Most of the time the treatment effects individuals as well as groups differentially. Thus, the average effect of treatment for the group consist from treated individuals and for the group consist from untreated individuals differ. The multiplication of that difference and the share of the population in the control group is called as Heterogenous treatment effect bias.
 
 As previously noted, we are unable to directly observe individuals in both treatment and control states, making it impossible to explicitly calculate treatment effects and associated biases. Social scientists have been devising strategies to address these biases and estimate treatment effects, with machine learning methods contributing to these advancements in recent years. The various methodologies can be categorized as follows:
@@ -1088,7 +1167,44 @@ Assuming a true linear model $y=X \beta_0+\varepsilon$, estimate $\hat{\beta}$ a
 - Prediction error: $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
 
 
+```r
+set.seed(123456)  # For reproducibility
 
+# Generate integer x values within the desired range
+x <- c(0, sample(2:25, 20, replace=TRUE))
+
+# Generate y values with a positive shift for all 21 x values
+y <- 50 + 3*x + rnorm(21, mean=0, sd=30)
+
+model <- lm(y ~ x)
+
+# Calculate predicted values
+predicted <- predict(model)
+
+# Adjust the y-limit for the plot
+y_lim_upper <- max(y, predicted) + 10
+y_lim_lower <- min(y, predicted) - 10
+
+# Plotting
+plot(x, y, xlim=c(0, 25), ylim=c(y_lim_lower, y_lim_upper), main='OLS', xaxt="n")
+abline(model, col='red')
+
+# Add segments from each data point to the regression line
+for (i in 1:length(x)) {
+  segments(x[i], y[i], x[i], predicted[i], col='blue', lty=2)
+}
+
+
+# Adding integer x-axis labels using the unique x values
+axis(1, at=sort(unique(x)), labels=sort(unique(x)))
+
+# Display y-values on each data point
+for (i in 1:length(y)) {
+  text(x[i], y[i], labels=round(y[i], 0), pos=3, cex=0.7, col="blue", offset=0.5)
+}
+```
+
+<img src="05-Error_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
 ## Estimation error - MSE
 
@@ -3071,8 +3187,6 @@ $$
 
 <!--chapter:end:09-ParametricEst.Rmd-->
 
-
-
 # Nonparametric Estimations - Basics
 
 TBA
@@ -3087,10 +3201,7 @@ TBA
 
 <!--chapter:end:10-NonParametricBasics.Rmd-->
 
-
-
 # Hyperparameter Tuning
-
 
 TBA
 
@@ -3165,9 +3276,11 @@ TBA
 
 
 # Interpretability
+
 TBA
 
 ## Interpretable vs NonInterpretable Models
+
 TBA
 
 
@@ -3186,12 +3299,15 @@ Here are a few resources that provide information about the interpretability of 
 # Shrinkage Models
 
 TBA
+
 ## Ridge
 
 TBA
+
 ## Lasso
 
 TBA
+
 ## Adaptive Lasso
 
 TBA
@@ -3214,7 +3330,6 @@ TBA
 
 # Regression Trees
 
-
 TBA
 
 ## CART - Classification Tree
@@ -3224,6 +3339,7 @@ TBA
 ## Pruning 
 
 TBA
+
 ## Regression Tree
 
 TBA
@@ -3234,14 +3350,16 @@ TBA
 
 # Ensemble Methods
 
-BTBA
+TBA
 
 ## Bagging
 
 TBA
+
 ## Boosting
 
 TBA
+
 ### AdaBoost
 
 TBA
@@ -3256,7 +3374,9 @@ To conclude this section we will cover classification and regression application
 
 
 ## Classification
+
 TBA
+
 ## Regression
 
 TBA
@@ -3294,15 +3414,25 @@ TBA
 via Potential outcome Framework
 
 ## Random experiment
+
 TBA
+
 ## IV
+
 TBA
+
 ## DiffD
+
 TBA
+
 ## RD
+
 TBA
+
 ## Synthetic control
+
 TBA
+
 ## Double/Debiased Lasso/Methods 
 
 TBC
@@ -3316,8 +3446,11 @@ TBC
 TBA
 
 ## Causal Tree
+
 TBA
+
 ## Causal Forest
+
 TBA
 
 <!--chapter:end:19-HeterogeneousEffects.Rmd-->
@@ -3328,11 +3461,14 @@ TBA
 
 
 ## Model selection
+
 TBA
+
 ## Dropping a variable in a regression
 
 
 TBA
+
 ## Sparsity
 
 TBA
@@ -3345,6 +3481,7 @@ TBA
 ## Nonparametric Classifier - kNN
 
 TBA
+
 ## Linear classifiers 
 
 TBA
@@ -3357,6 +3494,7 @@ TBA
 ## Tuning in Classification
 
 TBA
+
 ## Confusion matrix
 
 TBA
@@ -3364,9 +3502,11 @@ TBA
 ## Performance measures
 
 TBA
+
 ## ROC Curve
 
 TBA
+
 ## AUC - Area Under the Curve
   
 TBA
@@ -3376,17 +3516,18 @@ TBA
 <!--chapter:end:21-Classification.Rmd-->
 
 
-# Time Series
+# Causal Inference for Time Series
 
-
- TBA
+TBA
 
 ## ARIMA models
 
 TBA
+
 ## Hyndman-Khandakar algorithm
 
 TBA
+
 ## TS Plots
 
 TBA
@@ -3396,6 +3537,7 @@ TBA
 TBA
 
 ## Modeling ARIMA
+
 TBA
 
 
@@ -3422,13 +3564,13 @@ To accelerate the grid search, we can also use parallel processing so that each 
 
 TBA
 
-
+## CI for TS
 
 
 <!--chapter:end:22-TimeSeries.Rmd-->
 
 
-# Forecast
+# Causal Forecasting
 
 ## Time Series Embedding
 
@@ -3452,14 +3594,18 @@ TBA
 ## Rolling and expanding windows
 
 A seven-day window is not enough for a reliable judgment on the forecast accuracy.  One way to deal with this issue is to use rolling or expanding windows to predict the next h days. 
+
 TBA
+
 
 
 <!--chapter:end:23-Forecast.Rmd-->
 
 
 
-# Support Vector Machine
+# ATE with Support Vector Machine
+
+## Support Vector Machine
 
 In this section, we will delve into two of the most advanced learning algorithms, Support Vector Machines (SVM) and Neural Networks (NN), and explore their similarities and differences in terms of predictive power and explanatory capability. Both SVM and NN are parametric algorithms, but for different reasons. SVMs use a kernel method to embed non-linearity, while NNs use non-linear activation functions. Therefore, they have different types and numbers of parameters.
 
@@ -3471,6 +3617,7 @@ Up to this point we have seen "probabilistic" binary classifiers, such as kNN, C
 
 TBA
 
+## ATE with SVM
   
 
 
@@ -3480,6 +3627,7 @@ TBA
 # Neural Networks
 
 Artificial neural networks (ANNs) are a type of machine learning model that are inspired by the structure and function of the human brain. They consist of interconnected units called artificial neurons or nodes, which are organized into layers. The concept of artificial neural networks dates back to the 1940s, 
+
 TBA
 
 ## Neural Network - the idea
@@ -3496,7 +3644,8 @@ TBA
 
 ## Backpropagation
 
-In 1986, [Rumelhart et al.](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf) found a way to train neural networks with the backpropagation algorithm. Today, we would call it a Gradient Descent using reverse-mode autodiff.  Backpropagation is an algorithm used to train neural networks by adjusting the weights and biases of the network to minimize the cost function.  TBA
+In 1986, [Rumelhart et al.](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf) found a way to train neural networks with the backpropagation algorithm. Today, we would call it a Gradient Descent using reverse-mode autodiff.  Backpropagation is an algorithm used to train neural networks by adjusting the weights and biases of the network to minimize the cost function.  
+
 TBA
 
 ## Neural Network - More inputs
@@ -3540,6 +3689,7 @@ TBA
 ## Correlation
 
 TBA
+
 ## Semi-partial Correlation
 
 With partial correlation, we find the correlation between $X$ and $Y$ after controlling for the effect of $Z$ on both $X$ and $Y$. If we want to hold $Z$ constant for just $X$ or just $Y$, we use a semipartial correlation.
@@ -3595,13 +3745,16 @@ TBA
 <!--chapter:end:28-MatrixDecomposition.Rmd-->
 
 
-# PCA (Principle Component Analysis)
+# Causal Component Analysis
+
+## PCA (Principle Component Analysis)
 
 Having seen SVD and Eigenvalue decomposition, we can now look at Principle Component Analysis (PCA), which is a statistical procedure that allows us to summarize the information content in large data files.  In other words, PCA is a popular technique used to reduce the dimensionality of high-dimensional data while retaining most of the information in the original data.
 
 **PCA is a eigenvalue decomposition of a covariance matrix** (of data matrix $\mathbf{X}$). Since a covariance matrix is a square symmetric matrix, we can apply the eigenvalue decomposition, which reveals the unique orthogonal directions (variances) in the data so that their orthogonal linear combinations maximize the total variance.
 
 The goal is here a dimension reduction of the data matrix.  
+
 TBA
 
 
@@ -3610,7 +3763,9 @@ TBA
 Factor analysis and Principal Component Analysis (PCA) both involve reducing the dimensionality of a dataset, but they are not the same...
 
 Factor Analysis (FA) is a method for modeling observed variables, and their covariance structure, in terms of a smaller number of underlying latent (unobserved) "factors". In FA the observed variables are modeled as linear functions of the "factors." 
+
 TBA
+
 
 <!--chapter:end:29-FactorAnalyses.Rmd-->
 
@@ -3622,6 +3777,7 @@ The main reason for using smoothing methods is noise reduction, which makes patt
 TBA
 
 ## Smooth Spline Regression
+
 TBA
 
 ## Multivariate Loess
@@ -3634,13 +3790,15 @@ TBA
 # Imbalanced Data
 
 Classification with imbalanced data is characterized by the uneven proportion of cases that are available for each class, and causes problems in many learning algorithms.  
+
 TBA
 
 <!--chapter:end:31-ImbalancedData.Rmd-->
 
 
 
-# Text Analysis
+# Text-based Causal Inference
+
 TBA
 
 <!--chapter:end:32-TextAnalysis.Rmd-->
@@ -3650,6 +3808,7 @@ TBA
 
 
 ## Regression splines
+
 TBA
 
 ## MARS

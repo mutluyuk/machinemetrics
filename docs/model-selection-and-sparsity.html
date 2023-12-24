@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 20 Model selection and Sparsity | MachineMetrics</title>
-  <meta name="description" content="Chapter 20 Model selection and Sparsity | MachineMetrics" />
+  <title>Chapter 20 Model selection and Sparsity | Causal MachineMetrics</title>
+  <meta name="description" content="Chapter 20 Model selection and Sparsity | Causal MachineMetrics" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 20 Model selection and Sparsity | MachineMetrics" />
+  <meta property="og:title" content="Chapter 20 Model selection and Sparsity | Causal MachineMetrics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/png/MachineMetrics.png" />
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 20 Model selection and Sparsity | MachineMetrics" />
+  <meta name="twitter:title" content="Chapter 20 Model selection and Sparsity | Causal MachineMetrics" />
   
   
   <meta name="twitter:image" content="/png/MachineMetrics.png" />
@@ -176,18 +176,13 @@ div.csl-indent {
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html"><i class="fa fa-check"></i><b>2</b> Statistical Models and Simulations</a>
+<li class="chapter" data-level="2" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html"><i class="fa fa-check"></i><b>2</b> Spectrum of Data Modeling:</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#distinguishing-between-statistical-modeling-and-machine-learning-in-data-analysis"><i class="fa fa-check"></i><b>2.1</b> Distinguishing Between Statistical Modeling and Machine Learning in Data Analysis</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#goals-and-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Goals and Objectives</a></li>
-<li class="chapter" data-level="2.1.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#prediction-vs.-inference"><i class="fa fa-check"></i><b>2.1.2</b> Prediction vs. Inference</a></li>
-<li class="chapter" data-level="2.1.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#conclusion"><i class="fa fa-check"></i><b>2.1.3</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
-<li class="chapter" data-level="2.3" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models</a></li>
-<li class="chapter" data-level="2.4" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#model-selection-and-approaches-in-data-modeling"><i class="fa fa-check"></i><b>2.4</b> Model Selection and Approaches in Data Modeling</a></li>
-<li class="chapter" data-level="2.5" data-path="statistical-models-and-simulations.html"><a href="statistical-models-and-simulations.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation</a></li>
+<li class="chapter" data-level="2.1" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#statistical-vs.-machine-learning-approaches"><i class="fa fa-check"></i><b>2.1</b> Statistical vs. Machine Learning Approaches</a></li>
+<li class="chapter" data-level="2.2" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models:</a></li>
+<li class="chapter" data-level="2.4" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#model-selection"><i class="fa fa-check"></i><b>2.4</b> Model Selection:</a></li>
+<li class="chapter" data-level="2.5" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation:</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
 <ul>
@@ -259,66 +254,92 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="15" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>15</b> Shrinkage Models</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.1</b> Sparsity</a></li>
+<li class="chapter" data-level="15.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>15.1</b> Ridge</a></li>
+<li class="chapter" data-level="15.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>15.2</b> Lasso</a></li>
+<li class="chapter" data-level="15.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>15.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="15.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>15.4</b> Sparsity</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>16</b> Regression Trees</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>16.1</b> CART - Classification Tree</a></li>
 <li class="chapter" data-level="16.2" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>16.2</b> Pruning</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>16.3</b> Regression Tree</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>17</b> Ensemble Methods</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a>
+<li class="chapter" data-level="17.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>17.1</b> Bagging</a></li>
+<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>17.2</b> Boosting</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.1.1</b> XGBoost</a></li>
+<li class="chapter" data-level="17.2.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>17.2.1</b> AdaBoost</a></li>
+<li class="chapter" data-level="17.2.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>17.2.2</b> XGBoost</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.2</b> Ensemble Applications</a></li>
-<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.3</b> Classification</a></li>
-<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.4</b> Exploration</a></li>
-<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.5</b> Boosting Applications</a>
+<li class="chapter" data-level="17.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>17.3</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="17.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>17.4</b> Classification</a></li>
+<li class="chapter" data-level="17.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>17.5</b> Regression</a></li>
+<li class="chapter" data-level="17.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>17.6</b> Exploration</a></li>
+<li class="chapter" data-level="17.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>17.7</b> Boosting Applications</a>
 <ul>
-<li class="chapter" data-level="17.5.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.5.1</b> Random search with parallel processing</a></li>
-<li class="chapter" data-level="17.5.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.5.2</b> Boosting vs. Others</a></li>
-<li class="chapter" data-level="17.5.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.5.3</b> Classification with XGBoost</a></li>
+<li class="chapter" data-level="17.7.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>17.7.1</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="17.7.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>17.7.2</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="17.7.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>17.7.3</b> Classification with XGBoost</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>18</b> Causal Effect</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>18.1</b> Random experiment</a></li>
+<li class="chapter" data-level="18.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>18.2</b> IV</a></li>
+<li class="chapter" data-level="18.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>18.3</b> DiffD</a></li>
+<li class="chapter" data-level="18.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>18.4</b> RD</a></li>
+<li class="chapter" data-level="18.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>18.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="18.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>18.6</b> Double/Debiased Lasso/Methods</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>19</b> Heterogeneous Treatment Effects</a>
 <ul>
 <li class="chapter" data-level="19.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>19.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="19.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>19.2</b> Causal Forest</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>20</b> Model selection and Sparsity</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection-1"><i class="fa fa-check"></i><b>20.1</b> Model selection</a></li>
+<li class="chapter" data-level="20.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>20.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="20.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>20.3</b> Sparsity</a></li>
 </ul></li>
 <li class="chapter" data-level="21" data-path="classification-1.html"><a href="classification-1.html"><i class="fa fa-check"></i><b>21</b> Classification</a>
 <ul>
 <li class="chapter" data-level="21.1" data-path="classification-1.html"><a href="classification-1.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>21.1</b> Nonparametric Classifier - kNN</a></li>
-<li class="chapter" data-level="21.2" data-path="classification-1.html"><a href="classification-1.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.2</b> k-Nearest Neighbors</a></li>
-<li class="chapter" data-level="21.3" data-path="classification-1.html"><a href="classification-1.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.3</b> Tuning in Classification</a></li>
-<li class="chapter" data-level="21.4" data-path="classification-1.html"><a href="classification-1.html#performance-measures"><i class="fa fa-check"></i><b>21.4</b> Performance measures</a></li>
+<li class="chapter" data-level="21.2" data-path="classification-1.html"><a href="classification-1.html#linear-classifiers"><i class="fa fa-check"></i><b>21.2</b> Linear classifiers</a></li>
+<li class="chapter" data-level="21.3" data-path="classification-1.html"><a href="classification-1.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>21.3</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="21.4" data-path="classification-1.html"><a href="classification-1.html#tuning-in-classification"><i class="fa fa-check"></i><b>21.4</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="21.5" data-path="classification-1.html"><a href="classification-1.html#confusion-matrix"><i class="fa fa-check"></i><b>21.5</b> Confusion matrix</a></li>
+<li class="chapter" data-level="21.6" data-path="classification-1.html"><a href="classification-1.html#performance-measures"><i class="fa fa-check"></i><b>21.6</b> Performance measures</a></li>
+<li class="chapter" data-level="21.7" data-path="classification-1.html"><a href="classification-1.html#roc-curve"><i class="fa fa-check"></i><b>21.7</b> ROC Curve</a></li>
+<li class="chapter" data-level="21.8" data-path="classification-1.html"><a href="classification-1.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>21.8</b> AUC - Area Under the Curve</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>22</b> Time Series</a>
+<li class="chapter" data-level="22" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html"><i class="fa fa-check"></i><b>22</b> Causal Inference for Time Series</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="time-series.html"><a href="time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
-<li class="chapter" data-level="22.2" data-path="time-series.html"><a href="time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.2</b> Box-Cox transformation</a></li>
-<li class="chapter" data-level="22.3" data-path="time-series.html"><a href="time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.3</b> Modeling ARIMA</a></li>
-<li class="chapter" data-level="22.4" data-path="time-series.html"><a href="time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.4</b> Grid search for ARIMA</a></li>
-<li class="chapter" data-level="22.5" data-path="time-series.html"><a href="time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.5</b> Hyperparameter tuning with time-series data:</a></li>
-<li class="chapter" data-level="22.6" data-path="time-series.html"><a href="time-series.html#speed"><i class="fa fa-check"></i><b>22.6</b> Speed</a></li>
+<li class="chapter" data-level="22.1" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#arima-models"><i class="fa fa-check"></i><b>22.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="22.2" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>22.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="22.3" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#ts-plots"><i class="fa fa-check"></i><b>22.3</b> TS Plots</a></li>
+<li class="chapter" data-level="22.4" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>22.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="22.5" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#modeling-arima"><i class="fa fa-check"></i><b>22.5</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="22.6" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>22.6</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="22.7" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>22.7</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="22.8" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#speed"><i class="fa fa-check"></i><b>22.8</b> Speed</a></li>
+<li class="chapter" data-level="22.9" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#ci-for-ts"><i class="fa fa-check"></i><b>22.9</b> CI for TS</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="forecast.html"><a href="forecast.html"><i class="fa fa-check"></i><b>23</b> Forecast</a>
+<li class="chapter" data-level="23" data-path="causal-forecasting.html"><a href="causal-forecasting.html"><i class="fa fa-check"></i><b>23</b> Causal Forecasting</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="forecast.html"><a href="forecast.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
-<li class="chapter" data-level="23.2" data-path="forecast.html"><a href="forecast.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
-<li class="chapter" data-level="23.3" data-path="forecast.html"><a href="forecast.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
-<li class="chapter" data-level="23.4" data-path="forecast.html"><a href="forecast.html#random-forest"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
-<li class="chapter" data-level="23.5" data-path="forecast.html"><a href="forecast.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.5</b> Rolling and expanding windows</a></li>
+<li class="chapter" data-level="23.1" data-path="causal-forecasting.html"><a href="causal-forecasting.html#time-series-embedding"><i class="fa fa-check"></i><b>23.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="23.2" data-path="causal-forecasting.html"><a href="causal-forecasting.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>23.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="23.3" data-path="causal-forecasting.html"><a href="causal-forecasting.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>23.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="23.4" data-path="causal-forecasting.html"><a href="causal-forecasting.html#random-forest"><i class="fa fa-check"></i><b>23.4</b> Random Forest</a></li>
+<li class="chapter" data-level="23.5" data-path="causal-forecasting.html"><a href="causal-forecasting.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>23.5</b> Rolling and expanding windows</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="24" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html"><i class="fa fa-check"></i><b>24</b> ATE with Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html#support-vector-machine"><i class="fa fa-check"></i><b>24.1</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="24.2" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html#ate-with-svm"><i class="fa fa-check"></i><b>24.2</b> ATE with SVM</a></li>
+</ul></li>
 <li class="chapter" data-level="25" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>25</b> Neural Networks</a>
 <ul>
 <li class="chapter" data-level="25.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>25.1</b> Neural Network - the idea</a></li>
@@ -331,7 +352,8 @@ div.csl-indent {
 <li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
 <li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
 <li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
-<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.4</b> Regularized Covariance Matrix</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.4</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.5</b> Regularized Covariance Matrix</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
 <ul>
@@ -340,9 +362,10 @@ div.csl-indent {
 <li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
 <li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.4</b> Moore-Penrose inverse</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html"><i class="fa fa-check"></i><b>29</b> PCA (Principle Component Analysis)</a>
+<li class="chapter" data-level="29" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html"><i class="fa fa-check"></i><b>29</b> Causal Component Analysis</a>
 <ul>
-<li class="chapter" data-level="29.1" data-path="pca-principle-component-analysis.html"><a href="pca-principle-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.1</b> Factor Analysis</a></li>
+<li class="chapter" data-level="29.1" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html#pca-principle-component-analysis"><i class="fa fa-check"></i><b>29.1</b> PCA (Principle Component Analysis)</a></li>
+<li class="chapter" data-level="29.2" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.2</b> Factor Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
 <ul>
@@ -350,7 +373,7 @@ div.csl-indent {
 <li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.2</b> Multivariate Loess</a></li>
 </ul></li>
 <li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a></li>
-<li class="chapter" data-level="32" data-path="text-analysis.html"><a href="text-analysis.html"><i class="fa fa-check"></i><b>32</b> Text Analysis</a></li>
+<li class="chapter" data-level="32" data-path="text-based-causal-inference.html"><a href="text-based-causal-inference.html"><i class="fa fa-check"></i><b>32</b> Text-based Causal Inference</a></li>
 <li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
 <ul>
 <li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.1</b> Regression splines</a></li>
@@ -369,7 +392,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MachineMetrics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal MachineMetrics</a>
           </h1>
         </div>
 
@@ -379,12 +402,16 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="model-selection-and-sparsity" class="section level1 hasAnchor" number="20">
 <h1><span class="header-section-number">Chapter 20</span> Model selection and Sparsity<a href="model-selection-and-sparsity.html#model-selection-and-sparsity" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="model-selection" class="section level2 hasAnchor" number="20.1">
-<h2><span class="header-section-number">20.1</span> Model selection<a href="model-selection-and-sparsity.html#model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>TBA
-## Dropping a variable in a regression</p>
-<p>TBA
-## Sparsity</p>
+<div id="model-selection-1" class="section level2 hasAnchor" number="20.1">
+<h2><span class="header-section-number">20.1</span> Model selection<a href="model-selection-and-sparsity.html#model-selection-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="dropping-a-variable-in-a-regression" class="section level2 hasAnchor" number="20.2">
+<h2><span class="header-section-number">20.2</span> Dropping a variable in a regression<a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="sparsity-1" class="section level2 hasAnchor" number="20.3">
+<h2><span class="header-section-number">20.3</span> Sparsity<a href="model-selection-and-sparsity.html#sparsity-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>TBA</p>
 
 </div>

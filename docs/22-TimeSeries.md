@@ -1,15 +1,16 @@
 
-# Time Series
+# Causal Inference for Time Series
 
-
- TBA
+TBA
 
 ## ARIMA models
 
 TBA
+
 ## Hyndman-Khandakar algorithm
 
 TBA
+
 ## TS Plots
 
 TBA
@@ -19,6 +20,7 @@ TBA
 TBA
 
 ## Modeling ARIMA
+
 TBA
 
 
@@ -45,5 +47,5 @@ To accelerate the grid search, we can also use parallel processing so that each 
 
 TBA
 
-
+## CI for TS
 

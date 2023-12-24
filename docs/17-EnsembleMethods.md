@@ -1,14 +1,16 @@
 
 # Ensemble Methods
 
-BTBA
+TBA
 
 ## Bagging
 
 TBA
+
 ## Boosting
 
 TBA
+
 ### AdaBoost
 
 TBA
@@ -23,7 +25,9 @@ To conclude this section we will cover classification and regression application
 
 
 ## Classification
+
 TBA
+
 ## Regression
 
 TBA

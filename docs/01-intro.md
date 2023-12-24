@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 #  Introduction:
 
@@ -28,14 +33,166 @@ Ethem Alpaydin, defines machine learning as follows:
 > Machine learning is programming computers to optimize a performance criterion using example data or past experience. We have a model defined up to some parameters, and learning is the execution of a computer program to optimize the parameters of the model using the training data of past experience. (...) Machine learning uses the ***theory of statistics in building mathematical models***, because the core task is making inference from sample.  The role of computer science is twofold: First, in training, we need efficient algorithms to solve the optimization problem, as well as to store and process the massive amount of data we generally have.  Second, once the model is learned, its representation and algorithmic solution for inference needs to be efficient as well.
 >
 
-Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics
+Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics**
+
+<img src="png/mlapplications2.png" width="700pt" />
+
+ The following machine learning visualization/list shows separate fields in machine learning.  
 
 
+- **Supervised Learning**
+  - **Classification**
+    - Fraud detection
+    - Image classification
+    - Customer retention
+    - Diagnostics
+    - Email spam and malware filtering
+    - Sentiment analysis
+  - **Regression**
+    - Forecasting (weather, stock prices)
+    - Predictions (sales, revenue)
+    - Process optimization (manufacturing, supply chain)
+    - Real estate pricing
+    - Energy demand modeling
 
- The following machine learning visualization shows separate fields in machine learning.  
- 
- INSERT PICTURE
- 
+- **Unsupervised Learning**
+  - **Clustering**
+    - Recommendation systems
+    - Targeted marketing
+    - Customer segmentation
+    - Genetic clustering
+    - Social network analysis
+  - **Dimensionality Reduction**
+    - Big data visualizations
+    - Meaningful compression
+    - Structure discovery
+    - Feature elicitation
+    - Noise reduction
+    - Data preprocessing for supervised learning
+
+- **Semi-Supervised Learning**
+  - Data labeling
+  - Web content classification
+  - Image and video annotation
+  - Medical image analysis
+
+- **Reinforcement Learning**
+  - Real-time decisions
+  - Game AI
+  - Learning tasks
+  - Skill acquisition
+  - Robot navigation
+  - Autonomous vehicles
+  - Personalized recommendations
+
+- **Deep Learning**
+  - **Convolutional Neural Networks (CNNs)**
+    - Image and video recognition
+    - Image segmentation
+    - Medical image analysis
+  - **Recurrent Neural Networks (RNNs)**
+    - Language modeling
+    - Speech recognition
+    - Time series prediction
+  - **Generative Adversarial Networks (GANs)**
+    - Image generation
+    - Art creation
+    - Data augmentation
+  - **Transformer Models**
+    - Natural language understanding
+    - Machine translation
+    - Text summarization
+
+$$
+\begin{table}[h]
+\centering
+\caption{Overview of Machine Learning Categories}
+\label{table:ml_categories}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{6.5cm}|}
+\hline
+\textbf{ML Category} & \textbf{Subcategory} & \textbf{Details} \\
+\hline
+\multirow{6}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Supervised \\ Learning\end{tabular}}} & \textbf{Classification} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Fraud detection \\
+    - Image classification \\
+    - Customer retention \\
+    - Diagnostics \\
+    - Email spam and malware filtering \\
+    - Sentiment analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Regression} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Forecasting (weather, stock prices) \\
+    - Predictions (sales, revenue) \\
+    - Process optimization (manufacturing, supply chain) \\
+    - Real estate pricing \\
+    - Energy demand modeling \\
+    \end{tabular} \\
+\hline
+\multirow{6}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Unsupervised \\ Learning\end{tabular}}} & \textbf{Clustering} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Recommendation systems \\
+    - Targeted marketing \\
+    - Customer segmentation \\
+    - Genetic clustering \\
+    - Social network analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Dimensionality Reduction} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Big data visualizations \\
+    - Meaningful compression \\
+    - Structure discovery \\
+    - Feature elicitation \\
+    - Noise reduction \\
+    - Data preprocessing \\
+    \end{tabular} \\
+\hline
+\textbf{\begin{tabular}[c]{@{}c@{}}Reinforcement \\ Learning\end{tabular}} & & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Real-time decisions \\
+    - Game AI \\
+    - Learning tasks \\
+    - Skill acquisition \\
+    - Robot navigation \\
+    - Autonomous vehicles \\
+    - Personalized recommendations \\
+    \end{tabular} \\
+\hline
+\multirow{12}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Deep \\ Learning\end{tabular}}} & \textbf{Convolutional Neural Networks (CNNs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Image and video recognition \\
+    - Image segmentation \\
+    - Medical image analysis \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Recurrent Neural Networks (RNNs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Language modeling \\
+    - Speech recognition \\
+    - Time series prediction \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Generative Adversarial Networks (GANs)} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Image generation \\
+    - Art creation \\
+    - Data augmentation \\
+    \end{tabular} \\
+\cline{2-3}
+ & \textbf{Transformer Models} & 
+    \begin{tabular}[c]{@{}l@{}}
+    - Natural language understanding \\
+    - Machine translation \\
+    - Text summarization \\
+    \end{tabular} \\
+\hline
+\end{tabular}
+\end{table}
+$$
+
 We designed this book for researchers who deal with data and aimed to provide toolkit which is easily accessible. When we started to learn these topics years ago, we did not know where to start and poke in each topic in that graph. We tried to learn one topic or how we can use it in our own research. We tried to identify the topics we can use as an applied microeconomics and in general as an economist as we are not dealing in robot navigation or game AI or similar topics in our research. Thus, we are only interested in subtopics which are relevant for our research such as dimension reduction and the structure discovery, the regression part and forecasting mostly for finance and so on (these topics from figure). We can use topics related to predictions and optimizations and some new insights.  As a social scientist the part we can employ in our research is just some part of the topics in that figure.  Because of that, when you discuss with someone who is in machine learning from computer science and robotics or AI sector and so on, they may try to explain where ML can be used as recommending songs, pictures, the fraud detection, computer vision, speech recognition, document classification, automated driving, but it may not be interesting or relevant for us directly. However, nearly all these subfields start and build on the statistical learning methods we will cover in this book.
 
 Imagine guiding a child to distinguish between animals, particularly identifying what a dog is and what a cat is. By the end of this exercise, the child will learn to recognize these animals. Instead of detailing every nuance of what differentiates a dog from a cat, you might show the child various pictures of dogs and cats. Over time, the child will start to notice patterns and be able to differentiate between the two animals. Machine learning works in a similar way. You feed a computer lots of data (like pictures of cats and dogs), and over time, the computer learns to recognize the patterns in the data.

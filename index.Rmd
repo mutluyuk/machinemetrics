@@ -1,5 +1,5 @@
 --- 
-title: 'MachineMetrics '
+title: 'Causal MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
 date: 'This version: `r Sys.Date()`'
 subtitle: for Economists, Social and Health Scientists
