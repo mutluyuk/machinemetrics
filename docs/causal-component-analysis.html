@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Regression v.s. Classification | Causal MachineMetrics</title>
-  <meta name="description" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <title>Chapter 29 Causal Component Analysis | Causal MachineMetrics</title>
+  <meta name="description" content="Chapter 29 Causal Component Analysis | Causal MachineMetrics" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta property="og:title" content="Chapter 29 Causal Component Analysis | Causal MachineMetrics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/png/MachineMetrics.png" />
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta name="twitter:title" content="Chapter 29 Causal Component Analysis | Causal MachineMetrics" />
   
   
   <meta name="twitter:image" content="/png/MachineMetrics.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overfitting.html"/>
-<link rel="next" href="parametric-estimations---basics.html"/>
+<link rel="prev" href="decompositions.html"/>
+<link rel="next" href="smoothing.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -400,41 +400,30 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-v.s.-classification" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Regression v.s. Classification<a href="regression-v.s.-classification.html#regression-v.s.-classification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Both regression and classification problems fall into the supervised learning category. Each task involves developing a model that learns from historical data which enables it to make predictions on new instances that we do not have answers for. More formally, all supervised learning tasks involve learning a function that maps an input to an output based on example input-output pairs. But the distinction between classification vs regression is how they are used on particular machine learning problems. For weather forecast/prediction, if we predict temperature, which is continuous outcome, then it is regression. if we predict whether it will rain or not,then it is classification as outcome is categorical value.</p>
-<p>The key distinction between Classification vs Regression algorithms is Regression algorithms are used to determine continuous values such as price, income, age, etc. Classification algorithms are used to predict or classify several categorical classes, i.e. discrete values. The regression Algorithm can be further separated into Non-linear and Linear Regression. The Classification algorithms can be classified into Multi-class Classifier and Binary Classifier. Regression attempt to find the best fit line, which predicts the output more accurately. Classification tries to find the decision boundary, which divides the dataset into different classes.</p>
-<p>Classification algorithms used in ML used to solve problems such as Voice Recognition, Identification of spam emails, Identification of cancer cells, etc. HEre are some common problems we can use Classification and regressions in social sciences:</p>
-<ol style="list-style-type: decimal">
-<li><p>Regression: Y is a continuous variable (numeric).
-Examples:
-Predict income given demographic factors
-Predict consumption amount given profile
-Predict the price of a product
-Predict the test score of a student
-Predict Cholesterol levels
-Predict hospital expenditure</p></li>
-<li><p>Classification: Y is a categorical variable (factor).
-Examples:
-Predict whether the individual employed or not
-Predict whether the individual have kids or not
-Predict whether this customer going to buy an item or not
-Predict whether a company will default or not
-Predict whether a student will drop out of a school or not
-Predict whether an individual will have an heart attact or not</p></li>
-</ol>
-<p>Popular types of Regression Algorithms include: Simple Linear Regression; Multiple Linear Regression;Polynomial Regression; Ridge Regression; Lasso Regression; Neural Networks Regression; Support Vector Regression; Decision Tree Regression; Random Forest Regression</p>
-<p>Popular classification algorithms include: Logistic Regression; Naive Bayes; K-Nearest Neighbors; Decision Tree; Support Vector Machines; Kernel SVM; Naive Bayes; Random Forest Classification</p>
-<p>As a Final Thoughts, the way we determine whether a task is a classification or regression problem is by the output. Regression tasks are concerned with predicting a continuous value, whereas classification tasks are concerned with predicting discrete values. Also, the way we evaluate each type of problem is different for example the mean squared error is a useful metric for regression tasks but this wouldn’t work for a classification. Similarly, accuracy wouldn’t be an effective metric for regression tasks but it can be useful for classification tasks.</p>
+<div id="causal-component-analysis" class="section level1 hasAnchor" number="29">
+<h1><span class="header-section-number">Chapter 29</span> Causal Component Analysis<a href="causal-component-analysis.html#causal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pca-principle-component-analysis" class="section level2 hasAnchor" number="29.1">
+<h2><span class="header-section-number">29.1</span> PCA (Principle Component Analysis)<a href="causal-component-analysis.html#pca-principle-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Having seen SVD and Eigenvalue decomposition, we can now look at Principle Component Analysis (PCA), which is a statistical procedure that allows us to summarize the information content in large data files. In other words, PCA is a popular technique used to reduce the dimensionality of high-dimensional data while retaining most of the information in the original data.</p>
+<p><strong>PCA is a eigenvalue decomposition of a covariance matrix</strong> (of data matrix <span class="math inline">\(\mathbf{X}\)</span>). Since a covariance matrix is a square symmetric matrix, we can apply the eigenvalue decomposition, which reveals the unique orthogonal directions (variances) in the data so that their orthogonal linear combinations maximize the total variance.</p>
+<p>The goal is here a dimension reduction of the data matrix.</p>
+<p>TBA</p>
+</div>
+<div id="factor-analysis" class="section level2 hasAnchor" number="29.2">
+<h2><span class="header-section-number">29.2</span> Factor Analysis<a href="causal-component-analysis.html#factor-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Factor analysis and Principal Component Analysis (PCA) both involve reducing the dimensionality of a dataset, but they are not the same…</p>
+<p>Factor Analysis (FA) is a method for modeling observed variables, and their covariance structure, in terms of a smaller number of underlying latent (unobserved) “factors”. In FA the observed variables are modeled as linear functions of the “factors.”</p>
+<p>TBA</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="overfitting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="parametric-estimations---basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="decompositions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="smoothing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -465,7 +454,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/08-RegvsClass.Rmd",
+"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/29-FactorAnalyses.Rmd",
 "text": "Edit"
 },
 "history": {

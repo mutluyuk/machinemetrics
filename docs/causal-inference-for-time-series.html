@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Regression v.s. Classification | Causal MachineMetrics</title>
-  <meta name="description" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <title>Chapter 22 Causal Inference for Time Series | Causal MachineMetrics</title>
+  <meta name="description" content="Chapter 22 Causal Inference for Time Series | Causal MachineMetrics" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta property="og:title" content="Chapter 22 Causal Inference for Time Series | Causal MachineMetrics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/png/MachineMetrics.png" />
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta name="twitter:title" content="Chapter 22 Causal Inference for Time Series | Causal MachineMetrics" />
   
   
   <meta name="twitter:image" content="/png/MachineMetrics.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overfitting.html"/>
-<link rel="next" href="parametric-estimations---basics.html"/>
+<link rel="prev" href="classification-1.html"/>
+<link rel="next" href="causal-forecasting.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -400,41 +400,58 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-v.s.-classification" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Regression v.s. Classification<a href="regression-v.s.-classification.html#regression-v.s.-classification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Both regression and classification problems fall into the supervised learning category. Each task involves developing a model that learns from historical data which enables it to make predictions on new instances that we do not have answers for. More formally, all supervised learning tasks involve learning a function that maps an input to an output based on example input-output pairs. But the distinction between classification vs regression is how they are used on particular machine learning problems. For weather forecast/prediction, if we predict temperature, which is continuous outcome, then it is regression. if we predict whether it will rain or not,then it is classification as outcome is categorical value.</p>
-<p>The key distinction between Classification vs Regression algorithms is Regression algorithms are used to determine continuous values such as price, income, age, etc. Classification algorithms are used to predict or classify several categorical classes, i.e. discrete values. The regression Algorithm can be further separated into Non-linear and Linear Regression. The Classification algorithms can be classified into Multi-class Classifier and Binary Classifier. Regression attempt to find the best fit line, which predicts the output more accurately. Classification tries to find the decision boundary, which divides the dataset into different classes.</p>
-<p>Classification algorithms used in ML used to solve problems such as Voice Recognition, Identification of spam emails, Identification of cancer cells, etc. HEre are some common problems we can use Classification and regressions in social sciences:</p>
-<ol style="list-style-type: decimal">
-<li><p>Regression: Y is a continuous variable (numeric).
-Examples:
-Predict income given demographic factors
-Predict consumption amount given profile
-Predict the price of a product
-Predict the test score of a student
-Predict Cholesterol levels
-Predict hospital expenditure</p></li>
-<li><p>Classification: Y is a categorical variable (factor).
-Examples:
-Predict whether the individual employed or not
-Predict whether the individual have kids or not
-Predict whether this customer going to buy an item or not
-Predict whether a company will default or not
-Predict whether a student will drop out of a school or not
-Predict whether an individual will have an heart attact or not</p></li>
-</ol>
-<p>Popular types of Regression Algorithms include: Simple Linear Regression; Multiple Linear Regression;Polynomial Regression; Ridge Regression; Lasso Regression; Neural Networks Regression; Support Vector Regression; Decision Tree Regression; Random Forest Regression</p>
-<p>Popular classification algorithms include: Logistic Regression; Naive Bayes; K-Nearest Neighbors; Decision Tree; Support Vector Machines; Kernel SVM; Naive Bayes; Random Forest Classification</p>
-<p>As a Final Thoughts, the way we determine whether a task is a classification or regression problem is by the output. Regression tasks are concerned with predicting a continuous value, whereas classification tasks are concerned with predicting discrete values. Also, the way we evaluate each type of problem is different for example the mean squared error is a useful metric for regression tasks but this wouldn’t work for a classification. Similarly, accuracy wouldn’t be an effective metric for regression tasks but it can be useful for classification tasks.</p>
+<div id="causal-inference-for-time-series" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Chapter 22</span> Causal Inference for Time Series<a href="causal-inference-for-time-series.html#causal-inference-for-time-series" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>TBA</p>
+<div id="arima-models" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> ARIMA models<a href="causal-inference-for-time-series.html#arima-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="hyndman-khandakar-algorithm" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Hyndman-Khandakar algorithm<a href="causal-inference-for-time-series.html#hyndman-khandakar-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="ts-plots" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> TS Plots<a href="causal-inference-for-time-series.html#ts-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="box-cox-transformation" class="section level2 hasAnchor" number="22.4">
+<h2><span class="header-section-number">22.4</span> Box-Cox transformation<a href="causal-inference-for-time-series.html#box-cox-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="modeling-arima" class="section level2 hasAnchor" number="22.5">
+<h2><span class="header-section-number">22.5</span> Modeling ARIMA<a href="causal-inference-for-time-series.html#modeling-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="grid-search-for-arima" class="section level2 hasAnchor" number="22.6">
+<h2><span class="header-section-number">22.6</span> Grid search for ARIMA<a href="causal-inference-for-time-series.html#grid-search-for-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="hyperparameter-tuning-with-time-series-data" class="section level2 hasAnchor" number="22.7">
+<h2><span class="header-section-number">22.7</span> Hyperparameter tuning with time-series data:<a href="causal-inference-for-time-series.html#hyperparameter-tuning-with-time-series-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="speed" class="section level2 hasAnchor" number="22.8">
+<h2><span class="header-section-number">22.8</span> Speed<a href="causal-inference-for-time-series.html#speed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before concluding this section, notice that as the sample size rises, the learning algorithms take longer to complete, specially for cross sectional data. That’s why there are some other cross-validation methods that use only a subsample randomly selected from the original sample to speed up the validation and the test procedures. You can think how slow the conventional cross validation would be if the dataset has 1-2 million observations, for example.</p>
+<p>There are some methods to accelerate the training process. One method is to increase the delta (the increments) in our grid and identify the range of hyperparameters where the RMSPE becomes the lowest. Then we reshape our grid with finer increments targeting that specific range.</p>
+<p>Another method is called a random grid search. In this method, instead of the exhaustive enumeration of all combinations of hyperparameters, we select them randomly. This can be found in <a href="https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf">Random Search for Hyper-Parameter Optimization</a> by James Bergstra and
+Yoshua Bengio <span class="citation">(<a href="#ref-Berg_2012"><strong>Berg_2012?</strong></a>)</span>.</p>
+<p>To accelerate the grid search, we can also use parallel processing so that each loop will be assigned to a separate core in capable computers.</p>
+<p>TBA</p>
+</div>
+<div id="ci-for-ts" class="section level2 hasAnchor" number="22.9">
+<h2><span class="header-section-number">22.9</span> CI for TS<a href="causal-inference-for-time-series.html#ci-for-ts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="overfitting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="parametric-estimations---basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="classification-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="causal-forecasting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -465,7 +482,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/08-RegvsClass.Rmd",
+"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/22-TimeSeries.Rmd",
 "text": "Edit"
 },
 "history": {

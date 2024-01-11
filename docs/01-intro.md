@@ -35,80 +35,45 @@ Ethem Alpaydin, defines machine learning as follows:
 
 Hence, there are no "mysterious" machines that are learning and acting alone, but well-defined **statistical/econometrics models** for predictions that are optimized by efficient algorithms and executed by powerful machines, as known as computers.  Thus, the name of the book: **MachineMetrics**
 
-<img src="png/mlapplications2.png" width="700pt" />
+<!--- ```{r, echo=FALSE, out.width = "700pt"}
+knitr::include_graphics("png/mlapplications2.png")
+``~ --->
 
- The following machine learning visualization/list shows separate fields in machine learning.  
 
 
-- **Supervised Learning**
-  - **Classification**
-    - Fraud detection
-    - Image classification
-    - Customer retention
-    - Diagnostics
-    - Email spam and malware filtering
-    - Sentiment analysis
-  - **Regression**
-    - Forecasting (weather, stock prices)
-    - Predictions (sales, revenue)
-    - Process optimization (manufacturing, supply chain)
-    - Real estate pricing
-    - Energy demand modeling
+<!--- use texshop to run the following latex command; obtain pdf file; open pdf in preview, choose tumbnail, export pdf to png, resolution 200.(existing png is saved as MLCategories.png)
+\documentclass[12pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps to pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{caption}
+%SetFonts
 
-- **Unsupervised Learning**
-  - **Clustering**
-    - Recommendation systems
-    - Targeted marketing
-    - Customer segmentation
-    - Genetic clustering
-    - Social network analysis
-  - **Dimensionality Reduction**
-    - Big data visualizations
-    - Meaningful compression
-    - Structure discovery
-    - Feature elicitation
-    - Noise reduction
-    - Data preprocessing for supervised learning
+%SetFonts
 
-- **Semi-Supervised Learning**
-  - Data labeling
-  - Web content classification
-  - Image and video annotation
-  - Medical image analysis
 
-- **Reinforcement Learning**
-  - Real-time decisions
-  - Game AI
-  - Learning tasks
-  - Skill acquisition
-  - Robot navigation
-  - Autonomous vehicles
-  - Personalized recommendations
+%\date{}							% Activate to display a given date or no date
+\pagestyle{empty} % This line removes page numbers
 
-- **Deep Learning**
-  - **Convolutional Neural Networks (CNNs)**
-    - Image and video recognition
-    - Image segmentation
-    - Medical image analysis
-  - **Recurrent Neural Networks (RNNs)**
-    - Language modeling
-    - Speech recognition
-    - Time series prediction
-  - **Generative Adversarial Networks (GANs)**
-    - Image generation
-    - Art creation
-    - Data augmentation
-  - **Transformer Models**
-    - Natural language understanding
-    - Machine translation
-    - Text summarization
+\begin{document}
 
-$$
+
+\newgeometry{margin=0.1cm}
+
+
+%\section{}
+%\subsection{}
+
 \begin{table}[h]
 \centering
-\caption{Overview of Machine Learning Categories}
+\caption*{Overview of Machine Learning Categories}
 \label{table:ml_categories}
-\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{6.5cm}|}
+\begin{tabular}{|p{5cm}|p{6cm}|p{8cm}|}
 \hline
 \textbf{ML Category} & \textbf{Subcategory} & \textbf{Details} \\
 \hline
@@ -126,7 +91,7 @@ $$
     \begin{tabular}[c]{@{}l@{}}
     - Forecasting (weather, stock prices) \\
     - Predictions (sales, revenue) \\
-    - Process optimization (manufacturing, supply chain) \\
+    - Process optimization (supply chain)  \\
     - Real estate pricing \\
     - Energy demand modeling \\
     \end{tabular} \\
@@ -148,6 +113,14 @@ $$
     - Feature elicitation \\
     - Noise reduction \\
     - Data preprocessing \\
+    \end{tabular} \\
+    \hline
+\textbf{\begin{tabular}[c]{@{}c@{}}Semi-Supervised \\ Learning\end{tabular}} & & 
+    \begin{tabular}[c]{@{}l@{}}
+  - Data labeling \\
+  - Web content classification \\
+  - Image and video annotation \\
+  - Medical image analysis \\
     \end{tabular} \\
 \hline
 \textbf{\begin{tabular}[c]{@{}c@{}}Reinforcement \\ Learning\end{tabular}} & & 
@@ -191,7 +164,13 @@ $$
 \hline
 \end{tabular}
 \end{table}
-$$
+
+\end{document} --->
+
+ The following machine learning visualization/list shows separate fields in machine learning.  
+
+<img src="png/MLCategories.png" width="900pt" />
+
 
 We designed this book for researchers who deal with data and aimed to provide toolkit which is easily accessible. When we started to learn these topics years ago, we did not know where to start and poke in each topic in that graph. We tried to learn one topic or how we can use it in our own research. We tried to identify the topics we can use as an applied microeconomics and in general as an economist as we are not dealing in robot navigation or game AI or similar topics in our research. Thus, we are only interested in subtopics which are relevant for our research such as dimension reduction and the structure discovery, the regression part and forecasting mostly for finance and so on (these topics from figure). We can use topics related to predictions and optimizations and some new insights.  As a social scientist the part we can employ in our research is just some part of the topics in that figure.  Because of that, when you discuss with someone who is in machine learning from computer science and robotics or AI sector and so on, they may try to explain where ML can be used as recommending songs, pictures, the fraud detection, computer vision, speech recognition, document classification, automated driving, but it may not be interesting or relevant for us directly. However, nearly all these subfields start and build on the statistical learning methods we will cover in this book.
 

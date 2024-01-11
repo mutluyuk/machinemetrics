@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Regression v.s. Classification | Causal MachineMetrics</title>
-  <meta name="description" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <title>Chapter 23 Causal Forecasting | Causal MachineMetrics</title>
+  <meta name="description" content="Chapter 23 Causal Forecasting | Causal MachineMetrics" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta property="og:title" content="Chapter 23 Causal Forecasting | Causal MachineMetrics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/png/MachineMetrics.png" />
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Regression v.s. Classification | Causal MachineMetrics" />
+  <meta name="twitter:title" content="Chapter 23 Causal Forecasting | Causal MachineMetrics" />
   
   
   <meta name="twitter:image" content="/png/MachineMetrics.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overfitting.html"/>
-<link rel="next" href="parametric-estimations---basics.html"/>
+<link rel="prev" href="causal-inference-for-time-series.html"/>
+<link rel="next" href="ate-with-support-vector-machine.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -400,41 +400,39 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-v.s.-classification" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Regression v.s. Classification<a href="regression-v.s.-classification.html#regression-v.s.-classification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Both regression and classification problems fall into the supervised learning category. Each task involves developing a model that learns from historical data which enables it to make predictions on new instances that we do not have answers for. More formally, all supervised learning tasks involve learning a function that maps an input to an output based on example input-output pairs. But the distinction between classification vs regression is how they are used on particular machine learning problems. For weather forecast/prediction, if we predict temperature, which is continuous outcome, then it is regression. if we predict whether it will rain or not,then it is classification as outcome is categorical value.</p>
-<p>The key distinction between Classification vs Regression algorithms is Regression algorithms are used to determine continuous values such as price, income, age, etc. Classification algorithms are used to predict or classify several categorical classes, i.e. discrete values. The regression Algorithm can be further separated into Non-linear and Linear Regression. The Classification algorithms can be classified into Multi-class Classifier and Binary Classifier. Regression attempt to find the best fit line, which predicts the output more accurately. Classification tries to find the decision boundary, which divides the dataset into different classes.</p>
-<p>Classification algorithms used in ML used to solve problems such as Voice Recognition, Identification of spam emails, Identification of cancer cells, etc. HEre are some common problems we can use Classification and regressions in social sciences:</p>
-<ol style="list-style-type: decimal">
-<li><p>Regression: Y is a continuous variable (numeric).
-Examples:
-Predict income given demographic factors
-Predict consumption amount given profile
-Predict the price of a product
-Predict the test score of a student
-Predict Cholesterol levels
-Predict hospital expenditure</p></li>
-<li><p>Classification: Y is a categorical variable (factor).
-Examples:
-Predict whether the individual employed or not
-Predict whether the individual have kids or not
-Predict whether this customer going to buy an item or not
-Predict whether a company will default or not
-Predict whether a student will drop out of a school or not
-Predict whether an individual will have an heart attact or not</p></li>
-</ol>
-<p>Popular types of Regression Algorithms include: Simple Linear Regression; Multiple Linear Regression;Polynomial Regression; Ridge Regression; Lasso Regression; Neural Networks Regression; Support Vector Regression; Decision Tree Regression; Random Forest Regression</p>
-<p>Popular classification algorithms include: Logistic Regression; Naive Bayes; K-Nearest Neighbors; Decision Tree; Support Vector Machines; Kernel SVM; Naive Bayes; Random Forest Classification</p>
-<p>As a Final Thoughts, the way we determine whether a task is a classification or regression problem is by the output. Regression tasks are concerned with predicting a continuous value, whereas classification tasks are concerned with predicting discrete values. Also, the way we evaluate each type of problem is different for example the mean squared error is a useful metric for regression tasks but this wouldn’t work for a classification. Similarly, accuracy wouldn’t be an effective metric for regression tasks but it can be useful for classification tasks.</p>
+<div id="causal-forecasting" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Chapter 23</span> Causal Forecasting<a href="causal-forecasting.html#causal-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="time-series-embedding" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> Time Series Embedding<a href="causal-forecasting.html#time-series-embedding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="var-for-recursive-forecasting" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> VAR for Recursive Forecasting<a href="causal-forecasting.html#var-for-recursive-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="embedding-for-direct-forecast" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> Embedding for Direct Forecast<a href="causal-forecasting.html#embedding-for-direct-forecast" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TBA</p>
+</div>
+<div id="random-forest" class="section level2 hasAnchor" number="23.4">
+<h2><span class="header-section-number">23.4</span> Random Forest<a href="causal-forecasting.html#random-forest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will utilize embedding methods for direct forecasting with Random Forests. We choose the random forests algorithm because it does not need an explicit tuning by a grid search. In the practice, however, we can still search for the number of trees and the number of variables randomly sampled as candidates at each split.</p>
+<p>TBA</p>
+</div>
+<div id="rolling-and-expanding-windows" class="section level2 hasAnchor" number="23.5">
+<h2><span class="header-section-number">23.5</span> Rolling and expanding windows<a href="causal-forecasting.html#rolling-and-expanding-windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A seven-day window is not enough for a reliable judgment on the forecast accuracy. One way to deal with this issue is to use rolling or expanding windows to predict the next h days.</p>
+<p>TBA</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="overfitting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="parametric-estimations---basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="causal-inference-for-time-series.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ate-with-support-vector-machine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -465,7 +463,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/08-RegvsClass.Rmd",
+"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/23-Forecast.Rmd",
 "text": "Edit"
 },
 "history": {
