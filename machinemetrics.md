@@ -1126,7 +1126,7 @@ The starting point will be to define these two different but similar processes.
 
 
 
-# Error
+# Error:
 
 Lets assume you want to find an average years of schooling of all the people who reside in your city. In another words, you want to find mean of years of schooling of the population in your city. Most of the time gathering this information is very hard. One solution is waiting in main street and ask everyone who passes that day from there. You can say you collect data which is called the sample of the population. With this sample you can estimate this unknown parameter which is average years of schooling of the population. You need to come with a general rule about how to calculate the unknown parameter. This general rule is called estimator. You use your specific sample, i.e. realized data, to obtain specific number which is called estimate. You can collect different samples. In that case, the estimator will be same but the estimate will vary from sample to sample.Ideally you want the estimator from your sample will be equal to the real (unknown) parameter. As you will never know the real parameter, we use statistical properties to assume that your estimate is that parameter. Main assumption/requirement is you want a representative sample and to find unbiased estimator. However, you may have infinite number of unbiased estimators. Which one is the best unbiased estimator? There will be always some difference between the estimated value and the actual value of population characteristics. That difference is called as **error**. Specifically, this is called **estimation error** as this error is related with an estimation of a parameter. 
 
