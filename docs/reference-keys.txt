@@ -41,10 +41,12 @@ estimation-error---mse
 prediction-error--mspe
 technical-points-about-mse-and-mspe
 bias-variance-trade-off
+simulated-breakdown-of-the-mspe
 biased-estimator-as-a-predictor
 overfitting
 regression-v.s.-classification
 parametric-estimations---basics
+the-dichotomy-of-statistical-modeling-data-versus-algorithmic-approaches
 parametric-estimations
 lpm
 logistic-regression

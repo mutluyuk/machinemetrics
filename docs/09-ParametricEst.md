@@ -2,18 +2,48 @@
 
 # Parametric Estimations - Basics
 
- Parametric vs. Nonparametric methods {-}
+## The Dichotomy of Statistical Modeling: Data versus Algorithmic Approaches:
 
-https://towardsdatascience.com/parametric-vs-non-parametric-methods-2cea475da1a
+In the realm of statistical modeling, a fundamental dichotomy exists, deeply rooted in the philosophies of data and algorithmic modeling. This section delves into these two distinct cultures, tracing their origins and exploring their implications in the field of statistics, reflecting on the critical insights provided by various experts in their review of Leo Breiman's influential work in the Special Issue: Commentaries on Breimen’s Two Cultures paper (https://muse.jhu.edu/issue/45147).
 
-In parametric methods, we typically make an assumption with regards to the form of the function f. For example, you could make an assumption that the unknown function f is linear. parametric methods in Machine Learning usually take a model-based approach where we make an assumption with respect to form of the function to be estimated and then we select a suitable model based on this assumption in order to estimate the set of parameters.The biggest disadvantage of parametric methods is that the assumptions we make may not always be true. For instance, you may assume that the form of the function is linear, whilst it is not. Therefore, these methods involve less flexible algorithms and are usually used for less complex problems.
+The concept of 'two cultures' in statistical modeling can be traced back to CP Snow's seminal work in 1959, which highlighted a divide between traditional and scientific cultures. This idea was further refined by Leo Breiman, a statistician from the University of California Berkeley, in his 2001 publication "Statistical modeling: The two cultures". Breiman estimated that 98% of statisticians belonged to the data modeling culture, but he advocated strongly for the algorithmic modeling approach.
 
-However, parametric methods tend to be quite fast and they also require significantly less data compared to non-parametric methods (more on this in the following section). Additionally, since parametric methods tend to be less flexible and suitable for less complex problems, they are more interpretable.
-On the other hand, non-parametric methods refer to a set of algorithms that do not make any underlying assumptions with respect to the form of the function to be estimated. And since no assumption is being made, such methods are capable of estimating the unknown function f that could be of any form.
+**Data Modeling Culture**
 
-Non-parametric methods tend to be more accurate as they seek to best fit the data points. However, this comes at the expense of requiring a very large number of observations that is needed in order to estimate the unknown function f accurately. Additionally, these methods tend to be less efficient when it comes to training the models. Furthermore, non-parametric methods may sometimes introduce overfitting. Since these algorithms tend to be more flexible, they may sometimes learn the errors and noise in a way that they cannot generalise well to new, unseen data points.
+Data modeling (Classical Statistical Modeling) assumes a stochastic approach, relying on methodologies like linear regression, logistic regression, or the Cox model. The central focus here is estimating the model's parameters from the data, with validation achieved through goodness-of-fit tests. This culture values the simplicity and understandability of the relationship between input variables and responses, often leading to the creation of multiple models from which the most suitable is chosen. However, its reliance on parametric models can be a limitation, as these models often struggle to accurately represent complex or high-dimensional data where the underlying model is not well understood or too complicated for simple models.
 
-On the flip side, non-parametric methods are quite flexible and can lead to better model performance since no assumptions are being made about the underlying function.
+**Algorithmic Modeling Culture**
+
+Contrastingly, algorithmic modeling (Machine Learning) views the model as a 'black box', emphasizing function estimation and techniques like neural networks and decision trees. This culture prioritizes predictive accuracy over the interpretability of the model. It generally performs better in situations where the relationship between input and output is complex or not well understood, or in handling large datasets. The takeaway here is a focus on finding robust solutions, exploring data thoroughly before modeling, and relying heavily on computers as partners in the modeling process. A significant limitation of this approach is the lack of interpretability; it's often challenging to understand the reasons behind a model's predictions, which can be problematic in fields where the rationale is as crucial as the outcome.
+
+**Breiman’s Critique** 
+
+Breiman's critique of the data modeling culture within the statistical community is multifaceted. He argues that an overemphasis on this approach has not only led to the development of irrelevant theory and, at times, questionable scientific conclusions but has also kept statisticians from adopting more suitable algorithmic models. This adherence to traditional data models, according to Breiman, has constrained statisticians to a limited scope of problems, often resulting in oversimplified solutions that fail to capture the complexity of real-world data. He points out that lessons from algorithmic modeling suggest a preference for multiplicity, where multiple models yield good predictions and where there's a balance between simplicity and accuracy, especially when dealing with high-dimensional input. Contrary to the data modeling advice that cautions against high-dimensional scenarios, algorithmic modeling leans into this complexity, developing techniques to mitigate the risks of overfitting. Breiman underscores that the primary goal should be the acquisition of accurate information over interpretability, as exemplified in cases like survival data analysis where algorithmic models have demonstrated superior performance to traditional methods. Additionally, he laments that the field's fixation on data models has precluded statisticians from engaging with exciting new problems that could benefit from algorithmic approaches.
+
+
+**The Contemporary Landscape:**
+
+In econometrics, the initial response to Breiman's paper was one of bafflement, as the field was predominantly focused on causal effects. This causality-based focus led to a de-emphasis on R2 values and a drive to build credible cases for causal effect estimation. 
+
+Notable figures like Sir David Cox and Brad Efron contributed their perspectives, with Cox advocating for methodological diversity and cautioning against the mechanical application of models. Efron, while admiring Breiman's openness to new ideas, questioned the overstated importance of prediction in Breiman's approach. Breiman responded by clarifying that algorithmic modeling supplements rather than replaces data modeling, and that it has shown significant breakthroughs in complex prediction tasks.
+
+
+Andrew Gelman provides a critical perspective on Breiman's work. Gelman critiques Breiman's dismissal of Bayesian methods, suggesting that despite Breiman's misconceptions, his broader perspectives and contributions remain valuable. Gelman proposes applying Breiman’s algorithmic perspective to current statistical problems, emphasizing hierarchical modeling, model checking, and black-box computing. He agrees with Breiman on the importance of data usage and notes the effectiveness of modern big-data approaches, such as regularization. Gelman also identifies a division in statistical thinking between complex modeling and reduced-form approaches, observing that both of Breiman's cultures fall within the complex modeling approach. Gelman proposes applying Breiman’s algorithmic perspective to current statistical problems in areas such as generalizing inference to new predictive problems, model checking, and addressing the challenges of black-box computing. These applications highlight the need to respect the unknown nature of data mechanisms and the importance of continuously improving models based on their fit to the data.
+
+In recent years, there has been a significant convergence of econometrics and machine learning, as explored in the work of Guido Imbens and Susan Athey. Initially, these disciplines seemed to operate in silos, focusing on data analysis without significant interaction. However, recent developments have seen a growing synergy between the two, particularly in the realm of econometrics. Econometricians, who traditionally prioritized causal effect estimation over prediction, have increasingly adopted machine learning algorithms as valuable tools for economic data analysis.
+
+Econometrics has historically emphasized the identification and estimation of causal effects. This focus manifested in methodologies that prioritized building credible cases for causal effect estimation over mere predictive accuracy. In their paper, they presented Two key examples illustrate this approach. First one is Estimating Supply and Demand Functions, and second one is Returns to Education in detail. Imbens and Athey conclude as the integration of machine learning methods into econometric causal modeling has been a game-changer. The adoption of algorithmic machine learning methods has enabled more effective estimation of average treatment effects and treatment effects conditional on observable characteristics. This development has enhanced the accuracy and depth of econometric analyses.
+
+The integration of machine learning in econometrics has been a game-changer, especially in areas such as economics, healthcare and public policy. In healthcare, machine learning methods are being used to estimate treatment effects, particularly in situations where randomized controlled trials are not feasible. The use of machine learning in evaluating the effectiveness of new drugs or medical procedures. By applying advanced algorithms to large healthcare datasets, researchers can control for a wide range of confounding variables, thereby isolating the causal impact of a treatment. Another area where the fusion of econometrics and machine learning has been impactful is in analyzing the effectiveness of environmental policies. For instance, assessing the impact of carbon taxes or cap-and-trade policies on reducing greenhouse gas emissions requires a nuanced understanding of causal relationships in complex economic and environmental systems. Machine learning models, equipped with advanced prediction capabilities, are being integrated with econometric models to analyze the causal effects of these policies. By processing large datasets, including satellite data and emissions records, machine learning algorithms can uncover patterns and relationships that traditional econometric models might miss.
+
+
+Reflecting on the developments over the past two decades, it is evident that Breiman's perspective has gained substantial traction. The rise of deep learning and machine learning, particularly in prediction and classification tasks, highlights the increasing prominence of the algorithmic approach. This shift has led to algorithmic modeling contributing insights into various scientific fields and establishing predictive accuracy as a primary tool for model evaluation. there has been considerable progress in merging the machine learning algorithms with econometric methods. Developers of these algorithms have expanded their focus to include causal objectives and restrictions. This expansion has opened new avenues, such as causal discovery, demonstrating a fruitful convergence and mutual enrichment between the two cultures.
+
+
+In conclusion, the dichotomy between data and algorithmic modeling cultures represents a fundamental aspect of statistical modeling, each with its strengths and limitations. The evolution of these cultures underscores the dynamic nature of statistical methodologies and their impact on our understanding of data in the modern world. This continuous dialogue between different perspectives enriches the field, paving the way for more robust and versatile statistical practices.
+
+
+** include and clarify citations and quatations in the thext above
 
 http://www2.math.uu.se/~thulin/mm/breiman.pdf
 
@@ -25,32 +55,22 @@ http://www.stat.columbia.edu/~gelman/research/published/gelman_breiman.pdf
 
 https://muse.jhu.edu/article/799731/pdf
 
-https://muse.jhu.edu/issue/45147
 
 Leo Breiman [@Breiman_2001]: [Statistical Modeling: The Two Cultures](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726):
 
-> For instance, in the Journal of the American Statistical Association (JASA), virtually every article contains a statement of the form: *Assume that the data are generated by the following model:... I am deeply troubled by the current and past use of data models in applications, where quantitative conclusions are drawn and perhaps policy decisions made.*
->
->... assume the data is generated by independent draws from the model*
->
->$$
->y=b_{0}+\sum_{1}^{M} b_{m} x_{m}+\varepsilon
->$$
->
->where the coefficients are to be estimated. The error term is N(0, $\sigma^2$) and $\sigma^2$ is to be estimated. Given that the data is generated this way, elegant tests of hypotheses,confidence intervals,distributions of the residual sum-of-squares and asymptotics can be derived. This made the model attractive in terms of the mathematics involved. This theory was used both by academics statisticians and others to derive significance levels for coefficients on the basis of model (R), with little consideration as to whether the data on hand could have been generated by a linear model. Hundreds, perhaps thousands of articles were published claiming proof of something or other because the coefficient was significant at the 5% level...
->
->...With the insistence on data models, multivariate analysis tools in statistics are frozen at discriminant analysis and logistic regression in classification and multiple linear regression in regression. Nobody really believes that multivariate data is multivariate normal, but that data model occupies a large number of pages in every graduate text book on multivariate statistical analysis...
->
+**The Dichotomy of Statistical Modeling: Parametric vs Nonparametric Models**
 
-According to Breiman, there are two "cultures":  
-**The Data Modeling Culture** : One assumes that the data are generated by a given stochastic data model (econometrics) ...  
-**Algorithmic Modeling Culture**: One uses algorithmic models and treats the data mechanism as unknown (machine learning) ...    
+Leo Breiman's two cultures in statistical modeling, the data model approach and the algorithmic model approach, have a complex relationship with parametric and nonparametric models. The data model approach often leans towards parametric models, which operate under specific assumptions about the data's underlying distribution, like normal or binomial distributions. These models, including linear regression, logistic regression, ANOVA, polynomial regression, and Poisson regression, are pivotal in estimating distribution parameters such as mean and standard deviation. They are known for their interpretability and efficiency in making predictions or inferences about the population, especially when the data closely adheres to their underlying assumptions. However, their effectiveness diminishes when these assumptions are violated, potentially leading to biased or inaccurate results.
 
-He argues that the focus in the statistical community on data models has:
-  
-- Led to irrelevant theory and questionable scientific conclusions; 
-- Kept statisticians from using more suitable algorithmic models; 
-- Prevented statisticians from working on exciting new problems.  
+On the other hand, the algorithmic model approach aligns more closely with nonparametric models, which do not assume a specific distribution for the data. This approach includes flexible and robust techniques such as k-Nearest Neighbors, Spearman rank correlation, kernel density estimation, and Decision Trees like CART. Nonparametric models are particularly useful when the data distribution is unknown or when it does not conform to the assumptions required by parametric models. They are often the preferred choice for handling ordinal or categorical data, or in situations where the assumptions of parametric models are not met. While nonparametric models are celebrated for their adaptability to a wide range of data structures, they can be less efficient and might possess lower statistical power compared to parametric models. These models, which include decision trees and neural networks, are adept at modeling complex, nonlinear relationships that parametric models might struggle with. However, their flexibility comes with the need for larger datasets for effective learning and a general trade-off in interpretability compared to parametric models
+
+
+It's important to recognize that the alignments between Leo Breiman's two cultures in statistical modeling and parametric or nonparametric models are not rigid. The data model approach, which traditionally focuses on inference and understanding the underlying model, can incorporate nonparametric models. Conversely, the algorithmic approach, known for prioritizing predictive accuracy and often treating the model as a black box, can also utilize parametric models, depending on the specific context. This indicates that the decision between parametric and nonparametric models transcends mere preference, evolving into a strategic choice influenced by data characteristics and research objectives. While parametric models excel in estimating parameters within a known probability distribution, offering clarity and efficiency in many scenarios, nonparametric models provide a versatile and flexible alternative, especially valuable when dealing with data that does not conform to specific distributional assumptions or when the distribution is unknown.
+
+
+ 
+
+## Parametric Estimations
 
 In **parametric econometrics** we assume that the data come from a generating process that takes the following form:
 
@@ -73,7 +93,7 @@ Nonparametric econometrics makes the link between the two: **Machine Learning: a
    
 To see the difference between two "cultures", we start with parametric modeling in classification problems.
 
-## Parametric Estimations
+
 
 So far we have only considered models for numeric response variables. What happens if the response variable is categorical? Can we use linear models in these situations? Yes, we can.  To understand how, let's look at the model that we have been using, ordinary least-square (OLS) regression, which is actually a specific case of the more general, generalized linear model (GLM).  So, in general, GLMs relate the mean of the response to a linear combination of the predictors, $\eta(x)$, through the use of a link function, $g()$. That is,  
 

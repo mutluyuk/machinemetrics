@@ -44,9 +44,11 @@ https://threadreaderapp.com/thread/1584515105374339073.html
 
 https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance
 
-Although conceptually the variance-bias trade-off seems intuitive, at least mathematically, we need to ask another practical question: Can we see the components of the decomposed MSPE? We may not see it in the actual data ( as we donot know real function and irreducible error) but we can show it with simulations.  
+## Simulated Breakdown of the MSPE
+ 
+Although the variance-bias trade-off conceptually seems intuitive, at least from a mathematical standpoint, another practical question arises: Is it possible to observe the components of the decomposed Mean Squared Prediction Error (MSPE)? In real-world data, observing these components is challenging as we do not know the true function and irreducible error. However, we can illustrate this concept through simulations.
 
-We will use the same example we worked with before.  We have years of schooling , which changes between 9 and 16.  We sample from this "population" multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.
+For our analysis, we revisit the example discussed earlier. We consider years of schooling, varying between 9 and 16 years, as our variable of interest. From this 'population', we repeatedly take random samples. The objective now is to utilize each sample to develop a predictor or a set of prediction rules. These rules aim to predict a number or a series of numbers (years of schooling in this simulation) that are also drawn from the same population. By doing so, we can effectively simulate and analyze the decomposition of the MSPE, providing a clearer understanding of its components and their interplay.
 
 
 ```r
