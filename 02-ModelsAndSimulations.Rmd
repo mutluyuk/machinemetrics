@@ -3,7 +3,7 @@
 
 In the rapidly evolving landscape of data analysis, the ability to effectively model and interpret data stands as a cornerstone of insight and innovation. 'Spectrum of Data Modeling' offers on an exploratory journey through the multifaceted world of data modeling, weaving together the threads of statistical and machine learning approaches, the nuances of parametric and nonparametric models, and the distinct realms of predictive and causal models. This chapter aims to demystify the complexities inherent in choosing the right modeling approach, delving into the critical aspects of model selection and the transformative role of simulation in understanding and predicting complex systems. As we navigate through these diverse methodologies and their applications, we aim to provide a comprehensive guide that not only enlightens the theoretical underpinnings but also illuminates their practical implications in various fields.
 
-## Statistical vs. Machine Learning Approaches
+## Statistical vs. Machine Learning Approaches:
 
 In the modern era of data-driven decision-making, comprehending the array of tools and techniques for data analysis is crucial. Machine learning and statistical modeling stand out as two prominent techniques in this domain. While they share similarities, it's important to understand that they are distinct in their purposes and goals, each contributing uniquely to the field of data analysis.
 

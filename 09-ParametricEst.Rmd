@@ -2,7 +2,7 @@
 
 # Parametric Estimations - Basics
 
-## The Dichotomy of Statistical Modeling: Data versus Algorithmic Approaches
+## The Dichotomy of Statistical Modeling: Data versus Algorithmic Approaches:
 
 In the realm of statistical modeling, a fundamental dichotomy exists, deeply rooted in the philosophies of data and algorithmic modeling. This section delves into these two distinct cultures, tracing their origins and exploring their implications in the field of statistics, reflecting on the critical insights provided by various experts in their review of Leo Breiman's influential work in the Special Issue: Commentaries on Breimen’s Two Cultures paper (https://muse.jhu.edu/issue/45147).
 
