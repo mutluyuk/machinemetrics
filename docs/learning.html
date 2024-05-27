@@ -194,7 +194,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
 <li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
-<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#maximum-likelihood-estimation-mle"><i class="fa fa-check"></i><b>3.5.3</b> Maximum Likelihood Estimation (MLE)}</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
 <ul>
@@ -207,18 +207,21 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error:</a>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
-<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
-<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error"><i class="fa fa-check"></i><b>5.1</b> Estimation error</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#efficiency"><i class="fa fa-check"></i><b>5.2</b> Efficiency</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#mean-square-error"><i class="fa fa-check"></i><b>5.3</b> Mean Square Error</a></li>
+<li class="chapter" data-level="5.4" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.4</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.5" data-path="error.html"><a href="error.html#technical-points-and-proofs"><i class="fa fa-check"></i><b>5.5</b> Technical points and proofs</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#simulated-breakdown-of-the-mspe"><i class="fa fa-check"></i><b>6.1</b> Simulated Breakdown of the MSPE</a></li>
-<li class="chapter" data-level="6.2" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.2</b> Biased estimator as a predictor</a></li>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#formal-definition"><i class="fa fa-check"></i><b>6.1</b> Formal Definition</a></li>
+<li class="chapter" data-level="6.2" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#simulated-breakdown-of-the-mspe"><i class="fa fa-check"></i><b>6.2</b> Simulated Breakdown of the MSPE</a></li>
+<li class="chapter" data-level="6.3" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.3</b> Biased estimator as a predictor</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting:</a></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
 <li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
 <li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
 <ul>
@@ -404,7 +407,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="learning" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Learning<a href="learning.html#learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Imagine a child named Alex who occasionally gets sick after eating but doesn’t know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.</p>
+<p>Imagine a young and curious person named Alex who occasionally gets sick after eating but doesn’t know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.</p>
 <p>Data Collection: Each time Alex eats, he makes a list of everything he’s consumed that day. He also records how he felt afterward, specifically noting any days he felt ill.</p>
 <p>Pattern Recognition: After several weeks, Alex starts to see a pattern. Every time he ate dishes containing garlic, he felt sick within a few hours. However, on days he avoided garlic, he generally felt fine.</p>
 <p>Making Predictions: With this new insight, Alex hypothesizes that garlic might be the cause of his discomfort. To test this theory, he deliberately avoids garlic for a few days and notes his health. Conversely, on another day, with all other foods being consistent, he consumes garlic to see if the reaction recurs.</p>

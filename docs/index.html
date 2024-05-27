@@ -194,7 +194,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
 <li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
-<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#maximum-likelihood-estimation-mle"><i class="fa fa-check"></i><b>3.5.3</b> Maximum Likelihood Estimation (MLE)}</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
 <ul>
@@ -207,18 +207,21 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error:</a>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
-<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.2</b> Prediction error- MSPE</a></li>
-<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>5.3</b> Technical points about MSE and MSPE</a></li>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error"><i class="fa fa-check"></i><b>5.1</b> Estimation error</a></li>
+<li class="chapter" data-level="5.2" data-path="error.html"><a href="error.html#efficiency"><i class="fa fa-check"></i><b>5.2</b> Efficiency</a></li>
+<li class="chapter" data-level="5.3" data-path="error.html"><a href="error.html#mean-square-error"><i class="fa fa-check"></i><b>5.3</b> Mean Square Error</a></li>
+<li class="chapter" data-level="5.4" data-path="error.html"><a href="error.html#prediction-error--mspe"><i class="fa fa-check"></i><b>5.4</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="5.5" data-path="error.html"><a href="error.html#technical-points-and-proofs"><i class="fa fa-check"></i><b>5.5</b> Technical points and proofs</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>6</b> Bias-Variance Trade-off</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#simulated-breakdown-of-the-mspe"><i class="fa fa-check"></i><b>6.1</b> Simulated Breakdown of the MSPE</a></li>
-<li class="chapter" data-level="6.2" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.2</b> Biased estimator as a predictor</a></li>
+<li class="chapter" data-level="6.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#formal-definition"><i class="fa fa-check"></i><b>6.1</b> Formal Definition</a></li>
+<li class="chapter" data-level="6.2" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#simulated-breakdown-of-the-mspe"><i class="fa fa-check"></i><b>6.2</b> Simulated Breakdown of the MSPE</a></li>
+<li class="chapter" data-level="6.3" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>6.3</b> Biased estimator as a predictor</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting:</a></li>
+<li class="chapter" data-level="7" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>7</b> Overfitting</a></li>
 <li class="chapter" data-level="8" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>8</b> Regression v.s. Classification</a></li>
 <li class="chapter" data-level="9" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>9</b> Parametric Estimations - Basics</a>
 <ul>
@@ -406,7 +409,7 @@ div.csl-indent {
 <h1 class="title">Causal MachineMetrics</h1>
 <h2 class="subtitle"><em>for Economists, Social and Health Scientists</em></h2>
 <p class="author"><em><a href="https://yaydede.github.io/">Yigit Aydede</a> and <a href="https://www.mutluyuksel.com/">Mutlu Yuksel</a></em></p>
-<p class="date"><em>This version: 2024-01-17</em></p>
+<p class="date"><em>This version: 2024-05-27</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>

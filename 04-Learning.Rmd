@@ -1,7 +1,7 @@
 
 # Learning 
 
-Imagine a child named Alex who occasionally gets sick after eating but doesn't know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.
+Imagine a young and curious person named Alex who occasionally gets sick after eating but doesn't know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.
 
 Data Collection: Each time Alex eats, he makes a list of everything he's consumed that day. He also records how he felt afterward, specifically noting any days he felt ill.
 

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Note that if you use only unique set of samples, you can get exact results using following commands | Causal MachineMetrics</title>
+  <meta name="description" content="Chapter 6 Note that if you use only unique set of samples, you can get exact results using following commands | Causal MachineMetrics" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Note that if you use only unique set of samples, you can get exact results using following commands | Causal MachineMetrics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/png/MachineMetrics.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Note that if you use only unique set of samples, you can get exact results using following commands | Causal MachineMetrics" />
+  
+  
+  <meta name="twitter:image" content="/png/MachineMetrics.png" />
+
+<meta name="author" content="Yigit Aydede and Mutlu Yuksel" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="error.html"/>
+<link rel="next" href="bias-variance-trade-off.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">.</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book-is-different"><i class="fa fa-check"></i>Why this book is different?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-manuscript"><i class="fa fa-check"></i>Structure of Manuscript:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-can-use-this-book"><i class="fa fa-check"></i>Who Can Use This Book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction:</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prediction-vs.-estimation"><i class="fa fa-check"></i><b>1.1</b> Prediction vs. Estimation:</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#where-can-you-use-the-covered-topics-in-social-sciences"><i class="fa fa-check"></i><b>1.2</b> Where can you use the covered topics in Social Sciences?:</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#translation-of-concepts-different-terminology"><i class="fa fa-check"></i><b>1.3</b> Translation of Concepts: Different Terminology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#is-machine-learning-better"><i class="fa fa-check"></i><b>1.4</b> Is Machine Learning Better?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html"><i class="fa fa-check"></i><b>2</b> Spectrum of Data Modeling:</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#statistical-vs.-machine-learning-approaches"><i class="fa fa-check"></i><b>2.1</b> Statistical vs. Machine Learning Approaches:</a></li>
+<li class="chapter" data-level="2.2" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#parametric-and-nonparametric-models"><i class="fa fa-check"></i><b>2.2</b> Parametric and Nonparametric Models:</a></li>
+<li class="chapter" data-level="2.3" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#predictive-vs.-causal-models"><i class="fa fa-check"></i><b>2.3</b> Predictive vs. Causal Models:</a></li>
+<li class="chapter" data-level="2.4" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#model-selection"><i class="fa fa-check"></i><b>2.4</b> Model Selection:</a></li>
+<li class="chapter" data-level="2.5" data-path="spectrum-of-data-modeling.html"><a href="spectrum-of-data-modeling.html#simulation"><i class="fa fa-check"></i><b>2.5</b> Simulation:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="counterfactual.html"><a href="counterfactual.html"><i class="fa fa-check"></i><b>3</b> Counterfactual:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="counterfactual.html"><a href="counterfactual.html#qualitative-and-quantitative-research-methods"><i class="fa fa-check"></i><b>3.1</b> Qualitative and Quantitative research methods:</a></li>
+<li class="chapter" data-level="3.2" data-path="counterfactual.html"><a href="counterfactual.html#quantitative---research-methods"><i class="fa fa-check"></i><b>3.2</b> Quantitative - Research methods :</a></li>
+<li class="chapter" data-level="3.3" data-path="counterfactual.html"><a href="counterfactual.html#data-and-visualization"><i class="fa fa-check"></i><b>3.3</b> Data and visualization</a></li>
+<li class="chapter" data-level="3.4" data-path="counterfactual.html"><a href="counterfactual.html#correlation"><i class="fa fa-check"></i><b>3.4</b> Correlation</a></li>
+<li class="chapter" data-level="3.5" data-path="counterfactual.html"><a href="counterfactual.html#effect-of-x-on-y-regression"><i class="fa fa-check"></i><b>3.5</b> Effect of X on Y / Regression</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="counterfactual.html"><a href="counterfactual.html#how-can-we-estimate-the-population-parameters-beta_0-and-beta_1"><i class="fa fa-check"></i><b>3.5.1</b> How can we estimate the population parameters, <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span>?</a></li>
+<li class="chapter" data-level="3.5.2" data-path="counterfactual.html"><a href="counterfactual.html#predicting-y"><i class="fa fa-check"></i><b>3.5.2</b> Predicting <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="counterfactual.html"><a href="counterfactual.html#mle"><i class="fa fa-check"></i><b>3.5.3</b> MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="counterfactual.html"><a href="counterfactual.html#causal-effect"><i class="fa fa-check"></i><b>3.6</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="counterfactual.html"><a href="counterfactual.html#average-treatment-effectate"><i class="fa fa-check"></i><b>3.6.1</b> Average Treatment Effect(ATE)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="counterfactual.html"><a href="counterfactual.html#additional-treatment-effects"><i class="fa fa-check"></i><b>3.6.2</b> Additional Treatment Effects</a></li>
+<li class="chapter" data-level="3.6.3" data-path="counterfactual.html"><a href="counterfactual.html#selection-bias-and-heteregeneous-treatment-effect-bias"><i class="fa fa-check"></i><b>3.6.3</b> Selection Bias and Heteregeneous Treatment Effect Bias:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning.html"><a href="learning.html"><i class="fa fa-check"></i><b>4</b> Learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="learning.html"><a href="learning.html#learning-systems"><i class="fa fa-check"></i>Learning Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="error.html"><a href="error.html"><i class="fa fa-check"></i><b>5</b> Error</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="error.html"><a href="error.html#estimation-error---mse"><i class="fa fa-check"></i><b>5.1</b> Estimation error - MSE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html"><i class="fa fa-check"></i><b>6</b> Note that if you use only unique set of samples, you can get exact results using following commands</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#how-do-we-evaluate-and-compare-different-estimators-when-they-are-not-all-unbiased"><i class="fa fa-check"></i><b>6.1</b> How do we evaluate and compare different estimators when they are not all unbiased?</a></li>
+<li class="chapter" data-level="6.2" data-path="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#prediction-error--mspe"><i class="fa fa-check"></i><b>6.2</b> Prediction error- MSPE</a></li>
+<li class="chapter" data-level="6.3" data-path="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#technical-points-about-mse-and-mspe"><i class="fa fa-check"></i><b>6.3</b> Technical points about MSE and MSPE</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>7</b> Bias-Variance Trade-off</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#simulated-breakdown-of-the-mspe"><i class="fa fa-check"></i><b>7.1</b> Simulated Breakdown of the MSPE</a></li>
+<li class="chapter" data-level="7.2" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html#biased-estimator-as-a-predictor"><i class="fa fa-check"></i><b>7.2</b> Biased estimator as a predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="overfitting.html"><a href="overfitting.html"><i class="fa fa-check"></i><b>8</b> Overfitting:</a></li>
+<li class="chapter" data-level="9" data-path="regression-v.s.-classification.html"><a href="regression-v.s.-classification.html"><i class="fa fa-check"></i><b>9</b> Regression v.s. Classification</a></li>
+<li class="chapter" data-level="10" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html"><i class="fa fa-check"></i><b>10</b> Parametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#the-dichotomy-of-statistical-modeling-data-versus-algorithmic-approaches"><i class="fa fa-check"></i><b>10.1</b> The Dichotomy of Statistical Modeling: Data versus Algorithmic Approaches:</a></li>
+<li class="chapter" data-level="10.2" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#parametric-estimations"><i class="fa fa-check"></i><b>10.2</b> Parametric Estimations</a></li>
+<li class="chapter" data-level="10.3" data-path="parametric-estimations---basics.html"><a href="parametric-estimations---basics.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html"><i class="fa fa-check"></i><b>11</b> Nonparametric Estimations - Basics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#density-estimations"><i class="fa fa-check"></i><b>11.1</b> Density estimations</a></li>
+<li class="chapter" data-level="11.2" data-path="nonparametric-estimations---basics.html"><a href="nonparametric-estimations---basics.html#kernel-regression"><i class="fa fa-check"></i><b>11.2</b> Kernel regression</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html"><i class="fa fa-check"></i><b>12</b> Hyperparameter Tuning</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#training-and-validation"><i class="fa fa-check"></i><b>12.1</b> Training and Validation</a></li>
+<li class="chapter" data-level="12.2" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#splitting-the-data-randomly"><i class="fa fa-check"></i><b>12.2</b> Splitting the data randomly</a></li>
+<li class="chapter" data-level="12.3" data-path="hyperparameter-tuning.html"><a href="hyperparameter-tuning.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>12.3</b> k-fold cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html"><i class="fa fa-check"></i><b>13</b> Optimization Algorithms - Basics</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#brute-force-optimization"><i class="fa fa-check"></i><b>13.1</b> Brute-force optimization</a></li>
+<li class="chapter" data-level="13.2" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#derivative-based-methods"><i class="fa fa-check"></i><b>13.2</b> Derivative-based methods</a></li>
+<li class="chapter" data-level="13.3" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#ml-estimation-with-logistic-regression"><i class="fa fa-check"></i><b>13.3</b> ML Estimation with logistic regression</a></li>
+<li class="chapter" data-level="13.4" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#gradient-descent-algorithm"><i class="fa fa-check"></i><b>13.4</b> Gradient Descent Algorithm</a></li>
+<li class="chapter" data-level="13.5" data-path="optimization-algorithms---basics.html"><a href="optimization-algorithms---basics.html#optimization-with-r"><i class="fa fa-check"></i><b>13.5</b> Optimization with R</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="prediction-intervals.html"><a href="prediction-intervals.html"><i class="fa fa-check"></i><b>14</b> Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="prediction-intervals.html"><a href="prediction-intervals.html#prediction-interval-for-unbiased-ols-predictor"><i class="fa fa-check"></i><b>14.1</b> Prediction interval for unbiased OLS predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="interpretability.html"><a href="interpretability.html"><i class="fa fa-check"></i><b>15</b> Interpretability</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="interpretability.html"><a href="interpretability.html#interpretable-vs-noninterpretable-models"><i class="fa fa-check"></i><b>15.1</b> Interpretable vs NonInterpretable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="shrinkage-models.html"><a href="shrinkage-models.html"><i class="fa fa-check"></i><b>16</b> Shrinkage Models</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="shrinkage-models.html"><a href="shrinkage-models.html#ridge"><i class="fa fa-check"></i><b>16.1</b> Ridge</a></li>
+<li class="chapter" data-level="16.2" data-path="shrinkage-models.html"><a href="shrinkage-models.html#lasso"><i class="fa fa-check"></i><b>16.2</b> Lasso</a></li>
+<li class="chapter" data-level="16.3" data-path="shrinkage-models.html"><a href="shrinkage-models.html#adaptive-lasso"><i class="fa fa-check"></i><b>16.3</b> Adaptive Lasso</a></li>
+<li class="chapter" data-level="16.4" data-path="shrinkage-models.html"><a href="shrinkage-models.html#sparsity"><i class="fa fa-check"></i><b>16.4</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="regression-trees.html"><a href="regression-trees.html"><i class="fa fa-check"></i><b>17</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="regression-trees.html"><a href="regression-trees.html#cart---classification-tree"><i class="fa fa-check"></i><b>17.1</b> CART - Classification Tree</a></li>
+<li class="chapter" data-level="17.2" data-path="regression-trees.html"><a href="regression-trees.html#pruning"><i class="fa fa-check"></i><b>17.2</b> Pruning</a></li>
+<li class="chapter" data-level="17.3" data-path="regression-trees.html"><a href="regression-trees.html#regression-tree"><i class="fa fa-check"></i><b>17.3</b> Regression Tree</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ensemble-methods.html"><a href="ensemble-methods.html"><i class="fa fa-check"></i><b>18</b> Ensemble Methods</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#bagging"><i class="fa fa-check"></i><b>18.1</b> Bagging</a></li>
+<li class="chapter" data-level="18.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting"><i class="fa fa-check"></i><b>18.2</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#adaboost"><i class="fa fa-check"></i><b>18.2.1</b> AdaBoost</a></li>
+<li class="chapter" data-level="18.2.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#xgboost"><i class="fa fa-check"></i><b>18.2.2</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#ensemble-applications"><i class="fa fa-check"></i><b>18.3</b> Ensemble Applications</a></li>
+<li class="chapter" data-level="18.4" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification"><i class="fa fa-check"></i><b>18.4</b> Classification</a></li>
+<li class="chapter" data-level="18.5" data-path="ensemble-methods.html"><a href="ensemble-methods.html#regression"><i class="fa fa-check"></i><b>18.5</b> Regression</a></li>
+<li class="chapter" data-level="18.6" data-path="ensemble-methods.html"><a href="ensemble-methods.html#exploration"><i class="fa fa-check"></i><b>18.6</b> Exploration</a></li>
+<li class="chapter" data-level="18.7" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-applications"><i class="fa fa-check"></i><b>18.7</b> Boosting Applications</a>
+<ul>
+<li class="chapter" data-level="18.7.1" data-path="ensemble-methods.html"><a href="ensemble-methods.html#random-search-with-parallel-processing"><i class="fa fa-check"></i><b>18.7.1</b> Random search with parallel processing</a></li>
+<li class="chapter" data-level="18.7.2" data-path="ensemble-methods.html"><a href="ensemble-methods.html#boosting-vs.-others"><i class="fa fa-check"></i><b>18.7.2</b> Boosting vs. Others</a></li>
+<li class="chapter" data-level="18.7.3" data-path="ensemble-methods.html"><a href="ensemble-methods.html#classification-with-xgboost"><i class="fa fa-check"></i><b>18.7.3</b> Classification with XGBoost</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="causal-effect-1.html"><a href="causal-effect-1.html"><i class="fa fa-check"></i><b>19</b> Causal Effect</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="causal-effect-1.html"><a href="causal-effect-1.html#random-experiment"><i class="fa fa-check"></i><b>19.1</b> Random experiment</a></li>
+<li class="chapter" data-level="19.2" data-path="causal-effect-1.html"><a href="causal-effect-1.html#iv"><i class="fa fa-check"></i><b>19.2</b> IV</a></li>
+<li class="chapter" data-level="19.3" data-path="causal-effect-1.html"><a href="causal-effect-1.html#diffd"><i class="fa fa-check"></i><b>19.3</b> DiffD</a></li>
+<li class="chapter" data-level="19.4" data-path="causal-effect-1.html"><a href="causal-effect-1.html#rd"><i class="fa fa-check"></i><b>19.4</b> RD</a></li>
+<li class="chapter" data-level="19.5" data-path="causal-effect-1.html"><a href="causal-effect-1.html#synthetic-control"><i class="fa fa-check"></i><b>19.5</b> Synthetic control</a></li>
+<li class="chapter" data-level="19.6" data-path="causal-effect-1.html"><a href="causal-effect-1.html#doubledebiased-lassomethods"><i class="fa fa-check"></i><b>19.6</b> Double/Debiased Lasso/Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>20</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-tree"><i class="fa fa-check"></i><b>20.1</b> Causal Tree</a></li>
+<li class="chapter" data-level="20.2" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#causal-forest"><i class="fa fa-check"></i><b>20.2</b> Causal Forest</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html"><i class="fa fa-check"></i><b>21</b> Model selection and Sparsity</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#model-selection-1"><i class="fa fa-check"></i><b>21.1</b> Model selection</a></li>
+<li class="chapter" data-level="21.2" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#dropping-a-variable-in-a-regression"><i class="fa fa-check"></i><b>21.2</b> Dropping a variable in a regression</a></li>
+<li class="chapter" data-level="21.3" data-path="model-selection-and-sparsity.html"><a href="model-selection-and-sparsity.html#sparsity-1"><i class="fa fa-check"></i><b>21.3</b> Sparsity</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="classification-1.html"><a href="classification-1.html"><i class="fa fa-check"></i><b>22</b> Classification</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="classification-1.html"><a href="classification-1.html#nonparametric-classifier---knn"><i class="fa fa-check"></i><b>22.1</b> Nonparametric Classifier - kNN</a></li>
+<li class="chapter" data-level="22.2" data-path="classification-1.html"><a href="classification-1.html#linear-classifiers"><i class="fa fa-check"></i><b>22.2</b> Linear classifiers</a></li>
+<li class="chapter" data-level="22.3" data-path="classification-1.html"><a href="classification-1.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>22.3</b> k-Nearest Neighbors</a></li>
+<li class="chapter" data-level="22.4" data-path="classification-1.html"><a href="classification-1.html#tuning-in-classification"><i class="fa fa-check"></i><b>22.4</b> Tuning in Classification</a></li>
+<li class="chapter" data-level="22.5" data-path="classification-1.html"><a href="classification-1.html#confusion-matrix"><i class="fa fa-check"></i><b>22.5</b> Confusion matrix</a></li>
+<li class="chapter" data-level="22.6" data-path="classification-1.html"><a href="classification-1.html#performance-measures"><i class="fa fa-check"></i><b>22.6</b> Performance measures</a></li>
+<li class="chapter" data-level="22.7" data-path="classification-1.html"><a href="classification-1.html#roc-curve"><i class="fa fa-check"></i><b>22.7</b> ROC Curve</a></li>
+<li class="chapter" data-level="22.8" data-path="classification-1.html"><a href="classification-1.html#auc---area-under-the-curve"><i class="fa fa-check"></i><b>22.8</b> AUC - Area Under the Curve</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html"><i class="fa fa-check"></i><b>23</b> Causal Inference for Time Series</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#arima-models"><i class="fa fa-check"></i><b>23.1</b> ARIMA models</a></li>
+<li class="chapter" data-level="23.2" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#hyndman-khandakar-algorithm"><i class="fa fa-check"></i><b>23.2</b> Hyndman-Khandakar algorithm</a></li>
+<li class="chapter" data-level="23.3" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#ts-plots"><i class="fa fa-check"></i><b>23.3</b> TS Plots</a></li>
+<li class="chapter" data-level="23.4" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#box-cox-transformation"><i class="fa fa-check"></i><b>23.4</b> Box-Cox transformation</a></li>
+<li class="chapter" data-level="23.5" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#modeling-arima"><i class="fa fa-check"></i><b>23.5</b> Modeling ARIMA</a></li>
+<li class="chapter" data-level="23.6" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#grid-search-for-arima"><i class="fa fa-check"></i><b>23.6</b> Grid search for ARIMA</a></li>
+<li class="chapter" data-level="23.7" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#hyperparameter-tuning-with-time-series-data"><i class="fa fa-check"></i><b>23.7</b> Hyperparameter tuning with time-series data:</a></li>
+<li class="chapter" data-level="23.8" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#speed"><i class="fa fa-check"></i><b>23.8</b> Speed</a></li>
+<li class="chapter" data-level="23.9" data-path="causal-inference-for-time-series.html"><a href="causal-inference-for-time-series.html#ci-for-ts"><i class="fa fa-check"></i><b>23.9</b> CI for TS</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="causal-forecasting.html"><a href="causal-forecasting.html"><i class="fa fa-check"></i><b>24</b> Causal Forecasting</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="causal-forecasting.html"><a href="causal-forecasting.html#time-series-embedding"><i class="fa fa-check"></i><b>24.1</b> Time Series Embedding</a></li>
+<li class="chapter" data-level="24.2" data-path="causal-forecasting.html"><a href="causal-forecasting.html#var-for-recursive-forecasting"><i class="fa fa-check"></i><b>24.2</b> VAR for Recursive Forecasting</a></li>
+<li class="chapter" data-level="24.3" data-path="causal-forecasting.html"><a href="causal-forecasting.html#embedding-for-direct-forecast"><i class="fa fa-check"></i><b>24.3</b> Embedding for Direct Forecast</a></li>
+<li class="chapter" data-level="24.4" data-path="causal-forecasting.html"><a href="causal-forecasting.html#random-forest"><i class="fa fa-check"></i><b>24.4</b> Random Forest</a></li>
+<li class="chapter" data-level="24.5" data-path="causal-forecasting.html"><a href="causal-forecasting.html#rolling-and-expanding-windows"><i class="fa fa-check"></i><b>24.5</b> Rolling and expanding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html"><i class="fa fa-check"></i><b>25</b> ATE with Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html#support-vector-machine"><i class="fa fa-check"></i><b>25.1</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="25.2" data-path="ate-with-support-vector-machine.html"><a href="ate-with-support-vector-machine.html#ate-with-svm"><i class="fa fa-check"></i><b>25.2</b> ATE with SVM</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>26</b> Neural Networks</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---the-idea"><i class="fa fa-check"></i><b>26.1</b> Neural Network - the idea</a></li>
+<li class="chapter" data-level="26.2" data-path="neural-networks.html"><a href="neural-networks.html#backpropagation"><i class="fa fa-check"></i><b>26.2</b> Backpropagation</a></li>
+<li class="chapter" data-level="26.3" data-path="neural-networks.html"><a href="neural-networks.html#neural-network---more-inputs"><i class="fa fa-check"></i><b>26.3</b> Neural Network - More inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html"><i class="fa fa-check"></i><b>27</b> Graphical Network Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#fundementals"><i class="fa fa-check"></i><b>27.1</b> Fundementals</a></li>
+<li class="chapter" data-level="27.2" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#covariance"><i class="fa fa-check"></i><b>27.2</b> Covariance</a></li>
+<li class="chapter" data-level="27.3" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#correlation-1"><i class="fa fa-check"></i><b>27.3</b> Correlation</a></li>
+<li class="chapter" data-level="27.4" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#semi-partial-correlation"><i class="fa fa-check"></i><b>27.4</b> Semi-partial Correlation</a></li>
+<li class="chapter" data-level="27.5" data-path="graphical-network-analysis.html"><a href="graphical-network-analysis.html#regularized-covariance-matrix"><i class="fa fa-check"></i><b>27.5</b> Regularized Covariance Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="decompositions.html"><a href="decompositions.html"><i class="fa fa-check"></i><b>28</b> Decompositions</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="decompositions.html"><a href="decompositions.html#matrix-decomposition"><i class="fa fa-check"></i><b>28.1</b> Matrix Decomposition</a></li>
+<li class="chapter" data-level="28.2" data-path="decompositions.html"><a href="decompositions.html#eigenvectors-and-eigenvalues"><i class="fa fa-check"></i><b>28.2</b> Eigenvectors and eigenvalues</a></li>
+<li class="chapter" data-level="28.3" data-path="decompositions.html"><a href="decompositions.html#singular-value-decomposition"><i class="fa fa-check"></i><b>28.3</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="28.4" data-path="decompositions.html"><a href="decompositions.html#moore-penrose-inverse"><i class="fa fa-check"></i><b>28.4</b> Moore-Penrose inverse</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html"><i class="fa fa-check"></i><b>29</b> Causal Component Analysis</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html#pca-principle-component-analysis"><i class="fa fa-check"></i><b>29.1</b> PCA (Principle Component Analysis)</a></li>
+<li class="chapter" data-level="29.2" data-path="causal-component-analysis.html"><a href="causal-component-analysis.html#factor-analysis"><i class="fa fa-check"></i><b>29.2</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>30</b> Smoothing</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="smoothing.html"><a href="smoothing.html#smooth-spline-regression"><i class="fa fa-check"></i><b>30.1</b> Smooth Spline Regression</a></li>
+<li class="chapter" data-level="30.2" data-path="smoothing.html"><a href="smoothing.html#multivariate-loess"><i class="fa fa-check"></i><b>30.2</b> Multivariate Loess</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="imbalanced-data.html"><a href="imbalanced-data.html"><i class="fa fa-check"></i><b>31</b> Imbalanced Data</a></li>
+<li class="chapter" data-level="32" data-path="text-based-causal-inference.html"><a href="text-based-causal-inference.html"><i class="fa fa-check"></i><b>32</b> Text-based Causal Inference</a></li>
+<li class="chapter" data-level="33" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html"><i class="fa fa-check"></i><b>33</b> Other Nonparametric Estimation methods</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#regression-splines"><i class="fa fa-check"></i><b>33.1</b> Regression splines</a></li>
+<li class="chapter" data-level="33.2" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#mars"><i class="fa fa-check"></i><b>33.2</b> MARS</a></li>
+<li class="chapter" data-level="33.3" data-path="other-nonparametric-estimation-methods.html"><a href="other-nonparametric-estimation-methods.html#gam"><i class="fa fa-check"></i><b>33.3</b> GAM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/mutluyuksel/machinemetrics" target="blank">2023 Initial Draft</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal MachineMetrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Note that if you use only unique set of samples, you can get exact results using following commands<a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>uniqsam &lt;- unique(samples)
+colMeans(uniqsam)
+apply(uniqsam, 2, var)
+cor(uniqsam)</p>
+<p>The observed expected value (mean) and variance of each random sample are nearly equal. It’s worth noting that increasing the number of observations in each sample from 5000 to a larger number would likely result in these means and variances becoming even more similar. Additionally, the correlations between each sample are nearly zero. Thus, we can conclude that the condition of independence and identical distribution (i.i.d) is satisfied.</p>
+<p>The next step involves determining if all three estimators are unbiased. For this, we apply each estimator to the random samples to estimate the population parameter. The code below is used to calculate the average value for a variable across multiple samples and then computes the overall average of these averages for each of the three estimators separately.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-1" tabindex="-1"></a><span class="co"># First Xbar : sample mean</span></span>
+<span id="cb9-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-2" tabindex="-1"></a>X_bar <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(samples)) <span class="co">#Container to have all Xbars</span></span>
+<span id="cb9-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)){</span>
+<span id="cb9-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-4" tabindex="-1"></a>  X_bar[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(samples[i,])<span class="sc">/</span><span class="fu">ncol</span>(samples)</span>
+<span id="cb9-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-5" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-7" tabindex="-1"></a>EX_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(X_bar)<span class="sc">/</span><span class="fu">length</span>(X_bar)</span>
+<span id="cb9-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb9-8" tabindex="-1"></a>EX_bar</span></code></pre></div>
+<pre><code>## [1] 12.49894</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-1" tabindex="-1"></a><span class="co"># Xhat: the half of the first person&#39;s and last person&#39;s years of schooling</span></span>
+<span id="cb11-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-2" tabindex="-1"></a>X_hat <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(samples))</span>
+<span id="cb11-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)){</span>
+<span id="cb11-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-4" tabindex="-1"></a>  X_hat[i] <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>samples[i,<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>samples[i,<span class="dv">10</span>]</span>
+<span id="cb11-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-5" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-7" tabindex="-1"></a>EX_hat <span class="ot">&lt;-</span> <span class="fu">sum</span>(X_hat)<span class="sc">/</span><span class="fu">length</span>(X_hat)</span>
+<span id="cb11-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb11-8" tabindex="-1"></a>EX_hat</span></code></pre></div>
+<pre><code>## [1] 12.466</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-1" tabindex="-1"></a><span class="co"># Xtilde: weighted average of first person and the last person&#39;s years of schooling</span></span>
+<span id="cb13-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-2" tabindex="-1"></a>X_tilde <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(samples))</span>
+<span id="cb13-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)){</span>
+<span id="cb13-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-4" tabindex="-1"></a>  X_tilde[i] <span class="ot">&lt;-</span> <span class="fl">0.25</span><span class="sc">*</span>samples[i,<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">0.75</span><span class="sc">*</span>samples[i,<span class="dv">2</span>]</span>
+<span id="cb13-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-5" tabindex="-1"></a>}</span>
+<span id="cb13-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-7" tabindex="-1"></a>EX_tilde <span class="ot">&lt;-</span> <span class="fu">sum</span>(X_tilde)<span class="sc">/</span><span class="fu">length</span>(X_tilde)</span>
+<span id="cb13-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb13-8" tabindex="-1"></a>EX_tilde</span></code></pre></div>
+<pre><code>## [1] 12.503</code></pre>
+<p>We can conclude all these three estimators are unbiased as <span class="math inline">\(\mathbf{E}(\bar{X})\approx \mathbf{E}(\hat{X}) \approx \mathbf{E}(\tilde{X}) \approx \mu_x \approx 12.5\)</span>.</p>
+<p>Increasing the number of observations in each sample, as well as the number of random samples, tends to bring these expected values closer to 12.5, the known population mean. However, it’s important to note that these sample averages are not exactly the same as the population average. The discrepancy between the estimated value (from the sample) and the actual value (from the population) is known as <strong>error</strong>. Ideally, we aim for this error to be zero. As the number of observations in our sample approaches the size of the entire population, this error tends to diminish. Since we can never fully ascertain the exact characteristics of the entire population, we operate under the assumption that this error gets closer to zero as our sample size increases.</p>
+<p>##Efficiency</p>
+<p>Up to this point, we have demonstrated that all three estimators provide unbiased estimates. This means that unbiasedness cannot be the sole criterion for determining the “best” estimator. We seek an estimator that closely approximates the population parameter with a higher likelihood, making the second criterion the choice of a relatively efficient estimator. In other words, the estimator’s probability density function should be concentrated around the true unknown population parameter, indicating that the estimator is <strong>efficient</strong>.</p>
+<p>Before discussing efficiency, it’s important to remind the difference between sample variance and sampling variance.</p>
+<p>We previously defined a <strong>sample mean</strong> as <span class="math inline">\(\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}=\mu_x\)</span>, and showed as unbiased estimator of unknown population mean, <span class="math inline">\(\mu\)</span>. The formula <span class="math inline">\(\sigma_{X}^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_{i} - \bar{X})^2\)</span> is the estimator for the unknown population variance <span class="math inline">\(Var(X)=\sigma^2\)</span>, which is also unbiased (we havenot shown this). This is known as the <strong>sample variance</strong>, calculated by averaging the squared differences of each observation from the sample mean. We use n-1 in the denominator instead of n to provide an unbiased estimate of the unknown population variance, <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>The sampling distribution refers to the distribution of a parameter (like a mean, variance, or coefficient) across many samples drawn from a specific population. This distribution of outcomes from an estimator has a <strong>sampling mean</strong> (used to check unbiasedness) and a variance, known as the estimator’s <strong>sampling variance</strong>, which is used to check efficiency.</p>
+<p>When each random sample with a mean <span class="math inline">\(\mu_x\)</span> and variance <span class="math inline">\(\sigma_{X}^2\)</span> is denoted as <span class="math inline">\(X_{i}\)</span>, then the sampling mean is <span class="math inline">\(E(\bar{X})=\frac{1}{n} \sum_{i=1}^{n} \bar{X_{i}}=\mu\)</span>, and the sampling variance is <span class="math inline">\(Var(\bar{X}) = \frac{1}{n} \sum_{i=1}^{n} (\bar{X_{i}} - \mu_x)^2=\frac{\sigma^2}{n}\)</span>. (check derivation in the last section).</p>
+<p>In summary, when we have various random samples drawn from a population with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(Var(X)=\sigma^2\)</span>, the sampling mean mirrors the population mean. However, the sampling variance equals the population variance, <span class="math inline">\(\sigma^2\)</span>, divided by the sample size, <span class="math inline">\(n\)</span>. Therefore, as the sample size increases, the sampling variance approaches zero, consistency.</p>
+<p>Generally, an estimator’s variance tends to decrease as the sample size increases (Law of Large Numbers). However, we cannot claim one estimator is more efficient than another solely based on a smaller variance if the variances are calculated from different sample sizes. When comparing two unbiased estimators of a parameter, the one with the smaller variance is considered relatively more efficient. Among all unbiased estimators, the one with the smallest variance is deemed the “best”. If an estimator is linear, unbiased, and has the smallest variance among all unbiased linear estimators for a given dataset then it is called the Best Linear Unbiased Estimator (BLUE).</p>
+<p>The term “relative efficiency” should be used when comparing different estimators that utilize the same information, meaning they are based on the same data and the same sample size. It’s not applicable when comparing variances of the same estimator derived from different sample sizes.</p>
+<p>Therefore, the unbiased estimator with the smallest variance is the best estimate for unknown population parameter. However, it’s important to note that while an unbiased estimator may be more efficient than another, this doesn’t guarantee it will always provide a more accurate estimate. It simply means that it’s more likely to be accurate than the less efficient one.</p>
+<p>Let’s examine our simulation to determine which of the three unbiased estimators has the smallest variance.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb15-1" tabindex="-1"></a><span class="fu">var</span>(X_bar)</span></code></pre></div>
+<pre><code>## [1] 0.5385286</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb17-1" tabindex="-1"></a><span class="fu">var</span>(X_hat)</span></code></pre></div>
+<pre><code>## [1] 2.590462</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb19-1" tabindex="-1"></a><span class="fu">var</span>(X_tilde)</span></code></pre></div>
+<pre><code>## [1] 3.27012</code></pre>
+<p>As seen comparing variances, the <span class="math inline">\(\bar{X}\)</span>, the sample mean, has the smallest variance.
+We showed the sample average is the most efficient of the all unbiased estimators.</p>
+<div id="how-do-we-evaluate-and-compare-different-estimators-when-they-are-not-all-unbiased" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> How do we evaluate and compare different estimators when they are not all unbiased?<a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#how-do-we-evaluate-and-compare-different-estimators-when-they-are-not-all-unbiased" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When comparing estimators, particularly when not all are unbiased, the choice isn’t straightforward. An unbiased estimator with high variance might not always be preferable over a biased estimator with low variance. For example, we might have two estimators for the same population characteristic: one is unbiased but has high variance, while the other is biased but with lower variance. The choice depends on our requirements. In applied microeconomics and social sciences, we often opt for an unbiased estimator, assuming that estimation errors, which on average cancel each other out, are not a significant concern. This is based on the expectation that the error term has an average value of zero with a variance of <span class="math inline">\(sigma^2\)</span>. However, in cases where large errors are intolerable, an estimator with lower variance may be chosen, even if it introduces a small bias. The nuances of this choice will be further explored through simulation in the next chapter. (We will show this in the next chapter with simulation as well, figure page 31 from Dougherty book)</p>
+<p>In other words, selecting an estimator often hinges on the cost associated with an error, relative to its size. This cost is quantified by a loss function. In economics, social and health sciences, a commonly used loss function is the mean square error (MSE).</p>
+<p>MSE is defined as the average of the squares of the differences between estimated values and actual values. It’s a useful measure for comparing the efficiency of different estimators, as it incorporates both the variance and bias of the estimators. This approach to comparing estimators based on their MSE is known as the MSE criteria. The MSE can be decomposed between its variance and bias as such:</p>
+<p><span class="math display">\[
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+\]</span></p>
+<p>You can find a detailed breakdown of the Mean Square Error (MSE) in the technical section at the end of this chapter. In typical economic models, various parameters play a crucial role, as the primary aim of econometrics is to quantify these parameters. In these models, the parameters form the core of the theoretical framework, providing the causal insights sought by economists. This focus is why econometric texts often concentrate on concepts like endogeneity and bias. In most studies, even when we cannot prove unbiasedness, we often assume it, relying on strong assumptions about the data, functional form, estimator or the methods used. Since obtaining unbiased parameters is a primary objective in econometrics, these texts might not always discuss the decomposition of MSE. Instead, they frequently discuss variance or its square root, known as the standard error.</p>
+<p>As can be easily seen, if all the estimators are unbiased, then the bias component in the Mean Square Error (MSE) will be zero. Therefore, comparing the smallest variance and comparing MSE for unbiased estimators will yield the same result.</p>
+<p><strong>Reminder:</strong></p>
+<p>Assuming a true linear model <span class="math inline">\(y=X \beta_0+\varepsilon\)</span>, estimate <span class="math inline">\(\hat{\beta}\)</span> and prediction <span class="math inline">\(\hat{y}=X \hat{\beta}\)</span>. One can define, with <span class="math inline">\(\|\)</span>.<span class="math inline">\(\|\)</span> the mean square error norm for example:</p>
+<ul>
+<li><p>Estimation error: <span class="math inline">\(\|\beta-\hat{\beta}\|\)</span></p></li>
+<li><p>Prediction error: <span class="math inline">\(\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|\)</span> (note this definition omits the part related to the error term )</p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123456</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb21-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-3" tabindex="-1"></a><span class="co"># Generate integer x values within the desired range</span></span>
+<span id="cb21-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>, <span class="dv">20</span>, <span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb21-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-6" tabindex="-1"></a><span class="co"># Generate y values with a positive shift for all 21 x values</span></span>
+<span id="cb21-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-7" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">21</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">30</span>)</span>
+<span id="cb21-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-8" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-9" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb21-10"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-10" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-11" tabindex="-1"></a><span class="co"># Calculate predicted values</span></span>
+<span id="cb21-12"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-12" tabindex="-1"></a>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(model)</span>
+<span id="cb21-13"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-13" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-14" tabindex="-1"></a><span class="co"># Adjust the y-limit for the plot</span></span>
+<span id="cb21-15"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-15" tabindex="-1"></a>y_lim_upper <span class="ot">&lt;-</span> <span class="fu">max</span>(y, predicted) <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb21-16"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-16" tabindex="-1"></a>y_lim_lower <span class="ot">&lt;-</span> <span class="fu">min</span>(y, predicted) <span class="sc">-</span> <span class="dv">10</span></span>
+<span id="cb21-17"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-17" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-18" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb21-19"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-19" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">ylim=</span><span class="fu">c</span>(y_lim_lower, y_lim_upper), <span class="at">main=</span><span class="st">&#39;OLS&#39;</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb21-20"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-20" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb21-21"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-21" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-22" tabindex="-1"></a><span class="co"># Add segments from each data point to the regression line</span></span>
+<span id="cb21-23"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-23" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb21-24"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-24" tabindex="-1"></a>  <span class="fu">segments</span>(x[i], y[i], x[i], predicted[i], <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb21-25"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-25" tabindex="-1"></a>}</span>
+<span id="cb21-26"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-26" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-27" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-28" tabindex="-1"></a><span class="co"># Adding integer x-axis labels using the unique x values</span></span>
+<span id="cb21-29"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-29" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">sort</span>(<span class="fu">unique</span>(x)), <span class="at">labels=</span><span class="fu">sort</span>(<span class="fu">unique</span>(x)))</span>
+<span id="cb21-30"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-30" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-31" tabindex="-1"></a><span class="co"># Display y-values on each data point</span></span>
+<span id="cb21-32"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-32" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(y)) {</span>
+<span id="cb21-33"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-33" tabindex="-1"></a>  <span class="fu">text</span>(x[i], y[i], <span class="at">labels=</span><span class="fu">round</span>(y[i], <span class="dv">0</span>), <span class="at">pos=</span><span class="dv">3</span>, <span class="at">cex=</span><span class="fl">0.7</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">offset=</span><span class="fl">0.5</span>)</span>
+<span id="cb21-34"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb21-34" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="05-Error_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Assuming a true linear model <span class="math inline">\(y=X \beta+\varepsilon\)</span>, we estimate <span class="math inline">\(\hat{\beta_{i}}\)</span>. The Gauss-Markov theorem states that if your linear regression model satisfies the first six classical assumptions, then ordinary least squares (OLS) regression produces unbiased estimates that have the smallest variance of all possible linear estimators,i.e. OLS is BLUE.</p>
+<p>OLS Assumption 1: The regression model is linear in the coefficients and the error term.</p>
+<p>OLS Assumption 2: The error term has a population mean of zero.</p>
+<p>OLS Assumption 3: All independent variables are uncorrelated with the error term.</p>
+<p>OLS Assumption 4: Observations of the error term are uncorrelated with each other.</p>
+<p>OLS Assumption 5: The error term has a constant variance (no heteroscedasticity).</p>
+<p>OLS Assumption 6: No independent variable is a perfect linear function of other explanatory variables.</p>
+<p>OLS Assumption 7: The error term is normally distributed (optional)</p>
+<p><strong>Reminder:</strong></p>
+<p>Moreover, in practice, we have only one sample most of the time. We donot have 10 samples like in the simulation above. We know that if the sample size is big enough (more than 50, for example), the sampling distribution would be normal according to <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">the Central Limit Theorem (CLT)</a>. In other words, if the number of observations in each sample large enough, <span class="math inline">\(\bar{X} \sim N(\mu_x, \sigma^{2}/n)\)</span> or when population variance is not known <span class="math inline">\(\bar{X} \sim \mathcal{T}\left(\mu, S^{2}\right)\)</span> where <span class="math inline">\(S\)</span> is the standard deviation of the sample and <span class="math inline">\(\mathcal{T}\)</span> is the Student’s <span class="math inline">\(t\)</span>-distribution.</p>
+<p>Why is this important? Because it works like a magic: with only one representative sample, we can <strong>generalize</strong> the results for the population. We will not cover the details of interval estimation here, but by knowing <span class="math inline">\(\bar{X}\)</span> and the sample variance <span class="math inline">\(S\)</span>, we can have the following interval for the <span class="math inline">\(\mu_{x}\)</span>:</p>
+<p><span class="math display">\[
+\left(\bar{x}-t^{*} \frac{s}{\sqrt{n}}, \bar{x}+t^{*} \frac{s}{\sqrt{n}}\right)
+\]</span></p>
+<p>where <span class="math inline">\(t^*\)</span>, the critical values in <span class="math inline">\(t\)</span>-distribution, are usually around 1.96 for samples more than 100 observations and for the 95% confidence level. This interval would be completely wrong or misleading if <span class="math inline">\(\mathbf{E}(\bar{X}) \neq \mu_x\)</span> and would be useless if it is very wide, which is caused by a large variance. That’s the reason why we don’t like large variances.</p>
+</div>
+<div id="prediction-error--mspe" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Prediction error- MSPE<a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#prediction-error--mspe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous section, we defined mean square error (MSE), and then decomposed between its variance and bias. However, MSE differs according to whether one is describing an estimator or a predictor. We can define an estimator as a mathematical function mapping a sample of data to an estimate of a parameter of the population from which the data is sampled. We can define a predictor as a function mapping arbitrary inputs to a sample of values of some random variable.</p>
+<p>Most common function used in social sciences is OLS. Most people are familiar with MSE of OLS function as the following.
+Predictor of least-squares fit, then the within-sample MSE of the predictor is computed as
+<span class="math display">\[
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(Y_i-\hat{Y}_i\right)^2
+\]</span>
+In matrix notation,
+<span class="math display">\[
+\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(e_i\right)^2=\frac{1}{n} \mathbf{e}^{\top} \mathbf{e}
+\]</span>
+where <span class="math inline">\(e_i\)</span> is <span class="math inline">\(\left(Y_i-\hat{Y}_i\right)\)</span> and <span class="math inline">\(\mathbf{e}\)</span> is the <span class="math inline">\(n \times 1\)</span> column vector.</p>
+<p>Eventhough OLS and its MSE is the most common used tools, we can use tons of other functions for prediction. Thus in this section we will define MSE for prediction for all functions. Also, <strong>Mean Square Prediction Error</strong> (MSPE) is more preferable term for prediction purposes.</p>
+<p>Our task is prediction of an outcome, Y (i.e. supervised learning as we know what outcome is, and regression set up when our outcome is non-binary):</p>
+<p>We assume that the response variable,Y, is some function of the features, X, plus some random noise.</p>
+<p><span class="math display">\[Y=f(X)+ ϵ\]</span>
+To “predict” Y using features X, means to find some <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(X)\)</span> is close to <span class="math inline">\(Y\)</span>. But how do we define close? There are many ways but the most common way is minimizing the average squared error loss. Loss function is <span class="math inline">\((Y-f(X))^2\)</span>, Average square loss function is the expected value of loss function. That is called Risk function, which is <span class="math inline">\(\mathbf{E}\left[(Y-f(X))^{2}\right]\)</span>. So, we can say we want to minimize risk function to “predict” Y using X. However, we can never know real <span class="math inline">\(f(X)\)</span>. Thus our goal becomes to find a prediction function,<span class="math inline">\(\hat{f(X)}\)</span>, which is an estimate of unknown f using the data we have. Then, there will be an expected prediction error of predicting Y using <span class="math inline">\(\hat{f(X)}\)</span>. All in all, our goal becomes to minimize the average square of this error, called as <strong>Mean Square Prediction Error</strong> (MSPE)
+<span class="math inline">\(\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]\)</span>. A good <span class="math inline">\(\hat{f(X)}\)</span> will have a low MSPE. This error can be decomposed into two errors. The reducible error(mean squared error), which is the expected squared error loss of estimation <span class="math inline">\(f(X)\)</span> using <span class="math inline">\(\hat{f(X)}\)</span> at a fixed point <span class="math inline">\(X\)</span>. The irreducible error, which is simply the variance of <span class="math inline">\(Y\)</span> given that <span class="math inline">\(X=x\)</span> ,essentially noise that we do not want to learn.</p>
+<p>Reducible error:</p>
+<p><strong>MSE of <span class="math inline">\(\hat{f(X)}\)</span> for a given <span class="math inline">\(X=x\)</span></strong> (mean square error obtained with-in test/training sample))
+<span class="math display">\[
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(f(x)-\mathbb{E}[\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+\]</span>
+<strong>Mean Square Prediction Error</strong>
+<span class="math display">\[
+\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+\]</span>
+<span class="math inline">\(\sigma^{2}=E[\varepsilon^{2}]\)</span></p>
+<p>You can check the formal decomposition of MSPE in technical point section at the end of this chapter.</p>
+<p>(Note: if we assume our prediction function,<span class="math inline">\(f(X)\)</span>, is linear then this is OLS.)</p>
+<p>Our job is to pick a the best predictor, i.e. <strong>predictor</strong> that will have the minimum MSPE among alternatives. In perfect setting, we want prediction function with zero bias and low variance to have the minimum MSPE. However, this is never happens. Unlike an <strong>estimator</strong>, we can accept some bias as long as the MSPE is lower. More specifically, we can allow a predictor to have a bias if it reduces the variance more than the bias itself.</p>
+<p>Unlike estimations, this shows that, in predictions, we can have a reduction in MSPE by allowing a <strong>trade-off between variance and bias</strong>. We will discuss how we can achieve it in the next chapter. For instance, our predictor could be a constant, which, although it’s a biased estimator, has <strong>a zero variance</strong>. Or our predictor could be mean of <span class="math inline">\(X\)</span> as this predictor has zero bias but it has high variance. Or we could choose predictor which has some bias and variance. We will show an example using these 3 predictors in the following simulation.</p>
+<p>We want to emphasize the difference between MSE and MSPE, and their decomposed forms between their variances and biases. Even though they look similar, they are really very different. For MSE, bias and variance comes from the parameter estimation. For MSPE, biad and variance derived from prediction functions. We try different prediction functions to find the best predictor function. Moreover, the bias-squared and the variance of <span class="math inline">\(\hat{f}\)</span> is called <strong>reducible error</strong>. Hence, the MSPE can be written as</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+\]</span></p>
+<p>The predictor with the smallest MSPE will be our choice among other alternative predictor functions. Yet, we have another concern that leads over-fitting. We will discuss over fitting in detail later. //DISCUSS OVERFITTING HERE A BIT</p>
+<p>Let’s summarize some important facts about our MSPE here:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x_0\)</span> is the number we want to predict and <span class="math inline">\(\hat{f}\)</span> is the predictor, which could be <span class="math inline">\(\mathbf{E}(\bar{X})\)</span>, <span class="math inline">\(\mathbf{E}(\hat{X})\)</span>, or <span class="math inline">\(\mathbf{E}(\tilde{X})\)</span> or any other predictor.</li>
+<li><span class="math inline">\(x_0 = \mu_x + \varepsilon_0\)</span>, where <span class="math inline">\(f = \mu_x\)</span>. Hence, <span class="math inline">\(\mathbf{E}[x_0]=f\)</span> so that <span class="math inline">\(\mathbf{E}[\varepsilon_0]=0\)</span>.</li>
+<li><span class="math inline">\(\mathbf{E}[f]=f\)</span>. In other words, the expected value of a constant is a constant: <span class="math inline">\(\mathbf{E}[\mu_x]=\mu_x\)</span>.</li>
+<li><span class="math inline">\(\mathbf{Var}[x_0]=\mathbf{E}\left[(x_0-\mathbf{E}[x_0])^{2}\right]=\mathbf{E}\left[(x_0-f)^{2}\right]=\mathbf{E}\left[(f+\varepsilon_0-f)^{2}\right]=\mathbf{E}\left[\varepsilon_0^{2}\right]=\mathbf{Var}[\varepsilon_0]=\sigma^{2}\)</span>. (Remember that <span class="math inline">\(\mathbf{E}[\varepsilon]=0\)</span>).</li>
+</ol>
+<p>Note that we can use MSPE here because our example is not a classification problem. When we have a binary outcome to predict, the loss function would have a different algebraic structure. We will see the performance evaluation in classification problems later.</p>
+<p>Let’s follow the same simulation example. Our task is now different. We want to predict the next persons years of schooling using the data we have. We want to <strong>predict</strong> the unobserved value of <span class="math inline">\(X\)</span> rather than to estimate <span class="math inline">\(\mu_x\)</span>. Therefore, we need a <strong>predictor</strong>, not an <strong>estimator</strong>.</p>
+<p>To answer these questions, we need to compare MSPEs or their square roots (RMSPE) as well..</p>
+<p>As we know that, most developed countries require to go to school between age 6 to 16 years old, we may predict that the years of schooling for the individual is 10 years.
+or we can use the average years of schooling in our data as a good predictor for the next individuals schooling level. Thus we have 2 prediction function. First one is a constant, 10, which has bias but zero variance. The other one is mean of our sample for each observation (average of each row), which has smaller bias and higher variance. For simplicity, we can use 1 sample which consist from 5000 individuals in this simulation.</p>
+<p>The two predictors are <span class="math inline">\(\hat{f}_1 = 10\)</span> and <span class="math inline">\(\hat{f}_2 = \bar{X}\)</span>:</p>
+<p>We will use the same example we worked with before. We sample from this “population” multiple times. Now the task is to use each sample and come up with a predictor (a prediction rule) to predict a number or multiple numbers drawn from the same population.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-1" tabindex="-1"></a><span class="co"># Here is our population</span></span>
+<span id="cb22-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-2" tabindex="-1"></a>populationX <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>)</span>
+<span id="cb22-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-5" tabindex="-1"></a><span class="co">#Let&#39;s have a containers to have repeated samples (2000)</span></span>
+<span id="cb22-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-6" tabindex="-1"></a>Ms <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb22-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-7" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">10</span>)</span>
+<span id="cb22-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-8" tabindex="-1"></a><span class="fu">colnames</span>(samples) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>, <span class="st">&quot;X3&quot;</span>, <span class="st">&quot;X4&quot;</span>, <span class="st">&quot;X5&quot;</span>, <span class="st">&quot;X6&quot;</span>, <span class="st">&quot;X7&quot;</span>, <span class="st">&quot;X8&quot;</span>, <span class="st">&quot;X9&quot;</span>, <span class="st">&quot;X10&quot;</span>)</span>
+<span id="cb22-9"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-9" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-10" tabindex="-1"></a><span class="co"># Let&#39;s have samples (with replacement always)</span></span>
+<span id="cb22-11"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb22-12"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples)) {</span>
+<span id="cb22-13"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-13" tabindex="-1"></a>  samples[i,] <span class="ot">&lt;-</span> <span class="fu">sample</span>(populationX, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-14"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-14" tabindex="-1"></a>}</span>
+<span id="cb22-15"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb22-15" tabindex="-1"></a><span class="fu">head</span>(samples)</span></code></pre></div>
+<pre><code>##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13</code></pre>
+<p>As you see, this is the same sample with the previous simulation. You can change the data either setting different values in the seed or changing the sammple size, Ms. Now, Let’s use our predictors and find MSPEs:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-1" tabindex="-1"></a><span class="co"># Container to record all predictions</span></span>
+<span id="cb24-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-2" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">2</span>)</span>
+<span id="cb24-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-4" tabindex="-1"></a><span class="co"># fhat_1 = 10</span></span>
+<span id="cb24-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb24-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-6" tabindex="-1"></a>  predictions[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb24-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-7" tabindex="-1"></a>}</span>
+<span id="cb24-8"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-8" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-9" tabindex="-1"></a><span class="co"># fhat_2 - mean</span></span>
+<span id="cb24-10"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-10" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb24-11"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-11" tabindex="-1"></a>  predictions[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">sum</span>(samples[i,])<span class="sc">/</span><span class="fu">length</span>(samples[i,])</span>
+<span id="cb24-12"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-12" tabindex="-1"></a>}</span>
+<span id="cb24-13"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-13" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb24-14" tabindex="-1"></a><span class="fu">head</span>(predictions)</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]   10 12.4
+## [2,]   10 12.1
+## [3,]   10 11.4
+## [4,]   10 12.0
+## [5,]   10 12.3
+## [6,]   10 12.6</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-1" tabindex="-1"></a><span class="co"># MSPE</span></span>
+<span id="cb26-2"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-2" tabindex="-1"></a>MSPE <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, Ms, <span class="dv">2</span>)</span>
+<span id="cb26-3"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>Ms) {</span>
+<span id="cb26-4"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-4" tabindex="-1"></a>  MSPE[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="sc">-</span>predictions[i,<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb26-5"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-5" tabindex="-1"></a>  MSPE[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>((populationX<span class="sc">-</span>predictions[i,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb26-6"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-6" tabindex="-1"></a>}</span>
+<span id="cb26-7"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb26-7" tabindex="-1"></a><span class="fu">head</span>(MSPE)</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] 11.5 5.26
+## [2,] 11.5 5.41
+## [3,] 11.5 6.46
+## [4,] 11.5 5.50
+## [5,] 11.5 5.29
+## [6,] 11.5 5.26</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#cb28-1" tabindex="-1"></a><span class="fu">colMeans</span>(MSPE)</span></code></pre></div>
+<pre><code>## [1] 11.500000  5.788422</code></pre>
+<p>The MSPE of the t <span class="math inline">\(\hat{f}_2\)</span> prediction function is the better as its MSPE is smaller than the other prediction function.</p>
+<p>What makes a good predictor? Is being unbiased predictor one of the required property? would being a biased estimator make it automatically a bad predictor? in predictions, we can have a reduction in MSPE by allowing a <strong>trade-off between variance and bias</strong>. We will discuss this trade-off in the next chapter. We will also show it by using the same simulation.</p>
+</div>
+<div id="technical-points-about-mse-and-mspe" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Technical points about MSE and MSPE<a href="note-that-if-you-use-only-unique-set-of-samples-you-can-get-exact-results-using-following-commands.html#technical-points-about-mse-and-mspe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>The formal decomposition of MSE</strong></p>
+<p>The MSE of an estimator <span class="math inline">\(\hat{\theta}\)</span> with respect to an unknown parameter <span class="math inline">\(\theta\)</span> is defined as</p>
+<p><span class="math display">\[
+\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\mathbf{E}(\hat{\theta}))^{2}\right]
+\]</span></p>
+<p>Since we choose only unbiased estimators, <span class="math inline">\(\mathbf{E}(\hat{\theta})=\theta\)</span>, this expression becomes <span class="math inline">\(\mathbf{Var}(\hat{\theta})\)</span>. Hence, evaluating the performance of all alternative <strong>unbiased</strong> estimators by MSE is actually comparing their variances and picking up the smallest one. More specifically,</p>
+<p><span class="math display" id="eq:3-1">\[\begin{equation}
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^{2}\right]=\mathbf{E}\left\{\left(\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)+\mathbf{E}\left(\hat{\theta}\right)-\theta\right)^{2}\right\}
+  \tag{6.1}
+\end{equation}\]</span></p>
+<p><span class="math display">\[
+=\mathbf{E}\left\{\left(\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]+\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right)^{2}\right\}
+\]</span></p>
+<p><span class="math display" id="eq:3-2">\[\begin{equation}
+\begin{aligned}
+=&amp; \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]^{2}\right\} \\
+&amp;+2 \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right\}
+\end{aligned}
+  \tag{6.2}
+\end{equation}\]</span></p>
+<p>The first term in 3.2 is the variance. The second term is outside of expectation, as <span class="math inline">\([\mathbf{E}(\hat{\theta})-\theta]\)</span> is not random, which represents the bias. The last term is zero. This is because <span class="math inline">\([\mathbf{E}(\hat{\theta})-\theta]\)</span> is not random, therefore it is again outside of expectations:</p>
+<p><span class="math display">\[
+2\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right] \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\right\},
+\]</span>
+and the last term is zero since <span class="math inline">\(\mathbf{E}(\hat{\theta})-\mathbf{E}(\hat{\theta}) = 0\)</span>. Hence,</p>
+<p><span class="math display">\[
+\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+\]</span></p>
+<p>Because we choose only unbiased estimators, <span class="math inline">\(\mathbf{E}(\hat{\theta})=\theta\)</span>, this expression becomes <span class="math inline">\(\mathbf{Var}(\hat{\theta})\)</span>. In our case, the estimator can be <span class="math inline">\(\hat{\theta}=\bar{X}\)</span> and what we try to estimate <span class="math inline">\(\theta = \mu_x\)</span>.<br />
+<a href="https://stats.stackexchange.com/questions/123320/mse-decomposition-to-variance-and-bias-squared" class="uri">https://stats.stackexchange.com/questions/123320/mse-decomposition-to-variance-and-bias-squared</a>
+<strong>The formal decomposition of MSPE</strong></p>
+<p>let’s look at MSPE closer. We will drop the subscript <span class="math inline">\(0\)</span> to keep the notation simple. With a trick, adding and subtracting <span class="math inline">\(\mathbf{E}(\hat{f})\)</span>, MSPE becomes</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=\mathbf{E}\left[(x-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f}+\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}])^{2}\right]
+\]</span>
+<span class="math display">\[
+=\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]+2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]+\\2 \mathbf{E}[(\mathbf{E}[\hat{f}]-\hat{f})(f-\mathbf{E}[\hat{f}])],
+\]</span></p>
+<p>which can be simplified with the following few steps:</p>
+<ol style="list-style-type: decimal">
+<li>The first term, <span class="math inline">\(\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]\)</span>, is <span class="math inline">\((f-\mathbf{E}[\hat{f}])^{2}\)</span>, because <span class="math inline">\((f-\mathbf{E}[\hat{f}])^{2}\)</span> is a constant.</li>
+<li>Similarly, the same term, <span class="math inline">\((f-\mathbf{E}[\hat{f}])^{2}\)</span> is in the <span class="math inline">\(4^{th}\)</span> term. Hence, <span class="math inline">\(2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]\)</span> can be written as <span class="math inline">\(2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]\)</span>.<br />
+</li>
+<li>Finally, the <span class="math inline">\(5^{th}\)</span> term, <span class="math inline">\(2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]\)</span> can be written as <span class="math inline">\(2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]\)</span>. (Note that <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\hat{f}\)</span> are independent)</li>
+</ol>
+<p>As a result we have:<br />
+<span class="math display">\[
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]+2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]+\\2 \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}](f-\mathbf{E}[\hat{f}])
+\]</span></p>
+<p>The <span class="math inline">\(4^{th}\)</span> and the <span class="math inline">\(5^{th}\)</span> terms are zero because <span class="math inline">\(\mathbf{E}[\varepsilon]=0\)</span>. The last term is also zero because <span class="math inline">\(\mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]\)</span> is <span class="math inline">\(\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}]\)</span>. Hence, we have:</p>
+<p><span class="math display">\[
+=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]
+\]</span></p>
+<p>Let’s look at the second term first. It’s <strong>irreducible error</strong> because it comes with the data. Thus, we can write:</p>
+<p><span class="math display" id="eq:3-4">\[\begin{equation}
+\mathbf{MSPE}=(\mu_x-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{Var}\left[x\right]
+  \tag{6.3}
+\end{equation}\]</span></p>
+<p>The first term of 3.4 is the bias squared. It would be zero for an unbiased estimator, that is, if <span class="math inline">\(\mathbf{E}[\hat{f}]=\mu_x.\)</span> The second term is the variance of the estimator. For example, if the predictor is <span class="math inline">\(\bar{X}\)</span> it would be <span class="math inline">\(\mathbf{E}\left[(\bar{X} -\mathbf{E}[\bar{X}])^{2}\right]\)</span>. Hence the variance comes from the sampling distribution.</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=\mathbf{Bias}[\hat{f}]^{2}+\mathbf{Var}[\hat{f}]+\sigma^{2}
+\]</span></p>
+<p>These two terms, the bias-squared and the variance of <span class="math inline">\(\hat{f}\)</span> is called <strong>reducible error</strong>. Hence, the MSPE can be written as</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+\]</span></p>
+<p><strong>The relation between MSE and MSPE</strong></p>
+<p>Before going further, we need to see the connection between MSPE and MSE in a regression setting:</p>
+<p><span class="math display" id="eq:4-1">\[\begin{equation}
+\mathbf{MSPE}=\mathbf{E}\left[(y_0-\hat{f})^{2}\right]=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]
+  \tag{6.4}
+\end{equation}\]</span></p>
+<p>Equation 4.1 is simply an expected prediction error of predicting <span class="math inline">\(y_0\)</span> using <span class="math inline">\(\hat{f}(x_0)\)</span>. The estimate <span class="math inline">\(\hat{f}\)</span> is random depending on the sample we use to estimate it. Hence, it varies from sample to sample. We call the sum of the first two terms as “reducible error”, as we have seen before.</p>
+<p>The MSE of the estimator <span class="math inline">\(\hat{f}\)</span> is, on the other hand, shows the expected squared error loss of estimating <span class="math inline">\(f(x)\)</span> by using <span class="math inline">\(\hat{f}\)</span> at a fixed point <span class="math inline">\(x\)</span>.</p>
+<p><span class="math display">\[
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left[(\hat{f}-f)^{2}\right]=\mathbf{E}\left\{\left(\hat{f}-\mathbf{E}(\hat{f})+\mathbf{E}(\hat{f})-f\right)^{2}\right\}
+\]</span>
+<span class="math display">\[
+=\mathbf{E}\left\{\left(\left[\hat{f}-\mathbf{E}\left(\hat{f}\right)\right]+\left[\mathbf{E}\left(\hat{f}\right)-f\right]\right)^{2}\right\}
+\]</span></p>
+<p><span class="math display" id="eq:4-2">\[\begin{equation}
+  =\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right   \}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}+2 \mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]\left[\mathbf{E}(\hat{f})-f\right]\right\}
+  \tag{6.5}
+\end{equation}\]</span></p>
+<p>The first term is the variance. The second term is outside of expectation, as <span class="math inline">\([\mathbf{E}(\hat{f})-f]\)</span> is not random, which represents the bias. The last term is zero. Hence,</p>
+<p><span class="math display" id="eq:4-3">\[\begin{equation}
+\mathbf{MSE}(\hat{f})=\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}
+\tag{6.6}
+\end{equation}\]</span></p>
+<p>We can now see how MSPE is related to MSE. Since the estimator <span class="math inline">\(\hat{f}\)</span> is used in predicting <span class="math inline">\(y_0\)</span>, MSPE should include MSE:</p>
+<p><span class="math display">\[
+\mathbf{MSPE}=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]=\mathbf{MSE}(\hat{f})+\mathbf{E}\left[\varepsilon^{2}\right]
+\]</span></p>
+<p>The important difference between estimation and prediction processes is the data points that we use to calculate the mean squared error loss functions. In estimations, our objective is to find the estimator that minimizes the MSE, <span class="math inline">\(\mathbf{E}\left[(\hat{f}-f)^{2}\right]\)</span>. However, since <span class="math inline">\(f\)</span> is not known to us, we use <span class="math inline">\(y_i\)</span> as a proxy for <span class="math inline">\(f\)</span> and calculate MSPE using in-sample data points. Therefore, using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bias-variance-trade-off.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mutluyuksel/machinemetrics/edit/master/05-Error.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["machinemetrics.pdf", "machinemetrics.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

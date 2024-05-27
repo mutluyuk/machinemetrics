@@ -1,11 +1,38 @@
 
-# Overfitting:
+# Overfitting
 
-Overfitting is a phenomenon that occurs when a statistical model describes random error (noise, irreducible error) instead of the underlying relationship. A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.
+Following our exploration of the bias-variance tradeoff, in this chapter we explore the equally crucial concept of overfitting in machine learning. 
+
+Through the compelling stories of Baran's travel planning and Jennifer's exam preparation, we'll uncover how overfitting manifests in both everyday scenarios and complex algorithms, revealing its impact on decision-making and model accuracy. Let's extend Baran's story from the previous chapter, which not only illustrates the bias-variance tradeoff but also seamlessly incorporates the concept of overfitting, providing a deeper understanding of its implications.
+
+As we mentioned at the beginning of previous chapter, Baran initially developed a routine to leave his house around 7:00 AM, with a 30-minute window on either side to catch his bi=weekly flights. This approach, while seemingly flexible, had high variance. It's like a machine learning model that is not sufficiently trained or fine-tuned – it has a broad range of responses (leaving times from his home) but lacks precision (cathing flights).
+
+Missing Flights and Overfitting: Realizing the issue with his initial strategy, Baran decides to analyze past data more closely. He starts noting down the exact traffic conditions, weather patterns, and personal preparation times for each day of his travel. Based on this detailed analysis, he creates a very specific and complex routine, factoring in all these variables to predict the optimal departure time. This new strategy is akin to an overfitted model in machine learning – it is overly complex and tailored to past data, potentially capturing random error (like a one-time traffic jam or an unusual personal delay) rather than the overarching trend.
+
+Experiencing the Pitfalls of Overfitting: Initially, Baran's new strategy seems to work perfectly, as he catches his flights consistently. However, on a day with unexpected conditions (not previously encountered in his data, like a new road closure), his overly complex routine fails him, and he continue to miss some of his flights. This is similar to an overfitted model performing well on training data but poorly on new, unseen data.
+
+Revised Strategy with Bias-Variance Balance: Baran realizes that his overfitted strategy is not sustainable. He then revises his approach, aiming to leave around 7:05 AM with only a 10-minute window. This strategy introduces a slight bias (always leaving a bit later than the original 7:00 AM plan) but significantly reduces variance. It's like a well-balanced machine learning model that has been trained to generalize well, rather than just perform on specific past data.
+
+Consistent Success and Learning: With this balanced approach, Baran consistently catches his flights, demonstrating that a balance between bias and variance can lead to more effective real-world results. His experience underscores the importance of not overcomplicating models (or plans) based on past data, as real-world conditions often present new, unforeseen challenges. This balance is crucial in machine learning to create models that perform well both on historical data and in new, unpredictable situations.
+
+
+After discussing Baran's experience, let's shift to another example that deepens our grasp on overfitting. We now turn to Jennifer, a student facing challenges in her study methods for a history exam. Her story, paralleling Baran's, can illustrate the concept of overfitting in everyday situations and in machine learning models.
+
+ Jennifer gathers an array of study materials, including textbooks, class notes, and online resources. She compiles detailed notes on all the topics that might be covered in the exam (Data Collection). She initially tries to get a general understanding of all historical events and themes, but soon realizes it's too much to handle. As she studies, Jennifer notices that certain events and dates are emphasized more in her materials (Pattern Recognition). Then, Jennifer forms a hypothesis that the exam will primarily consist of questions about these specific events and dates she has identified as important (Making Predictions).
+
+Bias-Variance Balance: Jennifer faces a dilemma. She can either maintain a broad focus on history, which would result in a high bias but low variance in her study approach, potentially causing her to miss finer details. Alternatively, she can concentrate intensely on specific events and dates, which corresponds to a low bias but high variance approach, risking a lack of preparedness for broader questions. This scenario mirrors the bias-variance tradeoff in machine learning, where the challenge lies in balancing the generalization of the model (a broad study scope) with the accuracy on specific details (focused study on certain events).
+
+Overfitting: Jennifer opts to focus on specific details, thinking this will prepare her better for the exam. She memorizes dates and specific events, neglecting the broader themes. However, she soon realizes the potential pitfalls of this method – while it might prepare her well for certain types of questions, it could leave her ill-equipped for others that require a more comprehensive understanding of history. This is akin to a machine learning model that is overfitted - it performs exceptionally well on the training data (or the specific details Jennifer studied) but fails to generalize well to new data (or the broader exam questions).
+
+Validation and Realizing the Tradeoff: On the exam day, Jennifer does well on questions about specific events but struggles with questions that require a broader understanding of history. This reflects the problem in machine learning where a model with low bias but high variance performs well on training data but poorly on unseen data. Jennifer's experience shows the downside of focusing too narrowly and not maintaining a balance between the specific details and the broader context.
+
+In this analogy, Jennifer's study method represents a machine learning model. It highlights the importance of balancing the depth of learning specific details (low bias) with the ability to generalize to broader concepts (managing variance) to create a well-rounded, effective model (or study method), an analogy for the bias-variance tradeoff. Her focus on specific details to the exclusion of broader themes is akin to overfitting.  Jennifer's experience in studying for her history exam illustrates that a balanced approach, which incorporates both bias-variance tradeoff and overfitting, is crucial for achieving the best overall performance. This principle holds true both in effective study methods and in developing robust machine learning models.
+
+Overfitting is a phenomenon that occurs when a statistical model is trained too closely on the training dataset, capturing random error (noise, irreducible error) in the data rather than the underlying pattern. This results in a model that performs well on the training data (like Jennifer's success with specific questions) but poorly on new, unseen data (like the broader questions on the exam). A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.
  
 A simple example is the curve-fitting of a polynomial of a certain degree to a set of data points. A low-degree polynomial, such as a straight line, may fit the data points reasonably well, but would fail to capture the behavior of the data outside the range of the data points. However, a high-degree polynomial may fit the data points well, but would have wild fluctuations outside the range of the data points. The wild fluctuations would be fitting to the random noise in the data, and would fail to generalize to new data. We will simulate this example below. Another example is a decision tree with a large number of branches, may overfit the training data.
  
-All in all, we say that The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.
+All in all, we say that **The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.**
 
 To **detect overfitting**, you need to monitor the training error and the test error during the training process. As the model becomes more complex, the training error will decrease. However, when the model overfits the training data (i.e when model complexity increases), the test error will begin to increase.
 
@@ -24,14 +51,15 @@ https://towardsdatascience.com/regularization-the-path-to-bias-variance-trade-of
 
 https://statisticsbyjim.com/regression/overfitting-regression-models/
 
-Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.  
+!!!! Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.  
 
 
 $$ 
-MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}=MSE(\hat{f(X)})+\sigma^{2}
+MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}
 $$
 
-using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.
+using a prediction function means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.  We used in-sample data points to calculate MSPE in estimations in previous chapters, which may result in overfitting and a poor out-of-sample estimation accuracy.  Minimizing the in-sample MSPE completely ignores the overfitting by picking models which are too complex and with a very poor out-of-sample prediction accuracy.  I
+
 Let's start with an example:  
 
 ```{r, warning=FALSE, message=FALSE, cache=TRUE}

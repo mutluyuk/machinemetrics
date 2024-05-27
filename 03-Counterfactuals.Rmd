@@ -21,7 +21,7 @@ Recognizing correlations visually with these tools means Alex can discern if the
 
 By visually plotting the data, Alex can more effectively recognize patterns and correlations, offering a foundational understanding before venturing into more intricate statistical analyses.
 
-**Delving Into Correlations**:
+**Investigating Correlations**:
 
 Observing Correlations: Alex began to rank his reactions on a scale from 1 to 10, with 10 marking the most severe reaction. As days turned to weeks, he noticed that every time he consumed garlic, the intensity of his reaction consistently hovered between 8 to 10. Contrastingly, other foods such as dairy or wheat might occasionally result in a reaction intensity of 3 or 4, but not always.
 
@@ -45,7 +45,7 @@ Spurious Correlation Revealed:Further probing revealed an interesting detail. Wh
 
 In this example, Mia’s conclusion, based on initial observations, would lead her down the wrong path, emphasizing the importance of not mistaking correlation for causation. It serves as a cautionary tale on the pitfalls of spurious correlations in both real-life and statistical contexts.
 
-**Alex's Deep Dive into the effect of his garlic consumption on his allergy severity:**
+**Alex's exploration of the effect of his garlic consumption on his allergy severity:**
 
 After discovering a strong correlation between his garlic consumption and allergic reactions, Alex decided to take his investigation a step further. While the correlation was evident, he wanted to quantitatively understand the exact impact of garlic consumption on his reactions. He suspected that while garlic was the primary association with his reactions, other variables might exacerbate or alleviate his symptoms. Beyond just the amount of garlic he consumed, could factors like his weight, the weather temperature, and even eating outside influence the severity of his reactions?
 
@@ -125,207 +125,393 @@ We should keep in mind that statistics and economics have the following perspect
 
 ## Data and visualization
 
-Data and Visualization in Health, Economics, Business, and Social Sciences
+Researchers in fields such as health, economics, business, and social sciences primarily utilize various datasets to deepen their understanding of dynamic and static phenomena. These datasets are primarily categorized into three types: cross-sectional data, time series data, and panel data, which is also referred to as longitudinal data.
 
-Researchers in fields such as health, economics, business, and social sciences primarily utilize three types of datasets: cross-sectional data, time series data, and panel data (also known as longitudinal data). 
+Cross-sectional data is collected at a single point in time or within a short period, and is sourced from a variety of subjects, including individuals, companies, or countries. This type of dataset is instrumental in capturing a snapshot of various characteristics or attributes of a population at a given moment, providing insights into the current state of affairs without the changes over time.
 
-Cross-sectional data is collected at a single point in time or over a short period from a sample of subjects, such as individuals, companies, or countries. This type of data is often used to describe the characteristics or attributes of a group at a specific point in time.
+In contrast, time series data, collected over an extended period at regular intervals, tracks changes in a particular variable over time. This data is useful for identifying trends and patterns over time and forecasting future occurrences based on historical data.
 
-Time series data, collected over an extended period at regular intervals, tracks changes in a particular variable over time. This data is useful for identifying trends and patterns over time and making predictions about future developments.
+Panel data combines elements of both cross-sectional and time series datasets by tracking the same sample of subjects over time. This type of data is valuable for studying the relationship between different variables, identifying trends and patterns over time. Panel data enables researchers to analyze the impact of various factors on outcomes while controlling for individual-fixed effects.
 
-Panel data, collected over an extended period from the same sample of subjects, tracks changes in a particular variable over time for each subject in the sample. This type of data is valuable for studying the relationship between different variables and identifying trends and patterns over time.
+The process of working with these datasets involves several critical steps to ensure the reliability and validity of the findings. Initially, researchers must examine the raw data to grasp its structure and content thoroughly. Following this, the data must be cleaned and prepared, which involves checking for errors, addressing missing values, and removing outliers to ensure the dataset is in a usable state. Finally, understanding the data through meticulous statistical analysis, creating visualizations, and employing various analytical techniques is essential to uncover underlying patterns and relationships within the data. This methodical approach enables researchers to derive meaningful conclusions that can significantly impact their respective fields.
 
-When working with any type of data, it is crucial to follow the following steps:
+Effective visualization is crucial for revealing features in data that are essential for further analysis. It serves as a foundational element in the analytical process across various disciplines, helping clarify complex information. Utilizing a range of visualization techniques, such as histograms, barplots, boxplots, scatterplots, and heatmaps, researchers can uncover subtle patterns and trends that may not be evident from raw data alone. These visual representations provide a comprehensive overview of the data, enabling researchers to identify relationships, correlations, and outliers that can inform subsequent analyses and decision-making processes.
 
-Examine the raw data: Understand the structure and content of the data.
+Histograms graphically represent the frequency or distribution of data, whether continuous or discrete. This visualization comprises bins, each representing a range of values, with the height of each bin showing the frequency of data points within that range. For example, a histogram illustrating animal weights might have bins for different weight intervals, such as 20-29 kg and 30-39 kg, with each bin's height indicating the number of animals within those ranges.
 
-Clean and prepare the data: Check for errors, missing values, and outliers, and ensure that the data is in a usable format.
+Barplots graphically display data's mean or median, providing a visual comparison of central tendencies across different groups or categories. Each bar's height represents the mean or median for that group. For instance, a barplot could compare the average fuel efficiency of various car models or median home prices across different neighborhoods.
 
-Understand the data: Investigate the variables and their relationships through statistical analysis, visualizations, and other methods.
+Boxplots show a dataset's distribution and are particularly valuable for visualizing data spread, skewness, and potential outliers. They include a box representing the interquartile range (middle 50% of the data), a median line, and whiskers that extend to the data's minimum and maximum values. This makes boxplots ideal for comparing distributions from different groups, such as student exam scores across various classes.
 
-Effective visualization can reveal data features that inform further analysis. Visualizing data is an essential step in the process of understanding and analyzing data in various fields. Effective visualization techniques, such as histograms, barplots, boxplots, scatterplots, and heatmaps, can provide valuable insights into patterns and trends within the data, guiding further analysis and decision-making.
+Scatterplots are used to illustrate the relationship between two variables, helping to visualize correlations and trends. In a scatterplot, each point represents the values of two variables for a data point. This type of plot might show how advertising spend correlates with sales revenue or the link between study hours and test scores.
 
-A histogram is a graphical representation that displays the frequency or distribution of a set of continuous or discrete data. It helps visualize the data and understand the underlying distribution. A histogram comprises a set of bins, which represent ranges of values, and the height of each bin indicates the frequency of data points within that range. For instance, a histogram displaying the weights of a group of animals might have bins representing weight ranges (e.g., 20-29 kg, 30-39 kg, etc.), and the height of each bin would indicate the number of animals within that weight range.
+Heatmaps provide a visual representation of the relationship between two or more variables by using color-coded cells, where each color intensity reflects the value of the variables for that cell. Heatmaps are particularly effective for data organized in grids or matrices, such as correlating stock prices or mapping crime frequency across different times and locations.
 
-A barplot is a graphical representation that illustrates the mean or median of a dataset. It serves to visualize the central tendency of the data and compare different groups or categories. A barplot comprises a set of bars, with the height of each bar representing the mean or median of the data for that group or category. For instance, a barplot might compare the average fuel efficiency of various car models or the median home prices in different neighborhoods.
+In addition to these commonly used techniques, there are other advanced visualization tools that can enhance the exploratory data analysis process. Line graphs, for instance, are particularly useful in time series data analysis, enabling the tracking of changes over time with clarity and precision. Area charts can also be employed to illustrate quantitative data graphically, showing how different components contribute to the whole over a given interval. Network diagrams are invaluable for visualizing relationships and interactions within datasets, especially in social sciences and biology, where understanding the connections between entities is crucial.
 
-A boxplot is a graphical representation that displays the distribution of a dataset. It helps visualize the spread, skewness, and potential outliers in the data. A boxplot consists of a box representing the interquartile range (the middle 50% of the data), a line denoting the median, and "whiskers" extending from the box to the minimum and maximum values of the data. Boxplots are particularly useful for comparing the distributions of different groups or categories of data, such as the distribution of exam scores for students in different classes.
+Moreover, interactive visualizations have become increasingly popular due to their ability to allow users to manipulate the parameters and directly see the effects of different variables on the data. Tools like dashboards and interactive maps provide dynamic insights that can adapt to varying user inputs, offering a more hands-on approach to data exploration.
 
-A scatterplot is a graphical representation that exhibits the relationship between two variables. It enables the visualization of the relationship between the variables and identification of patterns and trends. A scatterplot consists of a set of points, with each point's position representing the values of the two variables for that data point. For example, a scatterplot might demonstrate the relationship between advertising expenditures and sales revenue or between hours of study and test scores.
-
-A heatmap is a graphical representation that depicts the relationship between two or more variables. It aids in visualizing the relationship between the variables and identifying patterns and trends. A heatmap consists of a set of cells, with the color of each cell representing the value of the variables for that cell. Heatmaps are especially useful for visualizing data organized in a grid or matrix, such as the correlation between various stock prices or the frequency of crime incidents across different times and locations.
-
-
-
+By integrating these advanced and interactive techniques, researchers can gain a more nuanced understanding of their data. This comprehensive approach not only aids in identifying the underlying trends and patterns but also supports robust decision-making by providing a more detailed and interactive view of the data landscape. Building on these visualization techniques, the next subsection will focus on the concept of correlation, examining how it quantifies the strength and direction of relationships between variables, further enriching our understanding of data interactions.
 
 ##  Correlation
 
-The phrase "correlation does not imply causation" is often used in discussions of statistical relationships, but what exactly does it mean? To answer this question, it is essential to understand the concept of correlation and its role in assessing the connection between two variables.
+The phrase "correlation does not imply causation" is often invoked in discussions of statistical relationships to emphasize a critical caution in data interpretation. To fully grasp what this means, we must first understand the concept of correlation and its role in evaluating the connections between two variables.
 
-Correlation is a statistical measure that quantifies the degree of association between two variables. It is often used to describe a linear relationship between the variables. The term "association" is broader than correlation, referring to any relationship between two variables, whether linear or not.
+Correlation is a statistical measure that quantifies the degree of association between two variables, typically describing how closely the variables follow a linear relationship. The term "association" is broader than "correlation," encompassing any type of relationship between two variables, whether linear or not. In various sectors, including finance, healthcare, and marketing, correlation measurements are crucial for analyzing data and guiding decision-making processes. The etymology of the word "correlation" combines "co-" (meaning together) with "relation," highlighting its function in identifying connections between quantities.
 
-In everyday life, we often observe correlations between events. Various industries, such as finance, healthcare, and marketing, frequently utilize correlation measurements to analyze data and make informed decisions. The word "correlation" can be broken down into "co," meaning together, and "relation," signifying a connection between two quantities.
+There are three types of correlations: positive, negative, and zero. A positive correlation indicates that both variables move in the same direction; for example, an increase in advertising expenditure might correspond to a rise in sales revenue, suggesting a positive correlation. In contrast, a negative correlation means the variables move in opposite directions, such as the relationship between the number of hours spent watching television and academic performance, where more TV time is associated with lower grades. Variables are considered uncorrelated if changes in one do not affect the other, indicating no discernible relationship.
 
-Correlation can be positive, negative, or uncorrelated. A positive correlation exists when two variables move in the same direction, i.e., an increase in one variable corresponds to an increase in the other. For example, if an increase in advertising expenditure leads to a rise in sales revenue, the variables are positively correlated.
+Correlation analysis is a statistical method used to study the association or absence of a relationship between two variables. By examining the correlation between variables, researchers can measure the strength and nature of their association, allowing them to quantify how variables move together or apart. This analysis is integral in determining a numerical value that reflects the relationship between two variables, whether the change in one variable accompanies a change in another directly or indirectly.
 
-Conversely, a negative correlation occurs when two variables move in opposite directions, with an increase in one variable resulting in a decrease in the other. For instance, a negative correlation may exist between the number of hours spent watching television and academic performance, where increased television time leads to lower grades.
+The Pearson correlation coefficient is one of the most commonly used measures in correlation analysis. It quantifies the strength and direction of a linear relationship between two numerical variables. This coefficient ranges from -1 to 1, where -1 indicates a strong negative relationship, 0 signifies no relationship, and 1 indicates a strong positive relationship. For example, a Pearson correlation of 0.8 between two variables denotes a strong positive relationship, suggesting that an increase in one variable generally leads to an increase in the other.
 
-Variables are considered uncorrelated when a change in one variable does not impact the other. Understanding how two variables are correlated enables us to predict future trends and discern the nature of their relationship or lack thereof.
+The Pearson correlation coefficient, denoted as \( r \), can be calculated using two equivalent formulas. The first formula is:
+\[
+r = \frac{\sum (x_i - \overline{x})(y_i - \overline{y})}{\sqrt{\sum (x_i - \overline{x})^2 \sum (y_i - \overline{y})^2}}
+\]
+This formula directly computes \( r \) as the ratio of the sum of the product of deviations of \( x \) and \( y \) from their means to the geometric mean of the sums of squared deviations of \( x \) and \( y \) from their respective means.
 
-However, it is crucial to remember that correlation does not imply causation. A strong correlation between two variables does not necessarily mean that one causes the other. There may be confounding variables or other factors at play that influence the observed relationship. Therefore, it is essential to consider the context and perform additional analyses before drawing conclusions about causality from correlation alone.
+The second method involves the covariance and the standard deviations of \( x \) and \( y \):
+\[
+r = \frac{\text{cov}(x, y)}{s_x s_y}
+\]
+where covariance, \( \text{cov}(x, y) \), is defined as:
+\[
+\text{cov}(x, y) = \frac{1}{n-1} \sum (x_i - \overline{x})(y_i - \overline{y})
+\]
+and the standard deviations, \( s_x \) and \( s_y \), are given by:
+\[
+s_x = \sqrt{\frac{1}{n-1} \sum (x_i - \overline{x})^2}
+\]
+\[
+s_y = \sqrt{\frac{1}{n-1} \sum (y_i - \overline{y})^2}
+\]
+
+Here, \( x_i \) and \( y_i \) represent the values of the two variables, \( \overline{x} \) and \( \overline{y} \) are the means of the variables \( x \) and \( y \) respectively, and the sums are taken over all \( n \) pairs of data. These formulas showcase how \( r \) quantifies the linear relationship between \( x \) and \( y \), normalizing the covariance of the variables by the product of their standard deviations, thus measuring the degree to which \( x \) and \( y \) co-vary relative to their individual variability.
 
 
-Correlation Analysis: Exploring Relationships Between Variables
+Covariance provides an indication of the direction of the linear relationship between two variables, 
+\( X \) and \( Y \). However, it does not effectively convey the strength of the relationship because it is affected by the scale of the variables involved. To mitigate this limitation of covariance, we use the correlation coefficient.
 
-Correlation analysis is a statistical method used to study the association or absence of a relationship between two variables. By examining the correlation between variables, researchers can measure the strength and nature of their association.
+Correlation is essentially the covariance between two variables standardized by the product of their standard deviation, or the ratio of the covariance to the product of the standard deviations of the two variables. This process of standardization transforms covariance into a dimensionless measure, which ranges from -1 to 1. This range allows for meaningful comparisons across different datasets and variables regardless of their original scales.
 
-The primary goal of correlation analysis is to determine a numerical value that indicates the relationship between two variables and how they move together. When a change in one variable is accompanied by a change in another variable, whether direct or indirect, correlation analysis helps quantify the relationship between the two variables.
+In the following simulation, we demonstrate the influence of scaling on covariance and the invariance of the correlation coefficient to such changes. We begin by generating two variables, each with 20 observations, and subsequently scale these variables by multiplying each by 1000. This process significantly alters the covariance values, showcasing how covariance is affected by the scale of the data. However, when we calculate the correlation coefficients using two different equations above —both before and after scaling—we observe that correlation remain sama regardless of the scale, unlike covariance.
 
-One of the most popular correlation measures is the Pearson correlation coefficient, which quantifies the strength and direction of a linear relationship between two numerical variables (usually continuous, but not always). When people refer to "the correlation," they usually mean the Pearson correlation coefficient. This coefficient ranges from -1 to 1, with -1 representing a strong negative relationship, 0 indicating no relationship, and 1 signifying a strong positive relationship. For instance, a Pearson correlation of 0.8 between two variables suggests a strong positive relationship, where an increase in one variable typically results in an increase in the other variable.
+```{r, warning=FALSE, message=FALSE}
+# Set seed for reproducibility
+set.seed(0)
 
-Beyond the Pearson correlation, other correlation measures include partial correlation, conditional correlation, spatial correlation, and dynamic correlation.
+# Generate two variables each with 20 observations, all less than 10
+x <- runif(20, min = 0, max = 10)
+y <- runif(20, min = 0, max = 10)
 
-Partial correlation is a statistical method used to measure the relationship between two variables while controlling for the effects of one or more other variables. This technique isolates the relationship between the two variables of interest and examines how it is influenced by the other variables.
-For example, when examining the relationship between education level and income, partial correlation could be employed to control for the effects of variables such as age or work experience.
+# Scaling the data by multiplying each element by 1000
+x_scaled <- x * 1000
+y_scaled <- y * 1000
 
-Conditional correlation measures the relationship between two variables while accounting for the effects of one or more categorical variables. Similar to partial correlation, conditional correlation aims to understand the relationship between two variables of interest by considering the influence of other variables.
+# Print the original and scaled variables
+#print(x)
+#print(y)
+#print(x_scaled)
+#print(y_scaled)
 
-Spatial correlation assesses the relationship between variables measured at different locations in space. This technique is particularly useful when analyzing data collected across geographical areas, such as climate, population, or economic indicators. Spatial correlation helps determine the extent to which observations close to one another in space are related.
+# Calculate the covariance between x and y
+covariance_original <- cov(x, y)
+print(paste("Original covariance:", covariance_original))
 
-For instance, spatial correlation might be used to study the relationship between pollution levels and population density across various cities.
+# Calculate the covariance between x_scaled and y_scaled
+covariance_scaled <- cov(x_scaled, y_scaled)
+print(paste("Covariance after scaling:", covariance_scaled))
 
-Dynamic correlation measures the relationship between variables that change over time. This technique is especially valuable when analyzing data collected over extended periods, such as stock prices, economic indicators, or demographic trends. Dynamic correlation estimates the correlation between variables at different points in time and can help researchers understand how the relationship between variables evolves over time.
+# Compute standard deviations for both datasets
+sd_x <- sd(x)
+sd_y <- sd(y)
+#print(paste("Standard deviation of x:", sd_x))
+#print(paste("Standard deviation of y:", sd_y))
+
+# Standardize the variables
+x_standardized <- (x - mean(x)) / sd_x
+y_standardized <- (y - mean(y)) / sd_y
+#print(paste("Standardized variable x:", x_standardized))
+#print(paste("Standardized variable y:", y_standardized))
+
+# Calculate the covariance between the standardized x and y which give us the correlation coefficient:
+correlation_original <- cov(x_standardized, y_standardized)
+print(paste("Correlation after standardizing:", correlation_original))
+
+# Equivalent formula to calculate the correlation between the original x and y
+correlation_original2 <- cov(x, y) / (sd_x * sd_y)
+print(paste("Correlation after standardizing2:", correlation_original2))
+
+# Compute standard deviations for both scaled datasets
+sd_x_scaled <- sd(x_scaled)
+sd_y_scaled <- sd(y_scaled)
+# Standardize the variables
+x_scaled_standardized <- (x_scaled - mean(x_scaled)) / sd_x_scaled
+y_scaled_standardized <- (y_scaled - mean(y_scaled)) / sd_y_scaled
+
+# Calculate the correlation between the scaled x and y
+correlation_scaled <- cov(x_scaled, y_scaled)/(sd_x_scaled * sd_y_scaled)
+print(paste("Correlation after scaling:", correlation_scaled))
+# Equivalent formula to calculate the correlation between the scaled x and y
+correlation_scaled2 <- cov(x_scaled_standardized, y_scaled_standardized)
+print(paste("Correlation after scaling:", correlation_scaled2))
+
+```
+
+Having seen how correlation remains consistent across different scales, highlighting the robustness of this statistical measure against changes in data magnitude, we want to remind to the critical role of data visualization that we discussed in the previous subsection. A compelling illustration of why visual analysis is essential is provided by the Anscombe Quartet. This example underscores the limitations of relying solely on statistical summaries and demonstrates the importance of visualizing data to capture the true nature of relationships between variables.
+
+A classic example that highlights the importance of visualizing data before drawing conclusions is the Anscombe Quartet (1973). This dataset consists of four sets of data that have nearly identical statistical properties, including the same mean, variance, and correlation. Moreover, each group's linear regression line has identical parameters, yet the underlying data distributions vary significantly. Thus, when plotted, the datasets reveal distinct patterns, emphasizing the need to visualize data to understand relationships accurately.  Group I displays a typical linear relationship, while Group II reveals a nonlinear pattern, illustrating poor fit despite identical regression lines. Group III's outlier drastically affects the regression influence, misleading interpretations if not visually inspected. Group IV, dominated by a cluster at one x-value with a single influential point, also misrepresents the actual data characteristics through its fitting. These visual discrepancies underscore the crucial role of plotting raw data to correctly interpret statistical results and avoid misleading conclusions based solely on numerical summaries.
+
+
+```{r, warning=FALSE, message=FALSE}
+# Create Anscombe's quartet dataset
+anscombe <- data.frame(
+  x1 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y1 = c(8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68),
+  x2 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y2 = c(9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74),
+  x3 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y3 = c(7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73),
+  x4 = c(8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8),
+  y4 = c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89)
+)
+
+# Set up the plotting area with consistent axes and include fitted lines
+par(mfrow = c(2, 2)) # Arrange plots in a 2x2 grid
+
+# Define consistent x and y axis limits
+xlim <- c(3, 20)
+ylim <- c(2, 14)
+
+# Function to calculate and print stats for each group
+calculate_stats <- function(x, y) {
+  c(mean_x = formatC(mean(x), format = "f", digits = 3), 
+    mean_y = formatC(mean(y), format = "f", digits = 3), 
+    variance_x = formatC(var(x), format = "f", digits = 3), 
+    variance_y = formatC(var(y), format = "f", digits = 3), 
+    covariance = formatC(cov(x, y), format = "f", digits = 3),  # Calculating covariance
+    correlation = formatC(cor(x, y), format = "f", digits = 3), 
+    intercept = formatC(coef(lm(y ~ x))[1], format = "f", digits = 3), 
+    slope = formatC(coef(lm(y ~ x))[2], format = "f", digits = 3))
+}
+
+# Calculate stats for each group
+stats1 <- calculate_stats(anscombe$x1, anscombe$y1)
+stats2 <- calculate_stats(anscombe$x2, anscombe$y2)
+stats3 <- calculate_stats(anscombe$x3, anscombe$y3)
+stats4 <- calculate_stats(anscombe$x4, anscombe$y4)
+
+# Create a matrix for the statistics
+stats_matrix <- cbind("Statistics" = c("Mean X", "Mean Y", "Variance X", "Variance Y", 
+                                      "Covariance", "Correlation", "Intercept", "Slope"), 
+                     "Group I" = stats1, 
+                     "Group II" = stats2, 
+                     "Group III" = stats3, 
+                     "Group IV" = stats4)
+
+# Convert matrix to data frame for nicer printing
+stats_df <- as.data.frame(stats_matrix)
+
+# Print the data frame without row names
+print(stats_df, row.names = FALSE)
+
+# Print the data frame without row names
+print(stats_df, row.names = FALSE)
+
+# Group I
+plot(anscombe$x1, anscombe$y1, main = "Group I", xlab = "X1", ylab = "Y1", 
+     pch = 19, col = "blue", xlim = xlim, ylim = ylim)
+abline(lm(y1 ~ x1, data = anscombe), col = "blue")
+
+# Group II
+plot(anscombe$x2, anscombe$y2, main = "Group II", xlab = "X2", ylab = "Y2", 
+     pch = 19, col = "red", xlim = xlim, ylim = ylim)
+abline(lm(y2 ~ x2, data = anscombe), col = "red")
+
+# Group III
+plot(anscombe$x3, anscombe$y3, main = "Group III", xlab = "X3", ylab = "Y3", 
+     pch = 19, col = "green", xlim = xlim, ylim = ylim)
+abline(lm(y3 ~ x3, data = anscombe), col = "green")
+
+# Group IV
+plot(anscombe$x4, anscombe$y4, main = "Group IV", xlab = "X4", ylab = "Y4", 
+     pch = 19, col = "purple", xlim = xlim, ylim = ylim)
+abline(lm(y4 ~ x4, data = anscombe), col = "purple")
+
+```
+
+
+Note that Correlation between x and y is zero doesNOT mean that x and y are not related and independent. It means that there is no linear relationship between x and y. There might be a non-linear relationship between x and y. 
+
+```{r, warning=FALSE, message=FALSE}
+# Set seed for reproducibility
+set.seed(0)
+
+# Generate x as a sequence of values
+x <- -10:10
+
+# Define y as a non-linear function of x (e.g., y = A+B*x^2)
+y <- 9+2*x^2
+
+# Plot x vs y to visualize the non-linear relationship
+plot(x, y, main = "Non-linear Relationship: 9+2*x^2", xlab = "x", ylab = "y", pch = 19, col = "blue")
+
+# Calculate and print the correlation between x and y
+correlation <- cor(x, y)
+print(paste("Correlation between x and y:", formatC(correlation, format = "f", digits = 3)))
+
+```
+
+If the relationship between variables is nonlinear, other correlation measures may be more appropriate.
+
+Beyond the Pearson correlation, other correlation measures include partial correlation, conditional correlation, spatial correlation, and dynamic correlation.Partial correlation, for example, is a statistical method that measures the relationship between two variables while controlling for the effects of one or more additional variables. This technique helps isolate the direct relationship between the two primary variables by excluding the influence of other factors. For instance, in examining the relationship between education level and income, partial correlation can be utilized to account for variables like age or work experience, providing a clearer picture of the direct impacts of education on income.
+
+Conditional correlation also measures the relationship between two variables but includes the consideration of one or more categorical variables. This method aims to understand how other variables might modify the relationship between the primary variables of interest.
+
+Spatial correlation is another important technique, especially relevant in geographical studies. It assesses the relationship between variables measured at different locations, helping to determine if and how closely observations near each other are related. For example, researchers might use spatial correlation to analyze how pollution levels correlate with population density across different urban areas.
+
+Lastly, dynamic correlation is used to analyze the relationship between variables that change over time. This measure is particularly useful in fields like finance or economics, where it is important to understand how relationships between variables such as stock prices and economic indicators evolve. Dynamic correlation provides insights into how these relationships fluctuate over time, aiding in the prediction of future trends based on historical data.
+
+Each of these correlation measures offers unique insights and is chosen based on the specific characteristics of the data and the research questions at hand. These tools allow researchers to delve deeper into understanding the complexities of variable interactions, ensuring a more comprehensive analysis of their data.
+
 In summary, correlation analysis is a powerful statistical tool for examining the relationships between variables, allowing researchers to measure the strength and nature of these associations. By employing various correlation measures such as Pearson correlation, partial correlation, conditional correlation, spatial correlation, and dynamic correlation, researchers can gain valuable insights into the complex relationships between variables in numerous fields.
 
-Correlation and Regression
+Understanding the nature of correlation between variables allows for the prediction of future trends and clarifies the type of relationship, if any, that exists. However, the critical caveat remains: correlation does not imply causation. The presence of a strong correlation does not necessarily mean that one variable causes changes in another. There could be confounding factors or other underlying causes affecting the observed relationship. This underscores the importance of contextual understanding and conducting further analyses to explore causality beyond mere correlation before drawing definitive conclusions about the effects one variable may have on another.This analytical caution is encapsulated in the phrase "correlation does not imply causation," highlighting the necessity of a deeper investigation beyond correlation to fully understand the dynamics at play.
 
-Correlation and regression are two statistical methods used to analyze the relationships between variables. While they share some similarities, their purposes and applications differ significantly.
+**Correlation and Regression**
 
-Similarities:
+Correlation and regression are two statistical methods used to analyze the relationships between variables. While they share some similarities, their purposes and applications differ significantly.Both correlation and regression are used to explore relationships between variables and typically assume a linear relationship between them. Additionally, both techniques involve the calculation of coefficients that quantify the relationships between variables, helping to illustrate how these variables interrelate.
 
-Both correlation and regression are used to explore relationships between variables.
-They both assume a linear relationship between the variables in question.
-Both techniques involve the calculation of coefficients that quantify the relationships between variables.
+However, the key differences between the two methods are crucial to understand. Correlation is primarily a descriptive statistical technique that measures the strength and direction of a relationship between two variables. It is used to summarize how closely two variables are related without predicting one from the other. Correlation is quantified using a correlation coefficient, which ranges from -1 to 1. A correlation coefficient of 1 indicates a perfect positive relationship, -1 signifies a perfect negative relationship, and 0 denotes no relationship. Correlation is valuable for identifying associations between variables, such as the relationship between smoking and lung cancer, without implying causation.
 
-Key Differences:
+On the other hand, regression is a predictive statistical technique that not only assesses the relationship between variables but also models and predicts the value of one variable based on the value of another. This makes regression particularly valuable for forecasting and determining the impact of changes in one variable on another. Regression analysis can handle both continuous variables, such as height and weight, and categorical variables, such as GPA and major. It utilizes various statistics to build its models, including the coefficient of variables, the standard error, and the p-value, which help to understand the accuracy and reliability of the predictions made.
 
-Correlation measures the strength and direction of the relationship between two variables, whereas regression models and predicts the value of one variable based on the value of another.
-
-Correlation is a descriptive statistical technique, providing a summary of the relationship between variables. In contrast, regression is a predictive statistical technique, employed to make predictions or explain the relationship between variables.
-
-Correlation typically analyzes relationships between two continuous variables, such as height and weight, or age and income. Regression can analyze relationships between two continuous variables but can also assess relationships between a continuous variable and a categorical variable, such as GPA and major.
-
-Correlation is quantified using a correlation coefficient, which ranges from -1 to 1. A coefficient of 0 indicates no relationship, while coefficients of 1 or -1 signify strong positive or negative relationships, respectively. Regression utilizes various statistics, including the coefficient of determination (R-squared), the standard error, and the p-value.
-
-In conclusion, while correlation and regression are related statistical techniques used to explore relationships between variables, they serve different purposes and applications. Correlation is a descriptive technique that measures the strength and direction of a relationship between two variables, while regression is a predictive technique that models and predicts the value of one variable based on another. Understanding these differences is essential when selecting the appropriate statistical method for data analysis.
+In conclusion, while correlation and regression both analyze relationships between variables, they serve different purposes: correlation describes the relationship without implying causation, while regression goes a step further by modeling and predicting outcomes based on this relationship. Understanding these differences is essential when selecting the appropriate statistical method for data analysis, ensuring that the analysis aligns with the research objectives.
 
 
 ##  Effect of X on Y / Regression
 
-Economists and social scientists predominantly utilize observational survey data to answer research questions or test hypotheses. By analyzing samples, they make inferences about the larger population. When conducting such analyses, it is crucial to address three key issues:
+Economists and social scientists predominantly utilize observational survey data to answer research questions or test hypotheses. By analyzing samples, they make inferences about the larger population, which involves addressing three key issues: the effect of other factors on the relationship between x (independent variable) and y (dependent variable), the functional relationship between y and x, and ensuring a ceteris paribus (all other things being equal) condition in their analysis.
 
-1. How can factors other than x be allowed to influence y?
+The simple linear regression model effectively addresses these concerns. It assumes a linear relationship between x and y, focusing on interpreting this relationship rather than on prediction. This contrasts with machine learning (ML) techniques, which do not assume a specific functional form but instead seek the optimal form for the best predictive model. This difference in focus is highlighted in Victor Chernozhukov's presentation at the 2013 NBER Summer Institute, where he demonstrated that Lasso, a linear ML method, can better approximate the conditional expectation function (CEF) than ordinary least squares (OLS) for certain datasets.
 
-2. What is the functional relationship between y and x?
+Bruce Hansen, in his recent book, points out that OLS regression yields the best linear approximation of the CEF. This property makes regression particularly valuable to economists and social scientists who are more interested in interpreting an approximation of reality rather than engaging in complex curve fitting.
 
-3. How can we ensure that we are capturing a ceteris paribus (all other things being equal) relationship between y and x?
+The predictive power of \(x\) on \(y\) is encapsulated in the Conditional Expectation Function (CEF), \(E(y \mid x_i)\), which represents the expected value of \(y\) when a specific covariate \(x\) is held constant. This function is crucial for understanding how changes in x affect y on average, rather than predicting individual outcomes. The regression CEF theorem further supports this by stating that even if the CEF is nonlinear, regression provides the best linear approximation.
 
-The simple linear regression model addresses these concerns effectively. While this model assumes a linear relationship between x and y, machine learning (ML) techniques do not assume a specific functional form and instead attempt to find the optimal functional form for the best predictive model. In contrast, economists and social scientists are more interested in interpreting the relationship between x and y rather than making predictions.
+OLS estimates the coefficient \(\beta_1\) using a random sample of data to represent the population and makes assumptions about the relationships between the error term \(u\) and \(x\). These assumptions include the expected value of the error term being zero in the population, mean independence of the error term, and the zero conditional mean assumption.
 
-Victor Chernozhukov's presentation at the 2013 NBER Summer Institute demonstrated that Lasso, a linear method in ML, can better approximate the conditional expectation function (CEF) than ordinary least squares (OLS) for certain datasets.
-
-As Bruce Hansen notes in his recent book, "The OLS regression yields the best linear approximation of the conditional expectation function (CEF). This mathematical property makes regression a favorite tool among economists and social scientists, as it emphasizes the interpretation of an approximation of reality rather than complicated curve fitting."
-
-The predictive power of x on y can be summarized using the conditional expectation function, E(y|xi). This function represents the expected value (population average) of y, given certain covariate x is held constant. It provides a useful representation of how y changes with x. The primary interest lies in the distribution of yi rather than predicting individual yi. The regression CEF theorem states that even if the CEF is nonlinear, regression provides the best linear approximation to it.
-
-OLS estimates the coefficient (β1) using a random sample of data to represent the population and makes assumptions about the relationships between the error term (u) and x. These assumptions include the expected value of the error term being zero in the population, mean independence of the error term, and the zero conditional mean assumption.
-
-In summary, simple linear regression and machine learning methods offer different approaches to understanding the relationship between x and y in observational survey data. While regression emphasizes interpretation and provides the best linear approximation to the CEF, machine learning techniques focus on finding the best functional form for predictive modeling. Both methods have their merits and can provide valuable insights for economists and social scientists.
+In summary, while both simple linear regression and machine learning methods offer distinct approaches to exploring the relationship between x and y in observational survey data, they cater to different needs. Regression emphasizes interpretation and provides the best linear approximation to the CEF, useful for understanding distributions and influences in the data. On the other hand, machine learning techniques focus on creating the best functional form for predictive modeling, useful for making accurate predictions. Both methods have their merits and can provide valuable insights for economists and social scientists, depending on their specific research objectives.
 
 ### How can we estimate the population parameters, $\beta_{0}$ and $\beta_{1}$?
 
- We find a random sample, which represents the population. We plug observations into the population equation, and use two assumptions $$ E(u)=0 , Cov(x,u)=0$$
- We estimate $$y_{i}=\hat{\beta_{0}}+\Sigma_{1}^{k}\hat{\beta_{k}}x_{i}+u_{i}$$. i.e we minimize sum of squared residuals by solving the following linear regression equation algebraically. This is also known as ordinary least squares(OLS).
-$$
-		\sum_{i=1}^{n}\hat{u}_{i}^{2}=\underset{\hat{\beta_{0}}, \hat{\beta_{1}}..\hat{\beta_{k}}}{\operatorname{argmin}} \sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta_{0}}+\hat{\beta_{1}} x_{i}+\hat{\beta_{2}} x_{i}+...+\hat{\beta_{k}} x_{i}\right)\right)^{2}
-$$		
-		
-$$y=X^{'}\beta+u$$, where $$u_{i}\sim(0, \sigma^2)$$ then $$\hat{\beta}= (X^{'}X)^{-1}X^{'}y$$ follows from $$1/n \sum [x_{i}(y_{i} - x_{i}^{'}\hat{\beta})] = 0$$
+To estimate the population parameters \(\beta_0, \beta_1, \ldots, \beta_k\) in a linear regression model, we start by selecting a random sample that represents the population. We model the relationship as:
+\[ y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_k x_{ik} + \epsilon_i, \]
+where \( \epsilon_i \) represents the error terms satisfying the assumptions \( E(\epsilon_i) = 0 \) and \( \operatorname{Cov}(x_{ij}, \epsilon_i) = 0 \) for all \( j \).
 
+The Ordinary Least Squares (OLS) method estimates the parameters by minimizing the sum of the squared residuals. This involves solving:
+\[ \min_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k} \sum_{i=1}^{n} \left( y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \ldots + \hat{\beta}_k x_{ik}) \right)^2. \]
+
+The matrix form of the same model is \( y = X\beta + \epsilon \), where \( X \) is the matrix of regressors and \( \epsilon \) is the vector of error terms with \( \epsilon_i \sim (0, \sigma^2) \). The OLS estimator \(\hat{\beta}\) is given by:
+\[ \hat{\beta} = (X'X)^{-1}X'y, \]
+where \( X' \) is the transpose of \( X \) and \( y \) is the vector of observed values. This estimator provides the best linear unbiased estimates (BLUE) of the parameters under the Gauss-Markov theorem, assuming linearity, exogeneity, and homoscedasticity of errors among other conditions. Further exploration of error terms and OLS properties will be covered in Chapter 5.
+
+That results from the first order conditions for the minimization problem:
+\[ \frac{1}{n} \sum_{i=1}^n x_i (y_i - x_i' \hat{\beta}) = 0. \]
+
+This estimator provides the best linear unbiased estimates (BLUE) of the parameters under the Gauss-Markov theorem, assuming linearity, exogeneity, and homoscedasticity of errors among other conditions. Further exploration of error terms and OLS properties will be covered in Chapter 5.
 
 ### Predicting $y$
 
-For any candidates $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$, define a fitted value for each $i$ as		
+The next step in regression analysis is predicting the dependent variable \( y \) using a set of predictors. Given estimators \( \hat{\beta}_0 \) and \( \hat{\beta}_1 \), we define the fitted values for each observation \( i \) as:
+\[
+    \hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i.
+\]
+This equation provides us with \( n \) fitted values corresponding to \( n \) observations. The fitted value \( \hat{y}_i \) represents the predicted value of \( y_i \) given the predictor \( x_i \) and the estimated coefficients \( \hat{\beta} \).
 
-$$
-		\hat{y}_{i}=\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}
-$$
-		
-We have $n$ of these.  $\hat{y}_i$ is the value we predict for $y_{i}$ given that $x=x_{i}$ and $\beta=\hat{\beta}$.
-		
-The "mistake" from our prediction is called the residual:
-$$
-		\hat{u}_{i}=y_{i}-\hat{y}_{i}
-		=y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{i}
-$$
-		
-NOTE: Econometric applications typically are not interested in forecasting yi but rather in understanding relationship between $y_{i}$ and some elements of $x_{i}$ with other factors held fixed (ceteris paribus)
+The difference between the actual value \( y_i \) and the predicted value \( \hat{y}_i \) is known as the residual, which quantifies the error in our prediction:
+\[
+    \hat{\epsilon}_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i).
+\]
 
-We estimate the coefficients by minimizing sum of squared residuals in OLS. Different samples will generate different estimates $(β^1)$ for the true $β_{1}$ which makes $β_{1}$ a random variable. But never forget that β^1 is an estimator of that causal! parameter obtained with a specific sample from the population.  We say the effect of x on y is β1 as long as it is unbiased. We also want our estimates to be consistent, and satisfy asymptotic normality. 
+In the matrix form, the model can be expressed as:
+\[
+    Y = X\beta + \epsilon,
+\]
+where \( Y \) is the vector of observed values, \( X \) is the matrix of predictors including a column of ones for the intercept, \( \beta \) is the vector of coefficients, and \( \epsilon \) is the vector of residuals. The OLS solution to estimating \( \beta \) is:
+\[
+    \hat{\beta} = (X'X)^{-1}X'Y,
+\]
+resulting in the vector of fitted values:
+\[
+    \hat{Y} = X\hat{\beta}.
+\]
+and residuals:
+\[ \hat{\epsilon} = Y - \hat{Y}. \]
 
-Unbiasedness is the idea that if we could take as many random samples on Y as we want from the population, and compute an estimate each time, the average of these estimates would be equal to β1. OLS is unbiased under the following assumptions.  These assumptions are the population model can be Linear in Parameters, Random Sampling, Sample Variation in the Explanatory Variable, Zero Conditional Mean, Homoskedasticity - Constant Variance (or heteroskedasticity).This tells us that, on average, the estimates will be equal the population values.
+This matrix form is particularly beneficial in multiple regression models, clarifying the relationship between multiple predictors and the response variable. Detailed examination of these relationships will continue in Chapter 5.
 
-Consistency states that if one uses a larger sample size, one reduces the likelihood of obtaining an estimate $\hat{\beta}$ that deviates substantially from the true effect $β$.  Thus, consistency implies that, as a sample size approaches the entire population, an estimate $\hat{\beta}$ is more and more likely to reflect the true estimate $β$. This holds true, for example, when $β$ is unbiased and its variance decreases as the sample size increases.  
+\textbf{Note:} In econometrics, we often focus not just on forecasting \(y_i\) but also on understanding the relationship between \(y_i\) and elements of \(x_i\), with other factors held constant (ceteris paribus). We estimate coefficients by minimizing the sum of squared residuals in OLS. Different samples yield different estimates \(\hat{\beta}^1\) for the true \(\beta_1\), making \(\beta_1\) a random variable. However, \(\hat{\beta}^1\) acts as an estimator for that causal parameter, derived from a specific sample. The effect of \(x\) on \(y\) is \(\beta_1\) as long as it remains unbiased. Estimates must also be consistent and satisfy asymptotic normality, which we will explore in further chapter 5.
 
-Assuming that many samples are drawn randomly, and $β$ is estimated in each sample, asymptotic normality implies that, given the very large size of each sample, the pooled estimate $\hat{\beta}$ obtained from the samples follows a normal distribution. Having this property makes it possible to approximate the distribution of an estimate across many samples well, even if we have only one sample with a sufficient number of observations rather than many samples. In statistical inference, it is very important to understand an estimate's distribution.
+Unbiasedness means that if we could repeatedly take random samples on \(Y\) from the population and compute an estimate each time, the average of these estimates would equal \(\beta_1\). OLS is unbiased under certain assumptions: the model must be linear in parameters, utilize random sampling, include sample variation in the explanatory variable, ensure zero conditional mean, and exhibit homoskedasticity or constant variance (alternatively, handle heteroskedasticity). These conditions guarantee that, on average, our estimates match the population values.
 
-Be aware, most of the time, obtaining unbiased $β$ is very hard (even impossible as population DGM is unknown!).  Errors are not iid. For instance, maybe observations between units in a group are related to each other (clustered), non-representative sample, Exclusion or inclusion of variables, Measurement error, Endogeneity, Reverse causality, Missing observations. Thus, most of the time, we can only find associations, or correlations. In this situation, we can only say what is the relationship, association, or correlation between y and x. 
+Consistency ensures that using a larger sample size decreases the likelihood of obtaining an estimate \(\hat{\beta}\) that substantially deviates from the true effect \(\beta\). As sample size increases towards the size of the entire population, an estimate \(\hat{\beta}\) increasingly reflects the true \(\beta\), particularly when \(\beta\) is unbiased and its variance decreases with larger samples.
+
+When many samples are drawn randomly, and \(\beta\) is estimated in each, asymptotic normality suggests that the pooled estimate \(\hat{\beta}\) from these samples follows a normal distribution, given very large sample sizes. Having this property makes it possible to approximate the distribution of an estimate across many samples well, even if we have only one sample with a sufficient number of observations rather than many samples. Understanding the distribution of an estimate is crucial in statistical inference.
+
+However, obtaining an unbiased \(\beta\) is often very challenging or even impossible, as the population DGM (Data Generating Mechanism) is unknown. Errors may not be iid (independently and identically distributed). For example, observations between units in a group might be related (clustered), samples might be non-representative, or there could be issues such as the exclusion or inclusion of variables, measurement errors, endogeneity, reverse causality, or missing observations. Therefore, we often find associations or correlations instead of causal relationships. In such cases, we discuss the relationship, association, or correlation between \(y\) and \(x\).
+
+### Maximum Likelihood Estimation (MLE)}
+
+Maximum Likelihood Estimation (MLE) is a statistical method that estimates the parameters of a statistical model based on observed data. Unlike Ordinary Least Squares (OLS), which minimizes the squared differences between observed and predicted values, MLE seeks the parameter values that make the observed data most probable under an assumed probability distribution.
+
+In MLE, the core objective is to estimate unknown parameters by maximizing the likelihood function, \( L(\theta; x) \), which represents the probability of observing the data \( x \) given the parameters \( \theta \):
+\[
+    \hat{\theta} = \arg\max_{\theta} L(\theta; x).
+\]
+This approach aims to find the parameter values \( \theta \) that best explain the observed data under the specified model.
+
+Maximum Likelihood Estimation (MLE) offers a range of benefits that can make it a preferred choice over other estimation methods such as Ordinary Least Squares (OLS). MLE is known for its consistency; the estimates it provides converge to the true parameter values as the sample size increases, assuming the model is accurately specified. Additionally, under certain regularity conditions, MLE estimates are asymptotically normally distributed. This property is highly beneficial as it facilitates the construction of confidence intervals and enables hypothesis testing. MLE also stands out for its efficiency, achieving the lowest possible variance among all unbiased estimators, which guarantees highly precise estimates. Another advantage of MLE is its invariance property; the estimates remain unchanged under transformations, meaning that the transformation of the estimates corresponds directly to the estimates of the transformed parameters.
+
+However, despite these significant advantages, MLE comes with certain limitations that must be carefully managed. One major drawback is its dependence on the correct specification of the data's probability distribution. If the assumed probability distribution does not accurately reflect the true distribution, the MLE estimates may become biased or inconsistent. MLE is also sensitive to outliers in the data because it aims to maximize the likelihood of the entire dataset. This sensitivity can result in biased estimates if the dataset contains extreme values. Furthermore, the process of maximizing the likelihood function can be computationally intensive, posing challenges in cases involving large datasets or complex models. This computational demand requires robust computational resources and can complicate the application of MLE in large-scale data analysis.
+
+Keep in mind that Ordinary Least Squares (OLS) and Maximum Likelihood Estimation (MLE) converge under certain conditions, primarily when the model assumptions align particularly well. The most common scenario where OLS and MLE provide identical estimates is in linear regression models with normally distributed error terms. In such cases, the assumptions for OLS—that the errors have a mean of zero (no bias) and constant variance (homoscedasticity)—also satisfy the requirements for MLE under a normal distribution. Specifically, when the error terms are assumed to be normally distributed, the likelihood function for a linear model becomes proportional to the sum of squared residuals, which OLS minimizes. Thus, minimizing these residuals (as OLS does) also maximizes the likelihood of observing the data under the assumed normal error distribution (as MLE seeks to do). This overlapping objective ensures that both estimation methods yield the same parameter estimates when the model errors are normally distributed and other regularity conditions are met. However, in cases where the model assumptions diverge, such as non-normal error terms or heteroscedasticity, OLS and MLE may produce different estimates. Understanding the relationship between OLS and MLE is essential for interpreting regression results and selecting the most appropriate estimation method for a given dataset and research question.
+
+```{r, warning=FALSE, message=FALSE}
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate a vector of 10,000 random integers between 9 and 24
+x <- sample(9:24, 10000, replace = TRUE)
+
+# View the first few elements of x
+# head(x)
+intercept <- 3
+slope <- 2
+epsilon <- rnorm(10000, mean = 0, sd = 1)  # Error term
+y <- intercept + slope * x + epsilon  # True linear relationship with some noise
+
+# Perform linear regression using OLS
+ols_model <- lm(y ~ x)
+summary(ols_model)
+
+# Perform linear regression using MLE
+mle_model <- nls(y ~ beta0 + beta1 * x, start = list(beta0 = 0, beta1 = 0))
+summary(mle_model)
+```
 
 
-### MLE
-
-Maximum Likelihood Estimation (MLE) is a statistical method used to estimate parameters of a given statistical model based on the observed data. MLE aims to find the parameter values that maximize the likelihood of the observed data under the assumed probability distribution. Unlike Ordinary Least Squares (OLS), which focuses on minimizing the squared differences between the observed and predicted values, MLE seeks to find the parameter values that make the observed data most likely.
-
-In MLE, the main objective is to estimate the unknown parameters of a given statistical model by maximizing the likelihood function. The likelihood function measures the probability of observing the data given the parameters of the model. By maximizing the likelihood function, we find the parameter values that best explain the observed data under the assumed distribution.
-
-MLE has several advantages over other estimation methods, such as OLS, including:
-
-Consistency: As the sample size increases, MLE estimates tend to converge to the true parameter values, assuming that the model is correctly specified. This property ensures that MLE provides reliable estimates as more data becomes available.
-
-Asymptotic Normality: Under certain regularity conditions, the MLE estimates are asymptotically normally distributed. This property allows for the construction of confidence intervals and hypothesis testing using standard statistical techniques.
-
-Efficiency: MLE estimates are asymptotically efficient, meaning they achieve the lowest possible variance among all unbiased estimators. This property ensures that MLE provides the most precise estimates given the available data.
-
-Invariance: MLE estimates are invariant under transformations, which means that if we apply a transformation to the parameter space, the MLE estimate of the transformed parameter will be the same as the transformation of the MLE estimate of the original parameter.
-
-However, MLE also has some limitations, such as:
-
-Dependence on distribution assumptions: MLE requires the assumption of a specific probability distribution for the data. If the assumed distribution is incorrect, the MLE estimates may be biased or inconsistent.
-
-Sensitivity to outliers: MLE estimates can be sensitive to outliers in the data, as they aim to maximize the likelihood of the entire dataset. This sensitivity can lead to biased estimates if the data contains extreme values.
-
-Computational complexity: The maximization of the likelihood function can be computationally intensive, especially for large datasets and complex models.
-
-In summary, Maximum Likelihood Estimation (MLE) is a powerful statistical method for estimating the parameters of a given statistical model based on the observed data. It provides a flexible and efficient approach to parameter estimation under the assumption of a specific probability distribution. However, it is essential to consider the limitations of MLE when applying it to real-world data and carefully assess the distributional assumptions and the presence of outliers in the data.
+In conclusion, Maximum Likelihood Estimation is a robust method for parameter estimation in statistical modeling, offering flexibility and efficiency under specific probability distribution assumptions. However, it is crucial to be mindful of its limitations regarding distributional assumptions and outlier sensitivity when applying MLE to real-world data. We will explore these concepts further in subsequent chapters.
 
 ##  Causal Effect
 
-You have most likely heard the term “Correlation is not
-causation”, which means, loosely that “just because two things
-happen together, doesn't mean that one of them caused the
-other.” A better term is “correlation is not sufficient for causation.”There are some things we can do to make causal inference
-possible, but they happen before the sample is taken.
-This is a big change from most of the statistics you learn.
-Usually, you're given numbers from some random sample, and
-you don't have any control over that sample. You just have to
-take the numbers and make sense of them.
-In the design phase, you decide how treatments are going to
-be assigned to sample units/patients. If you can't directly
-assign treatments, you need to collect data about covariates.
+You may have heard the phrase "correlation does not equal causation," emphasizing that the co-occurrence of two events does not automatically imply that one causes the other. A more precise expression would be "correlation is not sufficient for causation." This distinction is crucial in research design, particularly in the initial stages prior to data collection. Unlike most traditional statistical analyses where you work with an existing random sample with no control over its selection, causal inference requires careful planning in the design phase.
 
-"You may have heard the phrase "correlation does not equal causation," which means that just because two things are related or happen together does not necessarily mean that one of them caused the other. A more accurate statement would be "correlation is not enough to establish causation." To make causal inferences, there are certain steps that must be taken before collecting data, such as designing how treatments will be assigned to sample units or patients. In contrast, statistical analysis typically involves working with data that has already been collected, and the focus is on understanding and interpreting the relationships between variables within the given data set. It is important to keep in mind that correlation does not necessarily imply causation, and other factors may be at play when trying to understand the relationships between variables."
+In this phase, researchers decide how treatments are assigned to sample units or patients. If direct assignment isn't feasible, it becomes necessary to gather detailed information about covariates which can affect the outcome. This proactive approach in experimental design is fundamental for making valid causal inferences from the data. It's important to recognize that while correlation can indicate a relationship, it does not confirm causality without these rigorously controlled conditions. This perspective is a significant shift from typical statistical tasks, where the primary goal is to interpret and make sense of already collected data, emphasizing the importance of design in causal studies.
 
 Most of the time though, we also want to find out not only the relationship or correlation between observations but also the reason behind it. Using this information, we are able to take action to alter the relationships and causes. Essentially, we want to know what the consequences are of not doing one thing or the other. Our goal is to understand the effects and consequences of specific actions, policies, and decisions.
+
 In order to develop a hypothesis about such causal effects, we rely upon previous observations, personal experiences, and other information. Researchers in economics, health, and social sciences analyze empirical data to evaluate policies, actions, and choices based on quantitative methods.
 
 When we want to say something about why? We work with potential outcomes Potential Outcomes (Neyman, 1923 - Rubin, 1975) framework, especially in applied economics, or directed acyclic graphs (DAG) which you can think presenting a chain of causal effects with a graph. We will review causal analysis as short as possible, and considering the approaches integrating the machine learning with causal analysis. The books we can recommend in this topic are Causal Inference-The Mixtape, The Effect, Mostly Harmless Econometrics,...

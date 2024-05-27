@@ -1,7 +1,7 @@
 --- 
 title: 'Causal MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2024-01-17'
+date: 'This version: 2024-05-27'
 subtitle: for Economists, Social and Health Scientists
 titlerunning: MachineMetrics
 site: bookdown::bookdown_site
@@ -266,9 +266,9 @@ knitr::include_graphics("png/mlapplications2.png")
 <img src="png/MLCategories.png" width="900pt" />
 
 
-We designed this book for researchers who deal with data and aimed to provide toolkit which is easily accessible. When we started to learn these topics years ago, we did not know where to start and poke in each topic in that graph. We tried to learn one topic or how we can use it in our own research. We tried to identify the topics we can use as an applied microeconomics and in general as an economist as we are not dealing in robot navigation or game AI or similar topics in our research. Thus, we are only interested in subtopics which are relevant for our research such as dimension reduction and the structure discovery, the regression part and forecasting mostly for finance and so on (these topics from figure). We can use topics related to predictions and optimizations and some new insights.  As a social scientist the part we can employ in our research is just some part of the topics in that figure.  Because of that, when you discuss with someone who is in machine learning from computer science and robotics or AI sector and so on, they may try to explain where ML can be used as recommending songs, pictures, the fraud detection, computer vision, speech recognition, document classification, automated driving, but it may not be interesting or relevant for us directly. However, nearly all these subfields start and build on the statistical learning methods we will cover in this book.
+We designed this book for data-focused researchers aiming to provide an easily accessible toolkit which integrates causality with machine learning. When we first began exploring these topics years ago, we were uncertain about where to start and delved into various areas of machine learning mentioned in the table above. Our focus was on understanding individual topics and their applicability to our research. As applied microeconomists who have not been involved in fields like robot navigation or game AI, we concentrated on subtopics relevant to our work, such as dimension reduction, structure discovery, regression, and finance-related forecasting. Our interest mainly lies in areas related to causality, estimation, and optimization, as well as gaining new insights from raw data. As social scientists, only a portion of the topics in that table are applicable to our research. Thus, when discussing machine learning with professionals from computer science, robotics, or AI, they might highlight its use in song recommendations, image recognition, fraud detection, computer vision, speech recognition, document classification, and automated driving. Although these applications are fascinating, they do not directly relate to our area of expertise. However, it's noteworthy that nearly all these subfields are grounded in the statistical learning methods we cover in this book.
 
-Imagine guiding a child to distinguish between animals, particularly identifying what a dog is and what a cat is. By the end of this exercise, the child will learn to recognize these animals. Instead of detailing every nuance of what differentiates a dog from a cat, you might show the child various pictures of dogs and cats. Over time, the child will start to notice patterns and be able to differentiate between the two animals. Machine learning works in a similar way. You feed a computer lots of data (like pictures of cats and dogs), and over time, the computer learns to recognize the patterns in the data.
+To understand machine learning, envision it as teaching a computer in a way similar to how we teach a child, a concept we'll explore in depth in Chapter 4. Imagine guiding a child to distinguish between animals, particularly identifying what a dog is and what a cat is. By the end of this exercise, the child will learn to recognize these animals. Instead of detailing every nuance of what differentiates a dog from a cat, you might show the child various pictures of dogs and cats. Over time, the child will start to notice patterns and be able to differentiate between the two animals. Machine learning works in a similar way. You feed a computer lots of data (like pictures of cats and dogs), and over time, the computer learns to recognize the patterns in the data.
 
 Put simply, machine learning teaches computers to recognize patterns much as we teach children—though the former relies on data and algorithms, while the latter uses tangible examples and verbal explanations. Distinguishing between cats and dogs in images is just one facet of machine learning. Similarly, these techniques power our email filters to sort spam from important messages, enable virtual assistants like Siri or Alexa to understand voice commands, and help streaming platforms like Netflix or Spotify suggest movies or songs tailored to our preferences. These instances, alongside text analysis and speech recognition, underscore the pervasive role of machine learning in modern life. Yet, our primary emphasis will be on the techniques and uses of machine learning in data analysis, which is used for estimation procedures, data exploration, and causal inference.
 
@@ -288,7 +288,7 @@ Additionally, researchers employed graphical network analysis for the spread of 
 
 Researchers also use of classification and regression models to ascertain risk categories and predict allergic reaction severity. While classification assists in grouping individuals as either high-risk or not, regression quantifies the anticipated intensity of their reactions.
 
-Starting with Alex's personal exploration into his garlic allergy, mirroring the steps of machine learning, the scope expanded into a wider research project. This broader study harnessed statistical learning methodologies, using samples to gauge the prevalence of such allergies in the community. Both machine and statistical learning techniques can be instrumental in addressing varied research questions, demonstrating the multifaceted nature of learning from data.
+Starting with Alex's personal exploration into his garlic allergy, mirroring the steps of statistical and machine learning, the scope expanded into a wider research project. This broader study harnessed statistical learning methodologies, using samples to gauge the prevalence of such allergies in the community. Both machine and statistical learning techniques can be instrumental in addressing varied research questions, demonstrating the multifaceted nature of learning from data.
 
 In general, there are four different starting points and approaches to Machine Learning Theory. Bias- variance trade-off approach, Vapnik-Chervonenkis theory, Computational Complexity of Machine Learning, and Bayesian Learning. In this book, we will focus on bias-variance trade-off approach. This approach focuses on understanding and balancing the trade-off between bias (error from erroneous assumptions in the learning algorithm) and variance (error from sensitivity to small fluctuations in the training set). Optimizing this trade-off is crucial for developing effective machine learning models. 
 
@@ -575,7 +575,7 @@ Recognizing correlations visually with these tools means Alex can discern if the
 
 By visually plotting the data, Alex can more effectively recognize patterns and correlations, offering a foundational understanding before venturing into more intricate statistical analyses.
 
-**Delving Into Correlations**:
+**Investigating Correlations**:
 
 Observing Correlations: Alex began to rank his reactions on a scale from 1 to 10, with 10 marking the most severe reaction. As days turned to weeks, he noticed that every time he consumed garlic, the intensity of his reaction consistently hovered between 8 to 10. Contrastingly, other foods such as dairy or wheat might occasionally result in a reaction intensity of 3 or 4, but not always.
 
@@ -599,7 +599,7 @@ Spurious Correlation Revealed:Further probing revealed an interesting detail. Wh
 
 In this example, Mia’s conclusion, based on initial observations, would lead her down the wrong path, emphasizing the importance of not mistaking correlation for causation. It serves as a cautionary tale on the pitfalls of spurious correlations in both real-life and statistical contexts.
 
-**Alex's Deep Dive into the effect of his garlic consumption on his allergy severity:**
+**Alex's exploration of the effect of his garlic consumption on his allergy severity:**
 
 After discovering a strong correlation between his garlic consumption and allergic reactions, Alex decided to take his investigation a step further. While the correlation was evident, he wanted to quantitatively understand the exact impact of garlic consumption on his reactions. He suspected that while garlic was the primary association with his reactions, other variables might exacerbate or alleviate his symptoms. Beyond just the amount of garlic he consumed, could factors like his weight, the weather temperature, and even eating outside influence the severity of his reactions?
 
@@ -679,207 +679,507 @@ We should keep in mind that statistics and economics have the following perspect
 
 ## Data and visualization
 
-Data and Visualization in Health, Economics, Business, and Social Sciences
+Researchers in fields such as health, economics, business, and social sciences primarily utilize various datasets to deepen their understanding of dynamic and static phenomena. These datasets are primarily categorized into three types: cross-sectional data, time series data, and panel data, which is also referred to as longitudinal data.
 
-Researchers in fields such as health, economics, business, and social sciences primarily utilize three types of datasets: cross-sectional data, time series data, and panel data (also known as longitudinal data). 
+Cross-sectional data is collected at a single point in time or within a short period, and is sourced from a variety of subjects, including individuals, companies, or countries. This type of dataset is instrumental in capturing a snapshot of various characteristics or attributes of a population at a given moment, providing insights into the current state of affairs without the changes over time.
 
-Cross-sectional data is collected at a single point in time or over a short period from a sample of subjects, such as individuals, companies, or countries. This type of data is often used to describe the characteristics or attributes of a group at a specific point in time.
+In contrast, time series data, collected over an extended period at regular intervals, tracks changes in a particular variable over time. This data is useful for identifying trends and patterns over time and forecasting future occurrences based on historical data.
 
-Time series data, collected over an extended period at regular intervals, tracks changes in a particular variable over time. This data is useful for identifying trends and patterns over time and making predictions about future developments.
+Panel data combines elements of both cross-sectional and time series datasets by tracking the same sample of subjects over time. This type of data is valuable for studying the relationship between different variables, identifying trends and patterns over time. Panel data enables researchers to analyze the impact of various factors on outcomes while controlling for individual-fixed effects.
 
-Panel data, collected over an extended period from the same sample of subjects, tracks changes in a particular variable over time for each subject in the sample. This type of data is valuable for studying the relationship between different variables and identifying trends and patterns over time.
+The process of working with these datasets involves several critical steps to ensure the reliability and validity of the findings. Initially, researchers must examine the raw data to grasp its structure and content thoroughly. Following this, the data must be cleaned and prepared, which involves checking for errors, addressing missing values, and removing outliers to ensure the dataset is in a usable state. Finally, understanding the data through meticulous statistical analysis, creating visualizations, and employing various analytical techniques is essential to uncover underlying patterns and relationships within the data. This methodical approach enables researchers to derive meaningful conclusions that can significantly impact their respective fields.
 
-When working with any type of data, it is crucial to follow the following steps:
+Effective visualization is crucial for revealing features in data that are essential for further analysis. It serves as a foundational element in the analytical process across various disciplines, helping clarify complex information. Utilizing a range of visualization techniques, such as histograms, barplots, boxplots, scatterplots, and heatmaps, researchers can uncover subtle patterns and trends that may not be evident from raw data alone. These visual representations provide a comprehensive overview of the data, enabling researchers to identify relationships, correlations, and outliers that can inform subsequent analyses and decision-making processes.
 
-Examine the raw data: Understand the structure and content of the data.
+Histograms graphically represent the frequency or distribution of data, whether continuous or discrete. This visualization comprises bins, each representing a range of values, with the height of each bin showing the frequency of data points within that range. For example, a histogram illustrating animal weights might have bins for different weight intervals, such as 20-29 kg and 30-39 kg, with each bin's height indicating the number of animals within those ranges.
 
-Clean and prepare the data: Check for errors, missing values, and outliers, and ensure that the data is in a usable format.
+Barplots graphically display data's mean or median, providing a visual comparison of central tendencies across different groups or categories. Each bar's height represents the mean or median for that group. For instance, a barplot could compare the average fuel efficiency of various car models or median home prices across different neighborhoods.
 
-Understand the data: Investigate the variables and their relationships through statistical analysis, visualizations, and other methods.
+Boxplots show a dataset's distribution and are particularly valuable for visualizing data spread, skewness, and potential outliers. They include a box representing the interquartile range (middle 50% of the data), a median line, and whiskers that extend to the data's minimum and maximum values. This makes boxplots ideal for comparing distributions from different groups, such as student exam scores across various classes.
 
-Effective visualization can reveal data features that inform further analysis. Visualizing data is an essential step in the process of understanding and analyzing data in various fields. Effective visualization techniques, such as histograms, barplots, boxplots, scatterplots, and heatmaps, can provide valuable insights into patterns and trends within the data, guiding further analysis and decision-making.
+Scatterplots are used to illustrate the relationship between two variables, helping to visualize correlations and trends. In a scatterplot, each point represents the values of two variables for a data point. This type of plot might show how advertising spend correlates with sales revenue or the link between study hours and test scores.
 
-A histogram is a graphical representation that displays the frequency or distribution of a set of continuous or discrete data. It helps visualize the data and understand the underlying distribution. A histogram comprises a set of bins, which represent ranges of values, and the height of each bin indicates the frequency of data points within that range. For instance, a histogram displaying the weights of a group of animals might have bins representing weight ranges (e.g., 20-29 kg, 30-39 kg, etc.), and the height of each bin would indicate the number of animals within that weight range.
+Heatmaps provide a visual representation of the relationship between two or more variables by using color-coded cells, where each color intensity reflects the value of the variables for that cell. Heatmaps are particularly effective for data organized in grids or matrices, such as correlating stock prices or mapping crime frequency across different times and locations.
 
-A barplot is a graphical representation that illustrates the mean or median of a dataset. It serves to visualize the central tendency of the data and compare different groups or categories. A barplot comprises a set of bars, with the height of each bar representing the mean or median of the data for that group or category. For instance, a barplot might compare the average fuel efficiency of various car models or the median home prices in different neighborhoods.
+In addition to these commonly used techniques, there are other advanced visualization tools that can enhance the exploratory data analysis process. Line graphs, for instance, are particularly useful in time series data analysis, enabling the tracking of changes over time with clarity and precision. Area charts can also be employed to illustrate quantitative data graphically, showing how different components contribute to the whole over a given interval. Network diagrams are invaluable for visualizing relationships and interactions within datasets, especially in social sciences and biology, where understanding the connections between entities is crucial.
 
-A boxplot is a graphical representation that displays the distribution of a dataset. It helps visualize the spread, skewness, and potential outliers in the data. A boxplot consists of a box representing the interquartile range (the middle 50% of the data), a line denoting the median, and "whiskers" extending from the box to the minimum and maximum values of the data. Boxplots are particularly useful for comparing the distributions of different groups or categories of data, such as the distribution of exam scores for students in different classes.
+Moreover, interactive visualizations have become increasingly popular due to their ability to allow users to manipulate the parameters and directly see the effects of different variables on the data. Tools like dashboards and interactive maps provide dynamic insights that can adapt to varying user inputs, offering a more hands-on approach to data exploration.
 
-A scatterplot is a graphical representation that exhibits the relationship between two variables. It enables the visualization of the relationship between the variables and identification of patterns and trends. A scatterplot consists of a set of points, with each point's position representing the values of the two variables for that data point. For example, a scatterplot might demonstrate the relationship between advertising expenditures and sales revenue or between hours of study and test scores.
-
-A heatmap is a graphical representation that depicts the relationship between two or more variables. It aids in visualizing the relationship between the variables and identifying patterns and trends. A heatmap consists of a set of cells, with the color of each cell representing the value of the variables for that cell. Heatmaps are especially useful for visualizing data organized in a grid or matrix, such as the correlation between various stock prices or the frequency of crime incidents across different times and locations.
-
-
-
+By integrating these advanced and interactive techniques, researchers can gain a more nuanced understanding of their data. This comprehensive approach not only aids in identifying the underlying trends and patterns but also supports robust decision-making by providing a more detailed and interactive view of the data landscape. Building on these visualization techniques, the next subsection will focus on the concept of correlation, examining how it quantifies the strength and direction of relationships between variables, further enriching our understanding of data interactions.
 
 ##  Correlation
 
-The phrase "correlation does not imply causation" is often used in discussions of statistical relationships, but what exactly does it mean? To answer this question, it is essential to understand the concept of correlation and its role in assessing the connection between two variables.
+The phrase "correlation does not imply causation" is often invoked in discussions of statistical relationships to emphasize a critical caution in data interpretation. To fully grasp what this means, we must first understand the concept of correlation and its role in evaluating the connections between two variables.
 
-Correlation is a statistical measure that quantifies the degree of association between two variables. It is often used to describe a linear relationship between the variables. The term "association" is broader than correlation, referring to any relationship between two variables, whether linear or not.
+Correlation is a statistical measure that quantifies the degree of association between two variables, typically describing how closely the variables follow a linear relationship. The term "association" is broader than "correlation," encompassing any type of relationship between two variables, whether linear or not. In various sectors, including finance, healthcare, and marketing, correlation measurements are crucial for analyzing data and guiding decision-making processes. The etymology of the word "correlation" combines "co-" (meaning together) with "relation," highlighting its function in identifying connections between quantities.
 
-In everyday life, we often observe correlations between events. Various industries, such as finance, healthcare, and marketing, frequently utilize correlation measurements to analyze data and make informed decisions. The word "correlation" can be broken down into "co," meaning together, and "relation," signifying a connection between two quantities.
+There are three types of correlations: positive, negative, and zero. A positive correlation indicates that both variables move in the same direction; for example, an increase in advertising expenditure might correspond to a rise in sales revenue, suggesting a positive correlation. In contrast, a negative correlation means the variables move in opposite directions, such as the relationship between the number of hours spent watching television and academic performance, where more TV time is associated with lower grades. Variables are considered uncorrelated if changes in one do not affect the other, indicating no discernible relationship.
 
-Correlation can be positive, negative, or uncorrelated. A positive correlation exists when two variables move in the same direction, i.e., an increase in one variable corresponds to an increase in the other. For example, if an increase in advertising expenditure leads to a rise in sales revenue, the variables are positively correlated.
+Correlation analysis is a statistical method used to study the association or absence of a relationship between two variables. By examining the correlation between variables, researchers can measure the strength and nature of their association, allowing them to quantify how variables move together or apart. This analysis is integral in determining a numerical value that reflects the relationship between two variables, whether the change in one variable accompanies a change in another directly or indirectly.
 
-Conversely, a negative correlation occurs when two variables move in opposite directions, with an increase in one variable resulting in a decrease in the other. For instance, a negative correlation may exist between the number of hours spent watching television and academic performance, where increased television time leads to lower grades.
+The Pearson correlation coefficient is one of the most commonly used measures in correlation analysis. It quantifies the strength and direction of a linear relationship between two numerical variables. This coefficient ranges from -1 to 1, where -1 indicates a strong negative relationship, 0 signifies no relationship, and 1 indicates a strong positive relationship. For example, a Pearson correlation of 0.8 between two variables denotes a strong positive relationship, suggesting that an increase in one variable generally leads to an increase in the other.
 
-Variables are considered uncorrelated when a change in one variable does not impact the other. Understanding how two variables are correlated enables us to predict future trends and discern the nature of their relationship or lack thereof.
+The Pearson correlation coefficient, denoted as \( r \), can be calculated using two equivalent formulas. The first formula is:
+\[
+r = \frac{\sum (x_i - \overline{x})(y_i - \overline{y})}{\sqrt{\sum (x_i - \overline{x})^2 \sum (y_i - \overline{y})^2}}
+\]
+This formula directly computes \( r \) as the ratio of the sum of the product of deviations of \( x \) and \( y \) from their means to the geometric mean of the sums of squared deviations of \( x \) and \( y \) from their respective means.
 
-However, it is crucial to remember that correlation does not imply causation. A strong correlation between two variables does not necessarily mean that one causes the other. There may be confounding variables or other factors at play that influence the observed relationship. Therefore, it is essential to consider the context and perform additional analyses before drawing conclusions about causality from correlation alone.
+The second method involves the covariance and the standard deviations of \( x \) and \( y \):
+\[
+r = \frac{\text{cov}(x, y)}{s_x s_y}
+\]
+where covariance, \( \text{cov}(x, y) \), is defined as:
+\[
+\text{cov}(x, y) = \frac{1}{n-1} \sum (x_i - \overline{x})(y_i - \overline{y})
+\]
+and the standard deviations, \( s_x \) and \( s_y \), are given by:
+\[
+s_x = \sqrt{\frac{1}{n-1} \sum (x_i - \overline{x})^2}
+\]
+\[
+s_y = \sqrt{\frac{1}{n-1} \sum (y_i - \overline{y})^2}
+\]
+
+Here, \( x_i \) and \( y_i \) represent the values of the two variables, \( \overline{x} \) and \( \overline{y} \) are the means of the variables \( x \) and \( y \) respectively, and the sums are taken over all \( n \) pairs of data. These formulas showcase how \( r \) quantifies the linear relationship between \( x \) and \( y \), normalizing the covariance of the variables by the product of their standard deviations, thus measuring the degree to which \( x \) and \( y \) co-vary relative to their individual variability.
 
 
-Correlation Analysis: Exploring Relationships Between Variables
+Covariance provides an indication of the direction of the linear relationship between two variables, 
+\( X \) and \( Y \). However, it does not effectively convey the strength of the relationship because it is affected by the scale of the variables involved. To mitigate this limitation of covariance, we use the correlation coefficient.
 
-Correlation analysis is a statistical method used to study the association or absence of a relationship between two variables. By examining the correlation between variables, researchers can measure the strength and nature of their association.
+Correlation is essentially the covariance between two variables standardized by the product of their standard deviation, or the ratio of the covariance to the product of the standard deviations of the two variables. This process of standardization transforms covariance into a dimensionless measure, which ranges from -1 to 1. This range allows for meaningful comparisons across different datasets and variables regardless of their original scales.
 
-The primary goal of correlation analysis is to determine a numerical value that indicates the relationship between two variables and how they move together. When a change in one variable is accompanied by a change in another variable, whether direct or indirect, correlation analysis helps quantify the relationship between the two variables.
+In the following simulation, we demonstrate the influence of scaling on covariance and the invariance of the correlation coefficient to such changes. We begin by generating two variables, each with 20 observations, and subsequently scale these variables by multiplying each by 1000. This process significantly alters the covariance values, showcasing how covariance is affected by the scale of the data. However, when we calculate the correlation coefficients using two different equations above —both before and after scaling—we observe that correlation remain sama regardless of the scale, unlike covariance.
 
-One of the most popular correlation measures is the Pearson correlation coefficient, which quantifies the strength and direction of a linear relationship between two numerical variables (usually continuous, but not always). When people refer to "the correlation," they usually mean the Pearson correlation coefficient. This coefficient ranges from -1 to 1, with -1 representing a strong negative relationship, 0 indicating no relationship, and 1 signifying a strong positive relationship. For instance, a Pearson correlation of 0.8 between two variables suggests a strong positive relationship, where an increase in one variable typically results in an increase in the other variable.
 
-Beyond the Pearson correlation, other correlation measures include partial correlation, conditional correlation, spatial correlation, and dynamic correlation.
+```r
+# Set seed for reproducibility
+set.seed(0)
 
-Partial correlation is a statistical method used to measure the relationship between two variables while controlling for the effects of one or more other variables. This technique isolates the relationship between the two variables of interest and examines how it is influenced by the other variables.
-For example, when examining the relationship between education level and income, partial correlation could be employed to control for the effects of variables such as age or work experience.
+# Generate two variables each with 20 observations, all less than 10
+x <- runif(20, min = 0, max = 10)
+y <- runif(20, min = 0, max = 10)
 
-Conditional correlation measures the relationship between two variables while accounting for the effects of one or more categorical variables. Similar to partial correlation, conditional correlation aims to understand the relationship between two variables of interest by considering the influence of other variables.
+# Scaling the data by multiplying each element by 1000
+x_scaled <- x * 1000
+y_scaled <- y * 1000
 
-Spatial correlation assesses the relationship between variables measured at different locations in space. This technique is particularly useful when analyzing data collected across geographical areas, such as climate, population, or economic indicators. Spatial correlation helps determine the extent to which observations close to one another in space are related.
+# Print the original and scaled variables
+#print(x)
+#print(y)
+#print(x_scaled)
+#print(y_scaled)
 
-For instance, spatial correlation might be used to study the relationship between pollution levels and population density across various cities.
+# Calculate the covariance between x and y
+covariance_original <- cov(x, y)
+print(paste("Original covariance:", covariance_original))
+```
 
-Dynamic correlation measures the relationship between variables that change over time. This technique is especially valuable when analyzing data collected over extended periods, such as stock prices, economic indicators, or demographic trends. Dynamic correlation estimates the correlation between variables at different points in time and can help researchers understand how the relationship between variables evolves over time.
+```
+## [1] "Original covariance: -1.26490786248817"
+```
+
+```r
+# Calculate the covariance between x_scaled and y_scaled
+covariance_scaled <- cov(x_scaled, y_scaled)
+print(paste("Covariance after scaling:", covariance_scaled))
+```
+
+```
+## [1] "Covariance after scaling: -1264907.86248817"
+```
+
+```r
+# Compute standard deviations for both datasets
+sd_x <- sd(x)
+sd_y <- sd(y)
+#print(paste("Standard deviation of x:", sd_x))
+#print(paste("Standard deviation of y:", sd_y))
+
+# Standardize the variables
+x_standardized <- (x - mean(x)) / sd_x
+y_standardized <- (y - mean(y)) / sd_y
+#print(paste("Standardized variable x:", x_standardized))
+#print(paste("Standardized variable y:", y_standardized))
+
+# Calculate the covariance between the standardized x and y which give us the correlation coefficient:
+correlation_original <- cov(x_standardized, y_standardized)
+print(paste("Correlation after standardizing:", correlation_original))
+```
+
+```
+## [1] "Correlation after standardizing: -0.152795399233766"
+```
+
+```r
+# Equivalent formula to calculate the correlation between the original x and y
+correlation_original2 <- cov(x, y) / (sd_x * sd_y)
+print(paste("Correlation after standardizing2:", correlation_original2))
+```
+
+```
+## [1] "Correlation after standardizing2: -0.152795399233766"
+```
+
+```r
+# Compute standard deviations for both scaled datasets
+sd_x_scaled <- sd(x_scaled)
+sd_y_scaled <- sd(y_scaled)
+# Standardize the variables
+x_scaled_standardized <- (x_scaled - mean(x_scaled)) / sd_x_scaled
+y_scaled_standardized <- (y_scaled - mean(y_scaled)) / sd_y_scaled
+
+# Calculate the correlation between the scaled x and y
+correlation_scaled <- cov(x_scaled, y_scaled)/(sd_x_scaled * sd_y_scaled)
+print(paste("Correlation after scaling:", correlation_scaled))
+```
+
+```
+## [1] "Correlation after scaling: -0.152795399233766"
+```
+
+```r
+# Equivalent formula to calculate the correlation between the scaled x and y
+correlation_scaled2 <- cov(x_scaled_standardized, y_scaled_standardized)
+print(paste("Correlation after scaling:", correlation_scaled2))
+```
+
+```
+## [1] "Correlation after scaling: -0.152795399233766"
+```
+
+Having seen how correlation remains consistent across different scales, highlighting the robustness of this statistical measure against changes in data magnitude, we want to remind to the critical role of data visualization that we discussed in the previous subsection. A compelling illustration of why visual analysis is essential is provided by the Anscombe Quartet. This example underscores the limitations of relying solely on statistical summaries and demonstrates the importance of visualizing data to capture the true nature of relationships between variables.
+
+A classic example that highlights the importance of visualizing data before drawing conclusions is the Anscombe Quartet (1973). This dataset consists of four sets of data that have nearly identical statistical properties, including the same mean, variance, and correlation. Moreover, each group's linear regression line has identical parameters, yet the underlying data distributions vary significantly. Thus, when plotted, the datasets reveal distinct patterns, emphasizing the need to visualize data to understand relationships accurately.  Group I displays a typical linear relationship, while Group II reveals a nonlinear pattern, illustrating poor fit despite identical regression lines. Group III's outlier drastically affects the regression influence, misleading interpretations if not visually inspected. Group IV, dominated by a cluster at one x-value with a single influential point, also misrepresents the actual data characteristics through its fitting. These visual discrepancies underscore the crucial role of plotting raw data to correctly interpret statistical results and avoid misleading conclusions based solely on numerical summaries.
+
+
+
+```r
+# Create Anscombe's quartet dataset
+anscombe <- data.frame(
+  x1 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y1 = c(8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68),
+  x2 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y2 = c(9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74),
+  x3 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),
+  y3 = c(7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73),
+  x4 = c(8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8),
+  y4 = c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89)
+)
+
+# Set up the plotting area with consistent axes and include fitted lines
+par(mfrow = c(2, 2)) # Arrange plots in a 2x2 grid
+
+# Define consistent x and y axis limits
+xlim <- c(3, 20)
+ylim <- c(2, 14)
+
+# Function to calculate and print stats for each group
+calculate_stats <- function(x, y) {
+  c(mean_x = formatC(mean(x), format = "f", digits = 3), 
+    mean_y = formatC(mean(y), format = "f", digits = 3), 
+    variance_x = formatC(var(x), format = "f", digits = 3), 
+    variance_y = formatC(var(y), format = "f", digits = 3), 
+    covariance = formatC(cov(x, y), format = "f", digits = 3),  # Calculating covariance
+    correlation = formatC(cor(x, y), format = "f", digits = 3), 
+    intercept = formatC(coef(lm(y ~ x))[1], format = "f", digits = 3), 
+    slope = formatC(coef(lm(y ~ x))[2], format = "f", digits = 3))
+}
+
+# Calculate stats for each group
+stats1 <- calculate_stats(anscombe$x1, anscombe$y1)
+stats2 <- calculate_stats(anscombe$x2, anscombe$y2)
+stats3 <- calculate_stats(anscombe$x3, anscombe$y3)
+stats4 <- calculate_stats(anscombe$x4, anscombe$y4)
+
+# Create a matrix for the statistics
+stats_matrix <- cbind("Statistics" = c("Mean X", "Mean Y", "Variance X", "Variance Y", 
+                                      "Covariance", "Correlation", "Intercept", "Slope"), 
+                     "Group I" = stats1, 
+                     "Group II" = stats2, 
+                     "Group III" = stats3, 
+                     "Group IV" = stats4)
+
+# Convert matrix to data frame for nicer printing
+stats_df <- as.data.frame(stats_matrix)
+
+# Print the data frame without row names
+print(stats_df, row.names = FALSE)
+```
+
+```
+##   Statistics Group I Group II Group III Group IV
+##       Mean X   9.000    9.000     9.000    9.000
+##       Mean Y   7.501    7.501     7.500    7.501
+##   Variance X  11.000   11.000    11.000   11.000
+##   Variance Y   4.127    4.128     4.123    4.123
+##   Covariance   5.501    5.500     5.497    5.499
+##  Correlation   0.816    0.816     0.816    0.817
+##    Intercept   3.000    3.001     3.002    3.002
+##        Slope   0.500    0.500     0.500    0.500
+```
+
+```r
+# Print the data frame without row names
+print(stats_df, row.names = FALSE)
+```
+
+```
+##   Statistics Group I Group II Group III Group IV
+##       Mean X   9.000    9.000     9.000    9.000
+##       Mean Y   7.501    7.501     7.500    7.501
+##   Variance X  11.000   11.000    11.000   11.000
+##   Variance Y   4.127    4.128     4.123    4.123
+##   Covariance   5.501    5.500     5.497    5.499
+##  Correlation   0.816    0.816     0.816    0.817
+##    Intercept   3.000    3.001     3.002    3.002
+##        Slope   0.500    0.500     0.500    0.500
+```
+
+```r
+# Group I
+plot(anscombe$x1, anscombe$y1, main = "Group I", xlab = "X1", ylab = "Y1", 
+     pch = 19, col = "blue", xlim = xlim, ylim = ylim)
+abline(lm(y1 ~ x1, data = anscombe), col = "blue")
+
+# Group II
+plot(anscombe$x2, anscombe$y2, main = "Group II", xlab = "X2", ylab = "Y2", 
+     pch = 19, col = "red", xlim = xlim, ylim = ylim)
+abline(lm(y2 ~ x2, data = anscombe), col = "red")
+
+# Group III
+plot(anscombe$x3, anscombe$y3, main = "Group III", xlab = "X3", ylab = "Y3", 
+     pch = 19, col = "green", xlim = xlim, ylim = ylim)
+abline(lm(y3 ~ x3, data = anscombe), col = "green")
+
+# Group IV
+plot(anscombe$x4, anscombe$y4, main = "Group IV", xlab = "X4", ylab = "Y4", 
+     pch = 19, col = "purple", xlim = xlim, ylim = ylim)
+abline(lm(y4 ~ x4, data = anscombe), col = "purple")
+```
+
+<img src="03-Counterfactuals_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
+
+Note that Correlation between x and y is zero doesNOT mean that x and y are not related and independent. It means that there is no linear relationship between x and y. There might be a non-linear relationship between x and y. 
+
+
+```r
+# Set seed for reproducibility
+set.seed(0)
+
+# Generate x as a sequence of values
+x <- -10:10
+
+# Define y as a non-linear function of x (e.g., y = A+B*x^2)
+y <- 9+2*x^2
+
+# Plot x vs y to visualize the non-linear relationship
+plot(x, y, main = "Non-linear Relationship: 9+2*x^2", xlab = "x", ylab = "y", pch = 19, col = "blue")
+```
+
+<img src="03-Counterfactuals_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+```r
+# Calculate and print the correlation between x and y
+correlation <- cor(x, y)
+print(paste("Correlation between x and y:", formatC(correlation, format = "f", digits = 3)))
+```
+
+```
+## [1] "Correlation between x and y: -0.000"
+```
+
+If the relationship between variables is nonlinear, other correlation measures may be more appropriate.
+
+Beyond the Pearson correlation, other correlation measures include partial correlation, conditional correlation, spatial correlation, and dynamic correlation.Partial correlation, for example, is a statistical method that measures the relationship between two variables while controlling for the effects of one or more additional variables. This technique helps isolate the direct relationship between the two primary variables by excluding the influence of other factors. For instance, in examining the relationship between education level and income, partial correlation can be utilized to account for variables like age or work experience, providing a clearer picture of the direct impacts of education on income.
+
+Conditional correlation also measures the relationship between two variables but includes the consideration of one or more categorical variables. This method aims to understand how other variables might modify the relationship between the primary variables of interest.
+
+Spatial correlation is another important technique, especially relevant in geographical studies. It assesses the relationship between variables measured at different locations, helping to determine if and how closely observations near each other are related. For example, researchers might use spatial correlation to analyze how pollution levels correlate with population density across different urban areas.
+
+Lastly, dynamic correlation is used to analyze the relationship between variables that change over time. This measure is particularly useful in fields like finance or economics, where it is important to understand how relationships between variables such as stock prices and economic indicators evolve. Dynamic correlation provides insights into how these relationships fluctuate over time, aiding in the prediction of future trends based on historical data.
+
+Each of these correlation measures offers unique insights and is chosen based on the specific characteristics of the data and the research questions at hand. These tools allow researchers to delve deeper into understanding the complexities of variable interactions, ensuring a more comprehensive analysis of their data.
+
 In summary, correlation analysis is a powerful statistical tool for examining the relationships between variables, allowing researchers to measure the strength and nature of these associations. By employing various correlation measures such as Pearson correlation, partial correlation, conditional correlation, spatial correlation, and dynamic correlation, researchers can gain valuable insights into the complex relationships between variables in numerous fields.
 
-Correlation and Regression
+Understanding the nature of correlation between variables allows for the prediction of future trends and clarifies the type of relationship, if any, that exists. However, the critical caveat remains: correlation does not imply causation. The presence of a strong correlation does not necessarily mean that one variable causes changes in another. There could be confounding factors or other underlying causes affecting the observed relationship. This underscores the importance of contextual understanding and conducting further analyses to explore causality beyond mere correlation before drawing definitive conclusions about the effects one variable may have on another.This analytical caution is encapsulated in the phrase "correlation does not imply causation," highlighting the necessity of a deeper investigation beyond correlation to fully understand the dynamics at play.
 
-Correlation and regression are two statistical methods used to analyze the relationships between variables. While they share some similarities, their purposes and applications differ significantly.
+**Correlation and Regression**
 
-Similarities:
+Correlation and regression are two statistical methods used to analyze the relationships between variables. While they share some similarities, their purposes and applications differ significantly.Both correlation and regression are used to explore relationships between variables and typically assume a linear relationship between them. Additionally, both techniques involve the calculation of coefficients that quantify the relationships between variables, helping to illustrate how these variables interrelate.
 
-Both correlation and regression are used to explore relationships between variables.
-They both assume a linear relationship between the variables in question.
-Both techniques involve the calculation of coefficients that quantify the relationships between variables.
+However, the key differences between the two methods are crucial to understand. Correlation is primarily a descriptive statistical technique that measures the strength and direction of a relationship between two variables. It is used to summarize how closely two variables are related without predicting one from the other. Correlation is quantified using a correlation coefficient, which ranges from -1 to 1. A correlation coefficient of 1 indicates a perfect positive relationship, -1 signifies a perfect negative relationship, and 0 denotes no relationship. Correlation is valuable for identifying associations between variables, such as the relationship between smoking and lung cancer, without implying causation.
 
-Key Differences:
+On the other hand, regression is a predictive statistical technique that not only assesses the relationship between variables but also models and predicts the value of one variable based on the value of another. This makes regression particularly valuable for forecasting and determining the impact of changes in one variable on another. Regression analysis can handle both continuous variables, such as height and weight, and categorical variables, such as GPA and major. It utilizes various statistics to build its models, including the coefficient of variables, the standard error, and the p-value, which help to understand the accuracy and reliability of the predictions made.
 
-Correlation measures the strength and direction of the relationship between two variables, whereas regression models and predicts the value of one variable based on the value of another.
-
-Correlation is a descriptive statistical technique, providing a summary of the relationship between variables. In contrast, regression is a predictive statistical technique, employed to make predictions or explain the relationship between variables.
-
-Correlation typically analyzes relationships between two continuous variables, such as height and weight, or age and income. Regression can analyze relationships between two continuous variables but can also assess relationships between a continuous variable and a categorical variable, such as GPA and major.
-
-Correlation is quantified using a correlation coefficient, which ranges from -1 to 1. A coefficient of 0 indicates no relationship, while coefficients of 1 or -1 signify strong positive or negative relationships, respectively. Regression utilizes various statistics, including the coefficient of determination (R-squared), the standard error, and the p-value.
-
-In conclusion, while correlation and regression are related statistical techniques used to explore relationships between variables, they serve different purposes and applications. Correlation is a descriptive technique that measures the strength and direction of a relationship between two variables, while regression is a predictive technique that models and predicts the value of one variable based on another. Understanding these differences is essential when selecting the appropriate statistical method for data analysis.
+In conclusion, while correlation and regression both analyze relationships between variables, they serve different purposes: correlation describes the relationship without implying causation, while regression goes a step further by modeling and predicting outcomes based on this relationship. Understanding these differences is essential when selecting the appropriate statistical method for data analysis, ensuring that the analysis aligns with the research objectives.
 
 
 ##  Effect of X on Y / Regression
 
-Economists and social scientists predominantly utilize observational survey data to answer research questions or test hypotheses. By analyzing samples, they make inferences about the larger population. When conducting such analyses, it is crucial to address three key issues:
+Economists and social scientists predominantly utilize observational survey data to answer research questions or test hypotheses. By analyzing samples, they make inferences about the larger population, which involves addressing three key issues: the effect of other factors on the relationship between x (independent variable) and y (dependent variable), the functional relationship between y and x, and ensuring a ceteris paribus (all other things being equal) condition in their analysis.
 
-1. How can factors other than x be allowed to influence y?
+The simple linear regression model effectively addresses these concerns. It assumes a linear relationship between x and y, focusing on interpreting this relationship rather than on prediction. This contrasts with machine learning (ML) techniques, which do not assume a specific functional form but instead seek the optimal form for the best predictive model. This difference in focus is highlighted in Victor Chernozhukov's presentation at the 2013 NBER Summer Institute, where he demonstrated that Lasso, a linear ML method, can better approximate the conditional expectation function (CEF) than ordinary least squares (OLS) for certain datasets.
 
-2. What is the functional relationship between y and x?
+Bruce Hansen, in his recent book, points out that OLS regression yields the best linear approximation of the CEF. This property makes regression particularly valuable to economists and social scientists who are more interested in interpreting an approximation of reality rather than engaging in complex curve fitting.
 
-3. How can we ensure that we are capturing a ceteris paribus (all other things being equal) relationship between y and x?
+The predictive power of \(x\) on \(y\) is encapsulated in the Conditional Expectation Function (CEF), \(E(y \mid x_i)\), which represents the expected value of \(y\) when a specific covariate \(x\) is held constant. This function is crucial for understanding how changes in x affect y on average, rather than predicting individual outcomes. The regression CEF theorem further supports this by stating that even if the CEF is nonlinear, regression provides the best linear approximation.
 
-The simple linear regression model addresses these concerns effectively. While this model assumes a linear relationship between x and y, machine learning (ML) techniques do not assume a specific functional form and instead attempt to find the optimal functional form for the best predictive model. In contrast, economists and social scientists are more interested in interpreting the relationship between x and y rather than making predictions.
+OLS estimates the coefficient \(\beta_1\) using a random sample of data to represent the population and makes assumptions about the relationships between the error term \(u\) and \(x\). These assumptions include the expected value of the error term being zero in the population, mean independence of the error term, and the zero conditional mean assumption.
 
-Victor Chernozhukov's presentation at the 2013 NBER Summer Institute demonstrated that Lasso, a linear method in ML, can better approximate the conditional expectation function (CEF) than ordinary least squares (OLS) for certain datasets.
-
-As Bruce Hansen notes in his recent book, "The OLS regression yields the best linear approximation of the conditional expectation function (CEF). This mathematical property makes regression a favorite tool among economists and social scientists, as it emphasizes the interpretation of an approximation of reality rather than complicated curve fitting."
-
-The predictive power of x on y can be summarized using the conditional expectation function, E(y|xi). This function represents the expected value (population average) of y, given certain covariate x is held constant. It provides a useful representation of how y changes with x. The primary interest lies in the distribution of yi rather than predicting individual yi. The regression CEF theorem states that even if the CEF is nonlinear, regression provides the best linear approximation to it.
-
-OLS estimates the coefficient (β1) using a random sample of data to represent the population and makes assumptions about the relationships between the error term (u) and x. These assumptions include the expected value of the error term being zero in the population, mean independence of the error term, and the zero conditional mean assumption.
-
-In summary, simple linear regression and machine learning methods offer different approaches to understanding the relationship between x and y in observational survey data. While regression emphasizes interpretation and provides the best linear approximation to the CEF, machine learning techniques focus on finding the best functional form for predictive modeling. Both methods have their merits and can provide valuable insights for economists and social scientists.
+In summary, while both simple linear regression and machine learning methods offer distinct approaches to exploring the relationship between x and y in observational survey data, they cater to different needs. Regression emphasizes interpretation and provides the best linear approximation to the CEF, useful for understanding distributions and influences in the data. On the other hand, machine learning techniques focus on creating the best functional form for predictive modeling, useful for making accurate predictions. Both methods have their merits and can provide valuable insights for economists and social scientists, depending on their specific research objectives.
 
 ### How can we estimate the population parameters, $\beta_{0}$ and $\beta_{1}$?
 
- We find a random sample, which represents the population. We plug observations into the population equation, and use two assumptions $$ E(u)=0 , Cov(x,u)=0$$
- We estimate $$y_{i}=\hat{\beta_{0}}+\Sigma_{1}^{k}\hat{\beta_{k}}x_{i}+u_{i}$$. i.e we minimize sum of squared residuals by solving the following linear regression equation algebraically. This is also known as ordinary least squares(OLS).
-$$
-		\sum_{i=1}^{n}\hat{u}_{i}^{2}=\underset{\hat{\beta_{0}}, \hat{\beta_{1}}..\hat{\beta_{k}}}{\operatorname{argmin}} \sum_{i=1}^{n}\left(y_{i}-\left(\hat{\beta_{0}}+\hat{\beta_{1}} x_{i}+\hat{\beta_{2}} x_{i}+...+\hat{\beta_{k}} x_{i}\right)\right)^{2}
-$$		
-		
-$$y=X^{'}\beta+u$$, where $$u_{i}\sim(0, \sigma^2)$$ then $$\hat{\beta}= (X^{'}X)^{-1}X^{'}y$$ follows from $$1/n \sum [x_{i}(y_{i} - x_{i}^{'}\hat{\beta})] = 0$$
+To estimate the population parameters \(\beta_0, \beta_1, \ldots, \beta_k\) in a linear regression model, we start by selecting a random sample that represents the population. We model the relationship as:
+\[ y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_k x_{ik} + \epsilon_i, \]
+where \( \epsilon_i \) represents the error terms satisfying the assumptions \( E(\epsilon_i) = 0 \) and \( \operatorname{Cov}(x_{ij}, \epsilon_i) = 0 \) for all \( j \).
 
+The Ordinary Least Squares (OLS) method estimates the parameters by minimizing the sum of the squared residuals. This involves solving:
+\[ \min_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k} \sum_{i=1}^{n} \left( y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_{i1} + \ldots + \hat{\beta}_k x_{ik}) \right)^2. \]
+
+The matrix form of the same model is \( y = X\beta + \epsilon \), where \( X \) is the matrix of regressors and \( \epsilon \) is the vector of error terms with \( \epsilon_i \sim (0, \sigma^2) \). The OLS estimator \(\hat{\beta}\) is given by:
+\[ \hat{\beta} = (X'X)^{-1}X'y, \]
+where \( X' \) is the transpose of \( X \) and \( y \) is the vector of observed values. This estimator provides the best linear unbiased estimates (BLUE) of the parameters under the Gauss-Markov theorem, assuming linearity, exogeneity, and homoscedasticity of errors among other conditions. Further exploration of error terms and OLS properties will be covered in Chapter 5.
+
+That results from the first order conditions for the minimization problem:
+\[ \frac{1}{n} \sum_{i=1}^n x_i (y_i - x_i' \hat{\beta}) = 0. \]
+
+This estimator provides the best linear unbiased estimates (BLUE) of the parameters under the Gauss-Markov theorem, assuming linearity, exogeneity, and homoscedasticity of errors among other conditions. Further exploration of error terms and OLS properties will be covered in Chapter 5.
 
 ### Predicting $y$
 
-For any candidates $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$, define a fitted value for each $i$ as		
+The next step in regression analysis is predicting the dependent variable \( y \) using a set of predictors. Given estimators \( \hat{\beta}_0 \) and \( \hat{\beta}_1 \), we define the fitted values for each observation \( i \) as:
+\[
+    \hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i.
+\]
+This equation provides us with \( n \) fitted values corresponding to \( n \) observations. The fitted value \( \hat{y}_i \) represents the predicted value of \( y_i \) given the predictor \( x_i \) and the estimated coefficients \( \hat{\beta} \).
 
-$$
-		\hat{y}_{i}=\hat{\beta}_{0}+\hat{\beta}_{1}x_{i}
-$$
-		
-We have $n$ of these.  $\hat{y}_i$ is the value we predict for $y_{i}$ given that $x=x_{i}$ and $\beta=\hat{\beta}$.
-		
-The "mistake" from our prediction is called the residual:
-$$
-		\hat{u}_{i}=y_{i}-\hat{y}_{i}
-		=y_{i}-\hat{\beta}_{0}-\hat{\beta}_{1}x_{i}
-$$
-		
-NOTE: Econometric applications typically are not interested in forecasting yi but rather in understanding relationship between $y_{i}$ and some elements of $x_{i}$ with other factors held fixed (ceteris paribus)
+The difference between the actual value \( y_i \) and the predicted value \( \hat{y}_i \) is known as the residual, which quantifies the error in our prediction:
+\[
+    \hat{\epsilon}_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i).
+\]
 
-We estimate the coefficients by minimizing sum of squared residuals in OLS. Different samples will generate different estimates $(β^1)$ for the true $β_{1}$ which makes $β_{1}$ a random variable. But never forget that β^1 is an estimator of that causal! parameter obtained with a specific sample from the population.  We say the effect of x on y is β1 as long as it is unbiased. We also want our estimates to be consistent, and satisfy asymptotic normality. 
+In the matrix form, the model can be expressed as:
+\[
+    Y = X\beta + \epsilon,
+\]
+where \( Y \) is the vector of observed values, \( X \) is the matrix of predictors including a column of ones for the intercept, \( \beta \) is the vector of coefficients, and \( \epsilon \) is the vector of residuals. The OLS solution to estimating \( \beta \) is:
+\[
+    \hat{\beta} = (X'X)^{-1}X'Y,
+\]
+resulting in the vector of fitted values:
+\[
+    \hat{Y} = X\hat{\beta}.
+\]
+and residuals:
+\[ \hat{\epsilon} = Y - \hat{Y}. \]
 
-Unbiasedness is the idea that if we could take as many random samples on Y as we want from the population, and compute an estimate each time, the average of these estimates would be equal to β1. OLS is unbiased under the following assumptions.  These assumptions are the population model can be Linear in Parameters, Random Sampling, Sample Variation in the Explanatory Variable, Zero Conditional Mean, Homoskedasticity - Constant Variance (or heteroskedasticity).This tells us that, on average, the estimates will be equal the population values.
+This matrix form is particularly beneficial in multiple regression models, clarifying the relationship between multiple predictors and the response variable. Detailed examination of these relationships will continue in Chapter 5.
 
-Consistency states that if one uses a larger sample size, one reduces the likelihood of obtaining an estimate $\hat{\beta}$ that deviates substantially from the true effect $β$.  Thus, consistency implies that, as a sample size approaches the entire population, an estimate $\hat{\beta}$ is more and more likely to reflect the true estimate $β$. This holds true, for example, when $β$ is unbiased and its variance decreases as the sample size increases.  
+\textbf{Note:} In econometrics, we often focus not just on forecasting \(y_i\) but also on understanding the relationship between \(y_i\) and elements of \(x_i\), with other factors held constant (ceteris paribus). We estimate coefficients by minimizing the sum of squared residuals in OLS. Different samples yield different estimates \(\hat{\beta}^1\) for the true \(\beta_1\), making \(\beta_1\) a random variable. However, \(\hat{\beta}^1\) acts as an estimator for that causal parameter, derived from a specific sample. The effect of \(x\) on \(y\) is \(\beta_1\) as long as it remains unbiased. Estimates must also be consistent and satisfy asymptotic normality, which we will explore in further chapter 5.
 
-Assuming that many samples are drawn randomly, and $β$ is estimated in each sample, asymptotic normality implies that, given the very large size of each sample, the pooled estimate $\hat{\beta}$ obtained from the samples follows a normal distribution. Having this property makes it possible to approximate the distribution of an estimate across many samples well, even if we have only one sample with a sufficient number of observations rather than many samples. In statistical inference, it is very important to understand an estimate's distribution.
+Unbiasedness means that if we could repeatedly take random samples on \(Y\) from the population and compute an estimate each time, the average of these estimates would equal \(\beta_1\). OLS is unbiased under certain assumptions: the model must be linear in parameters, utilize random sampling, include sample variation in the explanatory variable, ensure zero conditional mean, and exhibit homoskedasticity or constant variance (alternatively, handle heteroskedasticity). These conditions guarantee that, on average, our estimates match the population values.
 
-Be aware, most of the time, obtaining unbiased $β$ is very hard (even impossible as population DGM is unknown!).  Errors are not iid. For instance, maybe observations between units in a group are related to each other (clustered), non-representative sample, Exclusion or inclusion of variables, Measurement error, Endogeneity, Reverse causality, Missing observations. Thus, most of the time, we can only find associations, or correlations. In this situation, we can only say what is the relationship, association, or correlation between y and x. 
+Consistency ensures that using a larger sample size decreases the likelihood of obtaining an estimate \(\hat{\beta}\) that substantially deviates from the true effect \(\beta\). As sample size increases towards the size of the entire population, an estimate \(\hat{\beta}\) increasingly reflects the true \(\beta\), particularly when \(\beta\) is unbiased and its variance decreases with larger samples.
+
+When many samples are drawn randomly, and \(\beta\) is estimated in each, asymptotic normality suggests that the pooled estimate \(\hat{\beta}\) from these samples follows a normal distribution, given very large sample sizes. Having this property makes it possible to approximate the distribution of an estimate across many samples well, even if we have only one sample with a sufficient number of observations rather than many samples. Understanding the distribution of an estimate is crucial in statistical inference.
+
+However, obtaining an unbiased \(\beta\) is often very challenging or even impossible, as the population DGM (Data Generating Mechanism) is unknown. Errors may not be iid (independently and identically distributed). For example, observations between units in a group might be related (clustered), samples might be non-representative, or there could be issues such as the exclusion or inclusion of variables, measurement errors, endogeneity, reverse causality, or missing observations. Therefore, we often find associations or correlations instead of causal relationships. In such cases, we discuss the relationship, association, or correlation between \(y\) and \(x\).
+
+### Maximum Likelihood Estimation (MLE)}
+
+Maximum Likelihood Estimation (MLE) is a statistical method that estimates the parameters of a statistical model based on observed data. Unlike Ordinary Least Squares (OLS), which minimizes the squared differences between observed and predicted values, MLE seeks the parameter values that make the observed data most probable under an assumed probability distribution.
+
+In MLE, the core objective is to estimate unknown parameters by maximizing the likelihood function, \( L(\theta; x) \), which represents the probability of observing the data \( x \) given the parameters \( \theta \):
+\[
+    \hat{\theta} = \arg\max_{\theta} L(\theta; x).
+\]
+This approach aims to find the parameter values \( \theta \) that best explain the observed data under the specified model.
+
+Maximum Likelihood Estimation (MLE) offers a range of benefits that can make it a preferred choice over other estimation methods such as Ordinary Least Squares (OLS). MLE is known for its consistency; the estimates it provides converge to the true parameter values as the sample size increases, assuming the model is accurately specified. Additionally, under certain regularity conditions, MLE estimates are asymptotically normally distributed. This property is highly beneficial as it facilitates the construction of confidence intervals and enables hypothesis testing. MLE also stands out for its efficiency, achieving the lowest possible variance among all unbiased estimators, which guarantees highly precise estimates. Another advantage of MLE is its invariance property; the estimates remain unchanged under transformations, meaning that the transformation of the estimates corresponds directly to the estimates of the transformed parameters.
+
+However, despite these significant advantages, MLE comes with certain limitations that must be carefully managed. One major drawback is its dependence on the correct specification of the data's probability distribution. If the assumed probability distribution does not accurately reflect the true distribution, the MLE estimates may become biased or inconsistent. MLE is also sensitive to outliers in the data because it aims to maximize the likelihood of the entire dataset. This sensitivity can result in biased estimates if the dataset contains extreme values. Furthermore, the process of maximizing the likelihood function can be computationally intensive, posing challenges in cases involving large datasets or complex models. This computational demand requires robust computational resources and can complicate the application of MLE in large-scale data analysis.
+
+Keep in mind that Ordinary Least Squares (OLS) and Maximum Likelihood Estimation (MLE) converge under certain conditions, primarily when the model assumptions align particularly well. The most common scenario where OLS and MLE provide identical estimates is in linear regression models with normally distributed error terms. In such cases, the assumptions for OLS—that the errors have a mean of zero (no bias) and constant variance (homoscedasticity)—also satisfy the requirements for MLE under a normal distribution. Specifically, when the error terms are assumed to be normally distributed, the likelihood function for a linear model becomes proportional to the sum of squared residuals, which OLS minimizes. Thus, minimizing these residuals (as OLS does) also maximizes the likelihood of observing the data under the assumed normal error distribution (as MLE seeks to do). This overlapping objective ensures that both estimation methods yield the same parameter estimates when the model errors are normally distributed and other regularity conditions are met. However, in cases where the model assumptions diverge, such as non-normal error terms or heteroscedasticity, OLS and MLE may produce different estimates. Understanding the relationship between OLS and MLE is essential for interpreting regression results and selecting the most appropriate estimation method for a given dataset and research question.
 
 
-### MLE
+```r
+# Set seed for reproducibility
+set.seed(123)
 
-Maximum Likelihood Estimation (MLE) is a statistical method used to estimate parameters of a given statistical model based on the observed data. MLE aims to find the parameter values that maximize the likelihood of the observed data under the assumed probability distribution. Unlike Ordinary Least Squares (OLS), which focuses on minimizing the squared differences between the observed and predicted values, MLE seeks to find the parameter values that make the observed data most likely.
+# Generate a vector of 10,000 random integers between 9 and 24
+x <- sample(9:24, 10000, replace = TRUE)
 
-In MLE, the main objective is to estimate the unknown parameters of a given statistical model by maximizing the likelihood function. The likelihood function measures the probability of observing the data given the parameters of the model. By maximizing the likelihood function, we find the parameter values that best explain the observed data under the assumed distribution.
+# View the first few elements of x
+# head(x)
+intercept <- 3
+slope <- 2
+epsilon <- rnorm(10000, mean = 0, sd = 1)  # Error term
+y <- intercept + slope * x + epsilon  # True linear relationship with some noise
 
-MLE has several advantages over other estimation methods, such as OLS, including:
+# Perform linear regression using OLS
+ols_model <- lm(y ~ x)
+summary(ols_model)
+```
 
-Consistency: As the sample size increases, MLE estimates tend to converge to the true parameter values, assuming that the model is correctly specified. This property ensures that MLE provides reliable estimates as more data becomes available.
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8310 -0.6682 -0.0044  0.6948  3.8534 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 2.966117   0.036993   80.18   <2e-16 ***
+## x           2.002174   0.002158  927.76   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.002 on 9998 degrees of freedom
+## Multiple R-squared:  0.9885,	Adjusted R-squared:  0.9885 
+## F-statistic: 8.607e+05 on 1 and 9998 DF,  p-value: < 2.2e-16
+```
 
-Asymptotic Normality: Under certain regularity conditions, the MLE estimates are asymptotically normally distributed. This property allows for the construction of confidence intervals and hypothesis testing using standard statistical techniques.
+```r
+# Perform linear regression using MLE
+mle_model <- nls(y ~ beta0 + beta1 * x, start = list(beta0 = 0, beta1 = 0))
+summary(mle_model)
+```
 
-Efficiency: MLE estimates are asymptotically efficient, meaning they achieve the lowest possible variance among all unbiased estimators. This property ensures that MLE provides the most precise estimates given the available data.
+```
+## 
+## Formula: y ~ beta0 + beta1 * x
+## 
+## Parameters:
+##       Estimate Std. Error t value Pr(>|t|)    
+## beta0 2.966117   0.036993   80.18   <2e-16 ***
+## beta1 2.002174   0.002158  927.76   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.002 on 9998 degrees of freedom
+## 
+## Number of iterations to convergence: 1 
+## Achieved convergence tolerance: 1.201e-09
+```
 
-Invariance: MLE estimates are invariant under transformations, which means that if we apply a transformation to the parameter space, the MLE estimate of the transformed parameter will be the same as the transformation of the MLE estimate of the original parameter.
 
-However, MLE also has some limitations, such as:
-
-Dependence on distribution assumptions: MLE requires the assumption of a specific probability distribution for the data. If the assumed distribution is incorrect, the MLE estimates may be biased or inconsistent.
-
-Sensitivity to outliers: MLE estimates can be sensitive to outliers in the data, as they aim to maximize the likelihood of the entire dataset. This sensitivity can lead to biased estimates if the data contains extreme values.
-
-Computational complexity: The maximization of the likelihood function can be computationally intensive, especially for large datasets and complex models.
-
-In summary, Maximum Likelihood Estimation (MLE) is a powerful statistical method for estimating the parameters of a given statistical model based on the observed data. It provides a flexible and efficient approach to parameter estimation under the assumption of a specific probability distribution. However, it is essential to consider the limitations of MLE when applying it to real-world data and carefully assess the distributional assumptions and the presence of outliers in the data.
+In conclusion, Maximum Likelihood Estimation is a robust method for parameter estimation in statistical modeling, offering flexibility and efficiency under specific probability distribution assumptions. However, it is crucial to be mindful of its limitations regarding distributional assumptions and outlier sensitivity when applying MLE to real-world data. We will explore these concepts further in subsequent chapters.
 
 ##  Causal Effect
 
-You have most likely heard the term “Correlation is not
-causation”, which means, loosely that “just because two things
-happen together, doesn't mean that one of them caused the
-other.” A better term is “correlation is not sufficient for causation.”There are some things we can do to make causal inference
-possible, but they happen before the sample is taken.
-This is a big change from most of the statistics you learn.
-Usually, you're given numbers from some random sample, and
-you don't have any control over that sample. You just have to
-take the numbers and make sense of them.
-In the design phase, you decide how treatments are going to
-be assigned to sample units/patients. If you can't directly
-assign treatments, you need to collect data about covariates.
+You may have heard the phrase "correlation does not equal causation," emphasizing that the co-occurrence of two events does not automatically imply that one causes the other. A more precise expression would be "correlation is not sufficient for causation." This distinction is crucial in research design, particularly in the initial stages prior to data collection. Unlike most traditional statistical analyses where you work with an existing random sample with no control over its selection, causal inference requires careful planning in the design phase.
 
-"You may have heard the phrase "correlation does not equal causation," which means that just because two things are related or happen together does not necessarily mean that one of them caused the other. A more accurate statement would be "correlation is not enough to establish causation." To make causal inferences, there are certain steps that must be taken before collecting data, such as designing how treatments will be assigned to sample units or patients. In contrast, statistical analysis typically involves working with data that has already been collected, and the focus is on understanding and interpreting the relationships between variables within the given data set. It is important to keep in mind that correlation does not necessarily imply causation, and other factors may be at play when trying to understand the relationships between variables."
+In this phase, researchers decide how treatments are assigned to sample units or patients. If direct assignment isn't feasible, it becomes necessary to gather detailed information about covariates which can affect the outcome. This proactive approach in experimental design is fundamental for making valid causal inferences from the data. It's important to recognize that while correlation can indicate a relationship, it does not confirm causality without these rigorously controlled conditions. This perspective is a significant shift from typical statistical tasks, where the primary goal is to interpret and make sense of already collected data, emphasizing the importance of design in causal studies.
 
 Most of the time though, we also want to find out not only the relationship or correlation between observations but also the reason behind it. Using this information, we are able to take action to alter the relationships and causes. Essentially, we want to know what the consequences are of not doing one thing or the other. Our goal is to understand the effects and consequences of specific actions, policies, and decisions.
+
 In order to develop a hypothesis about such causal effects, we rely upon previous observations, personal experiences, and other information. Researchers in economics, health, and social sciences analyze empirical data to evaluate policies, actions, and choices based on quantitative methods.
 
 When we want to say something about why? We work with potential outcomes Potential Outcomes (Neyman, 1923 - Rubin, 1975) framework, especially in applied economics, or directed acyclic graphs (DAG) which you can think presenting a chain of causal effects with a graph. We will review causal analysis as short as possible, and considering the approaches integrating the machine learning with causal analysis. The books we can recommend in this topic are Causal Inference-The Mixtape, The Effect, Mostly Harmless Econometrics,...
@@ -1027,7 +1327,7 @@ In the upcoming chapters, we will delve into these approaches and explore the re
 
 # Learning 
 
-Imagine a child named Alex who occasionally gets sick after eating but doesn't know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.
+Imagine a young and curious person named Alex who occasionally gets sick after eating but doesn't know which specific food is the culprit. He grappled with recurring allergic reactions. Driven by a pressing need to pinpoint their root cause, he embarked on a personal mission. Eager to understand the extent of his susceptibility, Alex sought patterns and clues.
 
 Data Collection: Each time Alex eats, he makes a list of everything he's consumed that day. He also records how he felt afterward, specifically noting any days he felt ill.
 
@@ -1139,30 +1439,372 @@ The starting point will be to define these two different but similar processes.
 
 
 
-# Error:
+# Error
 
-Lets assume you want to find an average years of schooling of all the people who reside in your city. In another words, you want to find mean of years of schooling of the population in your city. Most of the time gathering this information is very hard. One solution is waiting in main street and ask everyone who passes that day from there. You can say you collect data which is called the sample of the population. With this sample you can estimate this unknown parameter which is average years of schooling of the population. You need to come with a general rule about how to calculate the unknown parameter. This general rule is called estimator. You use your specific sample, i.e. realized data, to obtain specific number which is called estimate. You can collect different samples. In that case, the estimator will be same but the estimate will vary from sample to sample.Ideally you want the estimator from your sample will be equal to the real (unknown) parameter. As you will never know the real parameter, we use statistical properties to assume that your estimate is that parameter. Main assumption/requirement is you want a representative sample and to find unbiased estimator. However, you may have infinite number of unbiased estimators. Which one is the best unbiased estimator? There will be always some difference between the estimated value and the actual value of population characteristics. That difference is called as **error**. Specifically, this is called **estimation error** as this error is related with an estimation of a parameter. 
+Many inquiries in economics, social sciences, and health sciences are centered around gaining insights about a population. 'Population' in this context refers to the complete set of individuals, events, or objects of interest in a study, encompassing all members or occurrences that meet specified criteria. The process of learning from this population can broadly be divided into two categories: estimation and hypothesis testing. Estimation involves determining the value of various population parameters, including the average (mean), variance, standard deviation, median, proportion, range, skewness, and kurtosis. Additionally, estimation also encompasses the calculation of correlation, covariance, and model coefficients. These are crucial for quantifying the relationships between different variables in a model.  On the other hand, hypothesis testing is a statistical method used to assess the strength of evidence against a null hypothesis, typically comparing it with an alternative hypothesis. It involves statistically determining whether the observed data deviates significantly from what would be expected under the null hypothesis, thereby providing insights into the likelihood of the occurrence of a specific event or characteristic within the population. This process is fundamental in validating or challenging existing theories and assumptions about the population's characteristics and behaviors. While hypothesis testing and estimation provide foundational methods for understanding populations, it's equally vital to consider the role of error in these processes, as it significantly influences the accuracy and reliability of our statistical and machine learning models.
 
-With the data in your hand, you may want to predict the specific individual or groups years of schooling. Using predictive methods, you will obtain a specific value. But that value will contain an error. In that case, this is called **prediction error** as this is related with a prediction of an outcome. With the advent of statistical/machine learning techniques, people are talking a lot about prediction error, while in classical statistics, one is focusing on parameter estimation error.
+In statistics and machine learning, **error** refers to the discrepancy between a calculated, estimated, or predicted value and the true or actual value. This encompasses estimation error, where estimations deviate from reality due to model limitations or assumptions; measurement errors, arising from inaccuracies in data collection; sampling errors, due to discrepancies between a sample and the overall population; and Type I and II errors in hypothesis testing, which are false positives and false negatives, respectively. In statistics, errors are often part of the model itself, such as the error term in a linear regression model, representing the part of the data that can't be explained by the estimation model. Sampling error arises because the sample may not perfectly represent the population's attributes, leading to differences between the true population's unknown parameters and the observed sample statistics. In machine learning, prediction error is the difference between a model's predicted values and the actual values. Prediction error is crucial for evaluating model performance, encompassing two types: training error, which occurs on the training dataset and reflects the model's learning accuracy; and generalization error (or test error), which is observed on new, unseen data, indicating the model's effectiveness in applying its learning to different scenarios. Minimizing both types of error is key to developing accurate and reliable machine learning models. Model error is the discrepancy between the model's assumptions and the real-world data it is trying to represent. Model error can occur due to incorrect model assumptions, oversimplification, or failure to capture complex relationships in the data. Algorithmic error arises due to the limitations or biases in the algorithms used for data processing and analysis. Additionally, errors in statistical and machine learning models are often categorized into irreducible and reducible errors. Irreducible error, inherent in any dataset, is the noise that cannot be eliminated by any model, while reducible error is due to the model’s inability to capture the true underlying pattern and can be minimized with better modeling techniques. Understanding and minimizing these errors, if possible, is crucial for effective and ethical decision-making based on data analytics, statistics, and machine learning. Throughout this book, we will explore all these various types of errors fundamental to statistics and machine learning. In this chapter, we'll focus on estimation error, a cornerstone of statistical analysis, and prediction error, particularly in in-sample or training data, which forms the basis of machine learning.
 
-suppose you have X , there is error when you want to find mean X
-parameter error, estimation error for coefficients
-prediction error is related with function
-irreducible and reducible error
-training error vs test data error (for prediction functions)
-measurement error ?
 
-different ways to find/min. errors. median, etc.
-error in classification, error in regression in ml
-below we will discuss estimation error and prediction error
+Assume you're interested in determining the average years of schooling among residents in your city and also understanding the effect of schooling on income. Collecting this data directly from every individual who constitutes the population of the city is often impractical. A more feasible approach is to gather data from a subset of people, say those passing through a main street, and use this as a sample to estimate the average years of schooling (using method of moments estimators) and estimating the effect of education on income (using OLS to estimate coefficient). For simplicity, assume the subset of people you gather information, your sample, is random and representative of the population. The estimated average, derived from your sample, i.e. realized data,represents an attempt to infer a population parameter - in this case, the mean years of schooling. Using the data from your sample, you can find the the correlation between education and income as well as analyze how schooling effects income by estimating the coefficient in an ordinary linear regression model (with the assumptions we will discuss below). In this specific example, you can estimate the average years of schooling, as well as the correlation between education and income, and the regression coefficient of education on income.
+
+The process of deriving any of these method of moment and coefficient estimates involves selecting an estimator - a statistical method or rule for estimating the unknown population parameter. While the estimator remains unchanged regardless of the sample obtained, and ideally needs to be specified before any sampling carried out, the specific estimate varies with each different sample collected. The ideal scenario is when the estimate from your sample aligns perfectly with the true, but unknown, population parameter. Since the actual parameter is never truly known, statistical properties are used to justify the assumption that your estimate nearly equal to this parameter. Main assumption/requirement of this process is obtaining a representative sample and identifying an unbiased estimator. Even among unbiased estimators, questions arise about which is the 'best'. This leads us to the concept of estimation error. For instance, the difference between the estimated average schooling and the actual average schooling of the population, or the coefficient which indicates the return of schooling on income. Estimation error is a key aspect of statistical analysis in trying to approximate a population parameter.
+
+Similarly, when using the gathered data to predict an individual's or a group's years of schooling, the process will inevitably include some level of prediction error. This error reflects the discrepancy between the predicted value and the actual outcome. It's easy to assume that we would encounter prediction error primarily in models with limited variables, like those predicting a single parameter such as mean of years of schooling from a sample. However, even in models with large datasets includes numerous variables, prediction error remains an inherent challenge, as we will see in the following example.
+
+Let's consider a different scenario to more effectively illustrate prediction error. Imagine you are developing a model to predict an individual's income based on factors like education level, profession, work experience, and any other factors you think might impact income. You use your sample data to train this predictive model. Initially, the model makes predictions about the income of these individuals within the training data. There will be a difference between the predicted income and the actual income for the individuals in your sample. This difference is known as in-sample prediction error and reflects the model's accuracy in predicting outcomes using the data it was trained on. Despite the model's sophistication, it cannot perfectly account for every variable influencing future income, such as changes in the state of the economy, individual career preferences, misreporting, or factors that are difficult to quantify numerically, like ability or chance. Moreover, when you apply this model to predict the income of a new set of individuals, outside the training dataset, there will likely be some discrepancy between the model's predictions and the actual incomes of these new individuals. This discrepancy, known as out-of-sample prediction error, is critical in assessing how well the model generalizes to new, unseen data. Both in-sample and out-of-sample prediction errors are crucial for understanding the model's effectiveness. Minimizing these prediction errors, especially the out-of-sample error, is a major focus in the field of machine learning, where the emphasis is often on the model's ability to accurately predict outcomes for new, unseen data.
+
+Recognizing the shift from traditional statistical methods, which concentrate on precise parameter estimation, we will now transition to discussing the concepts of estimation error and mean squared error (MSE). Following this, we will discuss the prediction error and Mean Squared Prediction Error (MSPE), highlighting their importance in the context of statistical and machine learning techniques.
+
+## Estimation error
+
+In this section, we show the concept of estimation error, using a simulation to understand how different estimators can be applied to estimate population parameters like the average years of schooling. We explore various estimators, examine their unbiasedness, and discuss the importance of efficiency and mean square error (MSE) in choosing the best estimator for accurate population parameter estimation. This simulation also highlights the balance between unbiasedness and variance in statistical estimation.
+
+Our main objective is to estimate an unknown population parameter, symbolized as $\theta$. This parameter, $\theta$, could be the simple mean of a variable (or feature), $\mu_x$, or a slope coefficient, $\beta_{1}$, from OLS estimation (for instance, the OLS regression coefficient of education on income). We use estimator to estimate $\theta$. Our data comes from a random sample, yet, it may not perfectly represent the entire population, potentially due to sampling or measurement errors, or some other reasons. As a result, our estimate, denoted as $\hat{\theta}$, might not exactly match the true parameter, $\theta$. The difference between both is known as estimation error (i.e. \(\text{error}=\hat{\theta} - \theta\)). Also, note that when we say we have random samples, we imply that these samples are independent and identically distributed from our population as well.
+
+Let's simulate the scenario we discussed above, aiming to estimate the average years of schooling of residents in our city. Since collecting data from everyone is impractical, we decide to gather 10 representative samples instead. In this simulation, people report 9 years of education if they've completed only compulsory schooling, 12 years if they graduated from high school, or 16 years if they're college graduates. We'll assume that reported years of schooling can be any discrete number between 9 and 16. Each of our 10 different representative samples will consist of 5000 individuals.
+
+As previously discussed, estimating a parameter, denoted as $\theta$, requires choosing an estimator. Estimator is a statistical method or rule used to estimate an unknown population parameter. For estimating population mean, $\mu_x$, in this simulation, which represents our specific parameter $\theta$, we can use one of three different estimators.
+
+First, we could use the average of years of schooling (sample mean) for everyone who reported it as an estimator. The average is a straightforward and commonly used estimator because it utilizes all available data points.    
+
+$$
+\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}
+$$
+or alternatively, we can just take the half of the first person's and last person's years of schooling. This estimator is simpler and less computationally intensive. It takes into account the variability in the data by considering the extremes (the first and last data points). Although it doesn't use all data points, it can be a quick and effective estimator when the data is expected to be uniformly. distributed. 
+
+$$
+\hat{X}=0.5 x_{1}+0.5x_{n}
+$$
+or as a third alternative, we can just use weighted average of first person and the last person's years of schooling. This estimator allows for a more nuanced estimation than the equal weighting in the previous method. By adjusting the weights (0.25 for the first person and 0.75 for the last person), this estimator can be tuned to reflect certain assumptions about the distribution of the data, potentially providing a more accurate estimate under specific conditions. As a note, you can find unbiased estimator when you assign any positive values for weights as long as the sum is 1.
+
+$$ 
+  \tilde{X}=0.25 x_{1}+0.75x_{2}
+$$
+ 
+  In addition to these three estimators, other alternatives for estimating average years of schooling in our simulation may include using the **mode of the sample**, which identifies the most frequently reported years of schooling. Another option is the **trimmed mean**, which calculates the average after excluding extreme values at both ends of the spectrum, reducing the impact of outliers. Lastly, selecting a **single value** at random from the sample as the estimator. While this last method might seems overly simplistic and is subject to high variance, it could be useful in scenarios where a quick, single data-driven decision point is needed.
+
+Therefore, we need to define **what makes an estimator the "best" among others**.  
+
+Let's say we have drawn various random samples that represent the population. For each sample, we find a single value for each parameter, such as the mean or variance of the sample. All these single means of samples will generate a distribution, thus forming the sampling distribution of sample means, or sampling distribution of sample variances. The sampling distribution is a statistical term that refers to the distribution of a parameter (like a mean, variance, or coefficient) across a large number of samples drawn from a specific population. In simpler terms, it represents the likelihood of the various outcomes (probability distribution) of an estimator calculated from multiple random samples of a population. Analyzing this distribution for a parameter estimate, using any of the estimators mentioned above, aids in developing the main criteria that guide us in choosing the 'best' estimator. Initially, we need to discuss the expected means and variances of this distribution, which help establish certain principles leading to the development of the main criteria.
+
+The first and most important criteria should be that the expected value, i.e., the mean, of all estimates obtained from various random samples, should be equal to the unknown population parameter, $\theta$. An estimator that satisfies this condition is referred to as an **unbiased estimator** , (i.e. \(\operatorname{Bias}(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta = 0\) so \(\mathbb{E}[\hat{\theta}] = \theta\). While an unbiased estimator doesn't ensure that the estimate from a particular sample will exactly match the population parameter, it implies that averaging the estimates from repeatedly drawn random samples, each calculated using the same estimator, will closely approximate the actual population parameter. We showed the therotical proof in the last section. It's also important to remember that this concept is theoretical, as in practical scenarios we typically work with a single random sample and rely on asymptotic (large sample) properties, which we will explore later.
+
+Numerous econometrics textbooks, including outs in the last section of this chapter, do provide algebraic proofs to demonstrate that estimators for statistical parameters, including the average, variance, correlation, and Ordinary Least Squares (OLS) regression coefficients (both for single-variable and multiple-variable models), are unbiased under certain conditions. These proofs typically rely on assumptions such as linearity, independence, and normality of error terms, among others. However, in this case, we will demonstrate that all three estimators are unbiased through simulation. This approach can offer a clearer understanding of the concept, as visualizing it step-by-step in a simulation often makes it easier to grasp.Through this simulation, one can visually and numerically verify the fundamental statistical properties of i.i.d and unbiased estimators.
+ 
+
+```r
+# Here is our population
+populationX <- c(9,10,11,12,13,14,15,16)
+
+#Let's have a containers to have repeated samples (5000)
+samples <- matrix(0, 5000, 10)
+colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
+
+# Let's have samples (with replacement always)
+set.seed(123)
+for (i in 1:nrow(samples)) {
+  samples[i,] <- sample(populationX, 10, replace = TRUE)
+}
+head(samples)
+```
+
+```
+##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
+## [1,] 15 15 11 14 11 10 10 14 11  13
+## [2,] 12 14 14  9 10 11 16 13 11  11
+## [3,]  9 12  9  9 13 11 16 10 15  10
+## [4,]  9 14 11 12 14  9 11 15 13  12
+## [5,] 15 16 10 13 15  9  9 10 15  11
+## [6,] 12 13 15 13 11 16 14  9 10  13
+```
+  
+ We define a population where years of schooling range from 9 to 16. Imagine this as a population where an equal number of individuals have each year of schooling, from 9 years up to 16. Consequently, the average years of schooling in this population, denoted as $\mu_x$, is known to be 12.5. This average is calculated as the mean of the range of schooling years (9 to 16).
+
+We generate 10 random samples, each consisting of 5000 observations. These observations are created by randomly selecting from the defined population. Below we display the first six rows out of the 5,000 samples, where each row represents a different sample and each column represents a data point within that sample.  
+ 
+We can test the following points:  
+
+1. Is $X$ independently and identically distributed (i.i.d)? 
+
+We need to verify that the mean and variance are consistent across different data points within the samples. In another words, an identical distribution requires \(\operatorname{E}(x_1)=\operatorname{E}(x_2)=\ldots=\operatorname{E}(x_{10})\) and \(\operatorname{Var}(x_1)=\operatorname{Var}(x_2)=\ldots=\operatorname{Var}(x_{10})\). In addition, independence is further confirmed by ensuring that the correlation (\(\operatorname{Corr}\)) between any two different data points is zero, \(\operatorname{Corr}(x_i, x_j)=0\) where \(i \neq j\).
+
+
+2. Are the three estimators, $\bar{X}$, $\hat{X}$, and $\tilde{X}$, unbiased? 
+
+An estimator is considered unbiased if its expected value—the average of the values of the parameters obtained from different samples—equals the true population mean, $\mu_x$ , which in this case is 12.5. This value is known in simulation but unknown in reality.
+
+Let's see:  
+
+
+```r
+# Check if E(x_1)=E(x_2)=...=E(x_10), rounded to 2 decimal places
+colMeans <- round(colMeans(samples), 2)
+print(colMeans)
+```
+
+```
+##    X1    X2    X3    X4    X5    X6    X7    X8    X9   X10 
+## 12.48 12.51 12.48 12.57 12.54 12.51 12.45 12.50 12.51 12.45
+```
+
+```r
+# Check if Var(x_1)=Var(x_2)=...=Var(x_10), rounded to 2 decimal places
+variances <- apply(samples, 2, var)
+variances <- round(variances, 2)
+print(variances)
+```
+
+```
+##   X1   X2   X3   X4   X5   X6   X7   X8   X9  X10 
+## 5.22 5.17 5.28 5.30 5.18 5.31 5.21 5.20 5.27 5.31
+```
+
+```r
+# Check correlation, rounded to 2 decimal places
+correlations <- cor(samples)
+correlations <- round(correlations, 2)
+print(correlations)
+```
+
+```
+##        X1    X2    X3    X4    X5    X6    X7    X8    X9   X10
+## X1   1.00  0.02  0.00  0.00  0.01  0.00 -0.01  0.00  0.00 -0.02
+## X2   0.02  1.00  0.01  0.02  0.00  0.00  0.01 -0.01  0.01 -0.02
+## X3   0.00  0.01  1.00  0.01  0.01  0.00 -0.02  0.02 -0.01  0.00
+## X4   0.00  0.02  0.01  1.00 -0.02  0.00  0.00  0.02  0.01 -0.01
+## X5   0.01  0.00  0.01 -0.02  1.00 -0.01  0.00  0.01  0.00  0.01
+## X6   0.00  0.00  0.00  0.00 -0.01  1.00  0.01  0.02 -0.02 -0.01
+## X7  -0.01  0.01 -0.02  0.00  0.00  0.01  1.00 -0.01  0.01  0.00
+## X8   0.00 -0.01  0.02  0.02  0.01  0.02 -0.01  1.00  0.01  0.06
+## X9   0.00  0.01 -0.01  0.01  0.00 -0.02  0.01  0.01  1.00  0.01
+## X10 -0.02 -0.02  0.00 -0.01  0.01 -0.01  0.00  0.06  0.01  1.00
+```
+
+Note that if you use only unique set of samples, you can get exact results using following commands
+
+
+```r
+uniqsam <- unique(samples)
+colMeans(uniqsam)
+apply(uniqsam, 2, var)
+cor(uniqsam)
+```
+The observed expected value (mean) and variance of each random sample are nearly equal. It's worth noting that increasing the number of observations in each sample from 5000 to a larger number would likely result in these means and variances becoming even more similar. Additionally, the correlations between each sample are nearly zero. Thus, we can conclude that the condition of independence and identical distribution (i.i.d) is satisfied.
+
+The next step involves determining if all three estimators are unbiased. For this, we apply each estimator to the random samples to estimate the population parameter. The code below is used to calculate the average value for a variable across multiple samples and then computes the overall average of these averages for each of the three estimators separately.
+
+
+```r
+# First Xbar : sample mean
+X_bar <- rep(0, nrow(samples)) #Container to have all Xbars
+for(i in 1:nrow(samples)){
+  X_bar[i] <- sum(samples[i,])/ncol(samples)
+}
+
+EX_bar <- sum(X_bar)/length(X_bar)
+EX_bar
+```
+
+```
+## [1] 12.49894
+```
+
+```r
+# Xhat: the half of the first person's and last person's years of schooling
+X_hat <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_hat[i] <- 0.5*samples[i,1] + 0.5*samples[i,10]
+}
+
+EX_hat <- sum(X_hat)/length(X_hat)
+EX_hat
+```
+
+```
+## [1] 12.466
+```
+
+```r
+# Xtilde: weighted average of first person and the last person's years of schooling
+X_tilde <- rep(0, nrow(samples))
+for(i in 1:nrow(samples)){
+  X_tilde[i] <- 0.25*samples[i,1] + 0.75*samples[i,2]
+}
+
+EX_tilde <- sum(X_tilde)/length(X_tilde)
+EX_tilde
+```
+
+```
+## [1] 12.503
+```
+
+We can conclude all these three estimators are unbiased as $\mathbf{E}(\bar{X})\approx \mathbf{E}(\hat{X}) \approx \mathbf{E}(\tilde{X}) \approx \mu_x \approx 12.5$. 
+
+Increasing the number of observations in each sample, as well as the number of random samples, tends to bring these expected values closer to 12.5, the known population mean. However, it's important to note that these sample averages are not exactly the same as the population average. The discrepancy between the estimated value (from the sample) and the actual value (from the population) is known as **error**. Ideally, we aim for this error to be zero. As the number of observations in our sample approaches the size of the entire population, this error tends to diminish. Since we can never fully ascertain the exact characteristics of the entire population, we operate under the assumption that this error gets closer to zero as our sample size increases.
+
+
+
+## Efficiency
+
+Up to this point, we have demonstrated that all three estimators provide unbiased estimates. This means that unbiasedness cannot be the sole criterion for determining the "best" estimator. We seek an estimator that closely approximates the population parameter with a higher likelihood, making the second criterion the choice of a relatively efficient estimator. In other words, the estimator's probability density function should be concentrated around the true unknown population parameter, indicating that the estimator is **efficient**.
+
+Before discussing efficiency, it's important to remind the difference between sample mean and variance, and sampling mean and sampling variance.
+
+Let's say we have drawn various random samples that represent the population. For each sample, we find a single value for each parameter, such as the mean or variance of the sample. We previously defined a **sample mean** as \(\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}=\mu_x\), and showed as unbiased estimator of unknown population mean, $\mu_x$. The formula $\hat{\sigma_{X}}^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_{i} - \bar{X})^2$ is the estimator for the unknown population variance $Var(X)=\sigma^2_x$, which is also unbiased (we show this in the last section). This is known as the **sample variance**, calculated by averaging the squared differences of each observation from the sample mean. We use n-1 in the denominator instead of n to provide an unbiased estimate of the unknown population variance, $\sigma^2_x$.
+
+All these single sample parameters generate a distribution. One of the most important parameters we analyze is the mean. The collection of these means, when derived from a sufficient number of random samples, forms what is known as the sampling distribution of the sample mean. This distribution is a probability distribution of all possible means that could be obtained from sets of samples of the same size drawn from the same population. It plays a crucial role in statistical hypothesis testing and in constructing confidence intervals. The sampling distribution of the sample means has a mean and variance; hence, the mean of the sampling distribution of sample means is called the **sampling mean**, and the variance of the sampling distribution of sample means is called the **sampling variance**.
+
+The sampling distribution refers to the distribution of a parameter (like a mean, variance, or coefficient) across many samples drawn from a specific population. This distribution of outcomes from an estimator features a sampling mean (which is used to check unbiasedness) and a sampling variance (which is used to check efficiency). The standard deviation of the sampling distribution, also known as the standard error, is the square root of the sampling variance and decreases as the sample size increases.
+
+When each random sample with a mean $\mu_x$ and variance $\sigma_{X}^2$ is denoted as $X_{i}$, then the sampling mean is $E(\bar{X})=\frac{1}{n} \sum_{i=1}^{n} \bar{X_{i}}=\mu_x$, and the sampling variance is $Var(\bar{X}) = \frac{1}{n} \sum_{i=1}^{n} (\bar{X_{i}} - \mu_x)^2=\frac{\sigma^2_x}{n}$. (check the derivation in the last section).
+
+In summary, when we have various random samples drawn from a population with mean $\mu_x$ and variance $Var(X)=\sigma^2_x$, the sampling mean mirrors the population mean. However, the sampling variance equals the population variance, $\sigma^2_x$, divided by the sample size, $n$. Therefore, as the sample size increases, the sampling variance approaches zero which is called *consistency*.
+
+Generally, an estimator's variance tends to decrease as the sample size increases (Law of Large Numbers). However, we cannot claim one estimator is more efficient than another solely based on a smaller variance if the variances are calculated from different sample sizes. When comparing two unbiased estimators of a parameter, the one with the smaller variance is considered relatively more efficient. Among all unbiased estimators, the one with the smallest variance is deemed the "best". If an estimator is linear, unbiased, and has the smallest variance among all unbiased linear estimators for a given dataset then it is called the Best Linear Unbiased Estimator (BLUE).
+
+The term "relative efficiency" should be used when comparing different estimators that utilize the same information, meaning they are based on the same data and the same sample size. It's not applicable when comparing variances of the same estimator derived from different sample sizes.
+
+Therefore, *the unbiased estimator with the smallest variance is the best estimate for unknown population parameter*. However, it's important to note that while an unbiased estimator may be more efficient than another, this doesn't guarantee it will always provide a more accurate estimate. It simply means that it's more likely to be accurate than the less efficient one.(check the next figure)
+
+Let's examine our simulation to determine which of the three unbiased estimators has the smallest variance.
+
+
+```r
+var(X_bar)
+```
+
+```
+## [1] 0.5385286
+```
+
+```r
+var(X_hat)
+```
+
+```
+## [1] 2.590462
+```
+
+```r
+var(X_tilde)
+```
+
+```
+## [1] 3.27012
+```
+  
+As seen comparing variances, the $\bar{X}$, the sample mean, has the smallest variance.
+We showed the sample average is the most efficient of the all unbiased estimators. 
+
+## Mean Square Error
+
+The Mean Squared Error (MSE) is a fundamental measure for comparing the efficiency of different estimators. It encapsulates both the variance of the estimator and any bias it might introduce. This dual consideration is critical because it addresses the trade-off between precision and accuracy, making MSE a comprehensive criterion for estimator comparison.
+
+Before proceeding, it is important to clarify the terminology used in this context. While some sources may use MSE interchangeably for both estimators and predictors, we will distinguish between these terms to avoid confusion. In this text, MSE refers exclusively to an estimator's performance measure. In the following section, we will introduce the Mean Squared Prediction Error (MSPE), which, although conceptually and mathematically distinct from MSE, is sometimes conflated with it in other sources. By maintaining this distinction, we aim to enhance clarity and precision in our discussion.
+
+**How do we evaluate and compare different estimators when they are not all unbiased?**
+
+ An unbiased estimator with high variance isn't always preferable, simply because it's unbiased, compared to a biased estimator with low variance. When comparing estimators, particularly when not all are unbiased, the choice isn't straightforward. For example, we might have two estimators for the same population characteristic: one is unbiased but has high variance, while the other is biased but with lower variance. The choice depends on our requirements. In applied microeconomics and social sciences, we often opt for an unbiased estimator when estimation errors are not a major concern. This is because we assume that estimation errors, on average, cancel each other out. This assumption is based on the error term having an expected value of zero (\(\operatorname{E}[\epsilon] = 0\)) and a variance of \(\sigma^2\).
+
+ Which estimator is preferred? Estimator A is unbiased with high variance, while Estimator B has smaller variance but is biased. In the figure below, you can see that from a random sample representing the population, you are more likely to find an estimate for \(\theta\) that is closer to the real \(\theta\) using Estimator B, even though it has some bias. We will demonstrate this in the next chapter with further simulation.
+
+<img src="05-Error_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
+In cases where large errors are intolerable, an estimator with lower variance may be chosen, even if it introduces a small bias. For example, , in weather forecasting, slightly biased temperature predictions might be favored if they consistently deliver more reliable results than unbiased models, which may fluctuate wildly from day to day. This reliability is crucial for industries relying on stable weather predictions, such as agriculture or aviation, where planning based on inaccurate forecasts can lead to severe operational disruptions. In medical diagnostics, tests that are slightly biased but have lower variance are sometimes preferred, especially in preliminary screening contexts. A diagnostic test for a disease might be calibrated to have a slight bias towards false positives. This means it may indicate the disease is present when it is not, but ensures that almost all actual cases are detected. In these scenarios, the high cost of errors necessitates the use of estimators that minimize variance, even at the expense of some bias. In other words, selecting an estimator often hinges on the cost associated with an error relative to its size. This cost is quantified by a *loss function*. In economics, social and health sciences, a commonly used loss function is the mean square error (MSE).
+
+The mean squared error (MSE) of an estimator \(\hat{\theta}\) quantifies the average of the squares of the errors—that is, the average squared difference between the estimated values and the true value \(\theta\). It is formally defined as the expected value of the square of the difference between the estimator \(\hat{\theta}\) and the true parameter \(\theta\):
+
+\[
+\operatorname{MSE}(\hat{\theta}) = \mathbb{E}\left[(\hat{\theta} - \theta)^2\right]
+\]
+
+This parameter \(\theta\) could represent various statistical measures depending on the context, such as the mean or variance of a variable (or feature) \(\mu_x\), or a slope coefficient \(\beta\) from ordinary least squares (OLS) regression.
+
+In the realm of OLS regression, which is frequently encountered in econometrics and other disciplines, the MSE is crucial for estimating coefficients. Consider the simple linear regression model, \(y = \beta_0 + \beta_1 X + \epsilon \). Here, \(y\) is the dependent variable, \(X\) represents the independent variable(s), \(\beta_0\) and \(\beta_1\) are coefficients to be estimated, and \(\epsilon\) is the error term, typically assumed to have a mean of zero and constant variance, normally distributed (optional).
+
+The goal in Ordinary Least Squares (OLS) regression is to minimize the Mean Squared Error (MSE), which for the residuals \(\epsilon_i\) is given by:
+
+\[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^n (\epsilon_i)^2 = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+\]
+
+where \(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i\) represents the predicted value of \(y\) based on the regression line. The coefficients \(\beta_0\) and \(\beta_1\) are estimated such that this MSE is minimized. It is important to note that in OLS, we technically minimize the Residual Sum of Squares,\(\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2\), which is the sum of the squared residuals; however, minimizing RSS is equivalent to minimizing MSE. Here, a residual is defined as the difference between the observed value and the predicted value, expressed as \(y_i - \hat{y}_i\).
+
+
+MSE serves as a fundamental measure for comparing the efficiency of different estimators because it encapsulates both the variance of the estimator and any bias it might introduce. This dual consideration is critical because it addresses the trade-off between precision and accuracy, making MSE a comprehensive criterion for estimator comparison.
+
+The MSE can be decomposed into variance and bias as follows:
+
+\[
+\text{MSE}(\hat{\theta}) = \mathbb{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^2\right] = \left[\text{bias}(\hat{\theta})\right]^{2} + \text{Var}(\hat{\theta})
+\]
+
+For the error term in OLS regression, this formulation also applies:
+
+\[
+\text{MSE}(\hat{\epsilon}) = \mathbb{E}_{\hat{\epsilon}}\left[(\hat{\epsilon}-\epsilon)^2\right] = \left[\text{bias}(\hat{\epsilon})\right]^{2} + \text{Var}(\hat{\epsilon}) 
+\]
+
+where \(\hat{\epsilon}\) represents the estimated error term and \(\epsilon\) the true error term. Minimizing the MSE of the error term is essential for achieving the best model fit, striving for zero bias and minimum variance.
+
+Moreover, the decomposition of the MSE for the coefficient \(\hat{\beta}_1\) is:
+
+\[
+\text{MSE}(\hat{\beta}_1) = \mathbb{E}[(\hat{\beta}_1 - \beta_1)^2] = \text{Bias}^2(\hat{\beta}_1) + \text{Var}(\hat{\beta}_1)
+\]
+
+Here, an unbiased estimator with minimum variance is ideal, where the square root of the variance of a coefficient, known as the standard error, provides a measure of the estimator's precision.
+
+As we conclude this section, it is important to note the other usages of the term Mean Squared Error (MSE) in statistics.
+
+In regression analysis,  *The Mean Square Error* (MSE) may refer to the unbiased estimate of error variance, which is calculated as the residual sum of squares divided by the degrees of freedom. This usage differs from the broader definition previously discussed. Specifically, the unbiased estimate of the variance of the unobserved errors is obtained by dividing the sum of the squared residuals by the degrees of freedom, df = n - p - 1, where n is the number of observations in the sample, and p is the number of parameters estimated in the model, excluding the intercept. This formula provides an unbiased estimate of the variance of the unobserved errors, and it is commonly referred to as the mean squared error.
+
+In the context of Analysis of Variance (ANOVA), which is a statistical method used to analyze differences among group means in a sample, *Mean Square Error (MSE)* has a specific usage and concept. The Error term in ANOVA represents the "variability within groups" or "unexplained random error."The primary goal of ANOVA is to identify whether any significant differences exist between the means of three or more unrelated groups. The method divides the observed aggregate variability found within a data set into two parts: variability between groups and variability within groups. Sum of Squares Total (SST) measures the total variance in the data and is calculated as the sum of the squared differences from the overall mean. Sum of Squares Between (SSB) quantifies the variance caused by differences between group means, highlighting the impact of the independent variable on the dependent variable. It is calculated by summing the squared differences between each group mean and the grand mean (overall mean), each multiplied by the number of observations in that group. Sum of Squares Within (SSW), also known as the error term, measures the variance within each group and represents the sum of squares of deviations of each observation from their respective group mean.
+
+These components are related through the formula: SST = SSB + SSW . From these sums of squares, ANOVA calculates the mean squares. The Mean Square Between (MSB) quantifies the average variance between the groups and is calculated as MSB = SSB/k-1 , where k is the number of groups. *The Mean Square Error* (MSE), also known as the Mean Square Within (MSW), measures the average the squares of the errors (the residuals) within the groups and is computed as MSE = SSW/n-k, where n is the total number of observations. MSE indicates the average variance within each group about their respective group means. A smaller MSE indicates that the data points within each group are closer to their group mean, suggesting less variability within the groups.The ratio of MSB to MSE forms the F-statistic, which is compared against a critical value from an F-distribution to determine the statistical significance of the observed differences among group means. A significant F-statistic indicates that the differences between the group means are statistically significant, suggesting that the independent variable has an effect on the dependent variable. [Read](http://www.stat.columbia.edu/~gelman/research/published/AOS259.pdf) for more details.
+
+**One random sample to population parameters**
+
+Before we move on to the next section where we will discuss the Mean Square Prediction Error (MSPE), in this section we want to address a critical issue. In practice, we often have only one sample at our disposal, unlike the multiple random samples used in the simulation above or depicted in the figure. The figure illustrates estimators A and B, utilizing multiple sample-derived estimates to analyze the population parameter \(\theta\), including calculating the estimated mean, variance, distribution, and ultimately visualizing these estimators. This leads us to a pivotal question: how can we estimate a population parameter \(\theta\) using only a single random sample?
+
+The objective is to utilize the data within the sample to infer the value of a parameter in the population. "Inferring" involves deducing or concluding information from evidence and reasoning. Statistical inference encompasses the theory, methods, and practice of forming judgments about the parameters of a population and the reliability of statistical relationships, typically based on random sampling.(Wikipedia). In essence, statistical inference is the process of drawing conclusions from data obtained from a subset of a larger population. It's important to note that no study can generalize universally. As an analyst, it's your responsibility to clarify the applicability of your results for making inferences and where they might not. This requires a clear description of the sample's characteristics when interpreting results and making inferences.
+
+To begin, we must collect and verify a random sample from the population of interest. Randomness ensures that every member of the population has an equal chance of being selected, making the sample representative. From this single sample, we calculate sample statistics, such as the sample mean, variance, standard deviation, or regression coefficients. These serve as estimates for the corresponding population parameters.Through statistical inference, specifically through estimation and hypothesis testing, we use the parameters estimated from this random sample to make educated guesses about the population parameters.
+
+A key aspect to consider is the asymptotic or large sample properties of the estimator. The estimator used should ideally exhibit consistency. Consistency is the asymptotic property of the estimator related to its ability to converge to the true population parameter as the sample size increases. For an estimator to be considered consistent, it must fulfill two key conditions: it must be unbiased (or its bias approaches zero as the sample size increases), and its variance must diminish to zero as the sample size grows. Demonstrating that an estimator is consistent involves showing that it converges in probability to the true parameter value as the sample size increases to infinity. This concept is indeed closely related to the Law of Large Numbers (LLN). 
+
+Consistency suggests that as the sample size grows, the distribution of an estimator becomes more focused around the true parameter value. However, this concept doesn't provide any information about the distribution's shape at a given sample size. To conduct interval estimation and hypothesis testing, we rely on the Central Limit Theorem (CLT) to approximate the estimator's distribution, allowing for an assumption of an asymptotically normal distribution.  The CLT provides a description of the sampling distribution: by giving us information about an estimator (in hypothetical repeated sampling), it decreases the uncertainty of the estimation since now we can calculate how close the statistic is to the parameter.   
+
+Next, interval estimation involves calculating a confidence interval that is likely to contain the population parameter. For instance, a 95% confidence interval for the population mean suggests that, if you were to take 100 different samples and compute 100 confidence intervals, about 95 of them would be expected to contain the actual population mean. This approach which is based on CLT allows us to infer population characteristics from a sample with a known level of confidence. We know that if the sample size is big enough (more than 30, for example), the sampling distribution would be normal according to [the Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem). 
+
+The Central Limit Theorem (CLT) is a foundational concept in statistics, explaining how the distribution of sample means becomes approximately normal as the sample size increases, regardless of the population's distribution. This theorem applies when the random variables are independent and identically distributed, and it is most effective when the sample size is large. The CLT's significance lies in its allowance for the use of normal distribution assumptions in statistical methods, even when the underlying population is not normally distributed. Regression analysis, especially ordinary least squares, often relies on the assumption that the error term has normal distribution. This assumption is justified by considering error term is actually the sum of many independent error terms. Even if these individual errors are not normally distributed, the CLT allows us to approximate the sum of error terms as a normal distribution. This approximation is a crucial aspect of statistical inference in regression analysis.
+
+With this, we want to note that there are several common misconceptions about the CLT, as highlighted by various studies and even in some widely-used textbooks. These misconceptions include the belief that the theorem applies to any random sampling of variables. However, the CLT specifically relates to the means (or sums) of independent and identically distributed random variables obtained through repeated sampling. Another misconception is that the theorem guarantees the emergence of a normal distribution for large samples of any random variable. In reality, what the sampling does is asymptotically reproduce the properties of the population distribution, not necessarily lead to a normal distribution in all cases. This distinction is critical for accurately applying and interpreting the CLT in statistical analysis.
+
+In other words, if the number of observations in each sample large enough, $\bar{X} \sim N(\mu_x, \sigma^{2}_x/n)$ or when population variance is not known $\bar{X} \sim \mathcal{T}\left(\mu, S^{2}\right)$ where $S$ is the standard deviation of the sample and $\mathcal{T}$ is the Student's $t$-distribution.  
+
+Why is this important?  Because it works like a magic: with only one representative sample, we can **generalize** the results for the population.  We will not cover the details of interval estimation here, but by knowing $\bar{X}$ and the sample variance $S$, we can have the following interval for the $\mu_{x}$:  
+
+$$
+\left(\bar{x}-t^{*} \frac{s}{\sqrt{n}}, \bar{x}+t^{*} \frac{s}{\sqrt{n}}\right)
+$$
+  
+where $t^*$, the critical values in $t$-distribution, are usually around 1.96 for samples more than 100 observations and for the 95% confidence level.  This interval would be completely wrong or misleading if $\mathbb{E}(\bar{X}) \neq \mu_x$ and would be useless if it is very wide, which is caused by a large variance.  That's the reason why we don't like large variances.  
+
+
+"Then, finally, here is how inference works, in one paragraph: we use sample statistics to estimate population parameters — i.e., the statistics we calculate based on random sample data act as statistical estimators for what we truly want to know, the unknown population parameters. We do that by the postulates of the Central Limit Theorem which describe the sampling distribution, the bridge between the statistics and the parameters. By the CLT, we have the sampling distribution as normal. Again, by the CLT, we can center the sampling distribution on the sample mean, and calculate the sampling distribution’s standard error using the sample standard deviation. By applying the properties of the normal probability distribution to the sampling distribution, we then produce population estimates. Ta-da!" [from CLT](https://pressbooks.bccampus.ca/simplestats/chapter/6-6-the-central-limit-theorem/)
+
+In making these inferences, it's crucial to consider the assumptions underlying the statistical methods used. Different methods may require certain conditions about the population from which the sample is drawn, such as assuming the population has a normal distribution or that observations within the sample are independent of each other. The accuracy and reliability of the inferences drawn from a sample significantly depend on how well these assumptions are met. By carefully considering these assumptions and applying appropriate statistical inference techniques, we can extend our findings from a single random sample to make broader conclusions about the entire population.
 
 **Reminder:** 
 
-Assuming a true linear model $y=X \beta_0+\varepsilon$, estimate $\hat{\beta}$ and prediction $\hat{y}=X \hat{\beta}$. One can define, with $\|$.$\|$ the mean square error norm for example:
+Assuming a true linear model $y=X \beta+\varepsilon$, estimate $\hat{\beta}$ and prediction $\hat{y}=X \hat{\beta}$. One can define, with $\|$.$\|$ the mean square error norm for example:
 
 - Estimation error: $\|\beta-\hat{\beta}\|$
 
-- Prediction error: $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
+- Prediction error (residual): $\|y-\hat{y}\|=\|X(\beta-\hat{\beta})\|$ (note this definition omits the part related to the error term )
 
 
 ```r
@@ -1202,389 +1844,98 @@ for (i in 1:length(y)) {
 }
 ```
 
-<img src="05-Error_files/figure-html/unnamed-chunk-1-1.png" width="672" />
-
-## Estimation error - MSE
-
-Let's simulate the situation people report 9 years of education if the finished only compulsory schooling, or 12 years if the graduated from high school, or 16 years if they are college graduate. Assume, people report their years of schooling is any discrete year between 9 to 16.  Lets assume each of our 10 different sample consist of 5000 individuals.
-
-The task is to **estimate an unknown population parameter**, say $\theta$, which could be a simple mean of $X$, $\mu_x$, or more complex slope coefficient of an unknown DGM, $\beta$.  Since we have only a random sample from the population, and because that sample could be unrepresentative of the population, or measurement error, we cannot say that $\hat{\theta}$ is equal to $\theta$.  Hence, we call $\hat{\theta}$ as an estimator of $\theta$.  
-
-We need to pick the best estimator to estimate $\theta$ among many possible estimators.
-In this simulation, we can use 3 different estimator if we want to estimate $\mu_x$.
-First, we could use the average of years of schooling for everyone who reported it,    
-
-$$
-\bar{X}=\frac{1}{n} \sum_{i=1}^{n} x_{i}
-$$
-or alternatively, we can just take the half of the first person's and last person's years of schooling, 
-
-$$
-\hat{X}=0.5 x_{1}+0.5x_{n}
-$$
-or alternatively, we can just use weighted average of first person and the last person's schooling. We can assign weight as 0.25 for the first person, and 1-0.25=0.75 for the last person, (you will find unbiased estimator when you assign any values as long as the sum is 1) 
-
-$$ 
-  \tilde{X}=0.25 x_{1}+0.75x_{2}
-$$
- 
- 
-Therefore, we need to define what makes an estimator the "best" among others.  As we have seen before, the sampling distribution, which is the probability distribution of all possible **estimates** obtained from repeated sampling, would help us develop some principles. The first and the most important criteria should be that the expected mean of all estimates obtained from repeated samples should be equal to $\mu_x$.  Any estimator satisfying this condition is called as an **unbiased** estimator.  
-
-However, if $x$'s are independently and identically distributed (i.i.d), it can be shown that those two estimators, $\bar{X}$ and $\hat{X}$ are both unbiased.  That is $\mathbf{E}(\bar{X})=\mu_x$ and $\mathbf{E}(\hat{X})=\mu_x$.  Although, it would be easy to obtain the algebraic proof, a simulation exercise can help us visualize it.  
-
- 
-
-
-```r
-# Here is our population
-populationX <- c(9,10,11,12,13,14,15,16)
-
-#Let's have a containers to have repeated samples (5000)
-samples <- matrix(0, 5000, 10)
-colnames(samples) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10")
-
-# Let's have samples (with replacement always)
-set.seed(123)
-for (i in 1:nrow(samples)) {
-  samples[i,] <- sample(populationX, 10, replace = TRUE)
-}
-head(samples)
-```
-
-```
-##      X1 X2 X3 X4 X5 X6 X7 X8 X9 X10
-## [1,] 15 15 11 14 11 10 10 14 11  13
-## [2,] 12 14 14  9 10 11 16 13 11  11
-## [3,]  9 12  9  9 13 11 16 10 15  10
-## [4,]  9 14 11 12 14  9 11 15 13  12
-## [5,] 15 16 10 13 15  9  9 10 15  11
-## [6,] 12 13 15 13 11 16 14  9 10  13
-```
-  
- Each row below is displaying the first 6 results of 5000 random samples drawn from the sample of the population.  Each column shows the order of random draws, that is $x_1, x_2, x_3$. We know the population $\mu_x$ is 12.5, because this is the mean of our  values (9...16) in the population.  Knowing this, we can test the following points:  
-
-1. Is $X$ i.i.d?  An identical distribution requires $\mathbf{E}(x_1)=\mathbf{E}(x_2)=\mathbf{E}(x_3)$ and $\mathbf{Var}(x_1)=\mathbf{Var}(x_2)=\mathbf{Var}(x_3)$.  And an independent distribution requires $\mathbf{Corr}(x_i,x_j)=0$ where $i\neq{j}$.  
-2. Are the three estimators unbiased.  That is, whether $\mathbf{E}(\bar{X})= \mathbf{E}(\hat{X})= \mathbf{E}(\tilde{X}) = \mu_x$.  
-
-Let's see:  
-  
-
-```r
-library(corrplot)
-
-# Check if E(x_1)=E(x_2)=E(x_3)
-round(colMeans(samples),2)
-```
-
-```
-##    X1    X2    X3    X4    X5    X6    X7    X8    X9   X10 
-## 12.48 12.51 12.48 12.57 12.54 12.51 12.45 12.50 12.51 12.45
-```
-
-```r
-# Check if Var(x_1)=Var(x_2)=Var(x_3)
-apply(samples, 2, var)
-```
-
-```
-##       X1       X2       X3       X4       X5       X6       X7       X8 
-## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
-##       X9      X10 
-## 5.271664 5.308739
-```
-
-```r
-# Check correlation
-cor(samples)
-```
-
-```
-##                X1           X2            X3           X4           X5
-## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
-## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
-## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
-## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
-## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
-## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
-## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
-## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
-## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
-## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
-##               X6           X7            X8            X9          X10
-## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
-## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
-## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
-## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
-## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
-## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
-## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
-## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
-## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
-## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
-```
-
-```r
-# Note that if you use only unique set of samples
-# you can get exact results
-uniqsam <- unique(samples)
-colMeans(uniqsam)
-```
-
-```
-##      X1      X2      X3      X4      X5      X6      X7      X8      X9     X10 
-## 12.4802 12.5106 12.4758 12.5694 12.5352 12.5094 12.4474 12.4958 12.5138 12.4518
-```
-
-```r
-apply(uniqsam, 2, var)
-```
-
-```
-##       X1       X2       X3       X4       X5       X6       X7       X8 
-## 5.215851 5.168121 5.275669 5.304244 5.181397 5.313774 5.211075 5.199022 
-##       X9      X10 
-## 5.271664 5.308739
-```
-
-```r
-cor(uniqsam)
-```
-
-```
-##                X1           X2            X3           X4           X5
-## X1   1.0000000000  0.019035237  0.0005187863 -0.003009403  0.012697691
-## X2   0.0190352374  1.000000000  0.0129212837  0.022095728  0.001996026
-## X3   0.0005187863  0.012921284  1.0000000000  0.008561261  0.007489914
-## X4  -0.0030094032  0.022095728  0.0085612611  1.000000000 -0.020250816
-## X5   0.0126976912  0.001996026  0.0074899136 -0.020250816  1.000000000
-## X6  -0.0012185505  0.003950908  0.0017053482 -0.004192274 -0.006258127
-## X7  -0.0050727838  0.012249661 -0.0158850355 -0.002273334 -0.004128538
-## X8   0.0004449995 -0.007632492  0.0158319052  0.015406963  0.006831127
-## X9  -0.0002149225  0.006525461 -0.0085471951  0.011092057 -0.003824813
-## X10 -0.0154635584 -0.015980621  0.0032570724 -0.006079606  0.006750404
-##               X6           X7            X8            X9          X10
-## X1  -0.001218551 -0.005072784  0.0004449995 -0.0002149225 -0.015463558
-## X2   0.003950908  0.012249661 -0.0076324918  0.0065254614 -0.015980621
-## X3   0.001705348 -0.015885036  0.0158319052 -0.0085471951  0.003257072
-## X4  -0.004192274 -0.002273334  0.0154069633  0.0110920570 -0.006079606
-## X5  -0.006258127 -0.004128538  0.0068311271 -0.0038248132  0.006750404
-## X6   1.000000000  0.008001039  0.0171339484 -0.0160498563 -0.005940823
-## X7   0.008001039  1.000000000 -0.0056535157  0.0060161208  0.002218198
-## X8   0.017133948 -0.005653516  1.0000000000  0.0053987471  0.059894331
-## X9  -0.016049856  0.006016121  0.0053987471  1.0000000000  0.013852075
-## X10 -0.005940823  0.002218198  0.0598943307  0.0138520754  1.000000000
-```
-
-It seems that the i.i.d condition is satisfied.  Now we need to answer the second question, whether the estimators are unbiased. For this, we need to apply each estimator to each sample:  
-
-
-```r
-# First Xbar
-X_bar <- rep(0, nrow(samples)) #Container to have all Xbars
-for(i in 1:nrow(samples)){
-  X_bar[i] <- sum(samples[i,])/ncol(samples)
-}
-
-EX_bar <- sum(X_bar)/length(X_bar)
-EX_bar
-```
-
-```
-## [1] 12.49894
-```
-
-```r
-# Xhat
-X_hat <- rep(0, nrow(samples))
-for(i in 1:nrow(samples)){
-  X_hat[i] <- 0.5*samples[i,1] + 0.5*samples[i,10]
-}
-
-EX_hat <- sum(X_hat)/length(X_hat)
-EX_hat
-```
-
-```
-## [1] 12.466
-```
-
-```r
-# Xtilde
-X_tilde <- rep(0, nrow(samples))
-for(i in 1:nrow(samples)){
-  X_tilde[i] <- 0.25*samples[i,1] + 0.75*samples[i,2]
-}
-
-EX_tilde <- sum(X_tilde)/length(X_tilde)
-EX_tilde
-```
-
-```
-## [1] 12.503
-```
-
-Yes, they are unbiased because $\mathbf{E}(\bar{X})\approx \mathbf{E}(\hat{X}) \approx \mathbf{E}(\tilde{X}) \approx \mu_x \approx 12.5$. (When we increase the sample size these expected values will be closer to 12.5)  As you can see, none of the averages are exact same population average. There is a difference between the estimated value and the actual value. That small difference is called **error**. Ideally, we want that difference to be zero. When number of observations in our sample get closer to our population that difference vanishes. As we can never know the actual population characteristics, we assume this error approaches to zero.
-
-
-Upto this point, we showed all 3 estimators gave us unbiased estimate. However, unbiasness is not the only desirable property. We want our estimator should give a close estimate of the population parameter with higher probability. In another words, estimators probability density function to be concentrated around true value, i.e. it should be efficient. Thus, the unbiased estimator with the smallest variance is the best estimate. Just be careful. If one estimator is more efficient than other one, it does not mean it will always give more accurate estimate, it means it is more likely to be accurate than the other one. 
-
-Let's see which one has the smallest variance in our simulation:   
-
-
-```r
-var(X_bar)
-```
-
-```
-## [1] 0.5385286
-```
-
-```r
-var(X_hat)
-```
-
-```
-## [1] 2.590462
-```
-
-```r
-var(X_tilde)
-```
-
-```
-## [1] 3.27012
-```
-  
-As seen above, the $\bar{X}$, the average of all sample, has the smallest variance.
-
-Let's summarize the important steps in estimations:  
-
-1. The main task is to estimate the population parameter using an estimator from a sample.
-2. The main requirement for a (linear) estimator is **unbiasedness**.
-3. An **unbiased** estimator is called as the **B**est **L**inear **U**nbiased **E**stimator (BLUE) of a population parameter if that estimator is **efficient** ,i.e. has the **minimum variance** among all other **unbiased** estimators.
-
-
-In the simulation above, we showed the sample average is the most efficient of the all unbiased estimators. We should use the term "Efficiency" when we compare different estimators, and when these alternative estimators use the same information (same data,same sample size)
-We cannot use it when you compare the same estimators variance obtained while using different sample sizes. Generally, the variance of an estimator decreases when sample size increases. We can not use one estimator is more efficient than another one, just because one variance is smaller than another one but these variances calculated using different sample sizes.
-So, there is always conflict between unbiasedness and the smallest possible variance.
-
-We can have 2 estimators to estimate population characteristics. First one can be unbiased but with higher variance, the other one can be biased but lower variance (figure page 31 from Dougherty book). Which estimator we choose depends on what we want. If we think errors in estimators is not a big problem, and errors will cancel is each other on average, then we may choose unbiased estimator even if it has higher variance. That is what we use nearly always in applied social sciences. You know this expected value of error term is 0, with a variance $sigma^2$. However, in some research questions, we can not tolerate large errors. Thus we need to choose an estimator with smaller variance even if it has a small bias. (We will show this in the next chapter with simulation as well)
-
-In another words, the decision of choosing the estimator depends on the cost to you of an error as a function of its size. The function that gives that cost is called **loss function** . One of the most common loss function used in social sciences is **mean square error (MSE)**
-We can define MSE as the average of the squares of the difference between the estimated value and the actual value. The MSE of the estimators could be simply used for the efficiency comparison, which includes the information of estimator variance and bias. This is called MSE criterion. The MSE can be decomposed between its variance and bias as such:
-
-$$
-\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
-$$
-
-You can check the formal decomposition of MSE in technical point section at the end of this chapter. In typical economic models some parameters are involved, the original role of econometrics was to quantify them. So in economics/econometrics models the parameters are the core of the theory. Them carried out the causal meaning that economists looking for (or it should be so). Exactly for this reason econometrics manuals are mostly focused on concept like endogeneity and, then, bias. As the main goal is to obtain unbiased parameters, most econometrics textbook even do not discuss this decomposition. Mainly, they discuss variance or its square root, i.e. standard error.  
-
-
-**Reminder:**
+<img src="05-Error_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 Assuming a true linear model $y=X \beta+\varepsilon$, we estimate $\hat{\beta_{i}}$. The Gauss-Markov theorem states that if your linear regression model satisfies the first six classical assumptions, then ordinary least squares (OLS) regression produces unbiased estimates that have the smallest variance of all possible linear estimators,i.e. OLS is BLUE.
 
-OLS Assumption 1: The regression model is linear in the coefficients and the error term.
+OLS Assumption 1: The regression model is linear in parameters (the coefficients) and correctly specified.
 
-OLS Assumption 2: The error term has a population mean of zero.
+OLS Assumption 2: The errors have mean zero.
 
-OLS Assumption 3: All independent variables are uncorrelated with the error term.
+OLS Assumption 3: All independent variables (regressors) are uncorrelated with the error term.
 
-OLS Assumption 4: Observations of the error term are uncorrelated with each other.
+OLS Assumption 4: The regressors in X must all be linearly independent.
 
 OLS Assumption 5: The error term has a constant variance (no heteroscedasticity).
 
-OLS Assumption 6: No independent variable is a perfect linear function of other explanatory variables.
+OLS Assumption 6: No independent variable is a perfect linear function of other explanatory variables (no Multicolinearlity
 
 OLS Assumption 7: The error term is normally distributed (optional)
 
 
 
-**Reminder:**
 
-Moreover, in practice, we have only one sample most of the time. We donot have 10 samples like in the simulation above.  We know that if the sample size is big enough (more than 50, for example), the sampling distribution would be normal according to [the Central Limit Theorem (CLT)](https://en.wikipedia.org/wiki/Central_limit_theorem). In other words, if the number of observations in each sample large enough, $\bar{X} \sim N(\mu_x, \sigma^{2}/n)$ or when population variance is not known $\bar{X} \sim \mathcal{T}\left(\mu, S^{2}\right)$ where $S$ is the standard deviation of the sample and $\mathcal{T}$ is the Student's $t$-distribution.  
-
-Why is this important?  Because it works like a magic: with only one representative sample, we can **generalize** the results for the population.  We will not cover the details of interval estimation here, but by knowing $\bar{X}$ and the sample variance $S$, we can have the following interval for the $\mu_{x}$:  
-
-$$
-\left(\bar{x}-t^{*} \frac{s}{\sqrt{n}}, \bar{x}+t^{*} \frac{s}{\sqrt{n}}\right)
-$$
-  
-where $t^*$, the critical values in $t$-distribution, are usually around 1.96 for samples more than 100 observations and for the 95% confidence level.  This interval would be completely wrong or misleading if $\mathbf{E}(\bar{X}) \neq \mu_x$ and would be useless if it is very wide, which is caused by a large variance.  That's the reason why we don't like large variances.  
 
 
 ## Prediction error- MSPE
 
-In the previous section, we defined mean square error (MSE), and then decomposed between its variance and bias. However, MSE differs according to whether one is describing an estimator or a predictor. We can define an estimator as a mathematical function mapping a sample of data to an estimate of a parameter of the population from which the data is sampled. We can define a predictor as a function mapping arbitrary inputs to a sample of values of some random variable. 
-
-Most common function used in social sciences is OLS. Most people are familiar with MSE of OLS function as the following.
-Predictor of least-squares fit, then the within-sample MSE of the predictor is computed as
-$$
-\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(Y_i-\hat{Y}_i\right)^2
-$$
-In matrix notation,
-$$
-\mathrm{MSE}=\frac{1}{n} \sum_{i=1}^n\left(e_i\right)^2=\frac{1}{n} \mathbf{e}^{\top} \mathbf{e}
-$$
-where $e_i$ is $\left(Y_i-\hat{Y}_i\right)$ and $\mathbf{e}$ is the $n \times 1$ column vector.
-
-Eventhough OLS and its MSE is the most common used tools, we can use tons of other functions for prediction. Thus in this section we will define MSE for prediction for all functions. Also, **Mean Square Prediction Error** (MSPE) is more preferable term for prediction purposes.
-
-Our task is prediction of an outcome, Y (i.e. supervised learning as we know what outcome is, and regression set up when our outcome is non-binary):
-
-We assume that the response variable,Y, is some function of the features, X, plus some random noise.
-
-$$Y=f(X)+ ϵ$$
-To "predict" Y using features X, means to find some $f$ such that $f(X)$ is close to $Y$. But how do we define close? There are many ways but the most common way is minimizing the average squared error loss. Loss function is $(Y-f(X))^2$, Average square loss function is the expected value of loss function. That is called Risk function, which is $\mathbf{E}\left[(Y-f(X))^{2}\right]$. So, we can say we want to minimize risk function to "predict" Y using X. However, we can never know real $f(X)$. Thus our goal becomes to find a prediction function,$\hat{f(X)}$, which is an estimate of unknown f using the data we have. Then, there will be an expected prediction error of predicting  Y using $\hat{f(X)}$. All in all, our goal becomes to minimize the average square of this error, called as **Mean Square Prediction Error** (MSPE)
-$\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]$. A good $\hat{f(X)}$ will have a low MSPE. This error can be decomposed into two errors. The reducible error(mean squared error), which is the expected squared error loss of estimation $f(X)$ using $\hat{f(X)}$ at a fixed point $X$. The irreducible error, which is simply the variance of $Y$ given that $X=x$ ,essentially noise that we do not want to learn. 
+In the previous section, we defined mean square error (MSE) which is used exclusively to describe an estimator's performance measure, and then decomposed between its variance and bias. While some sources might use MSE interchangeably for both estimators and predictors, we make a clear distinction between these terms to prevent confusion. We prefer the term **Mean Square Prediction Error** (MSPE) in contexts specifically discussing prediction scenarios. We can define a predictor as a function mapping arbitrary inputs to a sample of values of some random variable. In this section, we aim to define the Mean Squared Error (MSE) specifically for prediction across various functions, thus use the term  (MSPE). However, in this chapter, we assume different prediction functions to find the best predictor function using the given sample dataset. This involves calculating the Mean Squared Prediction Error (MSPE) for each assumed function using the sample data, and then selecting the function with the lowest in-sample MSPE.
 
 
-Reducible error: 
+Our objective is the prediction of an outcome \(Y\), which is typical in a supervised learning context where the outcome is known and is non-binary in a regression setup. We model the response variable \(Y\) as a function of features \(X\), plus some random noise:
+\[
+Y = f(X) + \varepsilon
+\]
 
-**MSE of $\hat{f(X)}$ for a given $X=x$** (mean square error obtained with-in test/training sample))
-$$
-\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(f(x)-\mathbb{E}[\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
-$$
-**Mean Square Prediction Error**
-$$
-\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
-$$
-$\sigma^{2}=E[\varepsilon^{2}]$
+We have a sample set (training set) consisting of data points \(x_1, \dots, x_n\) and corresponding real values \(y_i\) for each point. The data is assumed to be generated by a true function \(f(x)\) with added noise \(\varepsilon\), which has zero mean and a constant variance. Our goal is to find a predictive function \(\hat{f}(x)\) that approximates \(f(x)\) as closely as possible using a learning algorithm using the training dataset. But how do we define "close"? Commonly, this is done by minimizing the average squared error loss. 
 
-You can check the formal decomposition of MSPE in technical point section at the end of this chapter.
+The loss function is \((Y - f(X))^2\), and the average squared loss function is the expected value of this loss, termed the Risk function:
+\[
+\text{Risk function} = \operatorname{E}\left[(Y - f(X))^2\right]
+\]
+Thus, our goal is to minimize the Risk function to "predict" \(Y\) using \(X\). However, the true function \(f(X)\) is unknown, so we aim to find a prediction function \(\hat{f}(X)\), which is an estimate of unknown \(f\) using the data we have. This leads to an expected prediction error when predicting \(Y\) using \(\hat{f}(X)\). Ultimately, our objective becomes minimizing the average square of this error, called as the **Mean Square Prediction Error (MSPE)**:
+\[
+\operatorname{MSPE} = \operatorname{E}\left[(Y - \hat{f}(X))^2\right]
+\]
+The performance of this function is measured by how small the **mean squared *prediction* error** \((y - \hat{f}(x))^2\) is, not only for the training data but also for new, unseen data points. This model allows us to apply various supervised learning algorithms to find a function \(\hat{f}\) that generalizes well beyond the training data, with its expected error decomposable into specific components based on unseen data points. However, due to the noise in \(y_i\), there will always be some level of irreducible error in our predictions.
 
-(Note: if we assume our prediction function,$f(X)$, is linear then this is OLS.) 
 
-Our job is to pick a the best predictor, i.e. **predictor** that will have the minimum MSPE among alternatives.  In perfect setting, we want prediction function with zero bias and low variance to have the minimum MSPE. However, this is never happens. Unlike an **estimator**, we can accept some bias as long as the MSPE is lower.  More specifically, we can allow a predictor to have a bias if it reduces the variance more than the bias itself. 
 
-Unlike estimations, this shows that, in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss how we can achieve it in the next chapter. For instance, our predictor could be a constant, which, although it's a biased estimator, has **a zero variance**. Or our predictor could be mean of $X$ as this predictor has zero bias but it has high variance. Or we could choose predictor which has some bias and variance. We will show an example using these 3 predictors in the following simulation.
+A good \(\hat{f}(X)\) will exhibit a low MSPE. This error can be decomposed into two components: the reducible error (mean squared error), which is the expected squared error loss of estimating \(f(X)\) using \(\hat{f}(X)\) at a fixed point \(X\), and the irreducible error, essentially the variance of \(Y\) given that \(X = x\), representing noise that we aim not to learn.
 
-We want to emphasize the difference between MSE and MSPE, and their decomposed forms between their variances and biases. Even though they look similar, they are really very different. For MSE, bias and variance comes from the parameter estimation. For MSPE, biad and variance derived from prediction functions. We try different prediction functions to find the best predictor function. Moreover, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
+Reducible error for a given \(X = x\) is:
+\[
+\operatorname{MSE}(f(x), \hat{f}(x)) = \underbrace{(f(x) - \mathbb{E}[\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))} + \underbrace{\mathbb{E}\left[(\hat{f}(x) - \mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+\]
+
+The Mean Square Prediction Error is:
+\[
+\operatorname{MSPE} = \operatorname{E}\left[(Y - \hat{f}(X))^2\right] = \operatorname{Bias}[\hat{f}(X)]^2 + \operatorname{Var}[\hat{f}(X)] + \sigma^2
+\]
+where \(\sigma^2 = \mathbb{E}[\varepsilon^2]\) represents the variance of the noise.
+
+Moreover, the bias-squared and the variance of $\hat{f}$ is called *reducible error*.  Hence, the MSPE can be written as 
 
 $$
-\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
+\operatorname{MSPE}=\operatorname{Reducible~Error}+\operatorname{Irreducible~Error}
 $$
 
-The predictor with the smallest MSPE will be our choice among other alternative predictor functions. Yet, we have another concern that leads over-fitting. We will discuss over fitting in detail later. //DISCUSS OVERFITTING HERE A BIT
+We want to emphasize the difference between MSE and MSPE, and their decomposed forms in terms of their variances and biases. Even though the formulas for MSE for an estimator and MSE for a predictor are very similar, they serve distinct purposes. For MSE, bias and variance come from parameter estimation. For MSPE, bias and variance are derived from prediction functions. We try different prediction functions to find the best predictor function. In literature, finding an estimator is referred to as 'Point Estimation,' because \(\theta\)  is a point in a regular space. Conversely, determining the function \(f\) is described as 'Function Estimation,' since \(f\) represents a function within a functional space. A common source of confusion arises because MSE for both estimation and prediction is conceptually similar, leading to their interchangeable use in discussions about bias-variance decomposition, which we will discuss in the next chapter. The predictor with the smallest MSPE will be our choice among other alternative predictor functions. Yet, we have another concern that leads to over-fitting. We will discuss over-fitting in detail in chapter 7. A detailed decomposition of the MSPE can be found in the technical point section at the end of this chapter.
 
-Let's summarize some important facts about our MSPE here:  
+Our job is to pick the best predictor, i.e., a predictor that will have the minimum MSPE among alternatives. In a perfect setting, we want a prediction function with zero bias and low variance to achieve the minimum MSPE. However, this never happens. Unlike an estimator, we can accept some bias as long as the MSPE is lower. More specifically, we can allow a predictor to have a bias if it reduces the variance more than the bias itself increases it. We will provide an example in section 6.3.
 
-1. $x_0$ is the number we want to predict and $\hat{f}$ is the predictor, which could be $\mathbf{E}(\bar{X})$, $\mathbf{E}(\hat{X})$, or $\mathbf{E}(\tilde{X})$ or any other predictor.
-2. $x_0 = \mu_x + \varepsilon_0$, where $f = \mu_x$.  Hence, $\mathbf{E}[x_0]=f$ so that $\mathbf{E}[\varepsilon_0]=0$.
-3. $\mathbf{E}[f]=f$.  In other words, the expected value of a constant is a constant: $\mathbf{E}[\mu_x]=\mu_x$.
-4. $\mathbf{Var}[x_0]=\mathbf{E}\left[(x_0-\mathbf{E}[x_0])^{2}\right]=\mathbf{E}\left[(x_0-f)^{2}\right]=\mathbf{E}\left[(f+\varepsilon_0-f)^{2}\right]=\mathbf{E}\left[\varepsilon_0^{2}\right]=\mathbf{Var}[\varepsilon_0]=\sigma^{2}$. (Remember that $\mathbf{E}[\varepsilon]=0$).  
+Unlike estimations, this shows that, in predictions, we can achieve a reduction in MSPE by allowing a trade-off between variance and bias. We will discuss how we can achieve this in the next chapter. For instance, our predictor could be a constant, which, although it's a biased predictor, has zero variance. Or our predictor could be the mean of \(X\) as this predictor has zero bias but high variance. Or we could choose a predictor which has some bias and variance. We will show an example using these three predictors in the following simulation.
 
-Note that we can use MSPE here because our example is not a classification problem.  When we have a binary outcome to predict, the loss function would have a different algebraic structure.  We will see the performance evaluation in classification problems later.  
+Let's follow the same simulation example from previous section. Our task is now different.  We want to predict the next persons years of schooling using the data we have. Let's summarize some important facts about MSPE related to this simulation here:
+
+1. Let \( x_0 \) be the value we want to predict, and let \( \hat{f} \) be the predictor, which could be \( \operatorname{E}(\bar{X}) \), \( \operatorname{E}(\hat{X}) \), \( \operatorname{E}(\tilde{X}) \) from section 5.1, or any other predictor.
+
+2. We model \( x_0 \) as \( x_0 = \mu_x + \varepsilon_0 \), where \( f = \mu_x \) represents the systematic component of \( x_0 \). Consequently, \( \operatorname{E}[x_0] = f \), ensuring that \( \operatorname{E}[\varepsilon_0] = 0 \) because the random error \( \varepsilon_0 \) has an expected value of zero.
+
+3. Since \( f \) is modeled as \( \mu_x \), and \( \mu_x \) is a constant, the expected value of \( f \) is \( f \) itself: \( \operatorname{E}[f] = f \) and specifically, \( \operatorname{E}[\mu_x] = \mu_x \).
+
+4. The variance of \( x_0 \) is calculated as follows:
+    \[
+    \operatorname{Var}[x_0] = \operatorname{E}\left[(x_0 - \operatorname{E}[x_0])^2\right] = \operatorname{E}\left[(x_0 - f)^2\right] = \operatorname{E}\left[(\mu_x + \varepsilon_0 - \mu_x)^2\right] = \operatorname{E}[\varepsilon_0^2] = \operatorname{Var}[\varepsilon_0] = \sigma^2.
+    \]
+    This illustrates that the variance of \( x_0 \) is entirely due to the variance of \( \varepsilon_0 \), given that \( \operatorname{E}[\varepsilon_0] = 0 \).
 
 
-Let's follow the same simulation example. Our task is now different.  We want to predict the next persons years of schooling using the data we have. We want to **predict** the unobserved value of $X$ rather than to estimate $\mu_x$.  Therefore, we need a **predictor**, not an **estimator**.  
+ We want to **predict** the unobserved value of $X$ rather than to estimate $\mu_x$.  Therefore, we need a **predictor**, not an **estimator**.  
 
-To answer these questions, we need to compare MSPEs or their square roots (RMSPE) as well..  
+To answer these questions, we need to compare MSPEs or their square roots (RMSPE) as well. Note that we use MSPE here because our example involves predicting a continuous outcome, not a classification problem. In classification scenarios, where the outcome is binary, the loss function has a different algebraic structure than MSPE. The performance evaluation metrics and methods for classification problems will be discussed in Chapter 21 later.  
 
-
-As we know that, most developed countries require to go to school between age 6 to 16 years old, we may predict that the years of schooling for the individual is 10 years.
-or we can use the average years of schooling in our data as a good predictor for the next individuals schooling level. Thus we have 2 prediction function. First one is a constant, 10, which has bias but zero variance. The other one is mean of our sample for each observation (average of each row), which has smaller bias and higher variance. For simplicity, we can use 1 sample which consist from 5000 individuals in this simulation.
+As we know that, most developed countries require to go to school between age 6 to 16 years old. As a first predictor,  we may predict that the years of schooling for the next individual is 10 years. This is a very simple yet practical prediction function that may provide accurate predictions for some individuals. As a second predictor, we can use the average years of schooling in our data as a good predictor for the next individuals schooling level. Thus we have two different prediction functions. First one is a constant, 10, which has bias but zero variance. The other one is mean of our sample for each observation (average of each row), which has smaller bias and higher variance. For simplicity, we can use 1 sample which consist from 5000 individuals in this simulation.
 
 The two predictors are $\hat{f}_1 = 10$ and $\hat{f}_2 = \bar{X}$:  
 
@@ -1619,7 +1970,7 @@ head(samples)
 ## [6,] 12 13 15 13 11 16 14  9 10  13
 ```
 
-As you see, this is the same sample with the previous simulation. You can change the data either setting different values in the seed or changing the sammple size, Ms.  Now, Let's use our predictors and find MSPEs: 
+As you see, this is the same sample with the previous simulation. You can change the data either setting different values in the seed or changing the sammle size, Ms.  Now, Let's use our predictors and find MSPEs: 
 
 
 ```r
@@ -1630,12 +1981,10 @@ predictions <- matrix(0, Ms, 2)
 for (i in 1:Ms) {
   predictions[i,1] <- 10
 }
-
 # fhat_2 - mean
 for (i in 1:Ms) {
   predictions[i,2] <- sum(samples[i,])/length(samples[i,])
 }
-
 head(predictions)
 ```
 
@@ -1682,139 +2031,655 @@ colMeans(MSPE)
   
 The MSPE of the t $\hat{f}_2$ prediction function is the better as its MSPE is smaller than the other prediction function.  
 
-What makes a good predictor?  Is being unbiased predictor one of the required property?  would being a biased estimator make it automatically a bad predictor?  in predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss this trade-off in the next chapter.  We will also show it by using the same simulation.
+What makes a good predictor?  Is being unbiased predictor one of the required property?  Would being a biased estimator make it automatically a bad predictor?  In predictions, we can have a reduction in MSPE by allowing a **trade-off between variance and bias**. We will discuss this trade-off in the next chapter.  We will also show it by using the same simulation.
 
 
-## Technical points about MSE and MSPE
+## Technical points and proofs
 
-**The formal decomposition of MSE**
 
-The MSE of an estimator $\hat{\theta}$ with respect to an unknown parameter $\theta$  is defined as  
+**Unbiasedness of a parameter:** 
 
+To estimate an unknown population parameter, symbolized as \(\theta\), our data comes from a random sample. We refer to \(\hat{\theta}\) as the estimator of \(\theta\). The first and most important criteria choosing the “best” estimator should be that the expected value, i.e., the mean, of all estimates obtained from various random samples, should be equal to the unknown population parameter,\(\theta\). An estimator that satisfies this condition is referred to as an unbiased estimator , i.e.,
+
+\[
+\operatorname{Bias}(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta = 0 \quad \text{so} \quad \mathbb{E}[\hat{\theta}] = \theta
+\]
+
+While an unbiased estimator does not guarantee that the estimate from a particular sample will exactly match the population parameter, it implies that averaging the estimates from repeatedly drawn random samples, each calculated using the same estimator, will closely approximate the actual population parameter. It is important to remember that this concept is theoretical, as in practical scenarios we typically work with a single random sample and rely on asymptotic (large sample) properties.
+
+**Unbiasedness of sample mean estimator:**
+
+We want to estimate population mean of a variable (feature). Its common notation to use \(\mu_x\) instead of \(\theta\),  using a sample mean \(\bar{X}\) notation for an estimator to estimate this population mean.
+
+Let's demonstrate the unbiasedness of the sample mean estimator, \(\mathbb{E}[\bar{X}]=\mu_x\). The sample mean \(\bar{X}\) is calculated as the average of \(n\) observations from a random sample. So 
+\[
+  \hat{\theta} = \bar{X} = \frac{1}{n} \sum_{i=1}^{n} x_{i}
+\]
+The expected value of the sample mean is:
+
+\[
+\mathbb{E}[\bar{X}] = \mathbb{E}\left[\frac{1}{n} \sum_{i=1}^{n} x_{i}\right] = \mathbb{E}\left[\frac{1}{n} (x_1 + x_2 + \ldots + x_n)\right]= \frac{1}{n} (\mathbb{E}[x_1] + \mathbb{E}[x_2] + \ldots + \mathbb{E}[x_n])
+\]
+
+Since the linearity of expectation allows the expectation operator to be distributed over addition.
+
+Assuming each \(x_i\) is an independent and identically distributed sample from a population with mean \(\mu_x\), the expectation of each \(x_i\) is \(\mu_x\):
+
+\(
+\mathbb{E}[x_1] = \mathbb{E}[x_2] = \ldots = \mathbb{E}[x_n] = \mu_x
+\)
+
+Therefore, the equation simplifies to:
+
+\[
+\mathbb{E}[\bar{X}]= \frac{1}{n} (\mathbb{E}[x_1] + \mathbb{E}[x_2] + \ldots + \mathbb{E}[x_n]) = \frac{1}{n} (n \mu_x) = \mu_x
+\]
+
+This shows that \(\bar{X}\), the sample mean, is an unbiased estimator of the population mean \(\mu_x\), as the expected value of \(\bar{X}\) equals \(\mu_x\).
+
+
+
+**The variance of the sampling distribution of sample means (sampling variance):**
+
+The sampling distribution refers to the distribution of a parameter (like a mean, variance, or coefficient) across many samples drawn from a specific population. This distribution of outcomes from an estimator has a sampling mean (which is used to check unbiasedness) and a variance, known as the estimator’s sampling variance (which is used to check efficiency). The sampling variance of an estimator quantifies how much the estimates from different samples vary around the true population parameter. A smaller sampling variance indicates that the estimator is more precise and provides more consistent estimates across different samples.
+
+
+The variance of the sample mean can be expressed using the definition of variance and the linearity of expectation:
+\[
+\operatorname{Var}(\bar{X}) = \operatorname{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
+\]
+
+The variance of a constant times a random variable is the square of the constant times the variance of the random variable:
+\[
+\operatorname{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right) = \frac{1}{n^2} \operatorname{Var}\left(\sum_{i=1}^n X_i\right)
+\]
+
+For independent random variables, the variance of their sum is the sum of their variances:
+\[
+\operatorname{Var}\left(\sum_{i=1}^n X_i\right) = \operatorname{Var}(X_1) + \operatorname{Var}(X_2) + \ldots + \operatorname{Var}(X_n)
+\]
+Since the \(x_i\) are i.i.d. with variance \(\sigma_x^2\), we have:
+\[
+\operatorname{Var}(X_i) = \sigma_x^2 \quad \text{for all } i
+\]
+Thus:
+\[
+\operatorname{Var}\left(\sum_{i=1}^n X_i\right) = \sigma_x^2 + \sigma_x^2 + \ldots + \sigma_x^2 = n \sigma_x^2
+\]
+
+Substitute back into the variance formula for \(\bar{X}\):
+\[
+\operatorname{Var}(\bar{X}) = \frac{1}{n^2} \cdot n \sigma_x^2 = \frac{\sigma_x^2}{n}
+\]
+
+This derivation concludes that the variance of the sampling mean \(\bar{X}\) is \(\frac{\sigma_x^2}{n}\), highlighting how the variability of the sample mean decreases as the sample size \(n\) increases.
+
+
+**Unbiasedness of sample variance estimator:** 
+
+We aim to estimate the population variance of a variable (or feature). It is common to use the notation \(\sigma^2_x\) for the population variance (instead of \(\theta\) ), and \(\hat{\sigma_{X}}^2\) as the notation for an estimator to estimate this population variance (instead of \(\hat{\theta}\) ).
+
+Let's demonstrate the unbiasedness of the sample variance estimator, where \(\mathbb{E}[\hat{\sigma_{X}}^2]=\sigma_x^2\). The sample variance \(\hat{\sigma_{X}}^2\) is calculated using the formula:
+
+\[
+\hat{\sigma_{X}}^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{X})^2
+\]
+
+where \(\bar{X}\) is the sample mean. This formula corrects for the bias in the straightforward estimator of variance by dividing by \(n-1\) instead of \(n\), accounting for the degrees of freedom lost in estimating \(\bar{X}\) from the sample. The expected value of the sample variance will be shown to be:
+
+\[
+\mathbb{E}[\hat{\sigma_{X}}^2] = \mathbb{E}[\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{X})^2] = \frac{1}{n-1}\mathbb{E}[\sum_{i=1}^{n} (x_i - \bar{X})^2] = \frac{1}{n-1} \sum_{i=1}^{n} \mathbb{E}[(x_i - \bar{X})^2] \\ 
+= \frac{1}{n-1} \sum_{i=1}^{n} \mathbb{E}[(x_i^2 - 2x_i\bar{X} + \bar{X}^2)] = \frac{1}{n-1} \sum_{i=1}^{n} (\mathbb{E}[x_i^2] - 2\mathbb{E}[x_i\bar{X}] + \mathbb{E}[\bar{X}^2]) \overset{?}{=} \sigma_x^2
+\]
+
+Let's calculate each term in this part of the last equation (\(\mathbb{E}[x_i^2] - 2\mathbb{E}[x_i\bar{X}] + \mathbb{E}[\bar{X}^2]\) ) separately:
+
+Term 1: \( \mathbb{E}[x_i^2] = \sigma^2_x + \mu^2_x \) since \( x_i \) are i.i.d. with mean \( \mu_x \) and variance \( \sigma^2_x \), using variance decomposition formula (see below).
+
+Term 2: \( \mathbb{E}[x_i\bar{X}] = \mathbb{E}[x_i]\mathbb{E}[\bar{X}] = \mu^2_x \) since \( \mathbb{E}[x_i]=\mu_x \) by definition and \( \mathbb{E}[\bar{X}] = \mu_x \) as shown above in unbiasness of mean.
+
+Term 3: \(\mathbb{E}[\bar{X}^2] = \operatorname{Var}(\bar{X}) + \mathbb{E}[\bar{X}]^2 = \frac{\sigma^2_x}{n} + \mu^2_x\)
+ since \(\mathbb{E}[\bar{X}] = \mu_x\) and \(\operatorname{Var}(\bar{X})= \frac{\sigma^2_x}{n}\) (see above), and using variance decomposition formula (see below).
+
+Substituting these into the expectation of the squared differences gives:
+
+\(
+\mathbb{E}[x_i^2] - 2\mathbb{E}[x_i\bar{X}] + \mathbb{E}[\bar{X}^2] = (\sigma^2_x + \mu^2_x) - 2\mu^2_x + \left(\frac{\sigma^2_x}{n} + \mu^2_x\right) = \sigma^2_x - \frac{\sigma^2_x}{n}
+\)
+
+Thus, the expected value of the sample variance is:
+
+\[
+\mathbb{E}[\sigma_{X}^2] = \frac{1}{n-1} \sum_{i=1}^{n} \mathbb{E}[(x_i - \bar{X})^2] = \frac{1}{n-1} n \left(\sigma^2_x - \frac{\sigma^2_x}{n}\right) = \sigma^2_x
+\]
+
+This proves that the sample variance formula is an unbiased estimator of the population variance \( \sigma^2_x \), as the expected value of the sample variance equals the population variance.
+
+**Variance decomposition formula:** 
+The variance of a random variable \(x\) is defined as:
+\[
+\operatorname{Var}(x) = \sigma_{X}^2 = \mathbb{E}[(x - \mu_x)^2] = \mathbb{E}[x^2 - 2x\mu_x + \mu_x^2] = \mathbb{E}[x^2] - 2\mu_x\mathbb{E}[x] + \mathbb{E}[\mu_x^2]
+\]
+where \(\mu_x\) is the expected value (mean) of \(x\). Since the linearity of expectation allows the expectation operator to be distributed over addition.
+
+As \(\mathbb{E}[x] = \mu_x\) and \(\mu_x\) is a constant, the expectation of a constant is the constant itself, and the expectation of a constant squared is also the constant squared: \(\operatorname{Var}(x) = \mathbb{E}[x^2] - 2\mu_x^2 + \mu_x^2 \)
+Thus, Variance decomposition formula is the following:
+\[
+\operatorname{Var}(x) = \mathbb{E}[x^2] - \mu_x^2 \quad \text{or} \quad \operatorname{Var}(x) = \mathbb{E}[x^2] - \mathbb{E}[x^2]
+\]
+
+Rearranging to solve for \(\mathbb{E}[x^2]\) (to use in term 1 and term 3 above), we find:
+\[
+\mathbb{E}[x^2] = \operatorname{Var}(x) + \mu_x^2
+\]
+
+This equation demonstrates that the expected value of the square of the random variable \(x\) is equal to the variance of \(x\) plus the square of the mean of \(x\), expressed as:
+\[
+\mathbb{E}[x_i^2] = \sigma^2_x + \mu_x^2
+\]
+
+This relationship is fundamental in statistical analysis, particularly in understanding how the variance and mean of a distribution contribute to its second moment.
+
+
+**Proof of variance and bias of decomposition an estimator:**
+
+The MSE of an estimator $\hat{\theta}$ with respect to an unknown parameter $\theta$ is defined as:
 $$
-\mathbf{MSE}(\hat{\theta})=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\theta)^{2}\right]=\mathbf{E}_{\hat{\theta}}\left[(\hat{\theta}-\mathbf{E}(\hat{\theta}))^{2}\right]
-$$
-  
-Since we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  Hence, evaluating the performance of all alternative **unbiased** estimators by MSE is actually comparing their variances and picking up the smallest one. More specifically,
-
-\begin{equation}
-\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^{2}\right]=\mathbf{E}\left\{\left(\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)+\mathbf{E}\left(\hat{\theta}\right)-\theta\right)^{2}\right\}
-  (\#eq:3-1)
-\end{equation} 
-
-$$
-=\mathbf{E}\left\{\left(\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]+\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right)^{2}\right\}
+\operatorname{MSE}(\hat{\theta})=\mathrm{E}_\theta\left[(\hat{\theta}-\theta)^2\right]=\operatorname{Var}(\hat{\theta})+\operatorname{Bias}(\hat{\theta})^2
 $$
 
-\begin{equation}
+The estimator $\hat{\theta}$ is derived as a sample statistic and is used to estimate some population parameter, then the expectation is with respect to the sampling distribution of the sample statistic.The MSE can be written as the sum of the variance of the estimator and the squared bias of the estimator.
+
+
+
+
+The mean squared error of the estimator \(\hat{\theta}\) is defined as the expected value of the square of the difference between \(\hat{\theta}\) and the true parameter \(\theta\).
+
+\[
+\operatorname{MSE}(\hat{\theta}) = \mathrm{E}\left[(\hat{\theta} - \theta)^2\right]
+\]
+
+In the next step, we rewrite the squared term by adding and subtracting the expected value of \(\hat{\theta}\), which helps in simplifying the analysis by separating the estimator's variance from its bias.
+
+\[
+=\mathrm{E}\left[\left(\hat{\theta} - \mathrm{E}[\hat{\theta}] + \mathrm{E}[\hat{\theta}] - \theta\right)^2\right]
+\]
+
+We apply the square of a sum formula. We obtain expected value of an equation which has three parts: the variance of the estimator, the middle term, and the square of the bias as the third term.
+\[
+=\mathrm{E}\left[\left(\hat{\theta} - \mathrm{E}[\hat{\theta}]\right)^2 + 2\left(\hat{\theta} - \mathrm{E}[\hat{\theta}]\right)\left(\mathrm{E}[\hat{\theta}] - \theta\right) + \left(\mathrm{E}[\hat{\theta}] - \theta\right)^2\right]
+\]
+
+
+Next, we separate outside expectation. The linearity of expectation allow us to handle each component of the expanded square separately.
+\[
+=\underbrace{\mathrm{E}\left[\left(\hat{\theta} - \mathrm{E}[\hat{\theta}]\right)^2\right]}_{{\text{variance of the estimator (\(\hat{\theta}\))}}}  + \underbrace{\mathrm{E}\left[2\left(\hat{\theta} - \mathrm{E}[\hat{\theta}]\right)\left(\mathrm{E}[\hat{\theta}] - \theta\right)\right]} +\underbrace{ \mathrm{E}\left[\left(\mathrm{E}[\hat{\theta}] - \theta\right)^2\right]}
+\]
+
+The initial term represents the variance of the estimator \(\hat{\theta}\). The middle term comprises two components. The first component is \([\hat{\theta} - \mathrm{E}[\hat{\theta}]]\), which indicates the deviation of \(\hat{\theta}\) from its expected value. The second component is \(\mathrm{E}[\hat{\theta}] - \theta\), which is identical to the term that appears in the third term and represents the bias of the estimator \(\hat{\theta}\). Since this bias of an estimator is constant for any sample, it can be removed from the expectation operator in the middle term. Similarly, the initial expectation from the third term can be omitted, as the expected value of a constant squared is the constant itself.
+
+We can simplify the expression by recognizing that the expected value of the deviation \(\hat{\theta} - \mathrm{E}[\hat{\theta}]\) is zero, leading to the final form of the MSE. The middle term simplifies to 
+\(2\left(\mathrm{E}[\hat{\theta}] - \theta\right) \mathrm{E}\left[\hat{\theta} - \mathrm{E}[\hat{\theta}]\right] = 2\left(\mathrm{E}[\hat{\theta}] - \theta\right) \cdot 0 = 0\)
+
+The final expression of the MSE is the sum of the variance of the estimator \(\hat{\theta}\) and the square of the bias, highlighting the bias-variance tradeoff.
+
+\[
+=\mathrm{E}\left[\left(\hat{\theta} - \mathrm{E}[\hat{\theta}]\right)^2\right] + \left(\mathrm{E}[\hat{\theta}] - \theta\right)^2
+\]
+
+which is equal to
+\[
+=\operatorname{Var}(\hat{\theta}) + \operatorname{Bias}(\hat{\theta})^2
+\]
+
+
+*Concise proof* of the MSE decomposition can also be demonstrated using the well-known identity for any random variable \(X\), which states that:
+\[
+\mathbb{E}\left(X^2\right) = \operatorname{Var}(X) + (\mathbb{E}(X))^2.
+\]
+Applying this identity to the estimator \(\hat{\theta}\) with respect to the true parameter \(\theta\), we set \(X = \hat{\theta} - \theta\). Then, the mean squared error (MSE) of \(\hat{\theta}\) is given by:
+\[
+\operatorname{MSE}(\hat{\theta}) = \mathbb{E}\left[(\hat{\theta} - \theta)^2\right].
+\]
+Substituting \(X\) into the identity, we have:
+\[
 \begin{aligned}
-=& \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]^{2}\right\} \\
-&+2 \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right]\right\}
+\mathbb{E}\left[(\hat{\theta} - \theta)^2\right] & = \operatorname{Var}(\hat{\theta} - \theta) + (\mathbb{E}[\hat{\theta} - \theta])^2 \\
+& = \operatorname{Var}(\hat{\theta}) + \operatorname{Bias}^2(\hat{\theta}),
 \end{aligned}
-  (\#eq:3-2)
-\end{equation} 
-  
-The first term in 3.2 is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, which represents the bias.  The last term is zero.  This is because $[\mathbf{E}(\hat{\theta})-\theta]$ is not random, therefore it is again outside of expectations:  
+\]
+where the variance of the estimator \(\operatorname{Var}(\hat{\theta})\) comes from the fact that the variance is invariant to shifts by a constant (in this case, \(\theta\)), and \(\operatorname{Bias}(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta\) by definition. Thus, the squared bias \(\operatorname{Bias}^2(\hat{\theta})\) is the square of the expected deviation of \(\hat{\theta}\) from \(\theta\). The final expression for the MSE shows that it is the sum of the variance of the estimator and the square of its bias.
+
+In the case of unbiased estimators, the mean squared error (MSE) simplifies to the variance of the estimator. Given that our criterion is to select only unbiased estimators, where \(\mathbb{E}(\hat{\theta}) = \theta\), the MSE expression reduces to \(\mathbb{Var}(\hat{\theta})\). Consequently, evaluating the performance of alternative unbiased estimators by MSE effectively compares their variances, with the objective of selecting the estimator that offers the smallest variance. From our simulations in the previous section, consider the estimator \(\hat{\theta} = \bar{X}\), where \(\theta = \mu_x\) is the parameter we aim to estimate. This setup confirms that \(\hat{\theta}\) is indeed unbiased, as \(\mathbb{E}(\hat{\theta}) = \mu_x\), which aligns perfectly with our target \(\theta\). Thus, the efficiency of different unbiased estimators can be directly assessed by comparing their variances through MSE, guiding us toward the most precise estimator based on minimal variance.
+
+**OLS Review:**
+
+**OLS Regression Model**
+
+Consider the simple linear regression model:
+\[
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+\]
+where \( Y_i \) is the dependent variable, \( X_i \) is the independent variable, \( \beta_0 \) and \( \beta_1 \) are coefficients, and \( \epsilon_i \) represents the *unknown* error term, assumed to have a mean of zero and constant variance.
+
+Our objective is to find the values of \( \beta_0 \) and \( \beta_1 \) that minimize the Mean Squared Error (MSE), which is given by:
+\[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^n (Y_i - \hat{Y}_i)^2
+\]
+where \( \hat{Y}_i = \hat{\beta_0} + \hat{\beta_1} X_i \) is the predicted value of \( Y \) based on the regression line. \( Y_i=\hat{Y}_i+\hat{\epsilon}_i \) thus each value of \(Y_i\) is divided into fitted value, \(\hat{Y}_i\), and residual, \( \hat{\epsilon}_i = Y_i - \hat{Y}_i \).
+
+The coefficients \( \beta_0 \) and \( \beta_1 \) are estimated such that the Mean Squared Error (MSE) is minimized. To find an estimator for unkown \( \beta_0 \) and \( \beta_1 \), which minimize MSE, we take its partial derivatives with respect to \( \beta_0 \) and \( \beta_1 \), set them to zero, and solve for \( \beta_0 \) and \( \beta_1 \).  It is important to note that in Ordinary Least Squares (OLS), a more common explanation for finding the estimates of \( \beta_0 \) which is \( \hat{\beta_0} \)and estimates of \( \beta_1 \) which is \( \hat{\beta_1} \) involves the concept of a residual (or prediction error), defined as the difference between the observed value and the predicted value, expressed as \( Y_i - \hat{Y}_i \). We minimize the Residual Sum of Squares (RSS), given by 
+\[
+\text{RSS} = \sum_{i=1}^n (\hat{\epsilon}_i)^2= \sum_{i=1}^n (Y_i - \hat{Y}_i)^2,
+\]
+which is the sum of the squared residuals. However, as can be easily seen from the equations, minimizing RSS is equivalent to minimizing MSE.
+
+Taking the partial derivative of MSE with respect to \( \hat{\beta}_0 \):
+\[
+\frac{\partial}{\partial \hat{\beta}_0} \left(\frac{1}{n} \sum_{i=1}^n (Y_i - (\hat{\beta}_0 + \hat{\beta}_1 X_i))^2\right) = -\frac{2}{n} \sum_{i=1}^n (Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i)
+\]
+Setting this to zero gives:
+\[
+\sum_{i=1}^n Y_i - n \hat{\beta}_0 - \hat{\beta}_1 \sum_{i=1}^n X_i = 0
+\]
+\[
+n \hat{\beta}_0 = \sum_{i=1}^n Y_i - \hat{\beta}_1 \sum_{i=1}^n X_i
+\]
+\[
+\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}
+\]
+where \( \bar{Y} \) and \( \bar{X} \) are the sample means of \( Y \) and \( X \) respectively.
+
+Taking the partial derivative of MSE with respect to \( \hat{\beta}_1 \):
+\[
+\frac{\partial}{\partial \hat{\beta}_1} \left(\frac{1}{n} \sum_{i=1}^n (Y_i - (\hat{\beta}_0 + \hat{\beta}_1 X_i))^2\right) = -\frac{2}{n} \sum_{i=1}^n X_i(Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i)
+\]
+Setting this to zero gives:
+\[
+\sum_{i=1}^n X_i Y_i - \hat{\beta}_0 \sum_{i=1}^n X_i - \hat{\beta}_1 \sum_{i=1}^n X_i^2 = 0
+\]
+Substituting the expression for \( \hat{\beta}_0 \) we found earlier:
+\[
+\sum_{i=1}^n X_i Y_i - (\bar{Y} - \hat{\beta}_1 \bar{X}) \sum_{i=1}^n X_i - \hat{\beta}_1 \sum_{i=1}^n X_i^2 = 0
+\]
+\[
+\sum_{i=1}^n X_i Y_i - \bar{Y} \sum_{i=1}^n X_i + \hat{\beta}_1 \bar{X} \sum_{i=1}^n X_i - \hat{\beta}_1 \sum_{i=1}^n X_i^2 = 0
+\]
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n X_i Y_i - \bar{Y} \sum_{i=1}^n X_i}{\sum_{i=1}^n X_i^2 - \bar{X} \sum_{i=1}^n X_i} 
+\]
+
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n X_i Y_i - n\bar{X}\bar{Y}}{\sum_{i=1}^n X_i^2 - n\bar{X}^2}
+\]
+This formula gives \( \hat{\beta}_1 \) as the slope of the regression line, which quantifies the relationship between \( X \) and \( Y \).
+This formula also can be written as 
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+
+
+Note that: Expand the numerator and denominator of the alternative formula for \( \hat{\beta}_1 \) as follows to show they are equal with the initial formula for \( \hat{\beta}_1 \) :
+
+Recognize that:
+\[
+\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i \quad \text{and} \quad \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i
+\]
+
+
+\[
+\text{Numerator: } \sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y}) = \sum_{i=1}^n (X_i Y_i - X_i \bar{Y} - \bar{X} Y_i + \bar{X} \bar{Y})
+\]
+\[
+= \sum_{i=1}^n X_i Y_i - \bar{Y} \sum_{i=1}^n X_i - \bar{X} \sum_{i=1}^n Y_i + n \bar{X} \bar{Y}
+\]
+\[
+= \sum_{i=1}^n X_i Y_i - n \bar{X} \bar{Y}
+\]
+
+\[
+\text{Denominator: } \sum_{i=1}^n (X_i - \bar{X})^2 = \sum_{i=1}^n (X_i^2 - 2 X_i \bar{X} + \bar{X}^2)
+\]
+\[
+= \sum_{i=1}^n X_i^2 - 2 \bar{X} \sum_{i=1}^n X_i + n \bar{X}^2
+\]
+\[
+= \sum_{i=1}^n X_i^2 - n \bar{X}^2
+\]
+
+Therefore, we confirm both formulas are equivalent.
+
+**Unbiasness of the OLS Estimator \(\hat{\beta}_1\)**
+
+The OLS estimator \(\hat{\beta}_1\) for a simple linear regression model where \( y = \beta_0 + \beta_1 X + \epsilon \) is given by:
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+where \( Y_i = \beta_0 + \beta_1 X_i + \epsilon_i \). Let us analyze the expectation \(\mathbb{E}[\hat{\beta}_1]\).
+
+Starting from the formula of \(\hat{\beta}_1\), replace \(Y_i\) by its expression:
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+We take the expectation of \(\hat{\beta}_1\):
+\[
+\mathbb{E}[\hat{\beta}_1] = \mathbb{E}\left[\frac{\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}\right]
+\]
+Applying the linearity of expectation and simplifying:
+\[
+= \frac{\mathbb{E}\left[\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})\right]}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+\[
+= \frac{\sum_{i=1}^n \mathbb{E}[(X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})]}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+Since \( \beta_0 \) and \( \beta_1 \) are constants and \(\epsilon_i\) are independent of \(X_i\) with zero mean, the expectations simplify:
+\[
+= \frac{\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i - \beta_0 - \beta_1 \bar{X})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+\[
+= \frac{\beta_1 \sum_{i=1}^n (X_i - \bar{X})^2}{\sum_{i=1}^n (X_i - \bar{X})^2} = \beta_1
+\]
+This shows that \(\mathbb{E}[\hat{\beta}_1] = \beta_1\), proving that \(\hat{\beta}_1\) is an unbiased estimator of \(\beta_1\).
+
+
+
+
+
+**Variance of the OLS Estimator \(\hat{\beta}_1\)**
+
+Given the estimator \(\hat{\beta}_1\) for a simple linear regression model:
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+we want to find the variance of \(\hat{\beta}_1\).
+
+\subsection*{Expression for Variance}
+The variance of \(\hat{\beta}_1\) is defined as:
+\[
+\text{Var}(\hat{\beta}_1) = \mathbb{E}[(\hat{\beta}_1 - \mathbb{E}[\hat{\beta}_1])^2]
+\]
+
+\subsection*{Calculation of \(\text{Var}(\hat{\beta}_1)\)}
+Starting with the formula for \(\hat{\beta}_1\), we know from earlier analysis that \(\mathbb{E}[\hat{\beta}_1] = \beta_1\). Hence, we consider:
+\[
+\hat{\beta}_1 - \mathbb{E}[\hat{\beta}_1] = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2} - \beta_1
+\]
+Since \(Y_i = \beta_0 + \beta_1 X_i + \epsilon_i\), substituting \(Y_i\) gives:
+\[
+= \frac{\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2} - \beta_1
+\]
+\[
+= \frac{\sum_{i=1}^n (X_i - \bar{X})\epsilon_i}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+
+we square it:
+\[
+\left(\frac{\sum_{i=1}^n (X_i - \bar{X})\epsilon_i}{\sum_{i=1}^n (X_i - \bar{X})^2}\right)^2 = \frac{\left(\sum_{i=1}^n (X_i - \bar{X})\epsilon_i\right)^2}{\left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^2}
+\]
+
+\subsection*{Taking Expectations}
+Now, taking the expectation of the squared term:
+\[
+\mathbb{E}\left[\frac{\left(\sum_{i=1}^n (X_i - \bar{X})\epsilon_i\right)^2}{\left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^2}\right]
+\]
+
+\subsection*{Applying the Independence of \(\epsilon_i\)}
+Since the \(\epsilon_i\) terms are independent and identically distributed (i.i.d.) with zero mean and variance \(\sigma^2\), we can expand and simplify the expectation of the numerator:
+\[
+\mathbb{E}\left[\left(\sum_{i=1}^n (X_i - \bar{X})\epsilon_i\right)^2\right] = \mathbb{E}\left[\sum_{i=1}^n \sum_{j=1}^n (X_i - \bar{X})(X_j - \bar{X})\epsilon_i \epsilon_j\right]
+\]
+\[
+= \sum_{i=1}^n \sum_{j=1}^n (X_i - \bar{X})(X_j - \bar{X}) \mathbb{E}[\epsilon_i \epsilon_j]
+\]
+\[
+= \sum_{i=1}^n (X_i - \bar{X})^2 \mathbb{E}[\epsilon_i^2] = \sum_{i=1}^n (X_i - \bar{X})^2 \sigma^2
+\]
+because \(\mathbb{E}[\epsilon_i \epsilon_j] = 0\) for \(i \neq j\) and \(\mathbb{E}[\epsilon_i^2] = \sigma^2\).
+
+\subsection*{Final Expression for Variance}
+The denominator of our original expression remains constant since it does not involve \(\epsilon_i\). Therefore, we simplify the expectation as:
+\[
+\frac{\sum_{i=1}^n (X_i - \bar{X})^2 \sigma^2}{\left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^2} = \sigma^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}
+\]
+
+This shows how the variance of \(\hat{\beta}_1\) depends inversely on the sum of squared deviations from the mean of \(X\), and directly on the variance of the error terms, \(\sigma^2\).
+
+
+
+
+**Estimating the Variance of the Error Term \(\sigma^2\)**
+
+\subsection*{Estimation of \(\sigma^2\)}
+In the context of ordinary least squares (OLS) regression, the variance of the error terms, \(\sigma^2\), is unknown and must be estimated from the data. This estimate is typically obtained using the residual sum of squares (RSS) divided by the degrees of freedom, which in the simple linear regression model is \(n - 2\) (subtracting the number of estimated parameters).
+
+\subsubsection*{Residual Sum of Squares (RSS)}
+The residual for each observation is given by:
+\[
+\epsilon_i = y_i - \hat{y}_i
+\]
+where \(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i\) are the predicted values. The RSS is then:
+\[
+\text{RSS} = \sum_{i=1}^n \epsilon_i^2 = \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i)^2
+\]
+The estimator for \(\sigma^2\) is:
+\[
+\hat{\sigma}^2 = \frac{\text{RSS}}{n - 2}
+\]
+This provides an unbiased estimate of the variance of the error terms.
+
+\subsection*{Standard Error of \(\hat{\beta}_1\)}
+The standard error (SE) of \(\hat{\beta}_1\) is the square root of the variance of \(\hat{\beta}_1\), which we previously derived as:
+\[
+\text{Var}(\hat{\beta}_1) = \sigma^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}
+\]
+Substituting our estimate for \(\sigma^2\), we have:
+\[
+\text{Var}(\hat{\beta}_1) = \hat{\sigma}^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}
+\]
+and for standard error of \(\hat{\beta}_1\), we can use the formula:
+\[
+\text{SE}(\hat{\beta}_1) = \sqrt{\hat{\sigma}^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}}
+= \sqrt{\frac{\text{RSS}}{n - 2} \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}}
+\]
+This standard error is crucial for constructing confidence intervals and conducting hypothesis tests about the slope \(\beta_1\).
+
+**Bias-Variance Decomposition for \(\beta_1\)**
+
+In a simple linear regression model \( y = \beta_0 + \beta_1 X + \epsilon \), where \( \epsilon \) is the normally distributed error term with zero mean and variance \( \sigma^2 \), we can analyze the estimator \( \hat{\beta}_1 \) for the coefficient \( \beta_1 \).
+
+The OLS estimator for \( \beta_1 \) is given by (as shown above):
+\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+\]
+where \( \bar{X} \) and \( \bar{Y} \) are the sample means of \( X \) and \( Y \) respectively.
+
+
+The expected value of \( \hat{\beta}_1 \) is:
+\[
+\mathbb{E}[\hat{\beta}_1] = \mathbb{E}\left[\frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}\right]
+\]
+Since \( Y_i = \beta_0 + \beta_1 X_i + \epsilon_i \), we can substitute and simplify:
+\[
+\mathbb{E}[\hat{\beta}_1] = \mathbb{E}\left[\frac{\sum_{i=1}^n (X_i - \bar{X})(\beta_0 + \beta_1 X_i + \epsilon_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}\right] = \beta_1
+\]
+This shows that \( \hat{\beta}_1 \) is an **unbiased** estimator of \( \beta_1 \).(Check below for detailed calculations)
+
+
+The *variance* of \( \hat{\beta}_1 \) is given by:
+\[
+\text{Var}(\hat{\beta}_1) = \mathbb{E}[(\hat{\beta}_1 - \mathbb{E}[\hat{\beta}_1])^2] = \sigma^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1} =\frac{ \sigma^2}{ \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)}
+\]
+This equation highlights that the variance of \( \hat{\beta}_1 \) depends inversely on the variability of \( X \).
+
+
+The Mean Squared Error (MSE) of \( \hat{\beta}_1 \) can be decomposed as follows:
+\[
+\text{MSE}(\hat{\beta}_1) = \mathbb{E}[(\hat{\beta}_1 - \beta_1)^2] = \text{Bias}^2(\hat{\beta}_1) + \text{Var}(\hat{\beta}_1)
+\]
+Given that \( \hat{\beta}_1 \) is unbiased:
+\[
+\text{Bias}(\hat{\beta}_1) = \mathbb{E}[\hat{\beta}_1] - \beta_1 = 0
+\]
+\[
+\text{MSE}(\hat{\beta}_1) = \text{Var}(\hat{\beta}_1) = \sigma^2 \left(\sum_{i=1}^n (X_i - \bar{X})^2\right)^{-1}
+\]
+
+This decomposition shows that the MSE of \( \hat{\beta}_1 \), in this case, is entirely due to its variance, reflecting the uncertainty due to the variability of \( X \) and the noise in the data.
+
+
+
+
+
+
+
+**Proof of variance and bias of decomposition a prediction function (MSPE):**
+
+We model the response variable \(Y\) as a function of features \(X\), combined with some random noise:
+\[
+Y = f(X) + \varepsilon
+\]
+This formulation implies that to "predict" \(Y\) using features \(X\) means to find an approximation function \(\hat{f}\) such that \(\hat{f}(X)\) closely approximates \(Y\).
+
+The objective in predictive modeling is to minimize the Mean Square Prediction Error (MSPE), which quantifies how well the prediction function performs. The MSPE is defined as:
+\[
+\operatorname{MSPE} = \operatorname{E}\left[(Y - \hat{f}(X))^{2}\right]
+\]
+Given that \(Y\) can be expressed as \(f(X) + \varepsilon\), we substitute \(Y\) in the MSPE formula to more explicitly consider the effects of the model and the noise:
+\[
+\operatorname{MSPE} = \operatorname{E}\left[(f(X) + \varepsilon - \hat{f}(X))^{2}\right]
+\]
+This representation allows us to decompose the error into parts directly attributable to the model's approximation and the inherent noise in the data.
+
+
+
+After now on, we will not use the subscript \(X\) for the sake of simplicity. 
+
+\[
+= \operatorname{E}\left[(f+\varepsilon-\hat{f})^{2}\right]
+\]
+By adding and subtracting \(\operatorname{E}[\hat{f}(X)]\), the MSPE can be rewritten as:
+\[
+= \operatorname{E}\left[(f+\varepsilon-\hat{f}+\operatorname{E}[\hat{f}]-\operatorname{E}[\hat{f}])^{2}\right]
+\]
+We can rewrite the same equation as
+\[
+= \operatorname{E}\left[(\underbrace{(f-\operatorname{E}[\hat{f}])}_{a}+\underbrace{\varepsilon}_{b}+\underbrace{(\operatorname{E}[\hat{f}]-\hat{f}}_{c}))^{2}\right]
+\]
+
+using \( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \), we will obtain
+
+\[
+= \operatorname{E}\left[\underbrace{(f-\operatorname{E}[\hat{f}])^{2}}_{a^2} + \underbrace{\varepsilon^{2}}_{b^2} + \underbrace{(\operatorname{E}[\hat{f}]-\hat{f})^{2}}_{c^2} + \underbrace{2 (f-\operatorname{E}[\hat{f}]) \varepsilon}_{2ab} + \underbrace{2 \varepsilon(\operatorname{E}[\hat{f}]-\hat{f})}_{2bc} + \underbrace{2 (\operatorname{E}[\hat{f}]-\hat{f})(f-\operatorname{E}[\hat{f}])}_{2ca}\right]
+\]
+
+Using Linearity of Expectation we can distribute the expectation across all terms, and taking 2's out as \(E(cX)=cE(X)\) if c is constant, The MSPE can be decomposed into the following 6 terms:
+
+\[
+= \underbrace{\operatorname{E}\left[(f-\operatorname{E}[\hat{f}])^{2}\right]}_{1} + \underbrace{\operatorname{E}\left[\varepsilon^{2}\right]}_{2} + \underbrace{\operatorname{E}\left[(\operatorname{E}[\hat{f}]-\hat{f})^{2}\right]}_{3} + 
+\underbrace{2 \operatorname{E}[(f-\operatorname{E}[\hat{f}]) \varepsilon]}_{4} + \\
+\underbrace{2 \operatorname{E}[\varepsilon(\operatorname{E}[\hat{f}]-\hat{f})]}_{5} + 
+\underbrace{2 \operatorname{E}[(\operatorname{E}[\hat{f}]-\hat{f})(f-\operatorname{E}[\hat{f}])]}_{6}
+\]
+
+
+
+The simplification of this expression involves the following steps:
+
+1. The first term, \(\operatorname{E}\left[(f-\operatorname{E}[\hat{f}])^{2}\right]\), simplifies to \((f-\operatorname{E}[\hat{f}])^{2}\) is called bias(squared) since the expression \((f-\operatorname{E}[\hat{f}])\) (also appears in 4^th and 6th term) is considered constant. This is due to \(f\) being the fixed true value and \(\operatorname{E}[\hat{f}]\) representing its expected estimate. Both values remain invariant across different samples or realizations of the data, resulting in a constant difference when subtracted.
+2. The second term $\operatorname{E}\left[\varepsilon^{2}\right]$ is $\sigma^{2}$, which is irreducible error or the variance of the noise.
+3. The third term $\operatorname{E}\left[(\operatorname{E}[\hat{f}]-\hat{f})^{2}\right]$ is $(\operatorname{E}[\hat{f}]-\hat{f})^{2}$ which is variance of predictor, because $(\operatorname{E}[\hat{f}]-\hat{f})^{2}$ is a constant.
+4. The fourth term $2 \operatorname{E}[(f-\operatorname{E}[\hat{f}]) \varepsilon]$ can be written as $2(f-\operatorname{E}[\hat{f}]) \operatorname{E}[\varepsilon]$ because $(f-\operatorname{E}[\hat{f}])^{2}$ is a constant. As the expectation of \(\varepsilon\) is zero, this term simplifies to zero.
+
+5. The fifth term $2 \operatorname{E}[\varepsilon(\operatorname{E}[\hat{f}]-\hat{f})]$ can be written as $2 \operatorname{E}[\varepsilon] \operatorname{E}[\operatorname{E}[\hat{f}]-\hat{f}]$.  (Note that $\varepsilon$ and $\hat{f}$ are independent). SInce both the expectation of \(\varepsilon\) and second component are zero, this term also simplifies to zero.
+6. The sixth term \(2 \operatorname{E}[(\operatorname{E}[\hat{f}]-\hat{f})(f-\operatorname{E}[\hat{f}])]\) also reduces to zero. Since \((f-\operatorname{E}[\hat{f}])^{2}\) is constant, we can rewrite this term as \(2 (f-\operatorname{E}[\hat{f}]) \operatorname{E}[(\operatorname{E}[\hat{f}]-\hat{f})]\). Then, observing that \(\operatorname{E}[\hat{f}]\) is the expected value of \(\hat{f}\), we recognize that \(\operatorname{E}[\operatorname{E}[\hat{f}]-\hat{f}] = \operatorname{E}[\hat{f}] - \operatorname{E}[\hat{f}] = 0\). Thus, the entire term simplifies to:
+\(
+2 (f-\operatorname{E}[\hat{f}]) \cdot 0 = 0
+\)
+This result holds because the expectation of the deviation of \(\hat{f}\) from its own expected value is zero, reflecting the property that the mean of deviations from the mean is always zero. Therefore, this term does not contribute to the MSPE.
+
+
+Thus, we obtain the final simplified expression for the MSPE as follows:
+\[
+\operatorname{MSPE} = (f-\operatorname{E}[\hat{f}])^{2} + \operatorname{E}\left[\varepsilon^{2}\right] + \operatorname{E}\left[(\operatorname{E}[\hat{f}]-\hat{f})^{2}\right]
+\]
+
+This result highlights the components of MSPE:
+\[
+\operatorname{MSPE} = \operatorname{Bias}[\hat{f}]^2 + \operatorname{Var}[\hat{f}] + \sigma^2
+\]
+where \(\sigma^2 = \operatorname{E}[\varepsilon^2]\) represents the irreducible error or the variance of the noise, and the terms \(\operatorname{Bias}[\hat{f}]^2\) and \(\operatorname{Var}[\hat{f}]\) constitute the reducible error.
+
+The MSPE is thus decomposed into:
+\[
+\operatorname{MSPE} = \operatorname{Reducible~Error} + \operatorname{Irreducible~Error}
+\]
+
+
+
+
+
+**Another proof of bias-variance decomposition of MSPE**
+https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
+
+We have a training set that includes data points and corresponding real values for each point. The data is assumed to be generated by a true function with added noise, which has zero mean and a specific variance. Our goal is to find a predictive function that approximates this true function as closely as possible using a learning algorithm and the training data. We evaluate the performance of this function by measuring how small the error is between the predicted values and the actual values, not only for the training data but also for new, unseen data points. However, due to the noise in the actual values, there will always be some level of irreducible error in our predictions. This approach allows us to use various supervised learning algorithms to find a function that generalizes well beyond the training data, with its expected error decompose into specific components based on unseen data points.
+
+
+Suppose we have a training set consisting of a set of points \( x_1, \dots, x_n \) and real values \( y_i \) associated with each point \( x_i \). We assume that the data is generated by a function \( f(x) \) such as \( y = f(x) + \varepsilon \), where the noise, \( \varepsilon \), has zero mean and variance \( \sigma^2 \).
+
+We want to find a function \( \hat{f}(x; D) \), that approximates the true function \( f(x) \) as well as possible, by means of some learning algorithm based on a training dataset (sample) \( D = \{(x_1, y_1), \dots, (x_n, y_n)\} \). We make "as well as possible" precise by measuring the mean squared error between \( y \) and \( \hat{f}(x; D) \): we want \( (y - \hat{f}(x; D))^2 \) to be minimal, both for \( x_1, \dots, x_n \) and for points outside of our sample. Of course, we cannot hope to do so perfectly, since the \( y_i \) contain noise \( \varepsilon \); this means we must be prepared to accept an irreducible error in any function we come up with.
+
+Finding an \( \hat{f} \) that generalizes to points outside of the training set can be done with any of the countless algorithms used for supervised learning. It turns out that whichever function \( \hat{f} \) we select, we can decompose its expected error on an unseen sample \( x \) (i.e., conditional to \( x \)) as follows:
+
+
+
+The derivation of the bias-variance decomposition for squared error proceeds as follows. For notational convenience, we abbreviate \(\hat{f} = f(x; D)\) and we drop the \(D\) subscript on our expectation operators.
+
+Let us write the mean-squared error of our model:
 
 $$
-2\left[\mathbf{E}\left(\hat{\theta}\right)-\theta\right] \mathbf{E}\left\{\left[\hat{\theta}-\mathbf{E}\left(\hat{\theta}\right)\right]\right\},
-$$
-and the last term is zero since $\mathbf{E}(\hat{\theta})-\mathbf{E}(\hat{\theta}) = 0$.  Hence,  
-
-$$
-\mathbf{MSE}\left(\hat{\theta}\right)=\mathbf{Var}\left(\hat{\theta}\right)+\left[\mathbf{bias}\left(\hat{\theta}\right)\right]^{2}
+\mathrm{MSE} \triangleq \mathrm{E}\left[(y-\hat{f})^2\right]=\mathrm{E}\left[y^2-2 y \hat{f}+\hat{f}^2\right]=\mathrm{E}\left[y^2\right]-2 \mathrm{E}[y \hat{f}]+\mathrm{E}\left[\hat{f}^2\right]
 $$
 
-Because we choose only unbiased estimators, $\mathbf{E}(\hat{\theta})=\theta$, this expression becomes $\mathbf{Var}(\hat{\theta})$.  In our case, the estimator can be $\hat{\theta}=\bar{X}$ and what we try to estimate $\theta = \mu_x$.   
-
-**The formal decomposition of MSPE**
-
- let's look at MSPE closer. We will drop the subscript $0$ to keep the notation simple.  With a trick, adding and subtracting $\mathbf{E}(\hat{f})$, MSPE becomes 
-
+Firstly, since we model $y=f+\varepsilon$, we show that
 $$
-\mathbf{MSPE}=\mathbf{E}\left[(x-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f})^{2}\right]=\mathbf{E}\left[(f+\varepsilon-\hat{f}+\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}])^{2}\right]
-$$
-$$
-=\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]+2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]+\\2 \mathbf{E}[(\mathbf{E}[\hat{f}]-\hat{f})(f-\mathbf{E}[\hat{f}])],
-$$
-  
-which can be simplified with the following few steps:  
-
-1. The first term, $\mathbf{E}\left[(f-\mathbf{E}[\hat{f}])^{2}\right]$, is $(f-\mathbf{E}[\hat{f}])^{2}$, because $(f-\mathbf{E}[\hat{f}])^{2}$ is a constant.
-2. Similarly, the same term, $(f-\mathbf{E}[\hat{f}])^{2}$ is in the $4^{th}$ term.  Hence, $2 \mathbf{E}[(f-\mathbf{E}[\hat{f}]) \varepsilon]$ can be written as $2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]$.    
-3. Finally, the $5^{th}$ term, $2 \mathbf{E}[\varepsilon(\mathbf{E}[\hat{f}]-\hat{f})]$ can be written as $2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$.  (Note that $\varepsilon$ and $\hat{f}$ are independent)
-
-As a result we have:  
-$$
-=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+2(f-\mathbf{E}[\hat{f}]) \mathbf{E}[\varepsilon]+2 \mathbf{E}[\varepsilon] \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]+\\2 \mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}](f-\mathbf{E}[\hat{f}])
+\begin{aligned}
+\mathrm{E}\left[y^2\right] & =\mathrm{E}\left[(f+\varepsilon)^2\right] \\
+& =\mathrm{E}\left[f^2\right]+2 \mathrm{E}[f \varepsilon]+\mathrm{E}\left[\varepsilon^2\right] & & \text{by linearity of $\mathrm{E}$}\\
+& =f^2+2 f \mathrm{E}[\varepsilon]+\mathrm{E}\left[\varepsilon^2\right]  & & \text{since $f$ does not depend on the data}\\
+& =f^2+2 f \cdot 0+\sigma^2 & & \text{since $\varepsilon$ has zero mean and variance $\sigma^2$}
+\end{aligned}
 $$
 
-The $4^{th}$ and the $5^{th}$ terms are zero because $\mathbf{E}[\varepsilon]=0$.  The last term is also zero because $\mathbf{E}[\mathbf{E}[\hat{f}]-\hat{f}]$ is $\mathbf{E}[\hat{f}]-\mathbf{E}[\hat{f}]$.  Hence, we have:  
-
+Secondly,
 $$
-=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[\varepsilon^{2}\right]+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]
+\begin{aligned}
+\mathrm{E}[y \hat{f}] & =\mathrm{E}[(f+\varepsilon) \hat{f}] & & \text{by linearity of $\mathrm{E}$}\\
+& =\mathrm{E}[f \hat{f}]+\mathrm{E}[\varepsilon \hat{f}] & & \text{since $\hat{f}$ and $\varepsilon$ are independent}\\
+& =\mathrm{E}[f \hat{f}]+\mathrm{E}[\varepsilon] \mathrm{E}[\hat{f}] & & \text{since $\mathrm{E}[\varepsilon]=0$ }\\
+& =f \mathrm{E}[\hat{f}]
+\end{aligned}
 $$
-
-Let's look at the second term first.  It's **irreducible error** because it comes with the data.  Thus, we can write:
-
-\begin{equation}
-\mathbf{MSPE}=(\mu_x-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{Var}\left[x\right]
-  (\#eq:3-4)
-\end{equation} 
+Lastly,
+\[
+\mathbb{E}[\hat{f}^2] = \text{Var}(\hat{f}) + \mathbb{E}[\hat{f}]^2\\
+\text{since} \text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \text{for any random variable $X$}.
+\]
 
 
-The first term of 3.4 is the bias squared.  It would be zero for an unbiased estimator, that is, if $\mathbf{E}[\hat{f}]=\mu_x.$  The second term is the variance of the estimator.  For example, if the predictor is $\bar{X}$ it would be $\mathbf{E}\left[(\bar{X} -\mathbf{E}[\bar{X}])^{2}\right]$.  Hence the variance comes from the sampling distribution.
-
-$$
-\mathbf{MSPE}=\mathbf{Bias}[\hat{f}]^{2}+\mathbf{Var}[\hat{f}]+\sigma^{2}
-$$
-
-These two terms, the bias-squared and the variance of $\hat{f}$ is called **reducible error**.  Hence, the MSPE can be written as 
-
-$$
-\mathbf{MSPE}=\mathbf{Reducible~Error}+\mathbf{Irreducible~Error}
-$$
-
-**The relation between MSE and MSPE**
-
-Before going further, we need to see the connection between MSPE and MSE in a regression setting:  
-
-
-\begin{equation}
-\mathbf{MSPE}=\mathbf{E}\left[(y_0-\hat{f})^{2}\right]=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]
-  (\#eq:4-1)
-\end{equation} 
-
-Equation 4.1 is simply an expected prediction error of predicting $y_0$ using $\hat{f}(x_0)$.  The estimate $\hat{f}$ is random depending on the sample we use to estimate it.  Hence, it varies from sample to sample.  We call the sum of the first two terms as "reducible error", as we have seen before.   
-
-The MSE of the estimator $\hat{f}$ is, on the other hand, shows the expected squared error loss of estimating $f(x)$ by using $\hat{f}$ at a fixed point $x$.  
-
-$$
-\mathbf{MSE}(\hat{f})=\mathbf{E}\left[(\hat{f}-f)^{2}\right]=\mathbf{E}\left\{\left(\hat{f}-\mathbf{E}(\hat{f})+\mathbf{E}(\hat{f})-f\right)^{2}\right\}
-$$
-$$
-=\mathbf{E}\left\{\left(\left[\hat{f}-\mathbf{E}\left(\hat{f}\right)\right]+\left[\mathbf{E}\left(\hat{f}\right)-f\right]\right)^{2}\right\}
-$$
-
-\begin{equation}
-  =\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right   \}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}+2 \mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]\left[\mathbf{E}(\hat{f})-f\right]\right\}
-  (\#eq:4-2) 
-\end{equation} 
-
-The first term is the variance.  The second term is outside of expectation, as $[\mathbf{E}(\hat{f})-f]$ is not random, which represents the bias.  The last term is zero.  Hence,  
-
-\begin{equation}
-\mathbf{MSE}(\hat{f})=\mathbf{E}\left\{\left[\hat{f}-\mathbf{E}(\hat{f})\right]^{2}\right\}+\mathbf{E}\left\{\left[\mathbf{E}(\hat{f})-f\right]^{2}\right\}=\mathbf{Var}(\hat{f})+\left[\mathbf{bias}(\hat{f})\right]^{2}
-(\#eq:4-3)
-\end{equation} 
-  
-We can now see how MSPE is related to MSE.  Since the estimator $\hat{f}$ is used in predicting $y_0$, MSPE should include MSE:  
-
-$$
-\mathbf{MSPE}=(f-\mathbf{E}[\hat{f}])^{2}+\mathbf{E}\left[(\mathbf{E}[\hat{f}]-\hat{f})^{2}\right]+\mathbf{E}\left[\varepsilon^{2}\right]=\mathbf{MSE}(\hat{f})+\mathbf{E}\left[\varepsilon^{2}\right]
-$$
-
-The important difference between estimation and prediction processes is the data points that we use to calculate the mean squared error loss functions.  In estimations, our objective is to find the estimator that minimizes the MSE, $\mathbf{E}\left[(\hat{f}-f)^{2}\right]$.  However, since $f$ is not known to us, we use $y_i$ as a proxy for $f$ and calculate MSPE using in-sample data points.  Therefore, using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy. 
+Eventually, we plug these 3 formulas in our previous derivation of MSE and thus show that:
+\[
+\text{MSE} = f^2 + \sigma^2 - 2f\mathbb{E}[\hat{f}] + \text{Var}(\hat{f}) + \mathbb{E}[\hat{f}]^2
+\]
+\[
+= (f - \mathbb{E}[\hat{f}])^2 + \sigma^2 + \text{Var}(\hat{f})
+\]
+\[
+= \text{Bias}[\hat{f}]^2 + \sigma^2 + \text{Var}[\hat{f}]
+\]
+Finally, MSE loss function (or negative log-likelihood) is obtained by taking the expectation value over \(x \sim P\):
+\[
+\text{MSE} = \mathbb{E}_x[\text{Bias}[\hat{f}(x; D)]^2 + \text{Var}[\hat{f}(x; D)] + \sigma^2]
+\]
 
 
 <!--chapter:end:05-Error.Rmd-->
@@ -1822,48 +2687,57 @@ The important difference between estimation and prediction processes is the data
 
 # Bias-Variance Trade-off 
 
-Alex aims to catch a flight for his biweekly work trips, with the gate closing at 8 AM. During his first year, he developed a routine to leave his house around 7:00 AM, planning to depart either 30 minutes before or after this time. However, he discovered that this approach sometimes led to him missing his flight. Even though his average or expected departure time from home was 7:00 AM, this process occasionally resulted in arrival times after the flight's gate closure, making his goal of catching the flight more error-prone. This approach represented a scenario with higher variance and lower bias, leading to costly errors concerning his airport arrival time and missed flights. In contrast, with his revised preparation routine, Alex aimed to leave around 7:00 AM but allowed a margin of 10 minutes either way. Consequently, his average departure time shifted to 7:05 AM, introducing a 5-minute bias. However, this new strategy led to more consistent success in catching his flight, reflecting higher bias but lower variance.  This approach nearly eliminated all instances of missing the flight. This whole experience demonstrates the bias-variance tradeoff. In the first case, a preparation process with higher variance and lower bias resulted in occasional flight misses. In the second case, adopting a process with reduced variance, even though it introduces a degree of bias, ultimately enhances the overall result. Alex's experience illustrates that consistently opting for lower bias (even unbiased), is not always the best strategy, as a balance between bias and variance can lead to more effective real-world results.
+In this chapter, we explore the bias-variance tradeoff and its critical role in model performance. In this chapter, we still assume prediction functions (i.e. we assume we know the prediction functions in simulations) to find MSPE using the given sample dataset. We use single data set to calculate MSPE for that given data set (in-sample MSPE for a test data). In this chapter, we show calculating bias-variance trade-off for each assumed function using the sample data. Bias-Variance Trade-off, while complex, is reflected in everyday life situations, offering insights into its practical significance. We begin with the story of Baran, whose experiences in planning his biweekly work trips vividly illustrate this tradeoff.
 
-We already discuss bias and variance of estimator, and decomposition of MSE for estimation above in the previous chapter. Now, Lets discuss what is bias and variance and trade-off between them in predictive models. The bias-variance tradeoff is a fundamental concept in statistical learning and machine learning, which deals with the problem of minimizing and balancing two sources of error that can affect the performance of a model. Bias occurs from oversimplifying the model, leading to underfitting and missing relevant relations in the data. Variance occurs from overcomplicating the model, leading to overfitting and capturing random noise instead of the intended outputs. High bias results in poor performance on training data, while high variance causes poor generalization to new data. The goal is to find a balance, creating a model that is complex enough to capture true patterns but simple enough to generalize well. This balance is achieved through choosing appropriate model complexity, using techniques like cross-validation, applying regularization, and refining data or features.
+Baran aims to catch a flight for his biweekly work trips, with the gate closing at 8 AM. During his first year, he developed a routine to leave his house around 7:00 AM, planning to depart either 30 minutes before or after this time. However, he discovered that this approach sometimes led to him missing his flight. Even though his average or expected departure time from home was 7:00 AM, this process occasionally resulted in arrival times after the flight's gate closure, making his goal of catching the flight more error-prone. This approach represented a scenario with higher variance and lower bias, leading to costly errors concerning his airport arrival time and missed flights. In contrast, with his revised preparation routine, Baran aimed to leave around 7:00 AM but allowed a margin of 10 minutes either way. Consequently, his average departure time shifted to 7:05 AM, introducing a 5-minute bias. However, this new strategy led to more consistent success in catching his flight, reflecting higher bias but lower variance.  This approach nearly eliminated all instances of missing the flight. This whole experience demonstrates the bias-variance tradeoff. In the first case, a preparation process with higher variance and lower bias resulted in occasional flight misses. In the second case, adopting a process with reduced variance, even though it introduces a degree of bias, ultimately enhances the overall result. Baran's experience illustrates that consistently opting for lower bias (even unbiased), is not always the best strategy to predict his arrival time, as a balance between bias and variance can lead to more effective real-world results.
 
-Following is a formal discussion of bias-variance tradeoff. To remind,our task is prediction of an outcome, Y using the data (more accurately test/train data) .
+As seen from Baran's narrative, the bias-variance tradeoff is not an abstract statistical concept but a tangible factor in our everyday decision-making processes. Grasping this balance is key to understanding how to craft models that are not only accurate but also reliable across various situations. In the next chapter, we'll explore another critical concept in machine learning: overfitting. This concept is also very crucial for crafting precise and dependable models. We will explore how overfitting relates to and differs from the bias-variance tradeoff. This exploration will further enhance our understanding of model development, providing deeper insights into creating effective and reliable machine learning algorithms.
+
+We already discuss bias and variance of estimator and predictor, and decomposition of MSE for estimation and MSPE for prediction in the previous chapter. Now, Lets discuss what is bias and variance and trade-off between them in predictive models. The bias-variance tradeoff is a fundamental concept in statistical learning and machine learning, which deals with the problem of minimizing and balancing two sources of error that can affect the performance of a model. Bias occurs from oversimplifying the model, leading to underfitting and missing relevant relations in the data. Variance occurs from overcomplicating the model, leading to overfitting and capturing random noise instead of the intended outputs. High bias results in poor performance on training data, while high variance causes poor generalization to new data. The goal is to find a balance, creating a model that is complex enough to capture true patterns but simple enough to generalize well. This balance is achieved through choosing appropriate model complexity, using techniques like cross-validation, applying regularization, and refining data or features.
+
+Following is a formal discussion of bias-variance tradeoff. 
+
+## Formal Definition
+
+To remind,our task is prediction of an outcome, Y using the data (more accurately test/train data) .
 
 To "predict" Y using features X, means to find some $f$ which is close to $Y$. We assume that $Y$ is some function of $X$ plus some random noise.
 
-$$Y=f(X)+ ϵ$$
-However, we can never know real $f(X)$. Thus our goal becomes to finding some $\hat{f(X)}$ that is a good estimate of the regression function $f(X)$. There will be always difference between real $f(X)$ and $\hat{f(X)}$. That difference is called reducible error. We find a good estimate of $f(X)$ by reducing the expected mean square of error of test data as much as possible. Thus, we can write 
+$$Y=f(X)+ \epsilon$$
+However, we can never know real $f(X)$. Thus our goal becomes to finding some \(\hat{f(X)}\) that is a good estimate of the regression function $f(X)$. There will be always difference between real $f(X)$ and $\hat{f(X)}$. That difference is called reducible error. We find a good estimate of $f(X)$ by reducing the expected mean square of error of test data as much as possible. Thus, we can write 
 
 **MSE for prediction function using training data** (for test data, validation sample):
 
 $$
-\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(\mathbb{E}[\hat{f}(x)]-f(x))^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
+\operatorname{MSE}(f(x), \hat{f}(x))= \underbrace{(\mathbb{E}[f(x)-\hat{f}(x)])^2}_{\operatorname{bias}^2(\hat{f}(x))}+\underbrace{\mathbb{E}\left[(\hat{f}(x)-\mathbb{E}[\hat{f}(x)])^2\right]}_{\operatorname{var}(\hat{f}(x))}
 $$
 
 Then,  
 
-**Mean Square Prediction Error** can be written as:
+**Mean Square of Prediction Error** can be written as:
 
 $$
-\mathbf{MSPE}=\mathbf{E}\left[(Y-\hat{f(X)})^{2}\right]=\mathbf{Bias}[\hat{f(X)}]^{2}+\mathbf{Var}[\hat{f(X)}]+\sigma^{2}
+\text{MSPE}=\mathbb{E}\left[(Y-\hat{f(X)})^{2}\right]=(\text{Bias}[\hat{f(X)}])^{2}+\text{Var}[\hat{f(X)}]+\sigma^{2}
 $$
 $\sigma^{2}=E[\varepsilon^{2}]$
 
-Expected mean-squared prediction error (MSPE) on the validation/training sample is sum of squared bias of the fit and variance of the fit and variance of the error.
+The expected mean-squared prediction error (MSPE) on the validation/training sample consists of the sum of the squared bias of the fit and the variance of both the fit and the error/noise term. The error term $\sigma^2$, also referred to as irreducible error or uncertainty, represents the variance of the target variable $Y$ around its true mean $f(x)$. It is inherent in the problem and does not depend on the model or training data. When the data generation process is known, $\sigma^2$ can be determined. Alternatively, estimation of $\sigma^2$ is possible using the sample variance of $y$ at duplicated (or nearby) inputs $x$.
 
-**Variance** is the amount by which $\hat{f(X)}$ could change if we estimated it using different test/training data set. $\hat{f(X)}$ depends on the training data. (More complete notation would be $\hat{f}(X; Y_{train},X_{train})$ )If the $\hat{f(X)}$ is less complex/less flexible, then it is more likely to change if we use different samples to estimate it. However, if $\hat{f(X)}$ is more complex/more flexible function, then it is more likely to change between different test samples. 
+**Variance** is the amount by which $\hat{f(X)}$ could change if we estimated it using different test/training data set. $\hat{f(X)}$ depends on the training data. (More complete notation would be $\hat{f}(X; Y_{train},X_{train})$ )If the $\hat{f(X)}$ is less complex/less flexible, then it is more likely to change if we use different samples to estimate it. However, if $\hat{f(X)}$ is more complex/more flexible function, then it is more likely to change between different test/training samples. 
 
 For instance, Lets assume we have a data set (test or training data) and we want to "predict" Y using features X, thus estimate function $f(X)$. and lets assume we have 1-degree and 10-degree polynomial functions as a potential prediction functions. We say $\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X$ is less complex than 10-degree polynomial $\hat{f(X)}=\hat{\beta_{0}} + \hat{\beta_{1}} X...+ \hat{\beta_{10}} X^{10}$ function. As, 10-degree polynomial function has more parameters $\beta_{0},..\beta_{10}$, it is more flexible. That also means it has high variance (As it has more parameters, all these parameters are more inclined to have different values in different training data sets). Thus, a prediction function has high variance if it can change substantially when we use different training samples to estimate $f(X)$. We can also say less flexible functions (functions with less parameters) have low variance. Low variance functions are less likely to change when we use different training sample or adding new data to the test sample. We will show all these with simulation in overfitting chapter as well.     
 
 **Bias** is the difference between the real! prediction function and expected estimated function. If the $\hat{f(X)}$ is less flexible, then it is more likely to have higher bias. We can think this as real function(reality) is always more complex than the function approximates the reality. So, it is more prone to have higher error, i.e. more bias.  
+
 In the context of regression, Parametric models are biased when the form of the model does not incorporate all the necessary variables, or the form of the relationship is too simple. For example, a parametric model assumes a linear relationship, but the true relationship is quadratic. In non-parametric models when the model provides too much smoothing.
 
 There is a bias-variance tradeoff. That is, often, the more bias in our estimation, the lesser the variance. Similarly, less variance is often accompanied by more bias. Flexible(i.e. complex) models tend to be unbiased, but highly variable. Simple models are often extremely biased, but have low variance.
 
-So for us, to select a model that appropriately balances the tradeoff between bias and variance, and thus minimizes the reducible error, we need to select a model of the appropriate flexibility for the data. However, this selected model should not overfit the data as well which we will discuss in the next section.
+So for us, to select a model that appropriately balances the tradeoff between bias and variance, and thus minimizes the reducible error, we need to select a model of the appropriate flexibility for the data. However, this selected model should not overfit the data as well which we will discuss in the next chapter. Read [1](https://threadreaderapp.com/thread/1584515105374339073.html) and [2](https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance)
 
-https://threadreaderapp.com/thread/1584515105374339073.html
 
-https://www.simplilearn.com/tutorials/machine-learning-tutorial/bias-and-variance
+
+
 
 ## Simulated Breakdown of the MSPE
  
@@ -1908,7 +2782,7 @@ Now, Let's use our predictors:
 # Container to record all predictions
 predictions <- matrix(0, Ms, 2)
 
-# fhat_1 = 9
+# fhat_1 = 10
 for (i in 1:Ms) {
   predictions[i,1] <- 10
 }
@@ -2013,40 +2887,338 @@ round(VBtradeoff, 3)
   
 This table clearly shows the decomposition of MSPE. The first column is the contribution to the MSPE from the bias, and the second column is the contribution from the variance of the predictor. These together make up the reducible error. The third column is the variance that comes from the data, the irreducible error. The last column is, of course, the total MSPE, and we can see that $\hat{f}_2$ is the better predictor because of its lower MSPE.  
 
+Here is an example that shows the trade-off between bias and variance using prediction functions in a simulation.  
 
+In a seminal study, Angrist and Krueger (1991) tackled the problems associated with ability bias in Mincer's equation by creating an instrumental variable based on students' quarter of birth. The data is provided as "ak91" in the package "masteringmetrics". Instead of using actual data, we simulate only education and income data using the same method of moments. One purpose is to show that we may perform simulations using only descriptive tables and regression results even if we do not have the actual data, allowing us to discuss the underlying concepts effectively.
+
+In the simulation below, we generate a dataset based on the descriptive statistics of years of schooling (s) and the logarithm of wage (lnw). We then create four different prediction functions to evaluate their MSPE, bias, and variance.
+
+
+
+```r
+# Set seed for reproducibility
+set.seed(123)
+
+# Parameters
+n <- 26732
+mean_lnw <- 5.9
+sd_lnw <- 0.7
+mean_s <- 12.8
+sd_s <- 3.3
+min_s <- 0
+max_s <- 20
+
+# Generate schooling data
+#schooling <- runif(n, min = min_s, max = max_s)
+  # Generate schooling data and round to nearest 0.5
+  schooling <- round(runif(n, min = min_s, max = max_s) * 2) / 2
+
+# Generate lnw data using the provided regression coefficients
+# Intercept = 5, Coefficient of s = 0.07
+lnw <- 5 + 0.07 * schooling + rnorm(n, mean = 0, sd = sd_lnw)
+
+# Create data frame
+data <- data.frame(schooling = schooling, lnw = lnw)
+
+# Define prediction functions for log income
+predictor1 <- rep(mean(lnw), n)  # Constant predictor based on the mean of lnw
+predictor2 <- 5 + 0.10 * schooling + rnorm(n, mean = 0, sd = 0.1)  # Linear predictor with noise
+predictor3 <- 4.5 + 0.06 * schooling  # Biased predictor with lower intercept and coefficient
+predictor4 <- 5 + 0.07 * schooling  # True predictor (linear)
+
+# Function to calculate MSPE components
+calculate_mspe <- function(true, pred) {
+  bias <- mean(pred - true)
+  variance <- var(pred)
+  irreducible_error <- var(true - mean(true))
+  mspe <- mean((true - pred)^2)
+  return(c(bias^2, variance, irreducible_error, mspe))
+}
+
+# Calculate MSPE components for each predictor
+true_values <- lnw
+
+mspe1 <- calculate_mspe(true_values, predictor1)
+mspe2 <- calculate_mspe(true_values, predictor2)
+mspe3 <- calculate_mspe(true_values, predictor3)
+mspe4 <- calculate_mspe(true_values, predictor4)
+
+# Combine results into a data frame
+results <- data.frame(
+  Predictor = c("Predictor 1", "Predictor 2", "Predictor 3", "Predictor 4"),
+  Bias2 = c(mspe1[1], mspe2[1], mspe3[1], mspe4[1]),
+  Variance = c(mspe1[2], mspe2[2], mspe3[2], mspe4[2]),
+  IrreducibleError = c(mspe1[3], mspe2[3], mspe3[3], mspe4[3]),
+  MSPE = c(mspe1[4], mspe2[4], mspe3[4], mspe4[4])
+)
+
+# Print results with 3 decimal points
+results_rounded <- data.frame(
+  Predictor = results$Predictor,
+  Bias2 = round(results$Bias2, 3),
+  Variance = round(results$Variance, 3),
+  IrreducibleError = round(results$IrreducibleError, 3),
+  MSPE = round(results$MSPE, 3)
+)
+
+print(results_rounded)
+```
+
+```
+##     Predictor Bias2 Variance IrreducibleError  MSPE
+## 1 Predictor 1 0.000    0.000            0.661 0.661
+## 2 Predictor 2 0.094    0.342            0.661 0.620
+## 3 Predictor 3 0.353    0.120            0.661 0.847
+## 4 Predictor 4 0.000    0.163            0.661 0.490
+```
+
+```r
+# Clear the environment
+rm(list = ls())
+```
+
+The simulation demonstrates the performance of four different prediction functions. Among these, the true linear predictor (Predictor 4) achieved the smallest MSPE, indicating it provides the most accurate predictions. This is expected since it closely aligns with the underlying data generation process.
+
+
+```r
+# Load necessary library
+library(ggplot2)
+library(gridExtra)  # For arranging plots side by side
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Parameters
+n <- 26732
+mean_lnw <- 5.9
+sd_lnw <- 0.7
+mean_s <- 12.8
+sd_s <- 3.3
+min_s <- 0
+max_s <- 20
+
+# Initialize storage for beta0 and beta1
+beta0 <- numeric(100)
+beta1 <- numeric(100)
+mspe_values <- numeric(100)
+bias_values <- numeric(100)
+variance_values <- numeric(100)
+irreducible_error_values <- numeric(100)
+
+# Function to calculate MSPE components
+calculate_mspe <- function(true, pred) {
+  bias <- mean(pred - true)
+  variance <- var(pred)
+  irreducible_error <- var(true - mean(true))
+  mspe <- mean((true - pred)^2)
+  return(c(bias^2, variance, irreducible_error, mspe))
+}
+
+# Generate 100 different datasets and fit models
+for (i in 1:100) {
+  # Generate schooling data and round to nearest 0.5
+  schooling <- round(runif(n, min = min_s, max = max_s) * 2) / 2
+  
+  # Generate lnw data using the provided regression coefficients
+  lnw <- 5 + 0.07 * schooling + rnorm(n, mean = 0, sd = sd_lnw)
+  
+  # Fit the linear model
+  model <- lm(lnw ~ schooling)
+  beta0[i] <- coef(model)[1]
+  beta1[i] <- coef(model)[2]
+  
+  # Generate predictions using the model
+  predictions <- predict(model, newdata = data.frame(schooling = schooling))
+  
+  # Calculate MSPE components
+  mspe_components <- calculate_mspe(lnw, predictions)
+  mspe_values[i] <- mspe_components[4]
+  bias_values[i] <- mspe_components[1]
+  variance_values[i] <- mspe_components[2]
+  irreducible_error_values[i] <- mspe_components[3]
+  
+  # Print initial 50 observations and other calculated variables for the first dataset
+  if (i == 1) {
+    initial_data <- data.frame(schooling = schooling[1:50], lnw = lnw[1:50], predicted_lnw = predictions[1:50])
+    print("Initial 50 observations of schooling, lnw, and predicted lnw:")
+    print(initial_data)
+    
+    print("Coefficients for the first generated dataset:")
+    print(coef(model))
+    
+    print("MSPE components for the first generated dataset:")
+    print(mspe_components)
+  }
+}
+```
+
+```
+## [1] "Initial 50 observations of schooling, lnw, and predicted lnw:"
+##    schooling      lnw predicted_lnw
+## 1        6.0 4.309461      5.407463
+## 2       16.0 5.252208      6.124208
+## 3        8.0 5.800693      5.550812
+## 4       17.5 6.868000      6.231720
+## 5       19.0 6.337707      6.339232
+## 6        1.0 5.271255      5.049090
+## 7       10.5 6.936026      5.729998
+## 8       18.0 6.449974      6.267557
+## 9       11.0 6.726069      5.765835
+## 10       9.0 5.014647      5.622486
+## 11      19.0 6.781244      6.339232
+## 12       9.0 4.850522      5.622486
+## 13      13.5 6.106988      5.945022
+## 14      11.5 5.621766      5.801673
+## 15       2.0 4.888290      5.120764
+## 16      18.0 6.967818      6.267557
+## 17       5.0 5.339867      5.335788
+## 18       1.0 4.622575      5.049090
+## 19       6.5 6.853711      5.443300
+## 20      19.0 7.802680      6.339232
+## 21      18.0 5.595551      6.267557
+## 22      14.0 6.682397      5.980859
+## 23      13.0 6.445602      5.909184
+## 24      20.0 6.644234      6.410906
+## 25      13.0 6.194610      5.909184
+## 26      14.0 6.800737      5.980859
+## 27      11.0 6.830699      5.765835
+## 28      12.0 4.844341      5.837510
+## 29       6.0 5.324725      5.407463
+## 30       3.0 5.177032      5.192439
+## 31      19.5 7.673262      6.375069
+## 32      18.0 6.750589      6.267557
+## 33      14.0 5.300752      5.980859
+## 34      16.0 6.542941      6.124208
+## 35       0.5 3.807720      5.013253
+## 36       9.5 6.065694      5.658324
+## 37      15.0 6.444348      6.052534
+## 38       4.5 6.583272      5.299951
+## 39       6.5 5.447284      5.443300
+## 40       4.5 5.759566      5.299951
+## 41       3.0 5.401111      5.192439
+## 42       8.5 5.123768      5.586649
+## 43       8.5 5.225697      5.586649
+## 44       7.5 4.734100      5.514974
+## 45       3.0 5.616073      5.192439
+## 46       3.0 5.388677      5.192439
+## 47       4.5 4.772368      5.299951
+## 48       9.5 4.891484      5.658324
+## 49       5.5 4.781807      5.371625
+## 50      17.0 5.894623      6.195883
+## [1] "Coefficients for the first generated dataset:"
+## (Intercept)   schooling 
+##  4.97741540  0.07167454 
+## [1] "MSPE components for the first generated dataset:"
+## [1] 1.608257e-29 1.709228e-01 6.609322e-01 4.899911e-01
+```
+
+```r
+# Calculate expected MSPE, bias, and variance
+expected_mspe <- mean(mspe_values)
+expected_bias <- mean(bias_values)
+expected_variance <- mean(variance_values)
+expected_irreducible_error <- mean(irreducible_error_values)
+
+# Print results
+cat("Expected MSPE:", round(expected_mspe, 3), "\n")
+```
+
+```
+## Expected MSPE: 0.491
+```
+
+```r
+cat("Expected Bias:", round(expected_bias, 3), "\n")
+```
+
+```
+## Expected Bias: 0
+```
+
+```r
+cat("Expected Variance:", round(expected_variance, 3), "\n")
+```
+
+```
+## Expected Variance: 0.163
+```
+
+```r
+cat("Expected Irreducible Error:", round(expected_irreducible_error, 3), "\n")
+```
+
+```
+## Expected Irreducible Error: 0.654
+```
+
+```r
+# Clear the environment
+rm(list = ls())
+```
+
+
+Other simulation examples are [1](https://blog.zenggyu.com/en/post/2018-03-11/understanding-the-bias-variance-decomposition-with-a-simulated-experiment/) , [2](https://www.r-bloggers.com/2019/06/simulating-the-bias-variance-tradeoff-in-r/), and [3](https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html)
 
 ## Biased estimator as a predictor
 
-Upto this point, we showed in the simulation prediction function with zero bias but high variance produce better prediction than the prediction function with zero variance but high bias. However, we can obtain better prediction function which has some bias and some variance. Better prediction function means smaller MSPE. Thus if the decline in variance would be more than then the bias in the second prediction function, then we have better predictor.  
-Lets show this with equation first and then with simulation.
+Up to this point, we have shown through simulation that a prediction function with zero bias but high variance often produces better predictions than a prediction function with zero variance but high bias. However, we can potentially obtain an even better prediction function that has some bias and some variance. A better prediction function means a smaller Mean Squared Prediction Error (MSPE). The key idea is that if the reduction in variance more than compensates for the increase in bias, then we have a better predictor.
 
-We saw earlier that $\bar{X}$ is a better estimator. Now, Let's define a biased estimator of $\mu_x$:
+To explore this, let's define a biased estimator of \(\mu_x\):
+\[
+\hat{X}_{\text{biased}} = \hat{\mu}_x = \alpha \bar{X}
+\]
+where \(\bar{X}\) is the sample mean. The sample mean \(\bar{X}\) is an unbiased estimator of \(\mu_x\), and the parameter \(\alpha\) introduces bias. When \(\alpha\) is 1, \(\hat{\mu}_x\) becomes the unbiased sample mean.
+
+The bias of the estimator \(\hat{\mu}_x\) is given by:
+\[
+\operatorname{Bias}(\hat{\mu}_x) = \mathbb{E}[\hat{\mu}_x] - \mu_x = \alpha \mu_x - \mu_x = (\alpha - 1) \mu_x
+\]
+The variance of the estimator \(\hat{\mu}_x\) is:
+\[
+\operatorname{Var}(\hat{\mu}_x) = \operatorname{Var}(\alpha \bar{X}) = \alpha^2 \operatorname{Var}(\bar{X})
+\]
+Since the variance of the sample mean \(\bar{X}\) is \(\frac{\sigma_{\varepsilon}^2}{n}\) (Check chapter 5.4), we have:
+\[
+\operatorname{Var}(\hat{\mu}_x) = \alpha^2 \frac{\sigma_{\varepsilon}^2}{n}
+\]
+
+The MSPE and its bias-variance components:
+\[
+\text{MSPE} = \mathbb{E}[(\hat{\mu}_x - \mu_x)^2] = \operatorname{Bias}^2(\hat{\mu}_x) + \operatorname{Var}(\hat{\mu}_x) + \sigma_{\varepsilon}^2
+\]
+where \(\sigma_{\varepsilon}^2\) is the irreducible error.
+
+First, calculate the bias squared:
+\[
+\operatorname{Bias}^2(\hat{\mu}_x) = [(\alpha - 1) \mu_x]^2 = (1 - \alpha)^2 \mu_x^2
+\]
+
+Next, calculate the variance:
+\[
+\operatorname{Var}(\hat{\mu}_x) = \alpha^2 \frac{\sigma_{\varepsilon}^2}{n}
+\]
+
+Finally, the irreducible error is  \(\sigma_{\varepsilon}^2\). After combining these terms,we can shows that the MSPE for the biased estimator \(\hat{\mu}_x = \alpha \bar{X}\) is:
+\[
+\text{MSPE} = (1 - \alpha)^2 \mu_x^2 + \alpha^2 \frac{\sigma_{\varepsilon}^2}{n} + \sigma_{\varepsilon}^2 = [(1-\alpha) \mu_x]^2 + \frac{1}{n} \alpha^2 \sigma_{\varepsilon}^2 + \sigma_{\varepsilon}^2
+\]
+
+The final expression for the MSPE of the biased estimator \(\hat{\mu}_x = \alpha \bar{X}\) combines the squared bias term \((1 - \alpha)^2 \mu_x^2\), the variance term \(\frac{\alpha^2 \sigma_{\varepsilon}^2}{n}\), and the irreducible error term \(\sigma_{\varepsilon}^2\). By adjusting \(\alpha\), we can balance the trade-off between bias and variance to minimize the MSPE. This highlights that a small amount of bias can be beneficial if it significantly reduces the variance, leading to a lower MSPE and thus a better predictor.
+
+Our first observation is that when $\alpha$ is one, the bias will be zero.  Since it seems that MSPE is a convex function of $\alpha$, we can search for $\alpha$ that minimizes MSPE.  The value of \(\alpha\) that minimizes the MSPE is:
 
 $$
-\hat{X}_{biased} = \hat{\mu}_x=\alpha \bar{X}
+\frac{\partial \text{MSPE}}{\partial \alpha} =0 \rightarrow ~~ \alpha = \frac{\mu^2_x}{\mu^2_x+\sigma^2_\varepsilon/n}<1
 $$
-  
-The sample mean $\bar{X}$ is an unbiased estimator of $\mu_x$. The magnitude of the bias is $\alpha$ and as it goes to 1, the bias becomes zero.  As before, we are given one sample with three observations from the same distribution (population). We want to guess the value of a new data point from the same distribution.  We will make the prediction with the best predictor which has the minimum MSPE.   By using the same decomposition we can show that:  
 
-$$
-\hat{\mu}_x=\alpha \bar{X}
-$$
-  
-$$
-\mathbf{E}[\hat{\mu}_x]=\alpha \mu_x
-$$
-  
-$$
-\mathbf{MSPE}=[(1-\alpha) \mu_x]^{2}+\frac{1}{n} \alpha^{2} \sigma_{\varepsilon}^{2}+\sigma_{\varepsilon}^{2}
-$$
-  
-Our first observation is that when $\alpha$ is one, the bias will be zero.  Since it seems that MSPE is a convex function of $\alpha$, we can search for $\alpha$ that minimizes MSPE.  The first-order-condition would give us the solution:
-
-$$
-\frac{\partial \mathbf{MSPE}}{\partial \alpha} =0 \rightarrow ~~ \alpha = \frac{\mu^2_x}{\mu^2_x+\sigma^2_\varepsilon/n}<1
-$$
+Check end of the chapter for step-by-step derivation of the optimal value of \(\alpha\) that minimizes the MSPE.
 
 Using the same simulation sample above , lets calculate alpha and MSPE with this new biased prediction function, and compare all 3 MSPEs. 
+
+
+
+
+
 
 
 ```r
@@ -2124,17 +3296,57 @@ round(VBtradeoff, 3)
 ## fhat_3 0.002     0.535     5.25  5.787
 ```
 
-As seen , increase in bias is lower than decrease in variance. The prediction function with some bias and variance is the **best prediction function** as it has the smallest MSPE.
- This example shows the difference between estimation and prediction for a simplest predictor, the mean of $X$.  We will see a more complex example when we have a regression later.   
+As seen , increase in bias is lower than decrease in variance. The prediction function with some bias and variance is the **best prediction function** as it has the smallest MSPE. This example shows the difference between estimation and prediction for a simplest predictor, the mean of $X$.  
 
-Another simulation examples are
-https://blog.zenggyu.com/en/post/2018-03-11/understanding-the-bias-variance-decomposition-with-a-simulated-experiment/
+In the next chapter, we will explore overfitting and how it relates to and differs from the bias-variance tradeoff. 
 
-https://www.r-bloggers.com/2019/06/simulating-the-bias-variance-tradeoff-in-r/
+**Note:** To find the value of \(\alpha\) that minimizes the Mean Squared Prediction Error (MSPE), we take the derivative of the MSPE with respect to \(\alpha\), set it to zero, and solve for \(\alpha\).
 
-use this to create education-income simulation
-https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html
+The MSPE is given by:
+\[
+\text{MSPE} = [(1-\alpha) \mu_x]^2 + \frac{1}{n} \alpha^2 \sigma_{\varepsilon}^2 + \sigma_{\varepsilon}^2
+\]
 
+First, we take the derivative of MSPE with respect to \(\alpha\):
+\[
+\frac{\partial \text{MSPE}}{\partial \alpha} = \frac{\partial}{\partial \alpha} \left[(1-\alpha)^2 \mu_x^2 + \frac{1}{n} \alpha^2 \sigma_{\varepsilon}^2 + \sigma_{\varepsilon}^2\right]
+\]
+
+We compute the derivative term by term:
+\[
+\frac{\partial \text{MSPE}}{\partial \alpha} = 2(1-\alpha)(-1) \mu_x^2 + 2 \frac{1}{n} \alpha \sigma_{\varepsilon}^2
+\]
+Simplifying, we get:
+\[
+\frac{\partial \text{MSPE}}{\partial \alpha} = -2(1-\alpha) \mu_x^2 + 2 \frac{1}{n} \alpha \sigma_{\varepsilon}^2
+\]
+
+To find the minimum MSPE, we set the derivative equal to zero:
+\[
+-2(1-\alpha) \mu_x^2 + 2 \frac{1}{n} \alpha \sigma_{\varepsilon}^2 = 0
+\]
+
+Solving for \(\alpha\):
+\[
+-2 \mu_x^2 + 2 \alpha \mu_x^2 + 2 \frac{1}{n} \alpha \sigma_{\varepsilon}^2 = 0
+\]
+\[
+- \mu_x^2 + \alpha \mu_x^2 + \frac{1}{n} \alpha \sigma_{\varepsilon}^2 = 0
+\]
+\[
+- \mu_x^2 + \alpha \left( \mu_x^2 + \frac{\sigma_{\varepsilon}^2}{n} \right) = 0
+\]
+\[
+\alpha \left( \mu_x^2 + \frac{\sigma_{\varepsilon}^2}{n} \right) = \mu_x^2
+\]
+\[
+\alpha = \frac{\mu_x^2}{\mu_x^2 + \frac{\sigma_{\varepsilon}^2}{n}}
+\]
+
+Thus, the value of \(\alpha\) that minimizes the MSPE is:
+\[
+\alpha = \frac{\mu_x^2}{\mu_x^2 + \frac{\sigma_{\varepsilon}^2}{n}}
+\]
 
 
 
@@ -2143,13 +3355,40 @@ https://daviddalpiaz.github.io/r4sl/simulating-the-biasvariance-tradeoff.html
 <!--chapter:end:06-BiasVarTradeoff.Rmd-->
 
 
-# Overfitting:
+# Overfitting
 
-Overfitting is a phenomenon that occurs when a statistical model describes random error (noise, irreducible error) instead of the underlying relationship. A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.
+Following our exploration of the bias-variance tradeoff, in this chapter we explore the equally crucial concept of overfitting in machine learning. 
+
+Through the compelling stories of Baran's travel planning and Jennifer's exam preparation, we'll uncover how overfitting manifests in both everyday scenarios and complex algorithms, revealing its impact on decision-making and model accuracy. Let's extend Baran's story from the previous chapter, which not only illustrates the bias-variance tradeoff but also seamlessly incorporates the concept of overfitting, providing a deeper understanding of its implications.
+
+As we mentioned at the beginning of previous chapter, Baran initially developed a routine to leave his house around 7:00 AM, with a 30-minute window on either side to catch his bi=weekly flights. This approach, while seemingly flexible, had high variance. It's like a machine learning model that is not sufficiently trained or fine-tuned – it has a broad range of responses (leaving times from his home) but lacks precision (cathing flights).
+
+Missing Flights and Overfitting: Realizing the issue with his initial strategy, Baran decides to analyze past data more closely. He starts noting down the exact traffic conditions, weather patterns, and personal preparation times for each day of his travel. Based on this detailed analysis, he creates a very specific and complex routine, factoring in all these variables to predict the optimal departure time. This new strategy is akin to an overfitted model in machine learning – it is overly complex and tailored to past data, potentially capturing random error (like a one-time traffic jam or an unusual personal delay) rather than the overarching trend.
+
+Experiencing the Pitfalls of Overfitting: Initially, Baran's new strategy seems to work perfectly, as he catches his flights consistently. However, on a day with unexpected conditions (not previously encountered in his data, like a new road closure), his overly complex routine fails him, and he continue to miss some of his flights. This is similar to an overfitted model performing well on training data but poorly on new, unseen data.
+
+Revised Strategy with Bias-Variance Balance: Baran realizes that his overfitted strategy is not sustainable. He then revises his approach, aiming to leave around 7:05 AM with only a 10-minute window. This strategy introduces a slight bias (always leaving a bit later than the original 7:00 AM plan) but significantly reduces variance. It's like a well-balanced machine learning model that has been trained to generalize well, rather than just perform on specific past data.
+
+Consistent Success and Learning: With this balanced approach, Baran consistently catches his flights, demonstrating that a balance between bias and variance can lead to more effective real-world results. His experience underscores the importance of not overcomplicating models (or plans) based on past data, as real-world conditions often present new, unforeseen challenges. This balance is crucial in machine learning to create models that perform well both on historical data and in new, unpredictable situations.
+
+
+After discussing Baran's experience, let's shift to another example that deepens our grasp on overfitting. We now turn to Jennifer, a student facing challenges in her study methods for a history exam. Her story, paralleling Baran's, can illustrate the concept of overfitting in everyday situations and in machine learning models.
+
+ Jennifer gathers an array of study materials, including textbooks, class notes, and online resources. She compiles detailed notes on all the topics that might be covered in the exam (Data Collection). She initially tries to get a general understanding of all historical events and themes, but soon realizes it's too much to handle. As she studies, Jennifer notices that certain events and dates are emphasized more in her materials (Pattern Recognition). Then, Jennifer forms a hypothesis that the exam will primarily consist of questions about these specific events and dates she has identified as important (Making Predictions).
+
+Bias-Variance Balance: Jennifer faces a dilemma. She can either maintain a broad focus on history, which would result in a high bias but low variance in her study approach, potentially causing her to miss finer details. Alternatively, she can concentrate intensely on specific events and dates, which corresponds to a low bias but high variance approach, risking a lack of preparedness for broader questions. This scenario mirrors the bias-variance tradeoff in machine learning, where the challenge lies in balancing the generalization of the model (a broad study scope) with the accuracy on specific details (focused study on certain events).
+
+Overfitting: Jennifer opts to focus on specific details, thinking this will prepare her better for the exam. She memorizes dates and specific events, neglecting the broader themes. However, she soon realizes the potential pitfalls of this method – while it might prepare her well for certain types of questions, it could leave her ill-equipped for others that require a more comprehensive understanding of history. This is akin to a machine learning model that is overfitted - it performs exceptionally well on the training data (or the specific details Jennifer studied) but fails to generalize well to new data (or the broader exam questions).
+
+Validation and Realizing the Tradeoff: On the exam day, Jennifer does well on questions about specific events but struggles with questions that require a broader understanding of history. This reflects the problem in machine learning where a model with low bias but high variance performs well on training data but poorly on unseen data. Jennifer's experience shows the downside of focusing too narrowly and not maintaining a balance between the specific details and the broader context.
+
+In this analogy, Jennifer's study method represents a machine learning model. It highlights the importance of balancing the depth of learning specific details (low bias) with the ability to generalize to broader concepts (managing variance) to create a well-rounded, effective model (or study method), an analogy for the bias-variance tradeoff. Her focus on specific details to the exclusion of broader themes is akin to overfitting.  Jennifer's experience in studying for her history exam illustrates that a balanced approach, which incorporates both bias-variance tradeoff and overfitting, is crucial for achieving the best overall performance. This principle holds true both in effective study methods and in developing robust machine learning models.
+
+Overfitting is a phenomenon that occurs when a statistical model is trained too closely on the training dataset, capturing random error (noise, irreducible error) in the data rather than the underlying pattern. This results in a model that performs well on the training data (like Jennifer's success with specific questions) but poorly on new, unseen data (like the broader questions on the exam). A model that has been overfitted has poor predictive performance, as it overreacts to minor fluctuations in the training data. Overfitting is a common problem in statistics and machine learning. The more flexible (complex) a model is, the more likely it is to overfit the data. A good predictive model is able to learn the pattern from your data and then to generalize it on new data. Generalization(i.e. (learning)) is the ability of a model to perform well on unseen data. Overfitting occurs when a model does not generalize well. Underfitting occurs when a model is not flexible enough to capture the underlying relationship as well.
  
 A simple example is the curve-fitting of a polynomial of a certain degree to a set of data points. A low-degree polynomial, such as a straight line, may fit the data points reasonably well, but would fail to capture the behavior of the data outside the range of the data points. However, a high-degree polynomial may fit the data points well, but would have wild fluctuations outside the range of the data points. The wild fluctuations would be fitting to the random noise in the data, and would fail to generalize to new data. We will simulate this example below. Another example is a decision tree with a large number of branches, may overfit the training data.
  
-All in all, we say that The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.
+All in all, we say that **The optimal model is the simplest model (less complexity (or flexibility)) which has the right amount of Bias–variance tradeoff and fits the data without overfitting.**
 
 To **detect overfitting**, you need to monitor the training error and the test error during the training process. As the model becomes more complex, the training error will decrease. However, when the model overfits the training data (i.e when model complexity increases), the test error will begin to increase.
 
@@ -2168,14 +3407,15 @@ https://towardsdatascience.com/regularization-the-path-to-bias-variance-trade-of
 
 https://statisticsbyjim.com/regression/overfitting-regression-models/
 
-Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.  
+!!!! Although it seems that overfitting is a prediction problem, it is also a serious problem in estimations, where the unbiasedness is the main objective.  
 
 
 $$ 
-MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}=MSE(\hat{f(X)})+\sigma^{2}
+MSPE=E\left[(Y-\hat{f(X)})^{2}\right]=Bias[\hat{f(X)}]^{2}+Var[\hat{f(X)}]+\sigma^{2}
 $$
 
-using an estimator for predictions means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.
+using a prediction function means that we use in-sample data points to calculate MSPE in predictions, which may result in overfitting and a poor out-of-sample prediction accuracy.  We used in-sample data points to calculate MSPE in estimations in previous chapters, which may result in overfitting and a poor out-of-sample estimation accuracy.  Minimizing the in-sample MSPE completely ignores the overfitting by picking models which are too complex and with a very poor out-of-sample prediction accuracy.  I
+
 Let's start with an example:  
 
 

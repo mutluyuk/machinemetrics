@@ -1,7 +1,7 @@
 --- 
 title: 'Causal MachineMetrics '
 author: '[Yigit Aydede](https://yaydede.github.io/) and [Mutlu Yuksel](https://www.mutluyuksel.com/)'
-date: 'This version: 2024-01-17'
+date: 'This version: 2024-05-27'
 subtitle: for Economists, Social and Health Scientists
 titlerunning: MachineMetrics
 site: bookdown::bookdown_site
